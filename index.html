@@ -5,651 +5,1192 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Manual Operacional — raphia.ag</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <style>
-  :root {
-    --dk: #292b2d;
-    --lt: #e8e7e7;
-    --pk: #ff40aa;
-    --pp: #600298;
-    --ton-dk: #e8e7e7;
-    --muted-dk: rgba(232,231,231,0.52);
-    --muted-lt: #5a5a5a;
-    --blt: rgba(41,43,45,0.13);
-  }
-  * { margin:0; padding:0; box-sizing:border-box; }
-  body { font-family:'DM Sans',sans-serif; background:var(--lt); color:var(--dk); font-size:14.5px; line-height:1.7; }
+:root {
+  --dk: #292b2d;
+  --lt: #f0efed;
+  --pk: #ff40aa;
+  --pp: #600298;
+  --ton-dk: #e8e7e7;
+  --muted-dk: rgba(232,231,231,0.52);
+  --muted-lt: #5a5a5a;
+  --blt: rgba(41,43,45,0.12);
+  --nav-h: 60px;
+}
 
-  /* CAPA */
-  .cover {
-    background:var(--dk); min-height:100vh;
-    display:flex; flex-direction:column; align-items:center; justify-content:center;
-    padding:80px 60px; position:relative; overflow:hidden;
-  }
-  .blob1 { position:absolute; top:-150px; right:-150px; width:500px; height:500px;
-    background:radial-gradient(circle,rgba(96,2,152,0.35) 0%,transparent 70%); pointer-events:none; }
-  .blob2 { position:absolute; bottom:-100px; left:-100px; width:400px; height:400px;
-    background:radial-gradient(circle,rgba(255,64,170,0.18) 0%,transparent 70%); pointer-events:none; }
-  .cover-logo { margin-bottom:52px; position:relative; z-index:1; }
-  .cover-logo svg { width:220px; height:auto; }
-  .cover-pill {
-    font-family:'Syne',sans-serif; font-size:10px; letter-spacing:4px; text-transform:uppercase;
-    color:var(--pk); border:1px solid rgba(255,64,170,0.4); padding:6px 18px; border-radius:40px;
-    margin-bottom:26px; position:relative; z-index:1;
-  }
-  .cover-title {
-    font-family:'Syne',sans-serif; font-size:52px; font-weight:800; color:var(--ton-dk);
-    text-align:center; line-height:1.05; margin-bottom:18px; position:relative; z-index:1; max-width:700px;
-  }
-  .cover-title span { background:linear-gradient(90deg,var(--pk),var(--pp)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
-  .cover-sub { font-size:14.5px; color:var(--muted-dk); text-align:center; max-width:460px; margin-bottom:66px; position:relative; z-index:1; }
-  .cover-meta { display:flex; gap:52px; position:relative; z-index:1; border-top:1px solid rgba(255,64,170,0.2); padding-top:32px; width:100%; max-width:540px; }
-  .cover-meta-item span { display:block; font-size:10px; letter-spacing:3px; text-transform:uppercase; color:rgba(232,231,231,0.3); margin-bottom:4px; }
-  .cover-meta-item strong { font-family:'Syne',sans-serif; font-size:13px; font-weight:600; color:var(--ton-dk); }
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body { font-family:'DM Sans',sans-serif; background:var(--lt); color:var(--dk); font-size:14.5px; line-height:1.7; }
 
-  /* TOC */
-  .toc-page { padding:90px 80px; max-width:960px; margin:0 auto; }
-  .eyebrow { font-family:'Syne',sans-serif; font-size:10px; letter-spacing:4px; text-transform:uppercase; color:var(--pk); margin-bottom:14px; }
-  .ph1 { font-family:'Syne',sans-serif; font-size:38px; font-weight:800; color:var(--dk); margin-bottom:52px; line-height:1.1; }
-  .toc-list { list-style:none; }
-  .toc-item { display:flex; align-items:flex-start; gap:20px; padding:15px 0; border-bottom:1px solid var(--blt); }
-  .toc-num { font-family:'Syne',sans-serif; font-size:11px; font-weight:700; color:var(--pk); min-width:26px; margin-top:2px; }
-  .toc-text { font-family:'Syne',sans-serif; font-size:16px; font-weight:700; color:var(--dk); flex:1; }
-  .toc-desc { font-size:12.5px; color:var(--muted-lt); margin-top:2px; }
+/* ===== NAVBAR ===== */
+#navbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  background: rgba(41,43,45,0.97);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,64,170,0.15);
+  height: var(--nav-h);
+  display: flex; align-items: center;
+  padding: 0 32px;
+  gap: 0;
+}
+.nav-logo { flex-shrink: 0; margin-right: 28px; }
+.nav-logo svg { width: 90px; height: auto; display: block; }
+.nav-links {
+  display: flex; align-items: center; gap: 2px;
+  overflow-x: auto; scrollbar-width: none; flex: 1;
+}
+.nav-links::-webkit-scrollbar { display: none; }
+.nav-link {
+  font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 600;
+  color: rgba(232,231,231,0.45); text-decoration: none;
+  white-space: nowrap; padding: 6px 10px; border-radius: 6px;
+  transition: all 0.2s; letter-spacing: 0.3px;
+}
+.nav-link:hover { color: var(--ton-dk); background: rgba(255,255,255,0.06); }
+.nav-link.active { color: var(--pk); background: rgba(255,64,170,0.08); }
+.nav-num { color: rgba(255,64,170,0.5); margin-right: 4px; font-size: 9px; }
 
-  /* SECTION PAGES */
-  .cp { max-width:960px; margin:0 auto; padding:80px 80px; }
-  .sh { background:var(--dk); margin:0 -80px 52px; padding:46px 80px; display:flex; align-items:flex-end; gap:26px; }
-  .sh-num { font-family:'Syne',sans-serif; font-size:70px; font-weight:800; color:rgba(255,255,255,0.07); line-height:1; flex-shrink:0; }
-  .sh .eyebrow { color:rgba(255,64,170,0.75); margin-bottom:6px; }
-  .sh-title { font-family:'Syne',sans-serif; font-size:27px; font-weight:800; color:var(--ton-dk); line-height:1.2; }
+/* ===== COVER ===== */
+.cover {
+  background: var(--dk); min-height: 100vh;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 80px 60px; position: relative; overflow: hidden;
+  padding-top: calc(80px + var(--nav-h));
+}
+.blob1 { position:absolute; top:-150px; right:-150px; width:500px; height:500px;
+  background:radial-gradient(circle,rgba(96,2,152,0.35) 0%,transparent 70%); pointer-events:none; }
+.blob2 { position:absolute; bottom:-100px; left:-100px; width:400px; height:400px;
+  background:radial-gradient(circle,rgba(255,64,170,0.18) 0%,transparent 70%); pointer-events:none; }
+.cover-logo { margin-bottom:52px; position:relative; z-index:1; display:flex; align-items:center; justify-content:center; }
+.cover-logo svg { width:280px; height:auto; display:block; }
+.cover-pill {
+  font-family:'Syne',sans-serif; font-size:10px; letter-spacing:4px; text-transform:uppercase;
+  color:var(--pk); border:1px solid rgba(255,64,170,0.4); padding:6px 18px; border-radius:40px;
+  margin-bottom:26px; position:relative; z-index:1;
+}
+.cover-title {
+  font-family:'Syne',sans-serif; font-size:52px; font-weight:800; color:var(--ton-dk);
+  text-align:center; line-height:1.05; margin-bottom:18px; position:relative; z-index:1; max-width:700px;
+}
+.cover-title span { background:linear-gradient(90deg,var(--pk),var(--pp)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.cover-sub { font-size:14.5px; color:var(--muted-dk); text-align:center; max-width:460px; margin-bottom:66px; position:relative; z-index:1; }
+.cover-meta { display:flex; gap:52px; position:relative; z-index:1; border-top:1px solid rgba(255,64,170,0.2); padding-top:32px; width:100%; max-width:540px; }
+.cover-meta-item span { display:block; font-size:10px; letter-spacing:3px; text-transform:uppercase; color:rgba(232,231,231,0.3); margin-bottom:4px; }
+.cover-meta-item strong { font-family:'Syne',sans-serif; font-size:13px; font-weight:600; color:var(--ton-dk); }
 
-  h2.ct { font-family:'Syne',sans-serif; font-size:19px; font-weight:700; color:var(--dk); margin-bottom:16px; margin-top:46px; padding-bottom:10px; border-bottom:2px solid var(--pk); }
-  h2.ct:first-of-type { margin-top:0; }
-  h3.cs { font-family:'Syne',sans-serif; font-size:12.5px; font-weight:700; color:var(--pp); margin-bottom:12px; margin-top:28px; text-transform:uppercase; letter-spacing:1.5px; }
-  p.tp { margin-bottom:14px; color:#3a3a3a; font-size:14px; }
+/* ===== SECTIONS ===== */
+.section { padding-top: calc(var(--nav-h) + 20px); }
 
-  /* STEPS */
-  .steps { display:flex; flex-direction:column; gap:0; margin:26px 0; }
-  .step { display:flex; gap:18px; align-items:flex-start; position:relative; }
-  .step::after { content:''; position:absolute; left:16px; top:38px; width:2px; height:calc(100% - 14px); background:var(--blt); }
-  .step:last-child::after { display:none; }
-  .sn { width:34px; height:34px; border-radius:50%; background:var(--dk); color:var(--pk); font-family:'Syne',sans-serif; font-size:11.5px; font-weight:700; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:2px; position:relative; z-index:1; }
-  .sc { background:#fff; border:1px solid var(--blt); border-radius:10px; padding:15px 19px; flex:1; margin-bottom:13px; }
-  .st { font-family:'Syne',sans-serif; font-size:13.5px; font-weight:700; color:var(--dk); margin-bottom:4px; display:flex; align-items:flex-start; justify-content:space-between; gap:8px; flex-wrap:wrap; }
-  .sd { font-size:13px; color:var(--muted-lt); line-height:1.6; }
-  .sm { display:flex; flex-wrap:wrap; gap:6px; margin-top:9px; }
-  .badge { font-size:10.5px; font-weight:600; padding:2px 9px; border-radius:20px; white-space:nowrap; }
-  .br { background:rgba(41,43,45,0.07); color:var(--dk); border:1px solid rgba(41,43,45,0.18); }
-  .bd { background:rgba(255,64,170,0.08); color:#b0006a; border:1px solid rgba(255,64,170,0.25); }
-  .bt { background:rgba(96,2,152,0.08); color:var(--pp); border:1px solid rgba(96,2,152,0.2); }
+.sec-wrap { max-width: 960px; margin: 0 auto; padding: 60px 60px 80px; }
 
-  /* CARDS */
-  .igrid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px; margin:20px 0; }
-  .icard { background:#fff; border:1px solid var(--blt); border-radius:12px; padding:18px; }
-  .icard-title { font-family:'Syne',sans-serif; font-size:13px; font-weight:700; color:var(--dk); margin-bottom:7px; }
-  .icard-body { font-size:12.5px; color:var(--muted-lt); line-height:1.6; }
+/* Section header — agora elegante, não mais barra pesada */
+.sec-header { margin-bottom: 48px; padding-bottom: 24px; border-bottom: 1px solid var(--blt); display: flex; align-items: flex-end; gap: 20px; }
+.sec-num-big { font-family: 'Syne', sans-serif; font-size: 64px; font-weight: 800; color: rgba(41,43,45,0.07); line-height: 1; flex-shrink: 0; letter-spacing: -2px; }
+.sec-header-text {}
+.sec-eyebrow { font-family: 'Syne', sans-serif; font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--pk); margin-bottom: 5px; }
+.sec-title { font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 800; color: var(--dk); line-height: 1.15; }
 
-  /* TIMELINE */
-  .tl { display:grid; grid-template-columns:repeat(4,1fr); gap:0; margin:28px 0; position:relative; }
-  .tl::before { content:''; position:absolute; top:15px; left:34px; right:34px; height:2px; background:var(--blt); }
-  .tl-item { display:flex; flex-direction:column; align-items:center; text-align:center; padding:0 7px; }
-  .tl-dot { width:30px; height:30px; border-radius:50%; background:var(--dk); border:2px solid var(--pk); margin-bottom:11px; position:relative; z-index:1; display:flex; align-items:center; justify-content:center; }
-  .tl-dot span { font-family:'Syne',sans-serif; font-size:10px; font-weight:700; color:var(--pk); }
-  .tl-period { font-family:'Syne',sans-serif; font-size:9.5px; font-weight:700; color:var(--pk); text-transform:uppercase; letter-spacing:1px; margin-bottom:4px; }
-  .tl-label { font-size:11.5px; color:var(--dk); font-weight:500; line-height:1.4; }
+/* Alternating section backgrounds */
+.section:nth-child(even) .sec-wrap { background: transparent; }
+.section-dark { background: var(--dk); }
+.section-dark .sec-num-big { color: rgba(255,255,255,0.05); }
+.section-dark .sec-eyebrow { color: rgba(255,64,170,0.7); }
+.section-dark .sec-title { color: var(--ton-dk); }
+.section-dark .ct { color: var(--ton-dk) !important; border-bottom-color: var(--pk) !important; }
+.section-dark .tp { color: rgba(232,231,231,0.65) !important; }
+.section-dark .icard { background: rgba(255,255,255,0.05) !important; border-color: rgba(255,255,255,0.08) !important; }
+.section-dark .icard-title { color: var(--ton-dk) !important; }
+.section-dark .icard-body { color: var(--muted-dk) !important; }
 
-  /* HIGHLIGHT BOXES */
-  .hbox { background:var(--dk); border-radius:12px; padding:24px 28px; margin:26px 0; display:flex; gap:16px; align-items:flex-start; }
-  .hbox-ico { font-size:20px; flex-shrink:0; color:var(--pk); }
-  .hbox-title { font-family:'Syne',sans-serif; font-size:13.5px; font-weight:700; color:var(--pk); margin-bottom:6px; }
-  .hbox-body { font-size:13px; color:var(--muted-dk); line-height:1.65; }
-  .pbox { background:rgba(96,2,152,0.06); border:1px solid rgba(96,2,152,0.2); border-left:4px solid var(--pp); border-radius:8px; padding:16px 20px; margin:16px 0; }
-  .pbox-title { font-family:'Syne',sans-serif; font-size:11px; font-weight:700; color:var(--pp); text-transform:uppercase; letter-spacing:1.5px; margin-bottom:7px; }
-  .pbox-body { font-size:13px; color:#3a1060; line-height:1.65; }
-  .pinkbox { background:rgba(255,64,170,0.06); border:1px solid rgba(255,64,170,0.2); border-left:4px solid var(--pk); border-radius:8px; padding:16px 20px; margin:16px 0; }
-  .pinkbox-title { font-family:'Syne',sans-serif; font-size:11px; font-weight:700; color:var(--pk); text-transform:uppercase; letter-spacing:1.5px; margin-bottom:7px; }
-  .pinkbox-body { font-size:13px; color:#8a003d; line-height:1.65; }
+/* Divider between sections */
+.section + .section { border-top: 1px solid var(--blt); }
+.section-dark + .section, .section + .section-dark { border-top: none; }
 
-  /* CHECKLIST */
-  .checklist { list-style:none; margin:12px 0; }
-  .checklist li { display:flex; align-items:flex-start; gap:11px; padding:8px 0; border-bottom:1px solid var(--blt); font-size:13.5px; color:#3a3a3a; }
-  .checklist li:last-child { border-bottom:none; }
-  .cbox { width:16px; height:16px; border:2px solid var(--pp); border-radius:4px; flex-shrink:0; margin-top:3px; }
+/* ===== TOC ===== */
+.toc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 8px; }
+.toc-item {
+  display: flex; align-items: center; gap: 14px; padding: 14px 16px;
+  border: 1px solid var(--blt); border-radius: 10px; text-decoration: none;
+  background: #fff; transition: all 0.2s; cursor: pointer;
+}
+.toc-item:hover { border-color: rgba(255,64,170,0.35); background: rgba(255,64,170,0.03); transform: translateY(-1px); }
+.toc-num { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; color: var(--pk); min-width: 24px; }
+.toc-text { font-family: 'Syne', sans-serif; font-size: 13.5px; font-weight: 700; color: var(--dk); }
+.toc-desc { font-size: 11.5px; color: var(--muted-lt); margin-top: 1px; }
 
-  /* ORG */
-  .org-chart { margin:26px 0; display:flex; flex-direction:column; align-items:center; }
-  .org-level { display:flex; gap:14px; justify-content:center; padding:14px 0; }
-  .org-card { background:#fff; border:1px solid var(--blt); border-radius:10px; padding:13px 16px; text-align:center; min-width:125px; }
-  .org-card.top { background:var(--dk); border-color:var(--dk); }
-  .org-card.top .org-role { color:rgba(232,231,231,0.4); }
-  .org-card.top .org-title { color:var(--ton-dk); }
-  .org-card.mid { border-top:3px solid var(--pk); }
-  .org-role { font-size:9.5px; letter-spacing:2px; text-transform:uppercase; color:var(--muted-lt); margin-bottom:4px; }
-  .org-title { font-family:'Syne',sans-serif; font-size:12px; font-weight:700; color:var(--dk); }
-  .org-connector { width:2px; height:24px; background:var(--blt); margin:0 auto; }
+/* ===== CONTENT ELEMENTS ===== */
+.eyebrow { font-family:'Syne',sans-serif; font-size:10px; letter-spacing:4px; text-transform:uppercase; color:var(--pk); margin-bottom:14px; }
+h2.ct { font-family:'Syne',sans-serif; font-size:18px; font-weight:700; color:var(--dk); margin-bottom:14px; margin-top:44px; padding-bottom:9px; border-bottom:2px solid var(--pk); }
+h2.ct:first-of-type { margin-top:0; }
+h3.cs { font-family:'Syne',sans-serif; font-size:12px; font-weight:700; color:var(--pp); margin-bottom:12px; margin-top:28px; text-transform:uppercase; letter-spacing:1.5px; }
+p.tp { margin-bottom:14px; color:#3a3a3a; font-size:14px; }
 
-  /* 2-COL */
-  .two-col { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin:16px 0; }
-  .wblock { background:#f6f5f3; border-radius:10px; padding:16px 20px; border-left:4px solid var(--pp); }
-  .wblock.pink { border-left-color:var(--pk); }
-  .wblock-title { font-family:'Syne',sans-serif; font-size:11.5px; font-weight:700; color:var(--dk); text-transform:uppercase; letter-spacing:1px; margin-bottom:9px; }
-  .witems { list-style:none; font-size:12.5px; color:#3a3a3a; }
-  .witems li { padding:4px 0; display:flex; gap:8px; border-bottom:1px solid rgba(41,43,45,0.07); }
-  .witems li:last-child { border-bottom:none; }
-  .witems li::before { content:"→"; color:var(--pk); font-weight:700; flex-shrink:0; }
+/* STEPS */
+.steps { display:flex; flex-direction:column; gap:0; margin:26px 0; }
+.step { display:flex; gap:18px; align-items:flex-start; position:relative; }
+.step::after { content:''; position:absolute; left:16px; top:38px; width:2px; height:calc(100% - 14px); background:var(--blt); }
+.step:last-child::after { display:none; }
+.sn { width:34px; height:34px; border-radius:50%; background:var(--dk); color:var(--pk); font-family:'Syne',sans-serif; font-size:11.5px; font-weight:700; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:2px; position:relative; z-index:1; }
+.sc { background:#fff; border:1px solid var(--blt); border-radius:10px; padding:15px 19px; flex:1; margin-bottom:13px; }
+.st { font-family:'Syne',sans-serif; font-size:13.5px; font-weight:700; color:var(--dk); margin-bottom:4px; display:flex; align-items:flex-start; justify-content:space-between; gap:8px; flex-wrap:wrap; }
+.sd { font-size:13px; color:var(--muted-lt); line-height:1.6; }
+.sm { display:flex; flex-wrap:wrap; gap:6px; margin-top:9px; }
+.badge { font-size:10.5px; font-weight:600; padding:2px 9px; border-radius:20px; white-space:nowrap; }
+.br { background:rgba(41,43,45,0.07); color:var(--dk); border:1px solid rgba(41,43,45,0.18); }
+.bd { background:rgba(255,64,170,0.08); color:#b0006a; border:1px solid rgba(255,64,170,0.25); }
+.bt { background:rgba(96,2,152,0.08); color:var(--pp); border:1px solid rgba(96,2,152,0.2); }
 
-  /* APROVACAO */
-  .aflex { display:flex; align-items:center; gap:0; margin:20px 0; flex-wrap:wrap; }
-  .astep { background:#fff; border:1px solid var(--blt); border-radius:8px; padding:12px 14px; text-align:center; flex:1; min-width:100px; }
-  .alabel { font-size:10px; color:var(--muted-lt); text-transform:uppercase; letter-spacing:1px; margin-bottom:4px; }
-  .aname { font-family:'Syne',sans-serif; font-size:12px; font-weight:700; color:var(--dk); }
-  .aarrow { color:var(--pk); font-size:17px; padding:0 5px; flex-shrink:0; font-weight:700; }
+/* CARDS */
+.igrid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:14px; margin:20px 0; }
+.icard { background:#fff; border:1px solid var(--blt); border-radius:12px; padding:18px; }
+.icard-title { font-family:'Syne',sans-serif; font-size:13px; font-weight:700; color:var(--dk); margin-bottom:7px; }
+.icard-body { font-size:12.5px; color:var(--muted-lt); line-height:1.6; }
 
-  /* TABLE */
-  .ttable { width:100%; border-collapse:collapse; margin:16px 0; font-size:13px; }
-  .ttable th { text-align:left; font-family:'Syne',sans-serif; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:var(--muted-lt); padding:10px 13px; background:#f6f5f3; border-bottom:2px solid var(--blt); }
-  .ttable td { padding:11px 13px; border-bottom:1px solid var(--blt); color:#3a3a3a; vertical-align:top; }
-  .ttable tr:last-child td { border-bottom:none; }
-  .ttable td:first-child { font-weight:600; color:var(--dk); }
+/* TIMELINE */
+.tl { display:grid; grid-template-columns:repeat(4,1fr); gap:0; margin:28px 0; position:relative; }
+.tl::before { content:''; position:absolute; top:15px; left:34px; right:34px; height:2px; background:var(--blt); }
+.tl-item { display:flex; flex-direction:column; align-items:center; text-align:center; padding:0 7px; }
+.tl-dot { width:30px; height:30px; border-radius:50%; background:var(--dk); border:2px solid var(--pk); margin-bottom:11px; position:relative; z-index:1; display:flex; align-items:center; justify-content:center; }
+.tl-dot span { font-family:'Syne',sans-serif; font-size:10px; font-weight:700; color:var(--pk); }
+.tl-period { font-family:'Syne',sans-serif; font-size:9.5px; font-weight:700; color:var(--pk); text-transform:uppercase; letter-spacing:1px; margin-bottom:4px; }
+.tl-label { font-size:11.5px; color:var(--dk); font-weight:500; line-height:1.4; }
 
-  /* KPI */
-  .kgrid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:16px; }
-  .kitem { background:#f6f5f3; border-radius:8px; padding:13px 15px; }
-  .klabel { font-size:10px; color:var(--muted-lt); margin-bottom:4px; text-transform:uppercase; letter-spacing:1px; }
-  .kval { font-family:'Syne',sans-serif; font-size:21px; font-weight:800; color:var(--dk); }
-  .kch { font-size:10.5px; color:var(--pp); margin-top:3px; }
-  .rsec { border:1px solid var(--blt); border-radius:12px; overflow:hidden; margin:16px 0; }
-  .rhead { background:#f6f5f3; padding:13px 18px; border-bottom:1px solid var(--blt); display:flex; justify-content:space-between; align-items:center; }
-  .rhead-title { font-family:'Syne',sans-serif; font-size:13px; font-weight:700; color:var(--dk); }
-  .rbody { padding:16px 18px; }
+/* HIGHLIGHT BOXES */
+.hbox { background:var(--dk); border-radius:12px; padding:24px 28px; margin:26px 0; display:flex; gap:16px; align-items:flex-start; }
+.hbox-ico { font-size:20px; flex-shrink:0; color:var(--pk); }
+.hbox-title { font-family:'Syne',sans-serif; font-size:13.5px; font-weight:700; color:var(--pk); margin-bottom:6px; }
+.hbox-body { font-size:13px; color:var(--muted-dk); line-height:1.65; }
+.pbox { background:rgba(96,2,152,0.06); border:1px solid rgba(96,2,152,0.2); border-left:4px solid var(--pp); border-radius:8px; padding:16px 20px; margin:16px 0; }
+.pbox-title { font-family:'Syne',sans-serif; font-size:11px; font-weight:700; color:var(--pp); text-transform:uppercase; letter-spacing:1.5px; margin-bottom:7px; }
+.pbox-body { font-size:13px; color:#3a1060; line-height:1.65; }
+.pinkbox { background:rgba(255,64,170,0.06); border:1px solid rgba(255,64,170,0.2); border-left:4px solid var(--pk); border-radius:8px; padding:16px 20px; margin:16px 0; }
+.pinkbox-title { font-family:'Syne',sans-serif; font-size:11px; font-weight:700; color:var(--pk); text-transform:uppercase; letter-spacing:1.5px; margin-bottom:7px; }
+.pinkbox-body { font-size:13px; color:#8a003d; line-height:1.65; }
 
-  /* FOOTER */
-  .pfoot { margin:66px -80px -80px; background:var(--dk); padding:24px 80px; display:flex; justify-content:space-between; align-items:center; }
-  .pfoot-brand { font-family:'Syne',sans-serif; font-size:13px; font-weight:600; color:rgba(232,231,231,0.45); }
-  .pfoot-note { font-size:11px; color:rgba(232,231,231,0.22); }
+/* CHECKLIST — INTERATIVO */
+.checklist { list-style:none; margin:12px 0; }
+.checklist li {
+  display:flex; align-items:flex-start; gap:11px; padding:9px 12px;
+  border-bottom:1px solid var(--blt); font-size:13.5px; color:#3a3a3a;
+  border-radius:6px; cursor: pointer; transition: background 0.15s; user-select: none;
+}
+.checklist li:last-child { border-bottom:none; }
+.checklist li:hover { background: rgba(255,64,170,0.04); }
+.checklist li.checked { color: #888; }
+.checklist li.checked .cbox { background: var(--pp); border-color: var(--pp); }
+.checklist li.checked .cbox::after {
+  content: ''; display: block; width: 9px; height: 5px;
+  border-left: 2px solid #fff; border-bottom: 2px solid #fff;
+  transform: rotate(-45deg); margin: 2px 0 0 2px;
+}
+.checklist li.checked span { text-decoration: line-through; }
+.cbox { width:18px; height:18px; border:2px solid var(--pp); border-radius:4px; flex-shrink:0; margin-top:2px; transition: all 0.15s; }
 
-  /* ===== GERADOR DE CALENDARIO ===== */
-  #cal-tool {
-    background:var(--dk); border-radius:16px; padding:36px; margin:28px 0;
-    border:1px solid rgba(255,64,170,0.2);
-  }
-  #cal-tool h3 {
-    font-family:'Syne',sans-serif; font-size:18px; font-weight:800; color:var(--ton-dk);
-    margin-bottom:6px;
-  }
-  #cal-tool .cal-sub { font-size:13px; color:var(--muted-dk); margin-bottom:28px; }
+/* ORG */
+.org-chart { margin:26px 0; display:flex; flex-direction:column; align-items:center; }
+.org-level { display:flex; gap:14px; justify-content:center; padding:14px 0; }
+.org-card { background:#fff; border:1px solid var(--blt); border-radius:10px; padding:13px 16px; text-align:center; min-width:125px; }
+.org-card.top { background:var(--dk); border-color:var(--dk); }
+.org-card.top .org-role { color:rgba(232,231,231,0.4); }
+.org-card.top .org-title { color:var(--ton-dk); }
+.org-card.mid { border-top:3px solid var(--pk); }
+.org-role { font-size:9.5px; letter-spacing:2px; text-transform:uppercase; color:var(--muted-lt); margin-bottom:4px; }
+.org-title { font-family:'Syne',sans-serif; font-size:12px; font-weight:700; color:var(--dk); }
+.org-connector { width:2px; height:24px; background:var(--blt); margin:0 auto; }
 
-  .cal-form-row { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:22px; }
-  .cal-form-group { display:flex; flex-direction:column; gap:7px; }
-  .cal-label { font-family:'Syne',sans-serif; font-size:11px; font-weight:700; color:var(--pk); text-transform:uppercase; letter-spacing:1.5px; }
-  .cal-input {
-    background:rgba(255,255,255,0.07); border:1px solid rgba(255,64,170,0.25);
-    border-radius:8px; padding:10px 14px; font-size:13.5px; color:var(--ton-dk);
-    font-family:'DM Sans',sans-serif; outline:none; width:100%;
-  }
-  .cal-input:focus { border-color:var(--pk); }
-  .cal-input option { background:#292b2d; color:#e8e7e7; }
+/* 2-COL */
+.two-col { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin:16px 0; }
+.wblock { background:#f6f5f3; border-radius:10px; padding:16px 20px; border-left:4px solid var(--pp); }
+.wblock.pink { border-left-color:var(--pk); }
+.wblock-title { font-family:'Syne',sans-serif; font-size:11.5px; font-weight:700; color:var(--dk); text-transform:uppercase; letter-spacing:1px; margin-bottom:9px; }
+.witems { list-style:none; font-size:12.5px; color:#3a3a3a; }
+.witems li { padding:4px 0; display:flex; gap:8px; border-bottom:1px solid rgba(41,43,45,0.07); }
+.witems li:last-child { border-bottom:none; }
+.witems li::before { content:"→"; color:var(--pk); font-weight:700; flex-shrink:0; }
 
-  .servicos-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-bottom:22px; }
-  .serv-check {
-    display:flex; align-items:center; gap:10px; padding:12px 14px;
-    background:rgba(255,255,255,0.05); border:1px solid rgba(255,64,170,0.15);
-    border-radius:8px; cursor:pointer; transition:all 0.2s;
-  }
-  .serv-check:hover { border-color:rgba(255,64,170,0.4); background:rgba(255,64,170,0.07); }
-  .serv-check input { accent-color:var(--pk); width:15px; height:15px; cursor:pointer; flex-shrink:0; }
-  .serv-check label { font-size:12.5px; color:var(--ton-dk); cursor:pointer; line-height:1.3; font-weight:500; }
+/* APROVACAO */
+.aflex { display:flex; align-items:center; gap:0; margin:20px 0; flex-wrap:wrap; }
+.astep { background:#fff; border:1px solid var(--blt); border-radius:8px; padding:12px 14px; text-align:center; flex:1; min-width:100px; }
+.alabel { font-size:10px; color:var(--muted-lt); text-transform:uppercase; letter-spacing:1px; margin-bottom:4px; }
+.aname { font-family:'Syne',sans-serif; font-size:12px; font-weight:700; color:var(--dk); }
+.aarrow { color:var(--pk); font-size:17px; padding:0 5px; flex-shrink:0; font-weight:700; }
 
-  .cal-btn {
-    background:linear-gradient(135deg,var(--pk),var(--pp));
-    color:#fff; border:none; border-radius:10px; padding:13px 28px;
-    font-family:'Syne',sans-serif; font-size:13px; font-weight:700;
-    cursor:pointer; letter-spacing:0.5px; width:100%; margin-top:6px;
-    transition:opacity 0.2s;
-  }
-  .cal-btn:hover { opacity:0.88; }
+/* TABLE */
+.ttable { width:100%; border-collapse:collapse; margin:16px 0; font-size:13px; }
+.ttable th { text-align:left; font-family:'Syne',sans-serif; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:var(--muted-lt); padding:10px 13px; background:#f6f5f3; border-bottom:2px solid var(--blt); }
+.ttable td { padding:11px 13px; border-bottom:1px solid var(--blt); color:#3a3a3a; vertical-align:top; }
+.ttable tr:last-child td { border-bottom:none; }
+.ttable td:first-child { font-weight:600; color:var(--dk); }
 
-  #cal-output { margin-top:28px; }
-  #cal-output .cal-title { font-family:'Syne',sans-serif; font-size:16px; font-weight:800; color:var(--ton-dk); margin-bottom:4px; }
-  #cal-output .cal-period { font-size:12px; color:var(--pk); margin-bottom:20px; font-weight:600; }
+/* KPI */
+.kgrid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:16px; }
+.kitem { background:#f6f5f3; border-radius:8px; padding:13px 15px; }
+.klabel { font-size:10px; color:var(--muted-lt); margin-bottom:4px; text-transform:uppercase; letter-spacing:1px; }
+.kval { font-family:'Syne',sans-serif; font-size:21px; font-weight:800; color:var(--dk); }
+.kch { font-size:10.5px; color:var(--pp); margin-top:3px; }
+.rsec { border:1px solid var(--blt); border-radius:12px; overflow:hidden; margin:16px 0; }
+.rhead { background:#f6f5f3; padding:13px 18px; border-bottom:1px solid var(--blt); display:flex; justify-content:space-between; align-items:center; }
+.rhead-title { font-family:'Syne',sans-serif; font-size:13px; font-weight:700; color:var(--dk); }
+.rbody { padding:16px 18px; }
 
-  .cal-week { margin-bottom:18px; }
-  .cal-week-title {
-    font-family:'Syne',sans-serif; font-size:11px; font-weight:700;
-    color:var(--pk); text-transform:uppercase; letter-spacing:2px;
-    padding:8px 12px; background:rgba(255,64,170,0.1); border-radius:6px 6px 0 0;
-    border:1px solid rgba(255,64,170,0.2); border-bottom:none;
-  }
-  .cal-events { border:1px solid rgba(255,64,170,0.2); border-radius:0 0 8px 8px; overflow:hidden; }
+/* ===== GERADOR DE CALENDARIO ===== */
+#cal-tool {
+  background: var(--dk); border-radius: 16px; padding: 36px; margin: 28px 0;
+  border: 1px solid rgba(255,64,170,0.2);
+}
+#cal-tool h3 { font-family:'Syne',sans-serif; font-size:18px; font-weight:800; color:var(--ton-dk); margin-bottom:6px; }
+#cal-tool .cal-sub { font-size:13px; color:var(--muted-dk); margin-bottom:28px; }
+.cal-form-row { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:22px; }
+.cal-form-group { display:flex; flex-direction:column; gap:7px; }
+.cal-label { font-family:'Syne',sans-serif; font-size:11px; font-weight:700; color:var(--pk); text-transform:uppercase; letter-spacing:1.5px; }
+.cal-input { background:rgba(255,255,255,0.07); border:1px solid rgba(255,64,170,0.25); border-radius:8px; padding:10px 14px; font-size:13.5px; color:var(--ton-dk); font-family:'DM Sans',sans-serif; outline:none; width:100%; }
+.cal-input:focus { border-color:var(--pk); }
+.cal-input option { background:#292b2d; color:#e8e7e7; }
+.servicos-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-bottom:22px; }
+.serv-check { display:flex; align-items:center; gap:10px; padding:12px 14px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,64,170,0.15); border-radius:8px; cursor:pointer; transition:all 0.2s; }
+.serv-check:hover { border-color:rgba(255,64,170,0.4); background:rgba(255,64,170,0.07); }
+.serv-check input { accent-color:var(--pk); width:15px; height:15px; cursor:pointer; flex-shrink:0; }
+.serv-check label { font-size:12.5px; color:var(--ton-dk); cursor:pointer; line-height:1.3; font-weight:500; }
+.cal-btn { background:linear-gradient(135deg,var(--pk),var(--pp)); color:#fff; border:none; border-radius:10px; padding:13px 28px; font-family:'Syne',sans-serif; font-size:13px; font-weight:700; cursor:pointer; letter-spacing:0.5px; width:100%; margin-top:6px; transition:opacity 0.2s; }
+.cal-btn:hover { opacity:0.88; }
+#cal-output { margin-top:28px; }
+#cal-output .cal-title { font-family:'Syne',sans-serif; font-size:16px; font-weight:800; color:var(--ton-dk); margin-bottom:4px; }
+#cal-output .cal-period { font-size:12px; color:var(--pk); margin-bottom:20px; font-weight:600; }
+.cal-week { margin-bottom:18px; }
+.cal-week-title { font-family:'Syne',sans-serif; font-size:11px; font-weight:700; color:var(--pk); text-transform:uppercase; letter-spacing:2px; padding:8px 12px; background:rgba(255,64,170,0.1); border-radius:6px 6px 0 0; border:1px solid rgba(255,64,170,0.2); border-bottom:none; }
+.cal-events { border:1px solid rgba(255,64,170,0.2); border-radius:0 0 8px 8px; overflow:hidden; }
+.cal-event { display:flex; align-items:flex-start; gap:14px; padding:12px 16px; border-bottom:1px solid rgba(255,255,255,0.06); }
+.cal-event:last-child { border-bottom:none; }
+.cal-event-day { min-width:52px; }
+.cal-day-num { font-family:'Syne',sans-serif; font-size:14px; font-weight:800; color:var(--pk); line-height:1; }
+.cal-day-name { font-size:10px; color:var(--muted-dk); text-transform:uppercase; letter-spacing:1px; }
+.cal-event-info { flex:1; }
+.cal-event-name { font-size:13px; font-weight:600; color:var(--ton-dk); }
+.cal-event-desc { font-size:11.5px; color:var(--muted-dk); margin-top:2px; line-height:1.5; }
+.cal-event-tags { display:flex; gap:5px; flex-wrap:wrap; margin-top:6px; }
+.cal-tag { font-size:10px; font-weight:700; padding:2px 8px; border-radius:20px; text-transform:uppercase; letter-spacing:0.5px; }
+.tag-pink { background:rgba(255,64,170,0.18); color:#ff7acc; }
+.tag-pp { background:rgba(96,2,152,0.25); color:#c47eff; }
+.tag-green { background:rgba(20,180,100,0.18); color:#4de8a0; }
+.tag-yellow { background:rgba(255,200,0,0.18); color:#ffce33; }
 
-  .cal-event {
-    display:flex; align-items:flex-start; gap:14px; padding:12px 16px;
-    border-bottom:1px solid rgba(255,255,255,0.06);
-  }
-  .cal-event:last-child { border-bottom:none; }
-  .cal-event-day { min-width:48px; }
-  .cal-day-num { font-family:'Syne',sans-serif; font-size:14px; font-weight:800; color:var(--pk); line-height:1; }
-  .cal-day-name { font-size:10px; color:var(--muted-dk); text-transform:uppercase; letter-spacing:1px; }
-  .cal-event-info { flex:1; }
-  .cal-event-name { font-size:13px; font-weight:600; color:var(--ton-dk); }
-  .cal-event-desc { font-size:11.5px; color:var(--muted-dk); margin-top:2px; }
-  .cal-event-tags { display:flex; gap:5px; flex-wrap:wrap; margin-top:5px; }
-  .cal-tag {
-    font-size:10px; font-weight:700; padding:1px 7px; border-radius:20px;
-    text-transform:uppercase; letter-spacing:0.5px;
-  }
-  .tag-pink { background:rgba(255,64,170,0.18); color:#ff7acc; }
-  .tag-pp { background:rgba(96,2,152,0.25); color:#c47eff; }
-  .tag-green { background:rgba(20,180,100,0.18); color:#4de8a0; }
-  .tag-yellow { background:rgba(255,200,0,0.18); color:#ffce33; }
+.pdf-download-btn {
+  display: inline-flex; align-items: center; gap: 9px;
+  background: rgba(255,255,255,0.08); color: var(--ton-dk);
+  border: 1px solid rgba(255,64,170,0.3); border-radius: 10px;
+  padding: 11px 20px; font-family: 'Syne', sans-serif; font-size: 12.5px;
+  font-weight: 700; cursor: pointer; letter-spacing: 0.5px; margin-top: 20px;
+  transition: all 0.2s;
+}
+.pdf-download-btn:hover { background: rgba(255,64,170,0.15); border-color: var(--pk); }
+.pdf-download-btn svg { width: 16px; height: 16px; }
 
-  .pdf-btn {
-    background:rgba(255,255,255,0.07); color:var(--ton-dk); border:1px solid rgba(255,64,170,0.3);
-    border-radius:10px; padding:11px 22px; font-family:'Syne',sans-serif; font-size:12.5px;
-    font-weight:700; cursor:pointer; letter-spacing:0.5px; margin-top:18px;
-    display:inline-flex; align-items:center; gap:8px; transition:all 0.2s;
-  }
-  .pdf-btn:hover { background:rgba(255,64,170,0.12); border-color:var(--pk); }
+/* ===== FOOTER ===== */
+.site-footer {
+  background: var(--dk); padding: 36px 60px;
+  display: flex; justify-content: space-between; align-items: center;
+  border-top: 1px solid rgba(255,64,170,0.15);
+}
+.footer-brand { font-family:'Syne',sans-serif; font-size:13px; font-weight:600; color:rgba(232,231,231,0.4); }
+.footer-note { font-size:11px; color:rgba(232,231,231,0.2); }
 
-  @media (max-width:700px) {
-    .cover { padding:60px 28px; }
-    .cover-title { font-size:34px; }
-    .cp { padding:40px 24px; }
-    .sh { margin:0 -24px 40px; padding:34px 24px; }
-    .pfoot { margin:40px -24px -40px; padding:20px 24px; flex-direction:column; gap:10px; }
-    .toc-page { padding:60px 24px; }
-    .two-col { grid-template-columns:1fr; }
-    .tl { grid-template-columns:1fr 1fr; }
-    .kgrid { grid-template-columns:1fr 1fr; }
-    .cover-meta { flex-direction:column; gap:16px; }
-    .aflex { flex-direction:column; align-items:stretch; }
-    .cal-form-row { grid-template-columns:1fr; }
-    .servicos-grid { grid-template-columns:1fr 1fr; }
-  }
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+  #navbar { padding: 0 16px; }
+  .nav-link { font-size: 10px; padding: 5px 8px; }
+  .nav-logo svg { width: 70px; }
+  .cover { padding: 60px 28px; padding-top: calc(60px + var(--nav-h)); }
+  .cover-title { font-size: 34px; }
+  .cover-meta { flex-direction: column; gap: 16px; }
+  .sec-wrap { padding: 40px 24px 60px; }
+  .toc-grid { grid-template-columns: 1fr; }
+  .two-col { grid-template-columns: 1fr; }
+  .tl { grid-template-columns: 1fr 1fr; }
+  .kgrid { grid-template-columns: 1fr 1fr; }
+  .aflex { flex-direction: column; align-items: stretch; }
+  .cal-form-row { grid-template-columns: 1fr; }
+  .servicos-grid { grid-template-columns: 1fr; }
+  .sec-header { flex-direction: column; gap: 6px; align-items: flex-start; }
+  .sec-num-big { font-size: 40px; }
+  .site-footer { flex-direction: column; gap: 10px; text-align: center; padding: 28px 24px; }
+}
+
+/* Loading spinner for PDF */
+.pdf-loading {
+  display: none; align-items: center; gap: 8px;
+  font-size: 12px; color: var(--pk); margin-top: 12px;
+}
+.pdf-spinner { width: 16px; height: 16px; border: 2px solid rgba(255,64,170,0.3); border-top-color: var(--pk); border-radius: 50%; animation: spin 0.7s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Extra form elements */
+.cal-num::-webkit-inner-spin-button, .cal-num::-webkit-outer-spin-button { opacity: 0.5; }
+.cal-section-divider {
+  font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700;
+  color: var(--pk); text-transform: uppercase; letter-spacing: 2px;
+  padding: 10px 0 10px; border-top: 1px solid rgba(255,64,170,0.2);
+  margin-bottom: 14px;
+}
+.pdf-btns-row { display: flex; gap: 12px; margin-top: 20px; flex-wrap: wrap; }
+
+/* Tabs */
+.cal-tabs { display: flex; gap: 0; margin-top: 24px; border-bottom: 2px solid rgba(255,64,170,0.2); }
+.cal-tab {
+  font-family: 'Syne', sans-serif; font-size: 11.5px; font-weight: 700;
+  color: rgba(232,231,231,0.4); padding: 9px 18px; cursor: pointer;
+  border-bottom: 2px solid transparent; margin-bottom: -2px; transition: all 0.2s; letter-spacing: 0.3px;
+}
+.cal-tab.active { color: var(--pk); border-bottom-color: var(--pk); }
+.cal-tab:hover { color: var(--ton-dk); }
+.cal-panel { display: none; margin-top: 20px; }
+.cal-panel.active { display: block; }
+
+/* Calendario cliente (light) */
+#cal-cliente-wrap {
+  background: #fff; border: 1px solid var(--blt); border-radius: 12px; padding: 28px;
+}
+.cal-cliente-title { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 800; color: var(--dk); }
+.cal-cliente-sub { font-size: 12px; color: var(--muted-lt); margin-top: 3px; margin-bottom: 16px; }
+.cal-cliente-entregaveis { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+.cal-cliente-badge {
+  font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700;
+  padding: 4px 12px; border-radius: 20px; border: 1px solid currentColor;
+}
+.badge-green { color: #16783c; background: #e6f8ed; border-color: #9de0b8; }
+.badge-yellow { color: #8c5a00; background: #fff8dc; border-color: #f0d080; }
+.badge-pink { color: #a0005a; background: #ffe1f2; border-color: #f0a0cc; }
+.badge-purple { color: #500082; background: #ebdcff; border-color: #c490f0; }
+.cal-cliente-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.cal-cliente-table thead tr { border-bottom: 2px solid var(--pk); }
+.cal-cliente-table th { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--muted-lt); padding: 8px 10px; text-align: left; }
+.cal-cliente-table td { padding: 10px 10px; border-bottom: 1px solid var(--blt); vertical-align: middle; }
+.cal-cliente-table tr:last-child td { border-bottom: none; }
+.col-data { font-family: 'Syne', sans-serif; font-weight: 700; color: var(--pk); white-space: nowrap; font-size: 13px; }
+.col-dia { font-size: 11px; color: var(--muted-lt); white-space: nowrap; }
+.col-entrega { font-weight: 600; color: var(--dk); }
+.cal-cliente-tag { font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 12px; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; }
+.cal-cliente-footer { margin-top: 16px; font-size: 11.5px; color: var(--muted-lt); border-top: 1px solid var(--blt); padding-top: 12px; }
 </style>
 </head>
 <body>
 
-<!-- CAPA -->
-<div class="cover">
-  <div class="blob1"></div>
-  <div class="blob2"></div>
-  <div class="cover-logo">
-<svg id="Camada_2" data-name="Camada 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 379.42 92.79">
-  <defs>
-    <style>
-      .cls-1 {
-        fill: #f8f8f8;
-      }
-    </style>
-  </defs>
-  <g id="Camada_1-2" data-name="Camada 1">
-    <g>
-      <path class="cls-1" d="M29.5,18.3l-13.89,.06C7.04,18.4,.11,24.64,.03,32.33l-.03,28.81c0,3.89,3.15,7.05,7.05,7.05s7.05-3.15,7.05-7.05v-24.66c0-1.96,1.36-3.6,3.19-4.03l12.15-.05c3.95-.02,7.25-3.27,7.15-7.22-.09-3.83-3.23-6.89-7.08-6.88Z"/>
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="nav-logo">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 379.42 92.79">
+      <style>.cls-1{fill:#f8f8f8}</style>
       <g>
+        <path class="cls-1" d="M29.5,18.3l-13.89,.06C7.04,18.4,.11,24.64,.03,32.33l-.03,28.81c0,3.89,3.15,7.05,7.05,7.05s7.05-3.15,7.05-7.05v-24.66c0-1.96,1.36-3.6,3.19-4.03l12.15-.05c3.95-.02,7.25-3.27,7.15-7.22-.09-3.83-3.23-6.89-7.08-6.88Z"/>
         <path class="cls-1" d="M89.7,21.39c-1.39-1.87-3.61-3.09-6.12-3.09h0c-4.2,0-7.61,3.41-7.61,7.61v27.51h8.42c2.34-4.57,2.85-8.82,2.99-10.96h.02c.16-3.48,1.57-6.64,3.79-9.04v-7.51c0-1.69-.55-3.25-1.49-4.52Z"/>
         <path class="cls-1" d="M126.52,43.87c.27-13.51-10.83-25.08-24.34-25.33-2.73-.05-5.37,.34-7.84,1.1-3.39,1.05-5.99,2.66-7.82,4.06-.03,.02-.06,.05-.07,.05-.8,.62-2.85,2.3-4.89,5.06-.89,1.2-2.31,3.17-3.36,6.04-.68,1.87-.83,3.13-1.12,4.7-.31,1.7-1.32,7.24-2.93,10.35-2.05,3.95-7.06,7.82-12.73,7.77-7.14-.06-14.32-6.04-14.32-14.32s6.41-14.32,14.32-14.32c1.39,0,2.73,.2,4,.57,2.14,.62,4.28-1.03,4.28-3.26v-3.89c0-1.57-1.09-2.92-2.61-3.27-2.26-.53-4.65-.75-7.1-.61-13.2,.75-23.55,11.88-23.39,25.1,.18,14.49,13.05,24.3,24.83,24.52,12.1,.23,19.82-9.72,20.58-10.74,4.41-5.88,5.19-12.04,5.37-14.76h.02c.36-7.73,6.84-13.86,14.7-13.64,7.44,.21,13.55,6.2,13.9,13.63,.38,8.21-6.17,14.99-14.3,14.99h1.12v10.49c13.03-.58,23.44-11.19,23.71-24.29Z"/>
         <path class="cls-1" d="M101.7,57.67s0,0,0,0c0,0,0,0,0,0h-14.09v27.51c0,4.2,3.41,7.61,7.61,7.61h0c4.2,0,7.61-3.41,7.61-7.61v-27.51h-1.12Z"/>
+        <path class="cls-1" d="M179.58,62.48c0,.77-.15,1.51-.45,2.19-.3,.69-.71,1.29-1.24,1.8-.53,.51-1.14,.91-1.82,1.19-.69,.28-1.43,.42-2.24,.42s-1.51-.14-2.19-.42c-.69-.28-1.29-.68-1.82-1.19-.53-.51-.94-1.11-1.24-1.8-.3-.69-.45-1.42-.45-2.19v-19.83c0-.12,.02-.24,.05-.34-.04-1.76-.35-3.4-.95-4.91-.6-1.51-1.42-2.83-2.46-3.96-1.04-1.13-2.28-2.02-3.72-2.67-1.44-.65-3.05-.98-4.81-.98s-3.47,.31-5.02,.92c-1.55,.62-2.89,1.48-4.01,2.59-1.13,1.11-2.02,2.43-2.67,3.96-.65,1.53-.98,3.21-.98,5.04v20.07c0,.77-.15,1.51-.45,2.22-.3,.7-.7,1.31-1.21,1.82s-1.11,.92-1.8,1.21c-.69,.3-1.43,.45-2.24,.45s-1.57-.15-2.27-.45c-.7-.3-1.31-.7-1.82-1.21-.51-.51-.92-1.12-1.21-1.82-.3-.7-.45-1.44-.45-2.22V5.81c0-.81,.15-1.57,.45-2.27,.3-.7,.71-1.32,1.24-1.85s1.14-.94,1.85-1.24c.7-.3,1.44-.45,2.22-.45s1.56,.15,2.24,.45c.69,.3,1.28,.71,1.8,1.24,.51,.53,.92,1.14,1.21,1.85,.3,.7,.45,1.46,.45,2.27V23.03c1.83-1.48,3.81-2.63,5.94-3.46,2.13-.83,4.37-1.24,6.73-1.24,3.34,0,6.44,.64,9.3,1.93,2.85,1.29,5.32,3.03,7.39,5.23,2.08,2.2,3.71,4.78,4.89,7.74,1.18,2.96,1.77,6.11,1.77,9.45v19.81Z"/>
+        <path class="cls-1" d="M185.15,8.23c0-.87,.16-1.68,.49-2.44,.33-.76,.77-1.42,1.33-1.98,.55-.55,1.21-1,1.98-1.33,.76-.33,1.56-.49,2.39-.49s1.63,.16,2.39,.49c.76,.33,1.43,.77,2,1.33,.57,.55,1.02,1.21,1.35,1.98,.33,.76,.49,1.58,.49,2.44s-.16,1.62-.49,2.37c-.33,.75-.78,1.4-1.35,1.95-.57,.55-1.24,1-2,1.33-.76,.33-1.56,.49-2.39,.49s-1.63-.16-2.39-.49c-.76-.33-1.42-.77-1.98-1.33-.55-.55-1-1.2-1.33-1.95-.33-.75-.49-1.53-.49-2.37Zm12.19,54.06c0,.79-.15,1.53-.45,2.25-.3,.71-.71,1.33-1.23,1.85s-1.12,.93-1.82,1.23c-.7,.3-1.45,.45-2.28,.45s-1.53-.15-2.25-.45c-.71-.3-1.34-.71-1.87-1.23-.54-.52-.96-1.13-1.26-1.85-.3-.71-.45-1.46-.45-2.25V24.07c0-.78,.16-1.53,.48-2.22,.32-.7,.75-1.31,1.28-1.85s1.16-.95,1.87-1.26c.71-.3,1.48-.45,2.3-.45s1.57,.15,2.25,.45c.68,.3,1.28,.72,1.79,1.26,.52,.54,.92,1.15,1.2,1.85,.29,.7,.43,1.44,.43,2.22V62.3Z"/>
+        <path class="cls-1" d="M203.14,43.2c0-3.45,.66-6.67,1.98-9.69,1.32-3.01,3.11-5.65,5.38-7.91,2.26-2.26,4.9-4.05,7.91-5.35,3.01-1.31,6.22-1.96,9.63-1.96s6.68,.65,9.71,1.96c3.03,1.31,5.67,3.09,7.91,5.35,2.25,2.26,4.01,4.9,5.3,7.91,1.29,3.01,1.93,6.24,1.93,9.69v18.48c0,.8-.15,1.55-.44,2.25-.3,.7-.7,1.31-1.23,1.83s-1.14,.94-1.85,1.25c-.71,.31-1.47,.47-2.27,.47-1.36,0-2.51-.4-3.45-1.2-.94-.8-1.57-1.81-1.88-3.03-1.98,1.5-4.13,2.68-6.45,3.55-2.32,.87-4.74,1.31-7.28,1.31-3.41,0-6.62-.65-9.63-1.96-3.01-1.31-5.65-3.09-7.91-5.35-2.26-2.26-4.06-4.91-5.38-7.94-1.32-3.03-1.98-6.25-1.98-9.66Zm11.33,0c0,1.85,.36,3.59,1.07,5.25,.71,1.65,1.69,3.1,2.92,4.33,1.24,1.24,2.67,2.21,4.31,2.92,1.64,.71,3.39,1.07,5.27,1.07s3.65-.36,5.3-1.07c1.65-.71,3.09-1.69,4.31-2.92,1.22-1.24,2.18-2.68,2.87-4.33,.7-1.65,1.04-3.4,1.04-5.25s-.35-3.65-1.04-5.3c-.7-1.65-1.65-3.09-2.87-4.31-1.22-1.22-2.65-2.18-4.31-2.9-1.65-.71-3.42-1.07-5.3-1.07s-3.59,.36-5.25,1.07c-1.65,.71-3.1,1.68-4.33,2.9-1.24,1.22-2.21,2.65-2.92,4.31-.71,1.65-1.07,3.42-1.07,5.3Z"/>
+        <path class="cls-1" d="M276.46,43.37c0-3.37,.64-6.55,1.92-9.53,1.28-2.98,3.02-5.57,5.24-7.77,2.21-2.2,4.8-3.93,7.77-5.21,2.96-1.28,6.11-1.92,9.45-1.92s6.52,.63,9.45,1.89c2.93,1.26,5.49,2.99,7.69,5.19,2.2,2.2,3.93,4.76,5.21,7.69,1.28,2.93,1.93,6.08,1.97,9.45v21.56c0,.68-.2,1.24-.61,1.69-.41,.44-.95,.66-1.64,.66s-1.17-.22-1.56-.66c-.39-.44-.59-1-.59-1.69l-.05-7.66c-1.09,1.57-2.36,3.01-3.81,4.32-1.45,1.31-3.01,2.44-4.7,3.37-1.69,.94-3.49,1.67-5.42,2.2-1.92,.53-3.91,.79-5.95,.79-3.34,0-6.49-.64-9.45-1.92-2.96-1.28-5.55-3.02-7.77-5.24-2.21-2.21-3.96-4.8-5.24-7.77-1.28-2.96-1.92-6.11-1.92-9.45Zm4.45,0c0,2.69,.52,5.25,1.56,7.66,1.04,2.42,2.45,4.54,4.24,6.36,1.79,1.82,3.89,3.26,6.31,4.32,2.42,1.06,5.02,1.58,7.82,1.58s5.45-.53,7.87-1.58c2.42-1.06,4.52-2.5,6.31-4.32,1.79-1.82,3.19-3.94,4.22-6.36,1.02-2.42,1.53-4.97,1.53-7.66s-.51-5.36-1.53-7.79c-1.02-2.44-2.43-4.56-4.22-6.36-1.79-1.81-3.89-3.23-6.31-4.27-2.42-1.04-5.04-1.56-7.87-1.56s-5.36,.52-7.79,1.56c-2.44,1.04-4.55,2.46-6.34,4.27-1.79,1.81-3.2,3.93-4.24,6.36-1.04,2.44-1.56,5.03-1.56,7.79Z"/>
+        <path class="cls-1" d="M330.72,43.37c0-3.37,.64-6.55,1.92-9.53,1.28-2.98,3.02-5.57,5.24-7.77,2.21-2.2,4.8-3.93,7.77-5.21,2.96-1.28,6.11-1.92,9.45-1.92s6.54,.64,9.5,1.92c2.96,1.28,5.54,3.01,7.74,5.21,2.2,2.2,3.93,4.79,5.19,7.77,1.26,2.98,1.89,6.16,1.89,9.53,0,2.66-.4,5.18-1.2,7.56-.8,2.38-1.92,4.58-3.35,6.59,1.5,1.6,2.51,3.36,3.04,5.26,.53,1.91,.79,3.83,.79,5.77,0,2.69-.47,5.11-1.41,7.26-.94,2.15-2.19,3.98-3.76,5.49-1.57,1.52-3.35,2.67-5.34,3.47-1.99,.8-4.06,1.2-6.21,1.2-.85,0-1.75-.06-2.71-.18-.95-.12-1.93-.24-2.94-.36-1.01-.12-2.01-.24-3.01-.36-1.01-.12-1.97-.18-2.89-.18-1.26,0-2.56,.13-3.91,.38-1.35,.26-2.53,.77-3.55,1.56-.41,.31-.85,.46-1.33,.46-.44,0-.85-.12-1.23-.36-.38-.24-.66-.55-.87-.92-.2-.38-.27-.79-.2-1.25,.07-.46,.32-.93,.77-1.41,.58-.44,1.26-.83,2.04-1.15,.78-.32,1.61-.59,2.48-.79,.87-.2,1.75-.36,2.63-.46,.89-.1,1.7-.15,2.45-.15,1.84,0,3.69,.13,5.54,.38,1.86,.26,3.64,.38,5.34,.38,1.98,0,3.8-.31,5.47-.92,1.67-.61,3.11-1.48,4.32-2.61,1.21-1.12,2.15-2.5,2.84-4.11,.68-1.62,1.02-3.43,1.02-5.44,0-1.02-.07-1.91-.2-2.66-.14-.75-.31-1.41-.51-1.99-.2-.58-.45-1.1-.74-1.56-.29-.46-.59-.91-.89-1.35-2.18,2.11-4.7,3.76-7.56,4.96-2.86,1.19-5.94,1.79-9.25,1.79s-6.49-.64-9.45-1.92c-2.96-1.28-5.55-3.01-7.77-5.21-2.21-2.2-3.96-4.78-5.24-7.74-1.28-2.96-1.92-6.11-1.92-9.45Zm4.45,0c0,2.69,.52,5.25,1.56,7.66,1.04,2.42,2.45,4.53,4.24,6.34,1.79,1.81,3.89,3.24,6.31,4.29,2.42,1.06,5.02,1.58,7.82,1.58s5.45-.53,7.87-1.58c2.42-1.06,4.52-2.49,6.31-4.29,1.79-1.81,3.19-3.92,4.22-6.34,1.02-2.42,1.53-4.97,1.53-7.66s-.51-5.36-1.53-7.79c-1.02-2.44-2.43-4.56-4.22-6.36-1.79-1.81-3.89-3.23-6.31-4.27-2.42-1.04-5.04-1.56-7.87-1.56s-5.36,.52-7.79,1.56c-2.44,1.04-4.55,2.46-6.34,4.27-1.79,1.81-3.2,3.93-4.24,6.36-1.04,2.44-1.56,5.03-1.56,7.79Z"/>
+        <path class="cls-1" d="M258.47,61.96c0-.87,.16-1.68,.49-2.44,.33-.76,.77-1.42,1.33-1.98,.55-.55,1.21-1,1.98-1.33,.76-.33,1.56-.49,2.39-.49s1.63,.16,2.39,.49c.76,.33,1.43,.77,2,1.33,.57,.55,1.02,1.21,1.35,1.98,.33,.76,.49,1.58,.49,2.44s-.16,1.62-.49,2.37c-.33,.75-.78,1.4-1.35,1.95-.57,.55-1.24,1-2,1.33-.76,.33-1.56,.49-2.39,.49s-1.63-.16-2.39-.49c-.76-.33-1.42-.77-1.98-1.33-.55-.55-1-1.2-1.33-1.95-.33-.75-.49-1.53-.49-2.37Z"/>
       </g>
-      <path class="cls-1" d="M179.58,62.48c0,.77-.15,1.51-.45,2.19-.3,.69-.71,1.29-1.24,1.8-.53,.51-1.14,.91-1.82,1.19-.69,.28-1.43,.42-2.24,.42s-1.51-.14-2.19-.42c-.69-.28-1.29-.68-1.82-1.19-.53-.51-.94-1.11-1.24-1.8-.3-.69-.45-1.42-.45-2.19v-19.83c0-.12,.02-.24,.05-.34-.04-1.76-.35-3.4-.95-4.91-.6-1.51-1.42-2.83-2.46-3.96-1.04-1.13-2.28-2.02-3.72-2.67-1.44-.65-3.05-.98-4.81-.98s-3.47,.31-5.02,.92c-1.55,.62-2.89,1.48-4.01,2.59-1.13,1.11-2.02,2.43-2.67,3.96-.65,1.53-.98,3.21-.98,5.04v20.07c0,.77-.15,1.51-.45,2.22-.3,.7-.7,1.31-1.21,1.82s-1.11,.92-1.8,1.21c-.69,.3-1.43,.45-2.24,.45s-1.57-.15-2.27-.45c-.7-.3-1.31-.7-1.82-1.21-.51-.51-.92-1.12-1.21-1.82-.3-.7-.45-1.44-.45-2.22V5.81c0-.81,.15-1.57,.45-2.27,.3-.7,.71-1.32,1.24-1.85s1.14-.94,1.85-1.24c.7-.3,1.44-.45,2.22-.45s1.56,.15,2.24,.45c.69,.3,1.28,.71,1.8,1.24,.51,.53,.92,1.14,1.21,1.85,.3,.7,.45,1.46,.45,2.27V23.03c1.83-1.48,3.81-2.63,5.94-3.46,2.13-.83,4.37-1.24,6.73-1.24,3.34,0,6.44,.64,9.3,1.93,2.85,1.29,5.32,3.03,7.39,5.23,2.08,2.2,3.71,4.78,4.89,7.74,1.18,2.96,1.77,6.11,1.77,9.45v19.81Z"/>
-      <path class="cls-1" d="M185.15,8.23c0-.87,.16-1.68,.49-2.44,.33-.76,.77-1.42,1.33-1.98,.55-.55,1.21-1,1.98-1.33,.76-.33,1.56-.49,2.39-.49s1.63,.16,2.39,.49c.76,.33,1.43,.77,2,1.33,.57,.55,1.02,1.21,1.35,1.98,.33,.76,.49,1.58,.49,2.44s-.16,1.62-.49,2.37c-.33,.75-.78,1.4-1.35,1.95-.57,.55-1.24,1-2,1.33-.76,.33-1.56,.49-2.39,.49s-1.63-.16-2.39-.49c-.76-.33-1.42-.77-1.98-1.33-.55-.55-1-1.2-1.33-1.95-.33-.75-.49-1.53-.49-2.37Zm12.19,54.06c0,.79-.15,1.53-.45,2.25-.3,.71-.71,1.33-1.23,1.85s-1.12,.93-1.82,1.23c-.7,.3-1.45,.45-2.28,.45s-1.53-.15-2.25-.45c-.71-.3-1.34-.71-1.87-1.23-.54-.52-.96-1.13-1.26-1.85-.3-.71-.45-1.46-.45-2.25V24.07c0-.78,.16-1.53,.48-2.22,.32-.7,.75-1.31,1.28-1.85s1.16-.95,1.87-1.26c.71-.3,1.48-.45,2.3-.45s1.57,.15,2.25,.45c.68,.3,1.28,.72,1.79,1.26,.52,.54,.92,1.15,1.2,1.85,.29,.7,.43,1.44,.43,2.22V62.3Z"/>
-      <path class="cls-1" d="M203.14,43.2c0-3.45,.66-6.67,1.98-9.69,1.32-3.01,3.11-5.65,5.38-7.91,2.26-2.26,4.9-4.05,7.91-5.35,3.01-1.31,6.22-1.96,9.63-1.96s6.68,.65,9.71,1.96c3.03,1.31,5.67,3.09,7.91,5.35,2.25,2.26,4.01,4.9,5.3,7.91,1.29,3.01,1.93,6.24,1.93,9.69v18.48c0,.8-.15,1.55-.44,2.25-.3,.7-.7,1.31-1.23,1.83s-1.14,.94-1.85,1.25c-.71,.31-1.47,.47-2.27,.47-1.36,0-2.51-.4-3.45-1.2-.94-.8-1.57-1.81-1.88-3.03-1.98,1.5-4.13,2.68-6.45,3.55-2.32,.87-4.74,1.31-7.28,1.31-3.41,0-6.62-.65-9.63-1.96-3.01-1.31-5.65-3.09-7.91-5.35-2.26-2.26-4.06-4.91-5.38-7.94-1.32-3.03-1.98-6.25-1.98-9.66Zm11.33,0c0,1.85,.36,3.59,1.07,5.25,.71,1.65,1.69,3.1,2.92,4.33,1.24,1.24,2.67,2.21,4.31,2.92,1.64,.71,3.39,1.07,5.27,1.07s3.65-.36,5.3-1.07c1.65-.71,3.09-1.69,4.31-2.92,1.22-1.24,2.18-2.68,2.87-4.33,.7-1.65,1.04-3.4,1.04-5.25s-.35-3.65-1.04-5.3c-.7-1.65-1.65-3.09-2.87-4.31-1.22-1.22-2.65-2.18-4.31-2.9-1.65-.71-3.42-1.07-5.3-1.07s-3.59,.36-5.25,1.07c-1.65,.71-3.1,1.68-4.33,2.9-1.24,1.22-2.21,2.65-2.92,4.31-.71,1.65-1.07,3.42-1.07,5.3Z"/>
-      <path class="cls-1" d="M276.46,43.37c0-3.37,.64-6.55,1.92-9.53,1.28-2.98,3.02-5.57,5.24-7.77,2.21-2.2,4.8-3.93,7.77-5.21,2.96-1.28,6.11-1.92,9.45-1.92s6.52,.63,9.45,1.89c2.93,1.26,5.49,2.99,7.69,5.19,2.2,2.2,3.93,4.76,5.21,7.69,1.28,2.93,1.93,6.08,1.97,9.45v21.56c0,.68-.2,1.24-.61,1.69-.41,.44-.95,.66-1.64,.66s-1.17-.22-1.56-.66c-.39-.44-.59-1-.59-1.69l-.05-7.66c-1.09,1.57-2.36,3.01-3.81,4.32-1.45,1.31-3.01,2.44-4.7,3.37-1.69,.94-3.49,1.67-5.42,2.2-1.92,.53-3.91,.79-5.95,.79-3.34,0-6.49-.64-9.45-1.92-2.96-1.28-5.55-3.02-7.77-5.24-2.21-2.21-3.96-4.8-5.24-7.77-1.28-2.96-1.92-6.11-1.92-9.45Zm4.45,0c0,2.69,.52,5.25,1.56,7.66,1.04,2.42,2.45,4.54,4.24,6.36,1.79,1.82,3.89,3.26,6.31,4.32,2.42,1.06,5.02,1.58,7.82,1.58s5.45-.53,7.87-1.58c2.42-1.06,4.52-2.5,6.31-4.32,1.79-1.82,3.19-3.94,4.22-6.36,1.02-2.42,1.53-4.97,1.53-7.66s-.51-5.36-1.53-7.79c-1.02-2.44-2.43-4.56-4.22-6.36-1.79-1.81-3.89-3.23-6.31-4.27-2.42-1.04-5.04-1.56-7.87-1.56s-5.36,.52-7.79,1.56c-2.44,1.04-4.55,2.46-6.34,4.27-1.79,1.81-3.2,3.93-4.24,6.36-1.04,2.44-1.56,5.03-1.56,7.79Z"/>
-      <path class="cls-1" d="M330.72,43.37c0-3.37,.64-6.55,1.92-9.53,1.28-2.98,3.02-5.57,5.24-7.77,2.21-2.2,4.8-3.93,7.77-5.21,2.96-1.28,6.11-1.92,9.45-1.92s6.54,.64,9.5,1.92c2.96,1.28,5.54,3.01,7.74,5.21,2.2,2.2,3.93,4.79,5.19,7.77,1.26,2.98,1.89,6.16,1.89,9.53,0,2.66-.4,5.18-1.2,7.56-.8,2.38-1.92,4.58-3.35,6.59,1.5,1.6,2.51,3.36,3.04,5.26,.53,1.91,.79,3.83,.79,5.77,0,2.69-.47,5.11-1.41,7.26-.94,2.15-2.19,3.98-3.76,5.49-1.57,1.52-3.35,2.67-5.34,3.47-1.99,.8-4.06,1.2-6.21,1.2-.85,0-1.75-.06-2.71-.18-.95-.12-1.93-.24-2.94-.36-1.01-.12-2.01-.24-3.01-.36-1.01-.12-1.97-.18-2.89-.18-1.26,0-2.56,.13-3.91,.38-1.35,.26-2.53,.77-3.55,1.56-.41,.31-.85,.46-1.33,.46-.44,0-.85-.12-1.23-.36-.38-.24-.66-.55-.87-.92-.2-.38-.27-.79-.2-1.25,.07-.46,.32-.93,.77-1.41,.58-.44,1.26-.83,2.04-1.15,.78-.32,1.61-.59,2.48-.79,.87-.2,1.75-.36,2.63-.46,.89-.1,1.7-.15,2.45-.15,1.84,0,3.69,.13,5.54,.38,1.86,.26,3.64,.38,5.34,.38,1.98,0,3.8-.31,5.47-.92,1.67-.61,3.11-1.48,4.32-2.61,1.21-1.12,2.15-2.5,2.84-4.11,.68-1.62,1.02-3.43,1.02-5.44,0-1.02-.07-1.91-.2-2.66-.14-.75-.31-1.41-.51-1.99-.2-.58-.45-1.1-.74-1.56-.29-.46-.59-.91-.89-1.35-2.18,2.11-4.7,3.76-7.56,4.96-2.86,1.19-5.94,1.79-9.25,1.79s-6.49-.64-9.45-1.92c-2.96-1.28-5.55-3.01-7.77-5.21-2.21-2.2-3.96-4.78-5.24-7.74-1.28-2.96-1.92-6.11-1.92-9.45Zm4.45,0c0,2.69,.52,5.25,1.56,7.66,1.04,2.42,2.45,4.53,4.24,6.34,1.79,1.81,3.89,3.24,6.31,4.29,2.42,1.06,5.02,1.58,7.82,1.58s5.45-.53,7.87-1.58c2.42-1.06,4.52-2.49,6.31-4.29,1.79-1.81,3.19-3.92,4.22-6.34,1.02-2.42,1.53-4.97,1.53-7.66s-.51-5.36-1.53-7.79c-1.02-2.44-2.43-4.56-4.22-6.36-1.79-1.81-3.89-3.23-6.31-4.27-2.42-1.04-5.04-1.56-7.87-1.56s-5.36,.52-7.79,1.56c-2.44,1.04-4.55,2.46-6.34,4.27-1.79,1.81-3.2,3.93-4.24,6.36-1.04,2.44-1.56,5.03-1.56,7.79Z"/>
-      <path class="cls-1" d="M258.47,61.96c0-.87,.16-1.68,.49-2.44,.33-.76,.77-1.42,1.33-1.98,.55-.55,1.21-1,1.98-1.33,.76-.33,1.56-.49,2.39-.49s1.63,.16,2.39,.49c.76,.33,1.43,.77,2,1.33,.57,.55,1.02,1.21,1.35,1.98,.33,.76,.49,1.58,.49,2.44s-.16,1.62-.49,2.37c-.33,.75-.78,1.4-1.35,1.95-.57,.55-1.24,1-2,1.33-.76,.33-1.56,.49-2.39,.49s-1.63-.16-2.39-.49c-.76-.33-1.42-.77-1.98-1.33-.55-.55-1-1.2-1.33-1.95-.33-.75-.49-1.53-.49-2.37Z"/>
-    </g>
-  </g>
-</svg>
+    </svg>
   </div>
+  <div class="nav-links">
+    <a class="nav-link" href="#cover"><span class="nav-num">—</span>Inicio</a>
+    <a class="nav-link" href="#sec01"><span class="nav-num">01</span>Estrutura</a>
+    <a class="nav-link" href="#sec02"><span class="nav-num">02</span>Fluxo</a>
+    <a class="nav-link" href="#sec03"><span class="nav-num">03</span>Onboarding</a>
+    <a class="nav-link" href="#sec04"><span class="nav-num">04</span>Criacao</a>
+    <a class="nav-link" href="#sec05"><span class="nav-num">05</span>Producao</a>
+    <a class="nav-link" href="#sec06"><span class="nav-num">06</span>Trafego</a>
+    <a class="nav-link" href="#sec07"><span class="nav-num">07</span>Aprovacao</a>
+    <a class="nav-link" href="#sec08"><span class="nav-num">08</span>Ferramentas</a>
+    <a class="nav-link" href="#sec09"><span class="nav-num">09</span>Calendario</a>
+    <a class="nav-link" href="#sec10"><span class="nav-num">10</span>Relatorio</a>
+  </div>
+</nav>
+
+<!-- CAPA -->
+<div id="cover" class="cover">
+  <div class="blob1"></div>
+  <div class="blob2"></div>
   <div class="cover-pill">Manual Operacional</div>
   <h1 class="cover-title">Processos e <span>Operacoes</span><br>da Agencia</h1>
   <p class="cover-sub">Guia completo de fluxos, responsabilidades, prazos e entregaveis para todas as areas da raphia.ag.</p>
   <div class="cover-meta">
-    <div class="cover-meta-item"><span>Versao</span><strong>1.0 / 2025</strong></div>
+    <div class="cover-meta-item"><span>Versao</span><strong>1.0 / 2026</strong></div>
     <div class="cover-meta-item"><span>Aplicacao</span><strong>Uso Interno</strong></div>
     <div class="cover-meta-item"><span>Revisao</span><strong>Trimestral</strong></div>
   </div>
 </div>
 
 <!-- SUMARIO -->
-<div class="toc-page">
-  <div class="eyebrow">raphia.ag — Manual Operacional</div>
-  <h1 class="ph1">Sumario</h1>
-  <ul class="toc-list">
-    <li class="toc-item"><span class="toc-num">01</span><div><div class="toc-text">Estrutura Organizacional</div><div class="toc-desc">Equipe, papeis e responsabilidades</div></div></li>
-    <li class="toc-item"><span class="toc-num">02</span><div><div class="toc-text">Fluxo Geral da Agencia</div><div class="toc-desc">Visao macro do ciclo de vida de um cliente</div></div></li>
-    <li class="toc-item"><span class="toc-num">03</span><div><div class="toc-text">Onboarding do Cliente</div><div class="toc-desc">Do fechamento ao inicio da operacao</div></div></li>
-    <li class="toc-item"><span class="toc-num">04</span><div><div class="toc-text">Criacao de Conteudo</div><div class="toc-desc">Estrategia, personas, roteiros e gravacao — 15 dias</div></div></li>
-    <li class="toc-item"><span class="toc-num">05</span><div><div class="toc-text">Producao e Design</div><div class="toc-desc">Edicao, artes, aprovacao e publicacao</div></div></li>
-    <li class="toc-item"><span class="toc-num">06</span><div><div class="toc-text">Trafego Pago</div><div class="toc-desc">Briefing, campanhas, rotina semanal e relatorio mensal</div></div></li>
-    <li class="toc-item"><span class="toc-num">07</span><div><div class="toc-text">Fluxo de Aprovacao</div><div class="toc-desc">Revisao interna, aprovacao do cliente e publicacao</div></div></li>
-    <li class="toc-item"><span class="toc-num">08</span><div><div class="toc-text">Ferramentas da Agencia</div><div class="toc-desc">Stack completa por setor</div></div></li>
-    <li class="toc-item"><span class="toc-num">09</span><div><div class="toc-text">Gerador de Calendario Mensal</div><div class="toc-desc">Ferramenta interativa de calendario por cliente</div></div></li>
-    <li class="toc-item"><span class="toc-num">10</span><div><div class="toc-text">Modelo de Relatorio Mensal</div><div class="toc-desc">Estrutura padrao do relatorio para o cliente</div></div></li>
-  </ul>
+<div class="section" id="sumario">
+  <div class="sec-wrap">
+    <div class="sec-header">
+      <div class="sec-num-big">00</div>
+      <div class="sec-header-text">
+        <div class="sec-eyebrow">raphia.ag — Manual Operacional</div>
+        <div class="sec-title">Sumario</div>
+      </div>
+    </div>
+    <div class="toc-grid">
+      <a class="toc-item" href="#sec01"><span class="toc-num">01</span><div><div class="toc-text">Estrutura Organizacional</div><div class="toc-desc">Equipe, papeis e responsabilidades</div></div></a>
+      <a class="toc-item" href="#sec02"><span class="toc-num">02</span><div><div class="toc-text">Fluxo Geral da Agencia</div><div class="toc-desc">Visao macro do ciclo de vida de um cliente</div></div></a>
+      <a class="toc-item" href="#sec03"><span class="toc-num">03</span><div><div class="toc-text">Onboarding do Cliente</div><div class="toc-desc">Do fechamento ao inicio da operacao</div></div></a>
+      <a class="toc-item" href="#sec04"><span class="toc-num">04</span><div><div class="toc-text">Criacao de Conteudo</div><div class="toc-desc">Estrategia, personas, roteiros e gravacao</div></div></a>
+      <a class="toc-item" href="#sec05"><span class="toc-num">05</span><div><div class="toc-text">Producao e Design</div><div class="toc-desc">Edicao, artes, aprovacao e publicacao</div></div></a>
+      <a class="toc-item" href="#sec06"><span class="toc-num">06</span><div><div class="toc-text">Trafego Pago</div><div class="toc-desc">Briefing, campanhas, rotina semanal e relatorio</div></div></a>
+      <a class="toc-item" href="#sec07"><span class="toc-num">07</span><div><div class="toc-text">Fluxo de Aprovacao</div><div class="toc-desc">Revisao interna, aprovacao e publicacao</div></div></a>
+      <a class="toc-item" href="#sec08"><span class="toc-num">08</span><div><div class="toc-text">Ferramentas da Agencia</div><div class="toc-desc">Stack completa por setor</div></div></a>
+      <a class="toc-item" href="#sec09"><span class="toc-num">09</span><div><div class="toc-text">Gerador de Calendario Mensal</div><div class="toc-desc">Ferramenta interativa com download em PDF</div></div></a>
+      <a class="toc-item" href="#sec10"><span class="toc-num">10</span><div><div class="toc-text">Modelo de Relatorio Mensal</div><div class="toc-desc">Estrutura padrao do relatorio ao cliente</div></div></a>
+    </div>
+  </div>
 </div>
 
 <!-- 01 ESTRUTURA -->
-<div class="cp">
-  <div class="sh"><div class="sh-num">01</div><div><div class="eyebrow">Manual Operacional</div><div class="sh-title">Estrutura Organizacional</div></div></div>
-  <h2 class="ct">Equipe e Papeis</h2>
-  <p class="tp">A raphia.ag opera com uma estrutura enxuta e especializada, onde cada papel tem responsabilidades claras para garantir entregas consistentes e de alta qualidade.</p>
-  <div class="org-chart">
-    <div class="org-level">
-      <div class="org-card top" style="min-width:185px;"><div class="org-role">Direcao</div><div class="org-title">CEO / Gestor Comercial</div></div>
+<div class="section" id="sec01">
+  <div class="sec-wrap">
+    <div class="sec-header">
+      <div class="sec-num-big">01</div>
+      <div class="sec-header-text">
+        <div class="sec-eyebrow">Manual Operacional</div>
+        <div class="sec-title">Estrutura Organizacional</div>
+      </div>
     </div>
-    <div class="org-connector"></div>
-    <div class="org-level">
-      <div class="org-card mid"><div class="org-role">Setor</div><div class="org-title">Social Media</div></div>
-      <div class="org-card mid"><div class="org-role">Setor</div><div class="org-title">Redacao</div></div>
-      <div class="org-card mid"><div class="org-role">Setor</div><div class="org-title">Design e Edicao</div></div>
-      <div class="org-card mid"><div class="org-role">Setor</div><div class="org-title">Trafego Pago</div></div>
+    <h2 class="ct">Equipe e Papeis</h2>
+    <p class="tp">A raphia.ag opera com uma estrutura enxuta e especializada, onde cada papel tem responsabilidades claras para garantir entregas consistentes e de alta qualidade.</p>
+    <div class="org-chart">
+      <div class="org-level">
+        <div class="org-card top" style="min-width:185px;"><div class="org-role">Direcao</div><div class="org-title">CEO / Gestor Comercial</div></div>
+      </div>
+      <div class="org-connector"></div>
+      <div class="org-level">
+        <div class="org-card mid"><div class="org-role">Setor</div><div class="org-title">Social Media</div></div>
+        <div class="org-card mid"><div class="org-role">Setor</div><div class="org-title">Redacao</div></div>
+        <div class="org-card mid"><div class="org-role">Setor</div><div class="org-title">Design e Edicao</div></div>
+        <div class="org-card mid"><div class="org-role">Setor</div><div class="org-title">Trafego Pago</div></div>
+      </div>
+    </div>
+    <div class="igrid">
+      <div class="icard"><div class="icard-title">CEO / Gestor Comercial</div><div class="icard-body">Prospeccao, fechamento de contratos, gestao financeira, definicao de metas, revisao estrategica dos clientes e aprovacao final de entregas criticas.</div></div>
+      <div class="icard"><div class="icard-title">Social Media</div><div class="icard-body">Gestao das redes sociais, briefing do cliente, agendamento de conteudo via Trello, monitoramento de metricas organicas e comunicacao diaria com o cliente via WhatsApp.</div></div>
+      <div class="icard"><div class="icard-title">Redacao</div><div class="icard-body">Pesquisa de pauta, criacao de personas, mapas de empatia, roteiros para video, legendas e textos de anuncios.</div></div>
+      <div class="icard"><div class="icard-title">Design e Edicao</div><div class="icard-body">Identidade visual dos conteudos, artes de carrossel, posts estaticos, edicao de reels e videos, thumbnail e identidade de feed.</div></div>
+      <div class="icard"><div class="icard-title">Gestor de Trafego</div><div class="icard-body">Configuracao e gestao de campanhas no Meta Ads e Google Ads, report semanal toda sexta-feira, follow-up de leads toda segunda-feira e relatorio mensal de performance.</div></div>
     </div>
   </div>
-  <div class="igrid">
-    <div class="icard"><div class="icard-title">CEO / Gestor Comercial</div><div class="icard-body">Prospeccao, fechamento de contratos, gestao financeira, definicao de metas, revisao estrategica dos clientes e aprovacao final de entregas criticas.</div></div>
-    <div class="icard"><div class="icard-title">Social Media</div><div class="icard-body">Gestao das redes sociais, briefing do cliente, agendamento de conteudo via Trello, monitoramento de metricas organicas e comunicacao diaria com o cliente via WhatsApp.</div></div>
-    <div class="icard"><div class="icard-title">Redacao</div><div class="icard-body">Pesquisa de pauta, criacao de personas, mapas de empatia, roteiros para video, legendas e textos de anuncios.</div></div>
-    <div class="icard"><div class="icard-title">Design e Edicao</div><div class="icard-body">Identidade visual dos conteudos, artes de carrossel, posts estaticos, edicao de reels e videos, thumbnail e identidade de feed.</div></div>
-    <div class="icard"><div class="icard-title">Gestor de Trafego</div><div class="icard-body">Configuracao e gestao de campanhas no Meta Ads e Google Ads, report semanal toda sexta-feira, follow-up de leads toda segunda-feira e relatorio mensal de performance.</div></div>
-  </div>
-  <div class="pfoot"><div class="pfoot-brand">raphia.ag — Manual Operacional 2025</div><div class="pfoot-note">Uso interno — Confidencial</div></div>
 </div>
 
 <!-- 02 FLUXO GERAL -->
-<div class="cp">
-  <div class="sh"><div class="sh-num">02</div><div><div class="eyebrow">Manual Operacional</div><div class="sh-title">Fluxo Geral da Agencia</div></div></div>
-  <h2 class="ct">Ciclo de Vida de um Cliente</h2>
-  <p class="tp">Todo cliente passa por quatro grandes fases durante a sua jornada na raphia.ag. O entendimento deste fluxo macro e essencial para que cada setor saiba seu momento de atuacao.</p>
-  <div class="tl">
-    <div class="tl-item"><div class="tl-dot"><span>01</span></div><div class="tl-period">Dias 1 a 3</div><div class="tl-label">Onboarding e Diagnostico</div></div>
-    <div class="tl-item"><div class="tl-dot"><span>02</span></div><div class="tl-period">Dias 4 a 15</div><div class="tl-label">Estrategia e Planejamento</div></div>
-    <div class="tl-item"><div class="tl-dot"><span>03</span></div><div class="tl-period">Dias 16 a 22</div><div class="tl-label">Producao e Aprovacao</div></div>
-    <div class="tl-item"><div class="tl-dot"><span>04</span></div><div class="tl-period">Mensal</div><div class="tl-label">Execucao, Otimizacao e Relatorio</div></div>
+<div class="section" id="sec02" style="background:#f7f6f4;">
+  <div class="sec-wrap">
+    <div class="sec-header">
+      <div class="sec-num-big">02</div>
+      <div class="sec-header-text">
+        <div class="sec-eyebrow">Manual Operacional</div>
+        <div class="sec-title">Fluxo Geral da Agencia</div>
+      </div>
+    </div>
+    <h2 class="ct">Ciclo de Vida de um Cliente</h2>
+    <p class="tp">Todo cliente passa por quatro grandes fases durante a sua jornada na raphia.ag. O entendimento deste fluxo macro e essencial para que cada setor saiba seu momento de atuacao.</p>
+    <div class="tl">
+      <div class="tl-item"><div class="tl-dot"><span>01</span></div><div class="tl-period">Dias 1 a 3</div><div class="tl-label">Onboarding e Diagnostico</div></div>
+      <div class="tl-item"><div class="tl-dot"><span>02</span></div><div class="tl-period">Dias 4 a 15</div><div class="tl-label">Estrategia e Planejamento</div></div>
+      <div class="tl-item"><div class="tl-dot"><span>03</span></div><div class="tl-period">Dias 16 a 22</div><div class="tl-label">Producao e Aprovacao</div></div>
+      <div class="tl-item"><div class="tl-dot"><span>04</span></div><div class="tl-period">Mensal</div><div class="tl-label">Execucao, Otimizacao e Relatorio</div></div>
+    </div>
+    <div class="steps" style="margin-top:34px;">
+      <div class="step"><div class="sn">1</div><div class="sc"><div class="st">Fechamento Comercial<div style="display:flex;gap:5px;flex-shrink:0;"><span class="badge br">CEO</span><span class="badge bd">Dia 0</span></div></div><div class="sd">Contrato assinado, pagamento confirmado, cliente adicionado ao sistema de gestao. Criacao do card do cliente no Trello com todas as informacoes iniciais.</div></div></div>
+      <div class="step"><div class="sn">2</div><div class="sc"><div class="st">Kick-off e Onboarding<div style="display:flex;gap:5px;flex-shrink:0;"><span class="badge br">Social Media + CEO</span><span class="badge bd">Dias 1 a 3</span></div></div><div class="sd">Reuniao de onboarding, coleta de acessos, preenchimento do formulario de referencias, diagnostico de redes sociais e definicao de metas com o cliente.</div></div></div>
+      <div class="step"><div class="sn">3</div><div class="sc"><div class="st">Estrategia de Conteudo<div style="display:flex;gap:5px;flex-shrink:0;"><span class="badge br">Redacao + Social Media</span><span class="badge bd">Dias 4 a 15</span></div></div><div class="sd">Criacao de personas, mapa de empatia, pesquisa de pauta, tematicas mensais e roteiros dos primeiros conteudos. Calendario editorial criado no Trello.</div></div></div>
+      <div class="step"><div class="sn">4</div><div class="sc"><div class="st">Producao e Design<div style="display:flex;gap:5px;flex-shrink:0;"><span class="badge br">Design e Edicao</span><span class="badge bd">Dias 16 a 22</span></div></div><div class="sd">Edicao de videos gravados, criacao de carrosseis e posts. Entrega dos primeiros conteudos para aprovacao em ate 7 dias apos gravacao.</div></div></div>
+      <div class="step"><div class="sn">5</div><div class="sc"><div class="st">Aprovacao e Publicacao<div style="display:flex;gap:5px;flex-shrink:0;"><span class="badge br">Social Media</span><span class="badge bd">Dia 22+</span></div></div><div class="sd">Conteudos enviados via aprovaraphia.com.br ou diretamente pelo WhatsApp. Apos aprovacao, agendamento e publicacao conforme calendario no Trello.</div></div></div>
+      <div class="step"><div class="sn">6</div><div class="sc"><div class="st">Otimizacao e Relatorio Mensal<div style="display:flex;gap:5px;flex-shrink:0;"><span class="badge br">Todos</span><span class="badge bd">Mensal</span></div></div><div class="sd">Analise de performance, reuniao mensal com o cliente, ajuste de estrategia, relatorio de resultados e planejamento do proximo ciclo.</div></div></div>
+    </div>
   </div>
-  <div class="steps" style="margin-top:34px;">
-    <div class="step"><div class="sn">1</div><div class="sc"><div class="st">Fechamento Comercial<div style="display:flex;gap:5px;flex-shrink:0;"><span class="badge br">CEO</span><span class="badge bd">Dia 0</span></div></div><div class="sd">Contrato assinado, pagamento confirmado, cliente adicionado ao sistema de gestao. Criacao do card do cliente no Trello com todas as informacoes iniciais.</div></div></div>
-    <div class="step"><div class="sn">2</div><div class="sc"><div class="st">Kick-off e Onboarding<div style="display:flex;gap:5px;flex-shrink:0;"><span class="badge br">Social Media + CEO</span><span class="badge bd">Dias 1 a 3</span></div></div><div class="sd">Reuniao de onboarding, coleta de acessos, preenchimento do formulario de referencias, diagnostico de redes sociais e definicao de metas com o cliente.</div></div></div>
-    <div class="step"><div class="sn">3</div><div class="sc"><div class="st">Estrategia de Conteudo<div style="display:flex;gap:5px;flex-shrink:0;"><span class="badge br">Redacao + Social Media</span><span class="badge bd">Dias 4 a 15</span></div></div><div class="sd">Criacao de personas, mapa de empatia, pesquisa de pauta, tematicas mensais e roteiros dos primeiros conteudos. Calendario editorial criado no Trello.</div></div></div>
-    <div class="step"><div class="sn">4</div><div class="sc"><div class="st">Producao e Design<div style="display:flex;gap:5px;flex-shrink:0;"><span class="badge br">Design e Edicao</span><span class="badge bd">Dias 16 a 22</span></div></div><div class="sd">Edicao de videos gravados, criacao de carrosseis e posts. Entrega dos primeiros conteudos para aprovacao em ate 7 dias apos gravacao.</div></div></div>
-    <div class="step"><div class="sn">5</div><div class="sc"><div class="st">Aprovacao e Publicacao<div style="display:flex;gap:5px;flex-shrink:0;"><span class="badge br">Social Media</span><span class="badge bd">Dia 22+</span></div></div><div class="sd">Conteudos enviados via aprovaraphia.com.br ou diretamente pelo WhatsApp. Apos aprovacao, agendamento e publicacao conforme calendario no Trello.</div></div></div>
-    <div class="step"><div class="sn">6</div><div class="sc"><div class="st">Otimizacao e Relatorio Mensal<div style="display:flex;gap:5px;flex-shrink:0;"><span class="badge br">Todos</span><span class="badge bd">Mensal</span></div></div><div class="sd">Analise de performance, reuniao mensal com o cliente, ajuste de estrategia, relatorio de resultados e planejamento do proximo ciclo.</div></div></div>
-  </div>
-  <div class="pfoot"><div class="pfoot-brand">raphia.ag — Manual Operacional 2025</div><div class="pfoot-note">Uso interno — Confidencial</div></div>
 </div>
 
 <!-- 03 ONBOARDING -->
-<div class="cp">
-  <div class="sh"><div class="sh-num">03</div><div><div class="eyebrow">Manual Operacional</div><div class="sh-title">Onboarding do Cliente</div></div></div>
-  <h2 class="ct">Do Fechamento ao Inicio da Operacao</h2>
-  <p class="tp">O onboarding e a etapa mais critica da relacao com o cliente. Um onboarding bem-feito define expectativas, coleta todas as informacoes necessarias e cria o alicerce para toda a operacao.</p>
-  <div class="hbox"><div class="hbox-ico">★</div><div><div class="hbox-title">Regra de Ouro do Onboarding</div><div class="hbox-body">O cliente so deve ser entregue ao setor operacional apos o onboarding estar 100% concluido: formulario preenchido, acessos recebidos e reuniao de kick-off realizada. Nunca inicie a producao sem esses tres pilares.</div></div></div>
-  <div class="steps">
-    <div class="step"><div class="sn">1</div><div class="sc"><div class="st">Boas-vindas e Documentacao<div style="display:flex;gap:5px;flex-shrink:0;"><span class="badge br">CEO</span><span class="badge bd">Dia 1</span></div></div><div class="sd">Envio de mensagem de boas-vindas via WhatsApp com: link do formulario de onboarding, link para envio de materiais da marca (logo, manual, fotos) e proximos passos.</div></div></div>
-    <div class="step"><div class="sn">2</div><div class="sc"><div class="st">Formulario de Onboarding<div style="display:flex;gap:5px;flex-shrink:0;"><span class="badge br">Cliente</span><span class="badge bd">Dias 1 a 2</span></div></div><div class="sd">O cliente deve responder ao formulario contendo: nicho e segmento, publico-alvo, concorrentes, tom de voz, objetivos de 3 e 6 meses, referencias visuais e de conteudo.</div></div></div>
-    <div class="step"><div class="sn">3</div><div class="sc"><div class="st">Coleta de Acessos<div style="display:flex;gap:5px;flex-shrink:0;"><span class="badge br">Social Media</span><span class="badge bd">Dia 2</span></div></div><div class="sd">Instagram (perfil profissional), Facebook (Pagina e Business Manager), Google Ads (acesso de gestor), Google Analytics e site. Arquivos salvos no Google Drive do cliente.</div><div class="sm"><span class="badge bt">Google Drive</span><span class="badge bt">Meta Business Suite</span></div></div></div>
-    <div class="step"><div class="sn">4</div><div class="sc"><div class="st">Diagnostico de Redes Sociais<div style="display:flex;gap:5px;flex-shrink:0;"><span class="badge br">Social Media</span><span class="badge bd">Dias 2 a 3</span></div></div><div class="sd">Analise do perfil atual: frequencia de postagens, formatos usados, engajamento medio, bio, destaques e identidade visual. Documentado no Google Drive.</div></div></div>
-    <div class="step"><div class="sn">5</div><div class="sc"><div class="st">Reuniao de Kick-off<div style="display:flex;gap:5px;flex-shrink:0;"><span class="badge br">Social Media + CEO</span><span class="badge bd">Dia 3 (60 min)</span></div></div><div class="sd">Validar informacoes do formulario, alinhar expectativas, definir canal de comunicacao (WhatsApp Business), estabelecer frequencia de reunioes e apresentar o calendario inicial no Trello.</div></div></div>
+<div class="section" id="sec03">
+  <div class="sec-wrap">
+    <div class="sec-header">
+      <div class="sec-num-big">03</div>
+      <div class="sec-header-text">
+        <div class="sec-eyebrow">Manual Operacional</div>
+        <div class="sec-title">Onboarding do Cliente</div>
+      </div>
+    </div>
+    <h2 class="ct">Do Fechamento ao Inicio da Operacao</h2>
+    <p class="tp">O onboarding e a etapa mais critica da relacao com o cliente. Um onboarding bem-feito define expectativas, coleta todas as informacoes necessarias e cria o alicerce para toda a operacao.</p>
+    <div class="hbox"><div class="hbox-ico">★</div><div><div class="hbox-title">Regra de Ouro do Onboarding</div><div class="hbox-body">O cliente so deve ser entregue ao setor operacional apos o onboarding estar 100% concluido: formulario preenchido, acessos recebidos e reuniao de kick-off realizada. Nunca inicie a producao sem esses tres pilares.</div></div></div>
+    <div class="steps">
+      <div class="step"><div class="sn">1</div><div class="sc"><div class="st">Boas-vindas e Documentacao<div style="display:flex;gap:5px;flex-shrink:0;"><span class="badge br">CEO</span><span class="badge bd">Dia 1</span></div></div><div class="sd">Envio de mensagem de boas-vindas via WhatsApp com: link do formulario de onboarding, link para envio de materiais da marca (logo, manual, fotos) e proximos passos.</div></div></div>
+      <div class="step"><div class="sn">2</div><div class="sc"><div class="st">Formulario de Onboarding<div style="display:flex;gap:5px;flex-shrink:0;"><span class="badge br">Cliente</span><span class="badge bd">Dias 1 a 2</span></div></div><div class="sd">O cliente deve responder ao formulario contendo: nicho e segmento, publico-alvo, concorrentes, tom de voz, objetivos de 3 e 6 meses, referencias visuais e de conteudo.</div></div></div>
+      <div class="step"><div class="sn">3</div><div class="sc"><div class="st">Coleta de Acessos<div style="display:flex;gap:5px;flex-shrink:0;"><span class="badge br">Social Media</span><span class="badge bd">Dia 2</span></div></div><div class="sd">Instagram (perfil profissional), Facebook (Pagina e Business Manager), Google Ads (acesso de gestor), Google Analytics e site. Arquivos salvos no Google Drive do cliente.</div><div class="sm"><span class="badge bt">Google Drive</span><span class="badge bt">Meta Business Suite</span></div></div></div>
+      <div class="step"><div class="sn">4</div><div class="sc"><div class="st">Diagnostico de Redes Sociais<div style="display:flex;gap:5px;flex-shrink:0;"><span class="badge br">Social Media</span><span class="badge bd">Dias 2 a 3</span></div></div><div class="sd">Analise do perfil atual: frequencia de postagens, formatos usados, engajamento medio, bio, destaques e identidade visual. Documentado no Google Drive.</div></div></div>
+      <div class="step"><div class="sn">5</div><div class="sc"><div class="st">Reuniao de Kick-off<div style="display:flex;gap:5px;flex-shrink:0;"><span class="badge br">Social Media + CEO</span><span class="badge bd">Dia 3 (60 min)</span></div></div><div class="sd">Validar informacoes do formulario, alinhar expectativas, definir canal de comunicacao (WhatsApp Business), estabelecer frequencia de reunioes e apresentar o calendario inicial no Trello.</div></div></div>
+    </div>
+    <h3 class="cs">Checklist de Onboarding</h3>
+    <ul class="checklist" id="chk-onboarding">
+      <li onclick="toggleCheck(this)"><div class="cbox"></div><span>Formulario de onboarding preenchido pelo cliente</span></li>
+      <li onclick="toggleCheck(this)"><div class="cbox"></div><span>Logo e manual de marca recebidos e salvos no Google Drive</span></li>
+      <li onclick="toggleCheck(this)"><div class="cbox"></div><span>Acesso ao Instagram (perfil profissional) concedido</span></li>
+      <li onclick="toggleCheck(this)"><div class="cbox"></div><span>Acesso ao Facebook Pagina e Business Manager</span></li>
+      <li onclick="toggleCheck(this)"><div class="cbox"></div><span>Acesso ao Google Ads configurado (se aplicavel)</span></li>
+      <li onclick="toggleCheck(this)"><div class="cbox"></div><span>Card do cliente criado no Trello</span></li>
+      <li onclick="toggleCheck(this)"><div class="cbox"></div><span>Pasta do cliente criada no Google Drive</span></li>
+      <li onclick="toggleCheck(this)"><div class="cbox"></div><span>Diagnostico de redes sociais documentado</span></li>
+      <li onclick="toggleCheck(this)"><div class="cbox"></div><span>Reuniao de kick-off realizada</span></li>
+      <li onclick="toggleCheck(this)"><div class="cbox"></div><span>Canal WhatsApp Business ativo com o cliente</span></li>
+      <li onclick="toggleCheck(this)"><div class="cbox"></div><span>Perfil cadastrado na aprovaraphia.com.br (quando aplicavel)</span></li>
+    </ul>
   </div>
-  <h3 class="cs">Checklist de Onboarding</h3>
-  <ul class="checklist">
-    <li><div class="cbox"></div>Formulario de onboarding preenchido pelo cliente</li>
-    <li><div class="cbox"></div>Logo e manual de marca recebidos e salvos no Google Drive</li>
-    <li><div class="cbox"></div>Acesso ao Instagram (perfil profissional) concedido</li>
-    <li><div class="cbox"></div>Acesso ao Facebook Pagina e Business Manager</li>
-    <li><div class="cbox"></div>Acesso ao Google Ads configurado (se aplicavel)</li>
-    <li><div class="cbox"></div>Card do cliente criado no Trello</li>
-    <li><div class="cbox"></div>Pasta do cliente criada no Google Drive</li>
-    <li><div class="cbox"></div>Diagnostico de redes sociais documentado</li>
-    <li><div class="cbox"></div>Reuniao de kick-off realizada</li>
-    <li><div class="cbox"></div>Canal WhatsApp Business ativo com o cliente</li>
-    <li><div class="cbox"></div>Perfil cadastrado na aprovaraphia.com.br (quando aplicavel)</li>
-  </ul>
-  <div class="pfoot"><div class="pfoot-brand">raphia.ag — Manual Operacional 2025</div><div class="pfoot-note">Uso interno — Confidencial</div></div>
 </div>
 
 <!-- 04 CRIACAO -->
-<div class="cp">
-  <div class="sh"><div class="sh-num">04</div><div><div class="eyebrow">Manual Operacional</div><div class="sh-title">Criacao de Conteudo</div></div></div>
-  <h2 class="ct">Estrategia e Planejamento (15 dias)</h2>
-  <p class="tp">A fase de criacao transforma o briefing em estrategia. Sao 15 dias de imersao no universo do cliente para produzir personas, mapas de empatia, pautas e roteiros prontos para gravacao.</p>
-  <div class="two-col">
-    <div class="wblock"><div class="wblock-title">Semana 1 — Pesquisa e Estrategia (Dias 4 a 10)</div><ul class="witems"><li>Reuniao de briefing com o cliente</li><li>Criacao das personas (2 a 3 perfis)</li><li>Identificacao das dores de cada persona</li><li>Criacao do mapa de empatia</li><li>Pesquisa de concorrentes e referencias</li><li>Pesquisa de buscas (AnswerThePublic)</li><li>Definicao das tematicas mensais</li></ul></div>
-    <div class="wblock pink"><div class="wblock-title">Semana 2 — Roteiros e Acessos (Dias 11 a 15)</div><ul class="witems"><li>Criacao dos roteiros dos primeiros videos</li><li>Revisao interna dos roteiros</li><li>Envio para aprovacao do cliente</li><li>Ajustes apos feedback</li><li>Agendamento da gravacao presencial</li><li>Calendario editorial do mes no Trello</li><li>Contas conectadas e configuradas</li></ul></div>
+<div class="section" id="sec04" style="background:#f7f6f4;">
+  <div class="sec-wrap">
+    <div class="sec-header">
+      <div class="sec-num-big">04</div>
+      <div class="sec-header-text">
+        <div class="sec-eyebrow">Manual Operacional</div>
+        <div class="sec-title">Criacao de Conteudo</div>
+      </div>
+    </div>
+    <h2 class="ct">Estrategia e Planejamento (15 dias)</h2>
+    <p class="tp">A fase de criacao transforma o briefing em estrategia. Sao 15 dias de imersao no universo do cliente para produzir personas, mapas de empatia, pautas e roteiros prontos para gravacao.</p>
+    <div class="two-col">
+      <div class="wblock"><div class="wblock-title">Semana 1 — Pesquisa e Estrategia (Dias 4 a 10)</div><ul class="witems"><li>Reuniao de briefing com o cliente</li><li>Criacao das personas (2 a 3 perfis)</li><li>Identificacao das dores de cada persona</li><li>Criacao do mapa de empatia</li><li>Pesquisa de concorrentes e referencias</li><li>Pesquisa de buscas (AnswerThePublic)</li><li>Definicao das tematicas mensais</li></ul></div>
+      <div class="wblock pink"><div class="wblock-title">Semana 2 — Roteiros e Acessos (Dias 11 a 15)</div><ul class="witems"><li>Criacao dos roteiros dos primeiros videos</li><li>Revisao interna dos roteiros</li><li>Envio para aprovacao do cliente</li><li>Ajustes apos feedback</li><li>Agendamento da gravacao presencial</li><li>Calendario editorial do mes no Trello</li><li>Contas conectadas e configuradas</li></ul></div>
+    </div>
+    <div class="steps" style="margin-top:28px;">
+      <div class="step"><div class="sn">1</div><div class="sc"><div class="st">Reuniao de Briefing<div style="display:flex;gap:5px;flex-shrink:0;"><span class="badge br">Social Media</span><span class="badge bd">Dia 4 / 60 min</span></div></div><div class="sd">Aprofundar o formulario de onboarding: quais sao os maiores problemas dos clientes? O que diferencia dos concorrentes? Qual conteudo ja funcionou? Quais temas quer evitar?</div></div></div>
+      <div class="step"><div class="sn">2</div><div class="sc"><div class="st">Criacao de Personas<div style="display:flex;gap:5px;flex-shrink:0;"><span class="badge br">Redacao</span><span class="badge bd">Dia 5</span></div></div><div class="sd">Criar 2 a 3 personas baseadas no briefing. Cada persona deve conter: nome ficticio, idade, profissao, renda, objetivo, maior medo, conteudo que consome e redes sociais preferidas.</div></div></div>
+      <div class="step"><div class="sn">3</div><div class="sc"><div class="st">Dores e Mapa de Empatia<div style="display:flex;gap:5px;flex-shrink:0;"><span class="badge br">Redacao</span><span class="badge bd">Dias 5 a 6</span></div></div><div class="sd">Para cada persona, listar de 5 a 8 dores especificas. Preencher o Mapa de Empatia: O que pensa e sente? O que ve? O que ouve? O que diz e faz? Quais sao seus medos e necessidades?</div></div></div>
+      <div class="step"><div class="sn">4</div><div class="sc"><div class="st">Pesquisa de Concorrentes<div style="display:flex;gap:5px;flex-shrink:0;"><span class="badge br">Redacao</span><span class="badge bd">Dias 6 a 7</span></div></div><div class="sd">Mapear 5 a 10 perfis de profissionais ou marcas similares que falam sobre as dores das personas. Analisar quais formatos e abordagens geram mais engajamento.</div></div></div>
+      <div class="step"><div class="sn">5</div><div class="sc"><div class="st">Pesquisa de Buscas e Tendencias<div style="display:flex;gap:5px;flex-shrink:0;"><span class="badge br">Redacao</span><span class="badge bd">Dia 7</span></div></div><div class="sd">Usar AnswerThePublic, Ubersuggest e Google Trends para identificar o que o publico esta buscando sobre o nicho. Cruzar com as dores das personas para definir pautas com potencial de alcance.</div><div class="sm"><span class="badge bt">AnswerThePublic</span><span class="badge bt">Ubersuggest</span><span class="badge bt">Google Trends</span></div></div></div>
+      <div class="step"><div class="sn">6</div><div class="sc"><div class="st">Tematicas Mensais<div style="display:flex;gap:5px;flex-shrink:0;"><span class="badge br">Redacao + Social Media</span><span class="badge bd">Dias 8 a 9</span></div></div><div class="sd">Definir de 4 a 6 tematicas mensais. Cada tematica deve mapear para uma dor especifica de persona e ter formatos associados (reel, carrossel, post). Colunas criadas no Trello.</div><div class="sm"><span class="badge bt">Trello</span></div></div></div>
+      <div class="step"><div class="sn">7</div><div class="sc"><div class="st">Criacao dos Roteiros<div style="display:flex;gap:5px;flex-shrink:0;"><span class="badge br">Redacao</span><span class="badge bd">Dias 10 a 13</span></div></div><div class="sd">Cada roteiro deve conter: gancho (primeiros 3 segundos), desenvolvimento (problema e solucao) e CTA. Minimo de 8 roteiros no primeiro ciclo. Salvos no Google Drive.</div></div></div>
+      <div class="step"><div class="sn">8</div><div class="sc"><div class="st">Aprovacao e Agendamento da Gravacao<div style="display:flex;gap:5px;flex-shrink:0;"><span class="badge br">Social Media</span><span class="badge bd">Dias 13 a 15</span></div></div><div class="sd">Enviar roteiros para o cliente via aprovaraphia.com.br ou WhatsApp. Apos aprovacao, agendar a gravacao presencial e enviar guia de preparacao (roupa, local, iluminacao).</div><div class="sm"><span class="badge bt">aprovaraphia.com.br</span><span class="badge bt">WhatsApp</span></div></div></div>
+    </div>
   </div>
-  <div class="steps" style="margin-top:28px;">
-    <div class="step"><div class="sn">1</div><div class="sc"><div class="st">Reuniao de Briefing<div style="display:flex;gap:5px;flex-shrink:0;"><span class="badge br">Social Media</span><span class="badge bd">Dia 4 / 60 min</span></div></div><div class="sd">Aprofundar o formulario de onboarding: quais sao os maiores problemas dos clientes? O que diferencia dos concorrentes? Qual conteudo ja funcionou? Quais temas quer evitar?</div></div></div>
-    <div class="step"><div class="sn">2</div><div class="sc"><div class="st">Criacao de Personas<div style="display:flex;gap:5px;flex-shrink:0;"><span class="badge br">Redacao</span><span class="badge bd">Dia 5</span></div></div><div class="sd">Criar 2 a 3 personas baseadas no briefing. Cada persona deve conter: nome ficticio, idade, profissao, renda, objetivo, maior medo, conteudo que consome e redes sociais preferidas.</div></div></div>
-    <div class="step"><div class="sn">3</div><div class="sc"><div class="st">Dores e Mapa de Empatia<div style="display:flex;gap:5px;flex-shrink:0;"><span class="badge br">Redacao</span><span class="badge bd">Dias 5 a 6</span></div></div><div class="sd">Para cada persona, listar de 5 a 8 dores especificas. Preencher o Mapa de Empatia: O que pensa e sente? O que ve? O que ouve? O que diz e faz? Quais sao seus medos e necessidades?</div></div></div>
-    <div class="step"><div class="sn">4</div><div class="sc"><div class="st">Pesquisa de Concorrentes<div style="display:flex;gap:5px;flex-shrink:0;"><span class="badge br">Redacao</span><span class="badge bd">Dias 6 a 7</span></div></div><div class="sd">Mapear 5 a 10 perfis de profissionais ou marcas similares que falam sobre as dores das personas. Analisar quais formatos e abordagens geram mais engajamento.</div></div></div>
-    <div class="step"><div class="sn">5</div><div class="sc"><div class="st">Pesquisa de Buscas e Tendencias<div style="display:flex;gap:5px;flex-shrink:0;"><span class="badge br">Redacao</span><span class="badge bd">Dia 7</span></div></div><div class="sd">Usar AnswerThePublic, Ubersuggest e Google Trends para identificar o que o publico esta buscando sobre o nicho. Cruzar com as dores das personas para definir pautas com potencial de alcance.</div><div class="sm"><span class="badge bt">AnswerThePublic</span><span class="badge bt">Ubersuggest</span><span class="badge bt">Google Trends</span></div></div></div>
-    <div class="step"><div class="sn">6</div><div class="sc"><div class="st">Tematicas Mensais<div style="display:flex;gap:5px;flex-shrink:0;"><span class="badge br">Redacao + Social Media</span><span class="badge bd">Dias 8 a 9</span></div></div><div class="sd">Definir de 4 a 6 tematicas mensais. Cada tematica deve mapear para uma dor especifica de persona e ter formatos associados (reel, carrossel, post). Colunas criadas no Trello.</div><div class="sm"><span class="badge bt">Trello</span></div></div></div>
-    <div class="step"><div class="sn">7</div><div class="sc"><div class="st">Criacao dos Roteiros<div style="display:flex;gap:5px;flex-shrink:0;"><span class="badge br">Redacao</span><span class="badge bd">Dias 10 a 13</span></div></div><div class="sd">Cada roteiro deve conter: gancho (primeiros 3 segundos), desenvolvimento (problema e solucao) e CTA. Minimo de 8 roteiros no primeiro ciclo. Salvos no Google Drive.</div></div></div>
-    <div class="step"><div class="sn">8</div><div class="sc"><div class="st">Aprovacao e Agendamento da Gravacao<div style="display:flex;gap:5px;flex-shrink:0;"><span class="badge br">Social Media</span><span class="badge bd">Dias 13 a 15</span></div></div><div class="sd">Enviar roteiros para o cliente via aprovaraphia.com.br ou WhatsApp. Apos aprovacao, agendar a gravacao presencial e enviar guia de preparacao (roupa, local, iluminacao).</div><div class="sm"><span class="badge bt">aprovaraphia.com.br</span><span class="badge bt">WhatsApp</span></div></div></div>
-  </div>
-  <div class="pfoot"><div class="pfoot-brand">raphia.ag — Manual Operacional 2025</div><div class="pfoot-note">Uso interno — Confidencial</div></div>
 </div>
 
 <!-- 05 PRODUCAO -->
-<div class="cp">
-  <div class="sh"><div class="sh-num">05</div><div><div class="eyebrow">Manual Operacional</div><div class="sh-title">Producao e Design</div></div></div>
-  <h2 class="ct">Pre-Producao</h2>
-  <div class="steps">
-    <div class="step"><div class="sn">1</div><div class="sc"><div class="st">Briefing Visual<div style="display:flex;gap:5px;flex-shrink:0;"><span class="badge br">Design</span><span class="badge bd">Dia 4</span></div></div><div class="sd">Aplicar o formulario de referencias visuais: paleta de cores preferida, fontes, referencias de perfis, estilos de video e artes. Acessar o manual da marca e arquivos no Google Drive.</div><div class="sm"><span class="badge bt">Google Drive</span></div></div></div>
-    <div class="step"><div class="sn">2</div><div class="sc"><div class="st">Moodboard e Referencias<div style="display:flex;gap:5px;flex-shrink:0;"><span class="badge br">Design</span><span class="badge bd">Dias 5 a 7</span></div></div><div class="sd">Montar moodboard com referencias de edicao, carrosseis, tipografia, cores e estilo de feed. Salvar no Google Drive e apresentar ao cliente para validacao antes de produzir.</div><div class="sm"><span class="badge bt">Pinterest</span><span class="badge bt">Google Drive</span></div></div></div>
-    <div class="step"><div class="sn">3</div><div class="sc"><div class="st">Templates Base<div style="display:flex;gap:5px;flex-shrink:0;"><span class="badge br">Design</span><span class="badge bd">Dias 8 a 14</span></div></div><div class="sd">Criar templates padrao de: capa de carrossel, slide interno, capa de reel, stories, post quadrado e retangular. Todos devem ser aprovados antes da gravacao. Salvos no Google Drive.</div><div class="sm"><span class="badge bt">Adobe</span><span class="badge bt">Canva Pro</span></div></div></div>
+<div class="section" id="sec05">
+  <div class="sec-wrap">
+    <div class="sec-header">
+      <div class="sec-num-big">05</div>
+      <div class="sec-header-text">
+        <div class="sec-eyebrow">Manual Operacional</div>
+        <div class="sec-title">Producao e Design</div>
+      </div>
+    </div>
+    <h2 class="ct">Pre-Producao</h2>
+    <div class="steps">
+      <div class="step"><div class="sn">1</div><div class="sc"><div class="st">Briefing Visual<div style="display:flex;gap:5px;flex-shrink:0;"><span class="badge br">Design</span><span class="badge bd">Dia 4</span></div></div><div class="sd">Aplicar o formulario de referencias visuais: paleta de cores preferida, fontes, referencias de perfis, estilos de video e artes. Acessar o manual da marca e arquivos no Google Drive.</div><div class="sm"><span class="badge bt">Google Drive</span></div></div></div>
+      <div class="step"><div class="sn">2</div><div class="sc"><div class="st">Moodboard e Referencias<div style="display:flex;gap:5px;flex-shrink:0;"><span class="badge br">Design</span><span class="badge bd">Dias 5 a 7</span></div></div><div class="sd">Montar moodboard com referencias de edicao, carrosseis, tipografia, cores e estilo de feed. Salvar no Google Drive e apresentar ao cliente para validacao antes de produzir.</div><div class="sm"><span class="badge bt">Pinterest</span><span class="badge bt">Google Drive</span></div></div></div>
+      <div class="step"><div class="sn">3</div><div class="sc"><div class="st">Templates Base<div style="display:flex;gap:5px;flex-shrink:0;"><span class="badge br">Design</span><span class="badge bd">Dias 8 a 14</span></div></div><div class="sd">Criar templates padrao de: capa de carrossel, slide interno, capa de reel, stories, post quadrado e retangular. Todos devem ser aprovados antes da gravacao. Salvos no Google Drive.</div><div class="sm"><span class="badge bt">Adobe</span><span class="badge bt">Canva Pro</span></div></div></div>
+    </div>
+    <h2 class="ct">Pos-Gravacao — 7 dias para entrega</h2>
+    <div class="steps">
+      <div class="step"><div class="sn">1</div><div class="sc"><div class="st">Recebimento e Organizacao<div style="display:flex;gap:5px;flex-shrink:0;"><span class="badge br">Design e Edicao</span><span class="badge bd">Dia 0 pos-gravacao</span></div></div><div class="sd">Receber arquivos de video bruto. Organizar na pasta do cliente no Google Drive por data e roteiro. Selecionar os melhores takes. Atualizar cards no Trello para "Em producao".</div><div class="sm"><span class="badge bt">Google Drive</span><span class="badge bt">Trello</span></div></div></div>
+      <div class="step"><div class="sn">2</div><div class="sc"><div class="st">Edicao de Reels<div style="display:flex;gap:5px;flex-shrink:0;"><span class="badge br">Edicao</span><span class="badge bd">Dias 1 a 4</span></div></div><div class="sd">Editar os videos conforme briefing visual aprovado. Padrao: legenda animada, trilha sonora, b-roll quando necessario, abertura com gancho. Cortar para 15 a 60s para reels.</div><div class="sm"><span class="badge bt">Capcut</span><span class="badge bt">Premiere Pro</span></div></div></div>
+      <div class="step"><div class="sn">3</div><div class="sc"><div class="st">Carrosseis e Posts<div style="display:flex;gap:5px;flex-shrink:0;"><span class="badge br">Design</span><span class="badge bd">Dias 2 a 5</span></div></div><div class="sd">Criar os carrosseis e posts estaticos do calendario. Minimo: 4 carrosseis e 4 posts no primeiro lote usando os templates aprovados na pre-producao.</div></div></div>
+      <div class="step"><div class="sn">4</div><div class="sc"><div class="st">Revisao Interna (QA)<div style="display:flex;gap:5px;flex-shrink:0;"><span class="badge br">Social Media</span><span class="badge bd">Dia 6</span></div></div><div class="sd">Revisar todos os conteudos antes de enviar ao cliente. Verificar: identidade visual, legenda, CTA, ortografia, qualidade de exportacao e alinhamento ao calendario no Trello.</div></div></div>
+      <div class="step"><div class="sn">5</div><div class="sc"><div class="st">Entrega para Aprovacao<div style="display:flex;gap:5px;flex-shrink:0;"><span class="badge br">Social Media</span><span class="badge bd">Dia 7</span></div></div><div class="sd">Enviar conteudos via aprovaraphia.com.br. Para clientes que nao se adaptam a plataforma, o envio e feito diretamente via WhatsApp. Prazo de feedback: 48 horas uteis.</div><div class="sm"><span class="badge bt">aprovaraphia.com.br</span><span class="badge bt">WhatsApp</span></div></div></div>
+    </div>
   </div>
-  <h2 class="ct">Pos-Gravacao — 7 dias para entrega</h2>
-  <div class="steps">
-    <div class="step"><div class="sn">1</div><div class="sc"><div class="st">Recebimento e Organizacao<div style="display:flex;gap:5px;flex-shrink:0;"><span class="badge br">Design e Edicao</span><span class="badge bd">Dia 0 pos-gravacao</span></div></div><div class="sd">Receber arquivos de video bruto. Organizar na pasta do cliente no Google Drive por data e roteiro. Selecionar os melhores takes. Atualizar cards no Trello para "Em producao".</div><div class="sm"><span class="badge bt">Google Drive</span><span class="badge bt">Trello</span></div></div></div>
-    <div class="step"><div class="sn">2</div><div class="sc"><div class="st">Edicao de Reels<div style="display:flex;gap:5px;flex-shrink:0;"><span class="badge br">Edicao</span><span class="badge bd">Dias 1 a 4</span></div></div><div class="sd">Editar os videos conforme briefing visual aprovado. Padrao: legenda animada, trilha sonora, b-roll quando necessario, abertura com gancho. Cortar para 15 a 60s para reels.</div><div class="sm"><span class="badge bt">Capcut</span><span class="badge bt">Premiere Pro</span></div></div></div>
-    <div class="step"><div class="sn">3</div><div class="sc"><div class="st">Carrosseis e Posts<div style="display:flex;gap:5px;flex-shrink:0;"><span class="badge br">Design</span><span class="badge bd">Dias 2 a 5</span></div></div><div class="sd">Criar os carrosseis e posts estaticos do calendario. Minimo: 4 carrosseis e 4 posts no primeiro lote usando os templates aprovados na pre-producao.</div></div></div>
-    <div class="step"><div class="sn">4</div><div class="sc"><div class="st">Revisao Interna (QA)<div style="display:flex;gap:5px;flex-shrink:0;"><span class="badge br">Social Media</span><span class="badge bd">Dia 6</span></div></div><div class="sd">Revisar todos os conteudos antes de enviar ao cliente. Verificar: identidade visual, legenda, CTA, ortografia, qualidade de exportacao e alinhamento ao calendario no Trello.</div></div></div>
-    <div class="step"><div class="sn">5</div><div class="sc"><div class="st">Entrega para Aprovacao<div style="display:flex;gap:5px;flex-shrink:0;"><span class="badge br">Social Media</span><span class="badge bd">Dia 7</span></div></div><div class="sd">Enviar conteudos via aprovaraphia.com.br. Para clientes que nao se adaptam a plataforma, o envio e feito diretamente via WhatsApp. Prazo de feedback: 48 horas uteis.</div><div class="sm"><span class="badge bt">aprovaraphia.com.br</span><span class="badge bt">WhatsApp</span></div></div></div>
-  </div>
-  <div class="pfoot"><div class="pfoot-brand">raphia.ag — Manual Operacional 2025</div><div class="pfoot-note">Uso interno — Confidencial</div></div>
 </div>
 
 <!-- 06 TRAFEGO PAGO -->
-<div class="cp">
-  <div class="sh"><div class="sh-num">06</div><div><div class="eyebrow">Manual Operacional</div><div class="sh-title">Trafego Pago</div></div></div>
-
-  <h2 class="ct">Diagnostico e Configuracao Inicial</h2>
-  <div class="steps">
-    <div class="step"><div class="sn">1</div><div class="sc"><div class="st">Reuniao de Briefing de Trafego<div style="display:flex;gap:5px;flex-shrink:0;"><span class="badge br">Gestor de Trafego</span><span class="badge bd">Dia 1 / 60 min</span></div></div><div class="sd">Entender o objetivo primario (leads, vendas, trafego, reconhecimento), produto/servico anunciado, ticket medio, publico-alvo, diferenciais competitivos, verba disponivel e campanhas anteriores.</div></div></div>
-    <div class="step"><div class="sn">2</div><div class="sc"><div class="st">Analise de Infraestrutura Digital<div style="display:flex;gap:5px;flex-shrink:0;"><span class="badge br">Gestor de Trafego</span><span class="badge bd">Dias 2 a 3</span></div></div><div class="sd">Auditar: site (velocidade, mobile, CTA), landing pages (conversao, copy, formulario), gerenciador Meta (pixel, eventos, historico) e Google Ads (conversoes, campanhas ativas). Relatorio salvo no Google Drive.</div><div class="sm"><span class="badge bt">PageSpeed</span><span class="badge bt">Meta Business Suite</span><span class="badge bt">Google Ads</span></div></div></div>
-    <div class="step"><div class="sn">3</div><div class="sc"><div class="st">Instalacao e Verificacao de Pixels<div style="display:flex;gap:5px;flex-shrink:0;"><span class="badge br">Gestor de Trafego</span><span class="badge bd">Dias 3 a 4</span></div></div><div class="sd">Verificar pixel Meta instalado e disparando corretamente. Configurar eventos de conversao (Lead, Purchase, ViewContent). Verificar Google Analytics e Google Ads. Configurar UTMs.</div></div></div>
-    <div class="step"><div class="sn">4</div><div class="sc"><div class="st">Definicao de Verba e Campanhas<div style="display:flex;gap:5px;flex-shrink:0;"><span class="badge br">Gestor + CEO</span><span class="badge bd">Dia 5</span></div></div><div class="sd">Propor distribuicao de verba entre campanhas (ex: 60% conversao, 30% trafego, 10% reconhecimento). Definir publicos: amplo, interesses, lookalike e remarketing. Apresentar ao cliente para aprovacao.</div></div></div>
-    <div class="step"><div class="sn">5</div><div class="sc"><div class="st">Criacao de Criativos de Anuncio<div style="display:flex;gap:5px;flex-shrink:0;"><span class="badge br">Design + Redacao</span><span class="badge bd">Dias 5 a 8</span></div></div><div class="sd">Criar ao menos 3 versoes de criativos (video, carrossel e imagem estatica) para teste A/B. Cada criativo com gancho diferente, copy curto e CTA. Aprovados via aprovaraphia.com.br ou WhatsApp.</div></div></div>
-    <div class="step"><div class="sn">6</div><div class="sc"><div class="st">Ativacao e Monitoramento Inicial<div style="display:flex;gap:5px;flex-shrink:0;"><span class="badge br">Gestor de Trafego</span><span class="badge bd">Dias 8 a 14</span></div></div><div class="sd">Subir campanhas e monitorar diariamente nos primeiros 7 dias. Nao realizar grandes alteracoes nas primeiras 72h (fase de aprendizado). Registrar metricas iniciais (CPM, CPC, CTR) no Google Drive.</div></div></div>
-  </div>
-
-  <h2 class="ct">Rotina Semanal Obrigatoria</h2>
-  <p class="tp">Independente do cliente ou da fase da campanha, o gestor de trafego segue esta rotina fixa toda semana.</p>
-
-  <div class="pinkbox" style="margin-bottom:12px;">
-    <div class="pinkbox-title">Segunda-feira / Follow-up de Leads</div>
-    <div class="pinkbox-body">Enviar mensagem padrao para o cliente perguntando sobre a qualidade dos leads da semana anterior: "Oi [nome], boa semana! Como foram os leads que chegaram na semana passada? Tiveram bom perfil? Conseguiu converter algum?" Com base na resposta, realizar otimizacoes de segmentacao, publico e copy ao longo do dia.</div>
-  </div>
-
-  <div class="hbox" style="margin-bottom:12px; padding:22px 26px;">
-    <div class="hbox-ico">◈</div>
-    <div>
-      <div class="hbox-title">Sexta-feira / Report Semanal</div>
-      <div class="hbox-body">Toda sexta-feira enviar o report semanal de performance para o cliente via WhatsApp ou aprovaraphia.com.br. O report deve conter: verba investida na semana, leads gerados, custo por lead, CTR medio, criativos em destaque e proximas acoes planejadas para a semana seguinte.</div>
+<div class="section" id="sec06" style="background:#f7f6f4;">
+  <div class="sec-wrap">
+    <div class="sec-header">
+      <div class="sec-num-big">06</div>
+      <div class="sec-header-text">
+        <div class="sec-eyebrow">Manual Operacional</div>
+        <div class="sec-title">Trafego Pago</div>
+      </div>
     </div>
+    <h2 class="ct">Diagnostico e Configuracao Inicial</h2>
+    <div class="steps">
+      <div class="step"><div class="sn">1</div><div class="sc"><div class="st">Reuniao de Briefing de Trafego<div style="display:flex;gap:5px;flex-shrink:0;"><span class="badge br">Gestor de Trafego</span><span class="badge bd">Dia 1 / 60 min</span></div></div><div class="sd">Entender o objetivo primario (leads, vendas, trafego, reconhecimento), produto/servico anunciado, ticket medio, publico-alvo, diferenciais competitivos, verba disponivel e campanhas anteriores.</div></div></div>
+      <div class="step"><div class="sn">2</div><div class="sc"><div class="st">Analise de Infraestrutura Digital<div style="display:flex;gap:5px;flex-shrink:0;"><span class="badge br">Gestor de Trafego</span><span class="badge bd">Dias 2 a 3</span></div></div><div class="sd">Auditar: site (velocidade, mobile, CTA), landing pages (conversao, copy, formulario), gerenciador Meta (pixel, eventos, historico) e Google Ads (conversoes, campanhas ativas). Relatorio salvo no Google Drive.</div><div class="sm"><span class="badge bt">PageSpeed</span><span class="badge bt">Meta Business Suite</span><span class="badge bt">Google Ads</span></div></div></div>
+      <div class="step"><div class="sn">3</div><div class="sc"><div class="st">Instalacao e Verificacao de Pixels<div style="display:flex;gap:5px;flex-shrink:0;"><span class="badge br">Gestor de Trafego</span><span class="badge bd">Dias 3 a 4</span></div></div><div class="sd">Verificar pixel Meta instalado e disparando corretamente. Configurar eventos de conversao (Lead, Purchase, ViewContent). Verificar Google Analytics e Google Ads. Configurar UTMs.</div></div></div>
+      <div class="step"><div class="sn">4</div><div class="sc"><div class="st">Definicao de Verba e Campanhas<div style="display:flex;gap:5px;flex-shrink:0;"><span class="badge br">Gestor + CEO</span><span class="badge bd">Dia 5</span></div></div><div class="sd">Propor distribuicao de verba entre campanhas (ex: 60% conversao, 30% trafego, 10% reconhecimento). Definir publicos: amplo, interesses, lookalike e remarketing. Apresentar ao cliente para aprovacao.</div></div></div>
+      <div class="step"><div class="sn">5</div><div class="sc"><div class="st">Criacao de Criativos de Anuncio<div style="display:flex;gap:5px;flex-shrink:0;"><span class="badge br">Design + Redacao</span><span class="badge bd">Dias 5 a 8</span></div></div><div class="sd">Criar ao menos 3 versoes de criativos (video, carrossel e imagem estatica) para teste A/B. Cada criativo com gancho diferente, copy curto e CTA. Aprovados via aprovaraphia.com.br ou WhatsApp.</div></div></div>
+      <div class="step"><div class="sn">6</div><div class="sc"><div class="st">Ativacao e Monitoramento Inicial<div style="display:flex;gap:5px;flex-shrink:0;"><span class="badge br">Gestor de Trafego</span><span class="badge bd">Dias 8 a 14</span></div></div><div class="sd">Subir campanhas e monitorar diariamente nos primeiros 7 dias. Nao realizar grandes alteracoes nas primeiras 72h (fase de aprendizado). Registrar metricas iniciais no Google Drive.</div></div></div>
+    </div>
+    <h2 class="ct">Rotina Semanal Obrigatoria</h2>
+    <p class="tp">Independente do cliente ou da fase da campanha, o gestor de trafego segue esta rotina fixa toda semana.</p>
+    <div class="pinkbox" style="margin-bottom:12px;">
+      <div class="pinkbox-title">Segunda-feira / Follow-up de Leads</div>
+      <div class="pinkbox-body">Enviar mensagem padrao para o cliente perguntando sobre a qualidade dos leads da semana anterior: "Oi [nome], boa semana! Como foram os leads que chegaram na semana passada? Tiveram bom perfil? Conseguiu converter algum?" Com base na resposta, realizar otimizacoes de segmentacao, publico e copy ao longo do dia.</div>
+    </div>
+    <div class="hbox" style="margin-bottom:12px; padding:22px 26px;">
+      <div class="hbox-ico">◈</div>
+      <div>
+        <div class="hbox-title">Sexta-feira / Report Semanal</div>
+        <div class="hbox-body">Toda sexta-feira enviar o report semanal de performance para o cliente via WhatsApp ou aprovaraphia.com.br. O report deve conter: verba investida na semana, leads gerados, custo por lead, CTR medio, criativos em destaque e proximas acoes planejadas para a semana seguinte.</div>
+      </div>
+    </div>
+    <h2 class="ct">Rotina Mensal de Otimizacao</h2>
+    <div class="igrid" style="grid-template-columns:repeat(3,1fr);">
+      <div class="icard"><div class="icard-title">Semana 1 / Analise</div><div class="icard-body">Revisar metricas da semana anterior. Identificar criativos com melhor e pior desempenho. Pausar o que esta acima de 2x o CPA meta.</div></div>
+      <div class="icard"><div class="icard-title">Semana 2 / Teste</div><div class="icard-body">Criar novos criativos baseados nos aprendizados da semana 1. Testar novos publicos ou expandir os que estao performando.</div></div>
+      <div class="icard"><div class="icard-title">Semana 3 / Escala</div><div class="icard-body">Escalar gradualmente os grupos com melhor ROAS. Aumentar orcamento em ate 20 a 30% por vez para nao sair do aprendizado.</div></div>
+      <div class="icard"><div class="icard-title">Semana 4 / Relatorio</div><div class="icard-body">Consolidar dados do mes. Gerar relatorio mensal no Google Drive. Reuniao com o cliente para apresentacao e alinhamento do proximo ciclo.</div></div>
+      <div class="icard"><div class="icard-title">Diario (check rapido)</div><div class="icard-body">Verificar gasto, CPL/CPA e se campanhas estao ativas. Alertar o cliente via WhatsApp em caso de anomalia.</div></div>
+      <div class="icard"><div class="icard-title">Semanal (interno)</div><div class="icard-body">Alinhamento com Social Media sobre conteudos que podem virar anuncio. Compartilhar aprendizados entre organico e pago.</div></div>
+    </div>
+    <h3 class="cs">Checklist Mensal de Trafego</h3>
+    <ul class="checklist" id="chk-trafego">
+      <li onclick="toggleCheck(this)"><div class="cbox"></div><span>Follow-up de leads enviado toda segunda-feira</span></li>
+      <li onclick="toggleCheck(this)"><div class="cbox"></div><span>Report semanal enviado toda sexta-feira</span></li>
+      <li onclick="toggleCheck(this)"><div class="cbox"></div><span>Pixel e eventos de conversao funcionando corretamente</span></li>
+      <li onclick="toggleCheck(this)"><div class="cbox"></div><span>Minimo de 3 criativos em teste ativo por campanha</span></li>
+      <li onclick="toggleCheck(this)"><div class="cbox"></div><span>Campanhas de topo, meio e fundo de funil ativas</span></li>
+      <li onclick="toggleCheck(this)"><div class="cbox"></div><span>Remarketing configurado e ativo</span></li>
+      <li onclick="toggleCheck(this)"><div class="cbox"></div><span>Log de otimizacoes atualizado semanalmente no Google Drive</span></li>
+      <li onclick="toggleCheck(this)"><div class="cbox"></div><span>Relatorio mensal enviado ate o 5 dia util do mes</span></li>
+      <li onclick="toggleCheck(this)"><div class="cbox"></div><span>Reuniao mensal de resultados realizada com o cliente</span></li>
+    </ul>
   </div>
-
-  <h2 class="ct">Rotina Mensal de Otimizacao</h2>
-  <div class="igrid" style="grid-template-columns:repeat(3,1fr);">
-    <div class="icard"><div class="icard-title">Semana 1 / Analise</div><div class="icard-body">Revisar metricas da semana anterior. Identificar criativos com melhor e pior desempenho. Pausar o que esta acima de 2x o CPA meta.</div></div>
-    <div class="icard"><div class="icard-title">Semana 2 / Teste</div><div class="icard-body">Criar novos criativos baseados nos aprendizados da semana 1. Testar novos publicos ou expandir os que estao performando.</div></div>
-    <div class="icard"><div class="icard-title">Semana 3 / Escala</div><div class="icard-body">Escalar gradualmente os grupos com melhor ROAS. Aumentar orcamento em ate 20 a 30% por vez para nao sair do aprendizado.</div></div>
-    <div class="icard"><div class="icard-title">Semana 4 / Relatorio</div><div class="icard-body">Consolidar dados do mes. Gerar relatorio mensal no Google Drive. Reuniao com o cliente para apresentacao e alinhamento do proximo ciclo.</div></div>
-    <div class="icard"><div class="icard-title">Diario (check rapido)</div><div class="icard-body">Verificar gasto, CPL/CPA e se campanhas estao ativas. Alertar o cliente via WhatsApp em caso de anomalia.</div></div>
-    <div class="icard"><div class="icard-title">Semanal (interno)</div><div class="icard-body">Alinhamento com Social Media sobre conteudos que podem virar anuncio. Compartilhar aprendizados entre organico e pago.</div></div>
-  </div>
-
-  <h3 class="cs">Checklist Mensal de Trafego</h3>
-  <ul class="checklist">
-    <li><div class="cbox"></div>Follow-up de leads enviado toda segunda-feira</li>
-    <li><div class="cbox"></div>Report semanal enviado toda sexta-feira</li>
-    <li><div class="cbox"></div>Pixel e eventos de conversao funcionando corretamente</li>
-    <li><div class="cbox"></div>Minimo de 3 criativos em teste ativo por campanha</li>
-    <li><div class="cbox"></div>Campanhas de topo, meio e fundo de funil ativas</li>
-    <li><div class="cbox"></div>Remarketing configurado e ativo</li>
-    <li><div class="cbox"></div>Log de otimizacoes atualizado semanalmente no Google Drive</li>
-    <li><div class="cbox"></div>Relatorio mensal enviado ate o 5 dia util do mes</li>
-    <li><div class="cbox"></div>Reuniao mensal de resultados realizada com o cliente</li>
-  </ul>
-  <div class="pfoot"><div class="pfoot-brand">raphia.ag — Manual Operacional 2025</div><div class="pfoot-note">Uso interno — Confidencial</div></div>
 </div>
 
 <!-- 07 APROVACAO -->
-<div class="cp">
-  <div class="sh"><div class="sh-num">07</div><div><div class="eyebrow">Manual Operacional</div><div class="sh-title">Fluxo de Aprovacao</div></div></div>
-  <h2 class="ct">Revisao Interna e Aprovacao do Cliente</h2>
-  <p class="tp">Nenhum conteudo chega ao cliente sem passar pela revisao interna. E nenhum conteudo e publicado sem a aprovacao formal do cliente.</p>
-  <div class="aflex">
-    <div class="astep"><div class="alabel">Producao</div><div class="aname">Design e Edicao</div></div>
-    <div class="aarrow">→</div>
-    <div class="astep"><div class="alabel">Revisao Interna</div><div class="aname">Social Media</div></div>
-    <div class="aarrow">→</div>
-    <div class="astep"><div class="alabel">Aprovacao</div><div class="aname">Cliente</div></div>
-    <div class="aarrow">→</div>
-    <div class="astep"><div class="alabel">Publicacao</div><div class="aname">Agendamento</div></div>
+<div class="section" id="sec07">
+  <div class="sec-wrap">
+    <div class="sec-header">
+      <div class="sec-num-big">07</div>
+      <div class="sec-header-text">
+        <div class="sec-eyebrow">Manual Operacional</div>
+        <div class="sec-title">Fluxo de Aprovacao</div>
+      </div>
+    </div>
+    <h2 class="ct">Revisao Interna e Aprovacao do Cliente</h2>
+    <p class="tp">Nenhum conteudo chega ao cliente sem passar pela revisao interna. E nenhum conteudo e publicado sem a aprovacao formal do cliente.</p>
+    <div class="aflex">
+      <div class="astep"><div class="alabel">Producao</div><div class="aname">Design e Edicao</div></div>
+      <div class="aarrow">→</div>
+      <div class="astep"><div class="alabel">Revisao Interna</div><div class="aname">Social Media</div></div>
+      <div class="aarrow">→</div>
+      <div class="astep"><div class="alabel">Aprovacao</div><div class="aname">Cliente</div></div>
+      <div class="aarrow">→</div>
+      <div class="astep"><div class="alabel">Publicacao</div><div class="aname">Agendamento</div></div>
+    </div>
+    <div class="hbox"><div class="hbox-ico">⚑</div><div><div class="hbox-title">Regra de Aprovacao</div><div class="hbox-body">O cliente tem ate 48 horas uteis para aprovar ou solicitar ajustes. Sao permitidas ate 2 rodadas de revisao por conteudo. Revisoes adicionais podem ser cobradas conforme contrato.</div></div></div>
+    <div class="igrid">
+      <div class="icard" style="border-top:3px solid var(--pk);"><div class="icard-title">aprovaraphia.com.br</div><div class="icard-body">Canal principal para clientes que se adaptam a plataforma. Permite comentarios diretamente nos conteudos, historico de versoes e aprovacao formal com registro.</div></div>
+      <div class="icard" style="border-top:3px solid var(--pp);"><div class="icard-title">WhatsApp Business</div><div class="icard-body">Canal alternativo para clientes que nao se adaptam a plataforma. Midias compartilhadas diretamente com registro de aprovacao via mensagem.</div></div>
+    </div>
   </div>
-  <div class="hbox"><div class="hbox-ico">⚑</div><div><div class="hbox-title">Regra de Aprovacao</div><div class="hbox-body">O cliente tem ate 48 horas uteis para aprovar ou solicitar ajustes. Sao permitidas ate 2 rodadas de revisao por conteudo. Revisoes adicionais podem ser cobradas conforme contrato.</div></div></div>
-  <div class="igrid">
-    <div class="icard" style="border-top:3px solid var(--pk);"><div class="icard-title">aprovaraphia.com.br</div><div class="icard-body">Canal principal para clientes que se adaptam a plataforma. Permite comentarios diretamente nos conteudos, historico de versoes e aprovacao formal com registro.</div></div>
-    <div class="icard" style="border-top:3px solid var(--pp);"><div class="icard-title">WhatsApp Business</div><div class="icard-body">Canal alternativo para clientes que nao se adaptam a plataforma. Midias compartilhadas diretamente com registro de aprovacao via mensagem.</div></div>
-  </div>
-  <div class="pfoot"><div class="pfoot-brand">raphia.ag — Manual Operacional 2025</div><div class="pfoot-note">Uso interno — Confidencial</div></div>
 </div>
 
 <!-- 08 FERRAMENTAS -->
-<div class="cp">
-  <div class="sh"><div class="sh-num">08</div><div><div class="eyebrow">Manual Operacional</div><div class="sh-title">Ferramentas da Agencia</div></div></div>
-  <h2 class="ct">Stack Completa por Setor</h2>
-  <table class="ttable">
-    <thead><tr><th>Setor</th><th>Ferramenta</th><th>Uso</th></tr></thead>
-    <tbody>
-      <tr><td>Gestao Geral</td><td>Trello</td><td>Calendario editorial de cada cliente, cards de tarefas por status e acompanhamento de etapas por setor</td></tr>
-      <tr><td>Gestao Geral</td><td>Google Drive</td><td>Armazenamento central: videos, artes, roteiros, relatorios, contratos e briefings de todos os clientes</td></tr>
-      <tr><td>Aprovacao</td><td>aprovaraphia.com.br</td><td>Plataforma principal de envio e aprovacao de conteudos com historico de versoes e comentarios</td></tr>
-      <tr><td>Aprovacao</td><td>WhatsApp Business</td><td>Canal alternativo de aprovacao e comunicacao diaria com clientes que nao usam a plataforma</td></tr>
-      <tr><td>Criacao e Redacao</td><td>AnswerThePublic</td><td>Pesquisa de perguntas e buscas do publico sobre o nicho do cliente</td></tr>
-      <tr><td>Criacao e Redacao</td><td>Ubersuggest</td><td>Pesquisa de palavras-chave, volume de busca e analise de concorrentes</td></tr>
-      <tr><td>Design</td><td>Adobe (Ps, Ai, Pr)</td><td>Design profissional de artes e edicao avancada de videos</td></tr>
-      <tr><td>Design</td><td>Canva Pro</td><td>Criacao agil de posts, stories e carrosseis com templates do cliente</td></tr>
-      <tr><td>Edicao de Video</td><td>CapCut</td><td>Edicao rapida de reels com legendas automaticas e efeitos</td></tr>
-      <tr><td>Trafego Pago</td><td>Meta Business Suite</td><td>Gerenciamento de anuncios no Instagram e Facebook</td></tr>
-      <tr><td>Trafego Pago</td><td>Google Ads</td><td>Gestao de campanhas no Google Search, Display e YouTube</td></tr>
-      <tr><td>Trafego Pago</td><td>Google Analytics 4</td><td>Analise de comportamento no site e atribuicao de conversoes</td></tr>
-    </tbody>
-  </table>
-  <div class="pfoot"><div class="pfoot-brand">raphia.ag — Manual Operacional 2025</div><div class="pfoot-note">Uso interno — Confidencial</div></div>
+<div class="section" id="sec08" style="background:#f7f6f4;">
+  <div class="sec-wrap">
+    <div class="sec-header">
+      <div class="sec-num-big">08</div>
+      <div class="sec-header-text">
+        <div class="sec-eyebrow">Manual Operacional</div>
+        <div class="sec-title">Ferramentas da Agencia</div>
+      </div>
+    </div>
+    <h2 class="ct">Stack Completa por Setor</h2>
+    <table class="ttable">
+      <thead><tr><th>Setor</th><th>Ferramenta</th><th>Uso</th></tr></thead>
+      <tbody>
+        <tr><td>Gestao Geral</td><td>Trello</td><td>Calendario editorial de cada cliente, cards de tarefas por status e acompanhamento de etapas por setor</td></tr>
+        <tr><td>Gestao Geral</td><td>Google Drive</td><td>Armazenamento central: videos, artes, roteiros, relatorios, contratos e briefings de todos os clientes</td></tr>
+        <tr><td>Aprovacao</td><td>aprovaraphia.com.br</td><td>Plataforma principal de envio e aprovacao de conteudos com historico de versoes e comentarios</td></tr>
+        <tr><td>Aprovacao</td><td>WhatsApp Business</td><td>Canal alternativo de aprovacao e comunicacao diaria com clientes que nao usam a plataforma</td></tr>
+        <tr><td>Criacao e Redacao</td><td>AnswerThePublic</td><td>Pesquisa de perguntas e buscas do publico sobre o nicho do cliente</td></tr>
+        <tr><td>Criacao e Redacao</td><td>Ubersuggest</td><td>Pesquisa de palavras-chave, volume de busca e analise de concorrentes</td></tr>
+        <tr><td>Design</td><td>Adobe (Ps, Ai, Pr)</td><td>Design profissional de artes e edicao avancada de videos</td></tr>
+        <tr><td>Design</td><td>Canva Pro</td><td>Criacao agil de posts, stories e carrosseis com templates do cliente</td></tr>
+        <tr><td>Edicao de Video</td><td>CapCut</td><td>Edicao rapida de reels com legendas automaticas e efeitos</td></tr>
+        <tr><td>Trafego Pago</td><td>Meta Business Suite</td><td>Gerenciamento de anuncios no Instagram e Facebook</td></tr>
+        <tr><td>Trafego Pago</td><td>Google Ads</td><td>Gestao de campanhas no Google Search, Display e YouTube</td></tr>
+        <tr><td>Trafego Pago</td><td>Google Analytics 4</td><td>Analise de comportamento no site e atribuicao de conversoes</td></tr>
+      </tbody>
+    </table>
+  </div>
 </div>
 
 <!-- 09 GERADOR DE CALENDARIO -->
-<div class="cp">
-  <div class="sh"><div class="sh-num">09</div><div><div class="eyebrow">Manual Operacional</div><div class="sh-title">Gerador de Calendario Mensal</div></div></div>
-  <h2 class="ct">Ferramenta Interativa de Calendario</h2>
-  <p class="tp">Preencha os dados do cliente abaixo para gerar automaticamente o calendario operacional do ciclo mensal, com todas as entregas, prazos e rotinas baseados nos servicos contratados.</p>
-
-  <div id="cal-tool">
-    <h3>Gerador de Calendario do Cliente</h3>
-    <p class="cal-sub">Selecione os servicos contratados, a data de inicio e o nome do cliente para gerar o calendario completo do ciclo.</p>
-
-    <div class="cal-form-row">
-      <div class="cal-form-group">
-        <label class="cal-label">Nome do Cliente</label>
-        <input class="cal-input" id="cal-nome" type="text" placeholder="Ex: Clinica Dra. Ana Lima" />
-      </div>
-      <div class="cal-form-group">
-        <label class="cal-label">Data de Inicio do Ciclo</label>
-        <input class="cal-input" id="cal-data" type="date" />
+<div class="section" id="sec09">
+  <div class="sec-wrap">
+    <div class="sec-header">
+      <div class="sec-num-big">09</div>
+      <div class="sec-header-text">
+        <div class="sec-eyebrow">Manual Operacional</div>
+        <div class="sec-title">Gerador de Calendario Mensal</div>
       </div>
     </div>
+    <h2 class="ct">Ferramenta Interativa de Calendario</h2>
+    <p class="tp">Preencha os dados do cliente abaixo para gerar automaticamente o calendario operacional do ciclo mensal, com todas as entregas, prazos e rotinas baseados nos servicos contratados.</p>
 
-    <label class="cal-label" style="display:block; margin-bottom:10px;">Servicos Contratados</label>
-    <div class="servicos-grid">
-      <label class="serv-check"><input type="checkbox" id="svc-criacao" value="criacao" /><label for="svc-criacao">Criacao de Conteudo (Estrategia + Gravacao)</label></label>
-      <label class="serv-check"><input type="checkbox" id="svc-producao" value="producao" /><label for="svc-producao">Producao de Conteudo (Reels, Carrosseis, Posts)</label></label>
-      <label class="serv-check"><input type="checkbox" id="svc-trafego" value="trafego" /><label for="svc-trafego">Trafego Pago (Meta Ads / Google Ads)</label></label>
+    <div id="cal-tool">
+      <h3>Gerador de Calendario do Cliente</h3>
+      <p class="cal-sub">Preencha os dados do cliente, os entregaveis contratados e as contas de anuncio. O ciclo de producao e encerrado em ate 30 dias uteis.</p>
+
+      <!-- Linha 1: Nome + Data -->
+      <div class="cal-form-row">
+        <div class="cal-form-group">
+          <label class="cal-label">Nome do Cliente</label>
+          <input class="cal-input" id="cal-nome" type="text" placeholder="Ex: Clinica Dra. Ana Lima" />
+        </div>
+        <div class="cal-form-group">
+          <label class="cal-label">Data de Inicio do Ciclo</label>
+          <input class="cal-input" id="cal-data" type="date" />
+        </div>
+      </div>
+
+      <!-- Servicos -->
+      <label class="cal-label" style="display:block; margin-bottom:10px;">Servicos Contratados</label>
+      <div class="servicos-grid" style="margin-bottom:0;">
+        <label class="serv-check" id="chk-criacao-wrap"><input type="checkbox" id="svc-criacao" onchange="toggleServico()" /><label for="svc-criacao">Criacao de Conteudo</label></label>
+        <label class="serv-check" id="chk-producao-wrap"><input type="checkbox" id="svc-producao" onchange="toggleServico()" /><label for="svc-producao">Producao (Reels, Artes)</label></label>
+        <label class="serv-check" id="chk-trafego-wrap"><input type="checkbox" id="svc-trafego" onchange="toggleServico()" /><label for="svc-trafego">Trafego Pago</label></label>
+      </div>
+
+      <!-- Entregaveis de Criacao/Producao -->
+      <div id="block-conteudo" style="display:none; margin-top:18px;">
+        <div class="cal-section-divider">Entregaveis — Conteudo & Producao</div>
+        <div class="cal-form-row" style="grid-template-columns:1fr 1fr 1fr; margin-bottom:0;">
+          <div class="cal-form-group">
+            <label class="cal-label">Reels / Videos</label>
+            <input class="cal-input cal-num" id="qtd-reels" type="number" min="0" value="4" placeholder="0" />
+          </div>
+          <div class="cal-form-group">
+            <label class="cal-label">Carrosseis</label>
+            <input class="cal-input cal-num" id="qtd-carrosseis" type="number" min="0" value="4" placeholder="0" />
+          </div>
+          <div class="cal-form-group">
+            <label class="cal-label">Posts Estaticos</label>
+            <input class="cal-input cal-num" id="qtd-posts" type="number" min="0" value="4" placeholder="0" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Entregaveis de Trafego -->
+      <div id="block-trafego" style="display:none; margin-top:18px;">
+        <div class="cal-section-divider">Entregaveis — Trafego Pago</div>
+        <div style="margin-bottom:12px;">
+          <label class="cal-label" style="display:block; margin-bottom:10px;">Plataformas de Anuncio</label>
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <label class="serv-check" style="flex:1; min-width:140px;"><input type="checkbox" id="plat-meta" checked /><label for="plat-meta">Meta Ads (Instagram / Facebook)</label></label>
+            <label class="serv-check" style="flex:1; min-width:140px;"><input type="checkbox" id="plat-google" /><label for="plat-google">Google Ads</label></label>
+          </div>
+        </div>
+        <div class="cal-form-row" style="grid-template-columns:1fr 1fr; margin-bottom:0;">
+          <div class="cal-form-group">
+            <label class="cal-label">Qtd. de Campanhas Gerenciadas</label>
+            <input class="cal-input cal-num" id="qtd-campanhas" type="number" min="1" value="2" placeholder="Ex: 3" />
+          </div>
+          <div class="cal-form-group">
+            <label class="cal-label">Criativos por Campanha (versoes A/B)</label>
+            <input class="cal-input cal-num" id="qtd-criativos" type="number" min="1" value="3" placeholder="Ex: 3" />
+          </div>
+        </div>
+      </div>
+
+      <button class="cal-btn" style="margin-top:22px;" onclick="gerarCalendario()">Gerar Calendario do Ciclo</button>
+      <div id="cal-output"></div>
+      <div class="pdf-loading" id="pdf-loading">
+        <div class="pdf-spinner"></div>
+        <span>Gerando PDF, aguarde...</span>
+      </div>
     </div>
-
-    <button class="cal-btn" onclick="gerarCalendario()">Gerar Calendario do Ciclo</button>
-
-    <div id="cal-output"></div>
   </div>
-
-  <div class="pfoot"><div class="pfoot-brand">raphia.ag — Manual Operacional 2025</div><div class="pfoot-note">Uso interno — Confidencial</div></div>
 </div>
 
 <!-- 10 RELATORIO -->
-<div class="cp">
-  <div class="sh"><div class="sh-num">10</div><div><div class="eyebrow">Manual Operacional</div><div class="sh-title">Modelo de Relatorio Mensal</div></div></div>
-  <h2 class="ct">Estrutura Padrao do Relatorio</h2>
-  <p class="tp">O relatorio mensal deve ser entregue ate o 5 dia util do mes seguinte e apresentado em reuniao com o cliente. Todos os relatorios sao armazenados no Google Drive do cliente.</p>
-  <div class="rsec">
-    <div class="rhead"><div class="rhead-title">1. Resumo Executivo</div><span class="badge bd">1 pagina</span></div>
-    <div class="rbody">
-      <p style="font-size:13px; color:#3a3a3a; margin-bottom:10px;">Principais conquistas do mes em 3 a 5 topicos. O cliente deve entender o valor entregue antes de ver qualquer dado.</p>
-      <div class="pbox" style="margin:0;"><div class="pbox-title">Exemplo de abertura</div><div class="pbox-body">"Em [mes], entregamos [X] conteudos, alcancamos [Y] pessoas organicamente e geramos [Z] leads qualificados via trafego pago, com um custo por lead 18% abaixo da meta estabelecida."</div></div>
-    </div>
-  </div>
-  <div class="rsec">
-    <div class="rhead"><div class="rhead-title">2. Performance Organica</div><span class="badge br">Social Media</span></div>
-    <div class="rbody">
-      <div class="kgrid">
-        <div class="kitem"><div class="klabel">Alcance</div><div class="kval">...</div><div class="kch">vs. mes anterior</div></div>
-        <div class="kitem"><div class="klabel">Impressoes</div><div class="kval">...</div><div class="kch">vs. mes anterior</div></div>
-        <div class="kitem"><div class="klabel">Engajamento</div><div class="kval">...%</div><div class="kch">taxa do periodo</div></div>
-        <div class="kitem"><div class="klabel">Seguidores ganhos</div><div class="kval">...</div><div class="kch">novos no mes</div></div>
-        <div class="kitem"><div class="klabel">Conteudos publicados</div><div class="kval">...</div><div class="kch">no periodo</div></div>
-        <div class="kitem"><div class="klabel">Top conteudo</div><div class="kval" style="font-size:13px;">...</div><div class="kch">maior alcance</div></div>
+<div class="section" id="sec10" style="background:#f7f6f4;">
+  <div class="sec-wrap">
+    <div class="sec-header">
+      <div class="sec-num-big">10</div>
+      <div class="sec-header-text">
+        <div class="sec-eyebrow">Manual Operacional</div>
+        <div class="sec-title">Modelo de Relatorio Mensal</div>
       </div>
     </div>
-  </div>
-  <div class="rsec">
-    <div class="rhead"><div class="rhead-title">3. Performance de Trafego Pago</div><span class="badge br">Gestor de Trafego</span></div>
-    <div class="rbody">
-      <div class="kgrid">
-        <div class="kitem"><div class="klabel">Verba investida</div><div class="kval">R$ ...</div></div>
-        <div class="kitem"><div class="klabel">Leads gerados</div><div class="kval">...</div></div>
-        <div class="kitem"><div class="klabel">Custo por lead</div><div class="kval">R$ ...</div></div>
-        <div class="kitem"><div class="klabel">ROAS</div><div class="kval">...x</div></div>
-        <div class="kitem"><div class="klabel">CTR medio</div><div class="kval">...%</div></div>
-        <div class="kitem"><div class="klabel">CPM medio</div><div class="kval">R$ ...</div></div>
+    <h2 class="ct">Estrutura Padrao do Relatorio</h2>
+    <p class="tp">O relatorio mensal deve ser entregue ate o 5 dia util do mes seguinte e apresentado em reuniao com o cliente. Todos os relatorios sao armazenados no Google Drive do cliente.</p>
+    <div class="rsec">
+      <div class="rhead"><div class="rhead-title">1. Resumo Executivo</div><span class="badge bd">1 pagina</span></div>
+      <div class="rbody">
+        <p style="font-size:13px; color:#3a3a3a; margin-bottom:10px;">Principais conquistas do mes em 3 a 5 topicos. O cliente deve entender o valor entregue antes de ver qualquer dado.</p>
+        <div class="pbox" style="margin:0;"><div class="pbox-title">Exemplo de abertura</div><div class="pbox-body">"Em [mes], entregamos [X] conteudos, alcancamos [Y] pessoas organicamente e geramos [Z] leads qualificados via trafego pago, com um custo por lead 18% abaixo da meta estabelecida."</div></div>
       </div>
     </div>
+    <div class="rsec">
+      <div class="rhead"><div class="rhead-title">2. Performance Organica</div><span class="badge br">Social Media</span></div>
+      <div class="rbody">
+        <div class="kgrid">
+          <div class="kitem"><div class="klabel">Alcance</div><div class="kval">...</div><div class="kch">vs. mes anterior</div></div>
+          <div class="kitem"><div class="klabel">Impressoes</div><div class="kval">...</div><div class="kch">vs. mes anterior</div></div>
+          <div class="kitem"><div class="klabel">Engajamento</div><div class="kval">...%</div><div class="kch">taxa do periodo</div></div>
+          <div class="kitem"><div class="klabel">Seguidores ganhos</div><div class="kval">...</div><div class="kch">novos no mes</div></div>
+          <div class="kitem"><div class="klabel">Conteudos publicados</div><div class="kval">...</div><div class="kch">no periodo</div></div>
+          <div class="kitem"><div class="klabel">Top conteudo</div><div class="kval" style="font-size:13px;">...</div><div class="kch">maior alcance</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="rsec">
+      <div class="rhead"><div class="rhead-title">3. Performance de Trafego Pago</div><span class="badge br">Gestor de Trafego</span></div>
+      <div class="rbody">
+        <div class="kgrid">
+          <div class="kitem"><div class="klabel">Verba investida</div><div class="kval">R$ ...</div></div>
+          <div class="kitem"><div class="klabel">Leads gerados</div><div class="kval">...</div></div>
+          <div class="kitem"><div class="klabel">Custo por lead</div><div class="kval">R$ ...</div></div>
+          <div class="kitem"><div class="klabel">ROAS</div><div class="kval">...x</div></div>
+          <div class="kitem"><div class="klabel">CTR medio</div><div class="kval">...%</div></div>
+          <div class="kitem"><div class="klabel">CPM medio</div><div class="kval">R$ ...</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="rsec">
+      <div class="rhead"><div class="rhead-title">4. Insights e Proximos Passos</div></div>
+      <div class="rbody"><p style="font-size:13px; color:#3a3a3a;">Apresentar 3 aprendizados do mes e 3 acoes planejadas para o proximo ciclo. Documento salvo no Google Drive e enviado via WhatsApp.</p></div>
+    </div>
   </div>
-  <div class="rsec">
-    <div class="rhead"><div class="rhead-title">4. Insights e Proximos Passos</div></div>
-    <div class="rbody"><p style="font-size:13px; color:#3a3a3a;">Apresentar 3 aprendizados do mes e 3 acoes planejadas para o proximo ciclo. Documento salvo no Google Drive e enviado via WhatsApp.</p></div>
-  </div>
-  <div class="pfoot"><div class="pfoot-brand">raphia.ag — Manual Operacional 2025</div><div class="pfoot-note">Uso interno — Confidencial</div></div>
 </div>
 
-<script>
-const DIAS = ['Dom','Seg','Ter','Qua','Qui','Sex','Sab'];
-const MESES = ['Janeiro','Fevereiro','Marco','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+<!-- FOOTER -->
+<footer class="site-footer">
+  <span class="footer-brand">raphia.ag — Manual Operacional 2026</span>
+  <span class="footer-note">Uso interno — Confidencial</span>
+</footer>
 
-function addDays(date, n) {
-  const d = new Date(date);
-  d.setDate(d.getDate() + n);
+<script>
+// ===== CHECKLIST INTERATIVO =====
+function toggleCheck(li) { li.classList.toggle('checked'); }
+
+// ===== TOGGLE FORM BLOCKS =====
+function toggleServico() {
+  const hasCont = document.getElementById('svc-criacao').checked || document.getElementById('svc-producao').checked;
+  const hasTraf = document.getElementById('svc-trafego').checked;
+  document.getElementById('block-conteudo').style.display = hasCont ? 'block' : 'none';
+  document.getElementById('block-trafego').style.display = hasTraf ? 'block' : 'none';
+}
+
+// ===== NAVBAR =====
+const navLinks = document.querySelectorAll('.nav-link');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + id) link.classList.add('active');
+      });
+    }
+  });
+}, { rootMargin: '-40% 0px -55% 0px' });
+['cover','sumario','sec01','sec02','sec03','sec04','sec05','sec06','sec07','sec08','sec09','sec10'].forEach(id => {
+  const el = document.getElementById(id); if (el) observer.observe(el);
+});
+
+// ===== TABS =====
+function switchTab(tab) {
+  document.querySelectorAll('.cal-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.cal-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('active');
+  document.getElementById('panel-' + tab).classList.add('active');
+}
+
+// ===== FERIADOS FORTALEZA/CE 2026 =====
+const FERIADOS = new Set([
+  '2026-01-01','2026-02-16','2026-02-17','2026-02-18',
+  '2026-03-19','2026-03-25','2026-04-03','2026-04-05',
+  '2026-04-13','2026-04-21','2026-05-01','2026-06-04',
+  '2026-08-15','2026-09-07','2026-10-12','2026-11-02',
+  '2026-11-15','2026-11-20','2026-12-08','2026-12-25',
+]);
+// Suporte a anos futuros com feriados fixos
+const FERIADOS_FIXOS = [[1,1],[3,19],[3,25],[4,21],[5,1],[9,7],[10,12],[11,2],[11,15],[11,20],[12,8],[12,25]];
+
+function dataKey(d) {
+  return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+}
+function ehFeriado(d) {
+  const k = dataKey(d);
+  if (FERIADOS.has(k)) return true;
+  // fallback fixos para outros anos
+  return FERIADOS_FIXOS.some(([m,dia]) => d.getMonth()+1===m && d.getDate()===dia);
+}
+function ehDiaUtil(d) {
+  const dow = d.getDay();
+  return dow !== 0 && dow !== 6 && !ehFeriado(d);
+}
+function addDiasUteis(base, n) {
+  let d = new Date(base); let c = 0;
+  while (c < n) { d.setDate(d.getDate()+1); if (ehDiaUtil(d)) c++; }
+  return d;
+}
+function proximoDiaUtil(d) {
+  let r = new Date(d); while (!ehDiaUtil(r)) r.setDate(r.getDate()+1); return r;
+}
+function proximaDiaDaSemana(base, dow) {
+  let d = new Date(base);
+  d.setDate(d.getDate()+1); // pelo menos 1 dia a frente
+  while (d.getDay() !== dow || !ehDiaUtil(d)) d.setDate(d.getDate()+1);
   return d;
 }
 
-function fmtDate(d) {
-  return d.getDate().toString().padStart(2,'0') + '/' + (d.getMonth()+1).toString().padStart(2,'0');
+const DIAS_NOME = ['Dom','Seg','Ter','Qua','Qui','Sex','Sab'];
+const DIAS_FULL = ['Domingo','Segunda-feira','Terca-feira','Quarta-feira','Quinta-feira','Sexta-feira','Sabado'];
+const MESES = ['Janeiro','Fevereiro','Marco','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+
+function fmtD(d) { return d.getDate().toString().padStart(2,'0')+'/'+(d.getMonth()+1).toString().padStart(2,'0'); }
+function fmtDFull(d) { return d.getDate().toString().padStart(2,'0')+'/'+(d.getMonth()+1).toString().padStart(2,'0')+'/'+d.getFullYear(); }
+function fmtDia(d) { return DIAS_NOME[d.getDay()]; }
+
+// ===== ESTADO GLOBAL =====
+let _eventosInternos = [];
+let _eventosCliente = [];
+let _calParams = {};
+
+// ===== BUILD EVENTOS — CICLO 30 DIAS UTEIS =====
+// Logica: producao encerra em ate du20 (dentro dos 30 dias corridos).
+// Reports e relatorio mensal ficam alem dos 30 dias, mas sao rotinas continuadas.
+function buildEventos(inicio, criacao, producao, trafego, reels, carrosseis, posts, platMeta, platGoogle, campanhas, criativos) {
+  const internos = []; // {data, nome, desc, tags, cor, ehEntrega, descCliente}
+  const du = (n) => n === 0 ? new Date(inicio) : addDiasUteis(inicio, n);
+
+  // Helper
+  const add = (data, nome, desc, tags, cor, entrega=false, descCliente='') => {
+    internos.push({ data: new Date(data), nome, desc, tags, cor, entrega, descCliente });
+  };
+
+  // ---- ONBOARDING (du0–du3) ----
+  add(du(0), 'Boas-vindas e Formulario de Onboarding',
+    'Envio de mensagem de boas-vindas, formulario de briefing e link para upload de materiais da marca (logo, manual, fotos).',
+    ['onboarding'], 'green', false);
+  add(du(1), 'Coleta de Acessos',
+    'Receber acessos de Instagram, Facebook, Google Ads, GA4. Criar pasta no Google Drive e card no Trello.',
+    ['onboarding','social media'], 'green', false);
+  add(du(2), 'Diagnostico de Redes Sociais',
+    'Analise do perfil: engajamento, frequencia, identidade visual e bio. Documento salvo no Google Drive.',
+    ['onboarding','social media'], 'green', false);
+  add(du(3), 'Reuniao de Kick-off',
+    'Reuniao de 60 min com o cliente: validar formulario, alinhar expectativas, definir canais de comunicacao e apresentar o calendario no Trello.',
+    ['onboarding','ceo','social media'], 'green',
+    true, 'Reuniao de Kick-off com a equipe da raphia.ag (60 min)');
+
+  // ---- CRIACAO (du4–du14) ----
+  if (criacao) {
+    add(du(4), 'Reuniao de Briefing de Conteudo',
+      'Aprofundar briefing: dores do publico, diferenciais, conteudos que ja funcionaram e temas a evitar.',
+      ['criacao','social media'], 'yellow', false);
+    add(du(5), 'Criacao de Personas e Mapa de Empatia',
+      'Criar 2 a 3 personas com dores, objetivos e comportamento digital. Mapa de empatia para cada uma.',
+      ['criacao','redacao'], 'yellow', false);
+    add(du(6), 'Pesquisa de Concorrentes e Tendencias',
+      'Mapear 5 a 10 perfis do nicho. AnswerThePublic, Ubersuggest e Google Trends. Documentar no Google Drive.',
+      ['criacao','redacao'], 'yellow', false);
+    add(du(8), 'Definicao das Tematicas e Calendario Editorial',
+      'Definir 4 a 6 tematicas mensais. Montar calendario editorial completo no Trello.',
+      ['criacao','social media'], 'yellow', false);
+    add(du(10), 'Producao dos Roteiros',
+      'Roteiros com gancho (3s), desenvolvimento e CTA. Salvos no Google Drive.',
+      ['criacao','redacao'], 'yellow', false);
+    add(du(12), 'Envio dos Roteiros para Aprovacao do Cliente',
+      'Enviar roteiros via aprovaraphia.com.br ou WhatsApp. Prazo de feedback: 48h uteis.',
+      ['criacao','aprovacao'], 'yellow',
+      true, 'Envio dos roteiros para sua aprovacao (prazo de retorno: 48h uteis)');
+    add(du(14), 'Agendamento da Gravacao Presencial',
+      'Confirmar data, local e horario. Enviar guia de preparacao: roupa, iluminacao, ambiente.',
+      ['criacao','social media'], 'yellow', false);
+  }
+
+  // ---- PRODUCAO (du15–du22, encerra dentro de 30 dias corridos aprox.) ----
+  if (producao) {
+    const baseP = criacao ? 15 : 5;
+    add(du(baseP), 'Gravacao Presencial + Briefing Visual',
+      'Sessao de gravacao com o cliente. Paralelamente, levantamento de referencias visuais e moodboard.',
+      ['producao','gravacao'], 'pink', false);
+    add(du(baseP+1), 'Organizacao dos Arquivos e Templates',
+      'Organizar takes no Google Drive. Selecionar melhores takes. Criar/validar templates de design.',
+      ['producao','edicao'], 'pink', false);
+
+    // Descricoes personalizadas com quantidades
+    const descReels = reels > 0 ? `Editar ${reels} reel(s) com legenda animada, trilha e gancho. Formato 9:16, 15 a 60 segundos.` : '';
+    const descArtes = (carrosseis > 0 || posts > 0) ? `Criar ${carrosseis > 0 ? carrosseis+' carrossel(is)' : ''}${carrosseis>0&&posts>0?' e ':''}${posts > 0 ? posts+' post(s) estatico(s)' : ''} com templates aprovados.` : '';
+
+    if (reels > 0) {
+      add(du(baseP+2), `Edicao de Reels (${reels} videos)`, descReels, ['producao','edicao'], 'pink', false);
+    }
+    if (carrosseis > 0 || posts > 0) {
+      add(du(baseP+3), `Criacao de Artes (${carrosseis} carrosseis + ${posts} posts)`, descArtes, ['producao','design'], 'pink', false);
+    }
+    add(du(baseP+5), 'Revisao Interna (QA)',
+      'Social Media revisa todos os conteudos: identidade visual, legenda, CTA, ortografia e qualidade de exportacao.',
+      ['producao','social media'], 'pink', false);
+
+    // Entrega final — dentro de ~du20, que cabe em 30 dias corridos
+    const duEntrega = baseP + 6;
+    const totalCont = [];
+    if (reels > 0) totalCont.push(reels + ' reel(s)');
+    if (carrosseis > 0) totalCont.push(carrosseis + ' carrossel(is)');
+    if (posts > 0) totalCont.push(posts + ' post(s)');
+    const descEntrega = 'Envio de ' + (totalCont.join(', ') || 'conteudos') + ' via aprovaraphia.com.br ou WhatsApp. Prazo de feedback: 48h uteis.';
+    const descEntregaCliente = 'Entrega dos conteudos do ciclo para sua aprovacao: ' + (totalCont.join(', ') || 'conteudos') + '. Prazo de retorno: 48h uteis.';
+    add(du(duEntrega), `Entrega dos Conteudos para Aprovacao`, descEntrega,
+      ['producao','aprovacao'], 'pink', true, descEntregaCliente);
+
+    add(du(duEntrega+2), 'Publicacao dos Primeiros Conteudos',
+      'Apos aprovacao, agendar e publicar conforme calendario editorial no Trello.',
+      ['producao','social media'], 'pink',
+      true, 'Inicio das publicacoes no seu perfil (pos-aprovacao)');
+  }
+
+  // ---- TRAFEGO (du1–du10 setup, rotinas continuadas) ----
+  if (trafego) {
+    const plats = [platMeta && 'Meta Ads', platGoogle && 'Google Ads'].filter(Boolean).join(' + ');
+    add(du(1), 'Briefing de Trafego Pago',
+      `Definir objetivo, verba, publico-alvo, ticket medio e campanhas anteriores. Plataformas: ${plats}.`,
+      ['trafego','gestor'], 'purple', false);
+    add(du(2), 'Auditoria de Infraestrutura Digital',
+      'Verificar site, landing pages, pixel Meta, gerenciador de anuncios e Google Ads.',
+      ['trafego','gestor'], 'purple', false);
+    add(du(4), 'Instalacao de Pixels e Configuracao de Conversoes',
+      'Pixel Meta, eventos (Lead, Purchase), Google Analytics e UTMs configurados.',
+      ['trafego','gestor'], 'purple', false);
+    add(du(5), 'Definicao de Verba e Estrutura das Campanhas',
+      `Propor distribuicao de verba entre ${campanhas} campanha(s). Definir publicos e apresentar ao cliente.`,
+      ['trafego','gestor','ceo'], 'purple',
+      true, `Apresentacao da estrutura de ${campanhas} campanha(s) em ${plats} para sua aprovacao`);
+    add(du(7), `Criacao de Criativos (${criativos} versoes por campanha)`,
+      `Criar ${criativos} versoes de criativos por campanha para teste A/B. Ganchos diferentes, copy e CTA.`,
+      ['trafego','design'], 'purple', false);
+    add(du(9), 'Ativacao das Campanhas',
+      `Subir ${campanhas} campanha(s) em ${plats}. Monitorar diariamente. Sem grandes alteracoes nas primeiras 72h.`,
+      ['trafego','gestor'], 'purple',
+      true, `Ativacao das ${campanhas} campanha(s) em ${plats}`);
+
+    // Rotinas semanais: 4 semanas de follow-up (seg) e report (sex)
+    // Primeira semana apos ativacao
+    let proxSeg = proximaDiaDaSemana(du(9), 1);
+    for (let s = 0; s < 4; s++) {
+      add(proxSeg, 'Follow-up de Leads (Segunda-feira)',
+        'Verificar com o cliente a qualidade dos leads da semana anterior. Otimizar segmentacao com base no feedback.',
+        ['trafego','rotina'], 'purple', false);
+      let proxSex = proximaDiaDaSemana(proxSeg, 5);
+      add(proxSex, 'Report Semanal de Trafego (Sexta-feira)',
+        'Enviar report semanal: verba investida, leads gerados, custo por lead, CTR e proximas acoes.',
+        ['trafego','relatorio'], 'purple',
+        true, `Report semanal de performance das campanhas em ${plats}`);
+      proxSeg = proximaDiaDaSemana(proxSex, 1);
+    }
+  }
+
+  // ---- RELATORIO MENSAL (alem dos 30 dias, rotina continuada) ----
+  add(addDiasUteis(inicio, 20), 'Coleta de Dados para Relatorio Mensal',
+    'Coletar metricas organicas e de trafego. Iniciar compilacao do relatorio no Google Drive.',
+    ['relatorio','todos'], 'green', false);
+  add(addDiasUteis(inicio, 22), 'Envio do Relatorio Mensal',
+    'Relatorio completo enviado via WhatsApp ou email ate o 5 dia util do mes seguinte.',
+    ['relatorio','todos'], 'green',
+    true, 'Relatorio mensal de resultados entregue (organico + trafego)');
+  add(addDiasUteis(inicio, 23), 'Reuniao Mensal de Resultados',
+    'Apresentar resultados, discutir aprendizados e alinhar estrategia do proximo ciclo.',
+    ['relatorio','ceo'], 'green',
+    true, 'Reuniao mensal de resultados e alinhamento do proximo ciclo');
+
+  internos.sort((a,b) => a.data - b.data);
+
+  // Eventos para o cliente: apenas os marcados como entrega
+  const clientes = internos.filter(e => e.entrega).map(e => ({
+    data: e.data,
+    nome: e.descCliente || e.nome,
+    cor: e.cor,
+  }));
+
+  return { internos, clientes };
 }
 
-function fmtDiaSemana(d) {
-  return DIAS[d.getDay()];
+// ===== RENDER CALENDARIO INTERNO =====
+function renderInterno(eventos, nome, inicio) {
+  const semanas = {};
+  eventos.forEach(ev => {
+    const diff = Math.floor((ev.data - inicio) / (1000*60*60*24));
+    const sem = Math.floor(diff / 7) + 1;
+    if (!semanas[sem]) semanas[sem] = [];
+    semanas[sem].push(ev);
+  });
+
+  const tagsCores = { green:'tag-green', yellow:'tag-yellow', pink:'tag-pink', purple:'tag-pp' };
+  const periodoFim = eventos[eventos.length-1].data;
+
+  let h = '<div class="cal-title">Calendario Interno: ' + nome + '</div>';
+  h += '<div class="cal-period">Ciclo: ' + fmtD(inicio) + ' a ' + fmtD(periodoFim) + ' &nbsp;|&nbsp; Dias uteis — sem feriados Fortaleza/CE</div>';
+
+  Object.keys(semanas).sort((a,b)=>+a-+b).forEach(sem => {
+    h += '<div class="cal-week"><div class="cal-week-title">Semana ' + sem + '</div><div class="cal-events">';
+    semanas[sem].forEach(ev => {
+      h += '<div class="cal-event">';
+      h += '<div class="cal-event-day"><div class="cal-day-num">' + fmtD(ev.data) + '</div><div class="cal-day-name">' + fmtDia(ev.data) + '</div></div>';
+      h += '<div class="cal-event-info"><div class="cal-event-name">' + (ev.entrega ? '★ ' : '') + ev.nome + '</div>';
+      h += '<div class="cal-event-desc">' + ev.desc + '</div>';
+      h += '<div class="cal-event-tags">';
+      ev.tags.slice(0,3).forEach(t => { h += '<span class="cal-tag ' + (tagsCores[ev.cor]||'tag-green') + '">' + t + '</span>'; });
+      h += '</div></div></div>';
+    });
+    h += '</div></div>';
+  });
+  return h;
 }
 
+// ===== RENDER CALENDARIO CLIENTE =====
+function renderCliente(eventos, nome, params) {
+  const { reels, carrosseis, posts, platMeta, platGoogle, campanhas, criacao, producao, trafego } = params;
+  const corBadge = { green:'badge-green', yellow:'badge-yellow', pink:'badge-pink', purple:'badge-purple' };
+  const corTag = { green:'tag-green', yellow:'tag-yellow', pink:'tag-pink', purple:'tag-pp' };
+  const periodoFim = eventos[eventos.length-1].data;
+
+  let h = '<div id="cal-cliente-wrap">';
+  h += '<div class="cal-cliente-title">Cronograma do Ciclo — ' + nome + '</div>';
+  h += '<div class="cal-cliente-sub">Previsao de entregas e marcos importantes. Todos os prazos consideram apenas dias uteis.</div>';
+
+  // Badges de entregaveis
+  h += '<div class="cal-cliente-entregaveis">';
+  if (criacao) h += '<span class="cal-cliente-badge badge-yellow">Criacao de Conteudo</span>';
+  if (producao) {
+    if (reels > 0) h += '<span class="cal-cliente-badge badge-pink">' + reels + ' Reel(s)</span>';
+    if (carrosseis > 0) h += '<span class="cal-cliente-badge badge-pink">' + carrosseis + ' Carrossel(is)</span>';
+    if (posts > 0) h += '<span class="cal-cliente-badge badge-pink">' + posts + ' Post(s)</span>';
+  }
+  if (trafego) {
+    if (platMeta) h += '<span class="cal-cliente-badge badge-purple">Meta Ads</span>';
+    if (platGoogle) h += '<span class="cal-cliente-badge badge-purple">Google Ads</span>';
+    h += '<span class="cal-cliente-badge badge-purple">' + campanhas + ' Campanha(s)</span>';
+  }
+  h += '</div>';
+
+  // Tabela
+  h += '<table class="cal-cliente-table"><thead><tr><th>Data</th><th>Dia</th><th>Entrega / Marco</th><th>Tipo</th></tr></thead><tbody>';
+  eventos.forEach(ev => {
+    const tipoMap = { green:'Gestao', yellow:'Criacao', pink:'Producao', purple:'Trafego' };
+    h += '<tr>';
+    h += '<td class="col-data">' + fmtD(ev.data) + '</td>';
+    h += '<td class="col-dia">' + DIAS_FULL[ev.data.getDay()] + '</td>';
+    h += '<td class="col-entrega">' + ev.nome + '</td>';
+    h += '<td><span class="cal-cliente-tag ' + (corTag[ev.cor]||'tag-green') + '">' + (tipoMap[ev.cor]||'') + '</span></td>';
+    h += '</tr>';
+  });
+  h += '</tbody></table>';
+  h += '<div class="cal-cliente-footer">raphia.ag — Previsao sujeita a ajustes. Feriados de Fortaleza/CE considerados. Prazos de aprovacao de 48h uteis incluidos no planejamento.</div>';
+  h += '</div>';
+  return h;
+}
+
+// ===== GERAR CALENDARIO (MAIN) =====
 function gerarCalendario() {
   const nome = document.getElementById('cal-nome').value.trim();
   const dataStr = document.getElementById('cal-data').value;
@@ -657,113 +1198,476 @@ function gerarCalendario() {
   const producao = document.getElementById('svc-producao').checked;
   const trafego = document.getElementById('svc-trafego').checked;
 
-  if (!nome) { alert('Por favor, informe o nome do cliente.'); return; }
-  if (!dataStr) { alert('Por favor, informe a data de inicio.'); return; }
-  if (!criacao && !producao && !trafego) { alert('Selecione ao menos um servico contratado.'); return; }
+  if (!nome) { alert('Informe o nome do cliente.'); return; }
+  if (!dataStr) { alert('Informe a data de inicio.'); return; }
+  if (!criacao && !producao && !trafego) { alert('Selecione ao menos um servico.'); return; }
 
-  const inicio = new Date(dataStr + 'T12:00:00');
-  const eventos = [];
+  const reels = parseInt(document.getElementById('qtd-reels')?.value || '0') || 0;
+  const carrosseis = parseInt(document.getElementById('qtd-carrosseis')?.value || '0') || 0;
+  const posts = parseInt(document.getElementById('qtd-posts')?.value || '0') || 0;
+  const platMeta = document.getElementById('plat-meta')?.checked || false;
+  const platGoogle = document.getElementById('plat-google')?.checked || false;
+  const campanhas = parseInt(document.getElementById('qtd-campanhas')?.value || '2') || 2;
+  const criativos = parseInt(document.getElementById('qtd-criativos')?.value || '3') || 3;
 
-  // ONBOARDING (todos os clientes)
-  eventos.push({ dia: 0, nome: 'Boas-vindas e Formulario de Onboarding', desc: 'Envio de mensagem de boas-vindas, formulario e link para upload de materiais da marca.', tags: ['onboarding'], cor: 'tag-green' });
-  eventos.push({ dia: 1, nome: 'Coleta de Acessos', desc: 'Receber acessos de Instagram, Facebook, Google Ads, GA4 e demais plataformas. Criar pasta no Google Drive e card no Trello.', tags: ['onboarding', 'social media'], cor: 'tag-green' });
-  eventos.push({ dia: 2, nome: 'Diagnostico de Redes Sociais', desc: 'Analise do perfil atual: engajamento, frequencia, identidade visual e bio. Documentar no Google Drive.', tags: ['onboarding', 'social media'], cor: 'tag-green' });
-  eventos.push({ dia: 3, nome: 'Reuniao de Kick-off', desc: 'Reuniao com o cliente (60 min) para validar formulario, alinhar expectativas, definir canais de comunicacao e apresentar o calendario no Trello.', tags: ['onboarding', 'ceo', 'social media'], cor: 'tag-green' });
+  const inicio = proximoDiaUtil(new Date(dataStr + 'T12:00:00'));
 
-  if (criacao) {
-    eventos.push({ dia: 4, nome: 'Reuniao de Briefing de Conteudo', desc: 'Aprofundar informacoes do cliente: dores do publico, diferenciais, conteudos que ja funcionaram e temas a evitar.', tags: ['criacao', 'social media'], cor: 'tag-yellow' });
-    eventos.push({ dia: 5, nome: 'Criacao de Personas e Mapa de Empatia', desc: 'Criar 2 a 3 personas com dores, objetivos e comportamento digital. Preencher mapa de empatia para cada uma.', tags: ['criacao', 'redacao'], cor: 'tag-yellow' });
-    eventos.push({ dia: 6, nome: 'Pesquisa de Concorrentes', desc: 'Mapear 5 a 10 perfis do nicho, analisar formatos e abordagens com maior engajamento. Documentar no Google Drive.', tags: ['criacao', 'redacao'], cor: 'tag-yellow' });
-    eventos.push({ dia: 7, nome: 'Pesquisa de Buscas (AnswerThePublic)', desc: 'Identificar perguntas, tendencias e volumes de busca do publico sobre o nicho. Cruzar com dores das personas.', tags: ['criacao', 'redacao'], cor: 'tag-yellow' });
-    eventos.push({ dia: 8, nome: 'Definicao das Tematicas Mensais', desc: 'Definir 4 a 6 tematicas mensais mapeadas para dores de personas. Criar colunas correspondentes no Trello.', tags: ['criacao', 'redacao', 'social media'], cor: 'tag-yellow' });
-    eventos.push({ dia: 9, nome: 'Criacao do Calendario Editorial', desc: 'Montar calendario completo do mes no Trello com formatos, tematicas e datas de publicacao.', tags: ['criacao', 'social media'], cor: 'tag-yellow' });
-    eventos.push({ dia: 10, nome: 'Inicio da Producao dos Roteiros', desc: 'Producao dos roteiros com: gancho (3s), desenvolvimento e CTA. Minimo 8 roteiros no primeiro ciclo.', tags: ['criacao', 'redacao'], cor: 'tag-yellow' });
-    eventos.push({ dia: 13, nome: 'Revisao Interna dos Roteiros', desc: 'Social Media revisa os roteiros antes de enviar ao cliente.', tags: ['criacao', 'social media'], cor: 'tag-yellow' });
-    eventos.push({ dia: 14, nome: 'Envio dos Roteiros para Aprovacao', desc: 'Enviar roteiros ao cliente via aprovaraphia.com.br ou WhatsApp. Prazo de feedback: 48h uteis.', tags: ['criacao', 'aprovacao'], cor: 'tag-yellow' });
-    eventos.push({ dia: 15, nome: 'Agendamento da Gravacao Presencial', desc: 'Confirmar data, horario e local da gravacao. Enviar guia de preparacao ao cliente (roupa, iluminacao, ambiente).', tags: ['criacao', 'social media'], cor: 'tag-yellow' });
-  }
+  const { internos, clientes } = buildEventos(inicio, criacao, producao, trafego, reels, carrosseis, posts, platMeta, platGoogle, campanhas, criativos);
+  _eventosInternos = internos;
+  _eventosCliente = clientes;
+  _calParams = { nome, reels, carrosseis, posts, platMeta, platGoogle, campanhas, criativos, criacao, producao, trafego, inicio };
 
-  if (producao) {
-    const diaGrav = criacao ? 16 : 6;
-    eventos.push({ dia: diaGrav, nome: 'Gravacao Presencial', desc: 'Sessao de gravacao com o cliente. Capturar todos os roteiros aprovados.', tags: ['producao', 'gravacao'], cor: 'tag-pink' });
-    eventos.push({ dia: diaGrav, nome: 'Briefing Visual e Moodboard', desc: 'Levantar referencias visuais do cliente. Montar moodboard no Google Drive para aprovacao.', tags: ['producao', 'design'], cor: 'tag-pink' });
-    eventos.push({ dia: diaGrav + 1, nome: 'Organizacao dos Arquivos de Video', desc: 'Organizar takes brutos no Google Drive por roteiro. Selecionar os melhores takes. Mover cards no Trello para "Em producao".', tags: ['producao', 'edicao'], cor: 'tag-pink' });
-    eventos.push({ dia: diaGrav + 2, nome: 'Inicio da Edicao de Reels', desc: 'Editar videos com legenda animada, trilha e gancho. Formato 9:16, 1080x1920, 15 a 60 segundos.', tags: ['producao', 'edicao'], cor: 'tag-pink' });
-    eventos.push({ dia: diaGrav + 3, nome: 'Criacao de Carrosseis e Posts', desc: 'Criar artes usando templates aprovados. Minimo: 4 carrosseis e 4 posts no primeiro lote.', tags: ['producao', 'design'], cor: 'tag-pink' });
-    eventos.push({ dia: diaGrav + 5, nome: 'Revisao Interna (QA)', desc: 'Social Media revisa todos os conteudos: identidade visual, legenda, CTA, ortografia e qualidade de exportacao.', tags: ['producao', 'social media'], cor: 'tag-pink' });
-    eventos.push({ dia: diaGrav + 6, nome: 'Entrega para Aprovacao do Cliente', desc: 'Enviar conteudos via aprovaraphia.com.br ou WhatsApp. Prazo de feedback: 48 horas uteis.', tags: ['producao', 'aprovacao'], cor: 'tag-pink' });
-    eventos.push({ dia: diaGrav + 9, nome: 'Publicacao dos Primeiros Conteudos', desc: 'Apos aprovacao, agendar e publicar os primeiros conteudos conforme calendario editorial no Trello.', tags: ['producao', 'social media'], cor: 'tag-pink' });
-  }
+  // Monta output com tabs
+  let html = '<div class="cal-tabs">';
+  html += '<div class="cal-tab active" id="tab-interno" onclick="switchTab(\'interno\')">&#128101; Calendario Interno da Equipe</div>';
+  html += '<div class="cal-tab" id="tab-cliente" onclick="switchTab(\'cliente\')">&#128100; Cronograma para o Cliente</div>';
+  html += '</div>';
 
-  if (trafego) {
-    const diaT = 1;
-    eventos.push({ dia: diaT, nome: 'Briefing de Trafego', desc: 'Reuniao para definir objetivo, verba, publico-alvo, ticket medio e campanhas anteriores.', tags: ['trafego', 'gestor'], cor: 'tag-pp' });
-    eventos.push({ dia: diaT + 1, nome: 'Auditoria de Infraestrutura Digital', desc: 'Verificar site, landing pages, pixel Meta, gerenciador de anuncios e Google Ads. Relatorio no Google Drive.', tags: ['trafego', 'gestor'], cor: 'tag-pp' });
-    eventos.push({ dia: diaT + 3, nome: 'Instalacao de Pixels e Eventos', desc: 'Configurar pixel Meta, eventos de conversao (Lead, Purchase), Google Analytics e UTMs.', tags: ['trafego', 'gestor'], cor: 'tag-pp' });
-    eventos.push({ dia: diaT + 4, nome: 'Definicao de Verba e Estrutura de Campanhas', desc: 'Propor distribuicao de verba e estrutura de campanhas. Apresentar ao cliente para aprovacao.', tags: ['trafego', 'gestor', 'ceo'], cor: 'tag-pp' });
-    eventos.push({ dia: diaT + 6, nome: 'Criacao de Criativos de Anuncio', desc: 'Criar ao menos 3 versoes (video, carrossel e estatica) para teste A/B com ganchos diferentes.', tags: ['trafego', 'design', 'redacao'], cor: 'tag-pp' });
-    eventos.push({ dia: diaT + 7, nome: 'Ativacao das Campanhas', desc: 'Subir campanhas e monitorar diariamente. Nao alterar nos primeiros 72h (aprendizado).', tags: ['trafego', 'gestor'], cor: 'tag-pp' });
-    // Rotinas semanais do mes
-    for (let s = 0; s < 4; s++) {
-      // Calcular proxima segunda apos o inicio
-      const baseDay = diaT + 7 + (s * 7);
-      eventos.push({ dia: baseDay, nome: 'Follow-up de Leads (Segunda-feira)', desc: 'Perguntar ao cliente sobre qualidade dos leads da semana anterior e realizar otimizacoes de segmentacao e publico com base no feedback.', tags: ['trafego', 'rotina'], cor: 'tag-pp' });
-      eventos.push({ dia: baseDay + 4, nome: 'Report Semanal de Trafego (Sexta-feira)', desc: 'Enviar report semanal: verba investida, leads gerados, custo por lead, CTR e proximas acoes planejadas para a semana seguinte.', tags: ['trafego', 'relatorio'], cor: 'tag-pp' });
-    }
-  }
+  html += '<div class="cal-panel active" id="panel-interno">';
+  html += renderInterno(internos, nome, inicio);
+  html += '<div class="pdf-btns-row">';
+  html += '<button class="pdf-download-btn" onclick="gerarPDFInterno()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Baixar PDF Interno</button>';
+  html += '</div></div>';
 
-  // Rotinas mensais gerais
-  eventos.push({ dia: 28, nome: 'Coleta de Dados para Relatorio Mensal', desc: 'Coletar metricas organicas e de trafego do mes. Iniciar compilacao do relatorio no Google Drive.', tags: ['relatorio', 'todos'], cor: 'tag-green' });
-  eventos.push({ dia: 30, nome: 'Envio do Relatorio Mensal ao Cliente', desc: 'Enviar relatorio completo via WhatsApp ou email ate o 5 dia util. Agendar reuniao de apresentacao.', tags: ['relatorio', 'todos'], cor: 'tag-green' });
-  eventos.push({ dia: 32, nome: 'Reuniao Mensal de Resultados', desc: 'Apresentar resultados, discutir aprendizados e alinhar estrategia do proximo ciclo.', tags: ['relatorio', 'ceo', 'social media'], cor: 'tag-green' });
-
-  // Ordenar por dia
-  eventos.sort((a, b) => a.dia - b.dia);
-
-  // Agrupar por semana
-  const semanas = {};
-  eventos.forEach(ev => {
-    const semana = Math.floor(ev.dia / 7) + 1;
-    if (!semanas[semana]) semanas[semana] = [];
-    const data = addDays(inicio, ev.dia);
-    semanas[semana].push({ ...ev, data });
-  });
-
-  // Renderizar
-  const periodoFim = addDays(inicio, 33);
-  let html = '<div class="cal-title">Calendario: ' + nome + '</div>';
-  html += '<div class="cal-period">Ciclo: ' + fmtDate(inicio) + ' a ' + fmtDate(periodoFim) + '</div>';
-
-  Object.keys(semanas).sort((a,b) => a-b).forEach(sem => {
-    const evs = semanas[sem];
-    html += '<div class="cal-week">';
-    html += '<div class="cal-week-title">Semana ' + sem + '</div>';
-    html += '<div class="cal-events">';
-    evs.forEach(ev => {
-      const tagsCores = { 'onboarding':'tag-green', 'criacao':'tag-yellow', 'producao':'tag-pink', 'trafego':'tag-pp', 'relatorio':'tag-green' };
-      html += '<div class="cal-event">';
-      html += '<div class="cal-event-day"><div class="cal-day-num">' + fmtDate(ev.data) + '</div><div class="cal-day-name">' + fmtDiaSemana(ev.data) + '</div></div>';
-      html += '<div class="cal-event-info">';
-      html += '<div class="cal-event-name">' + ev.nome + '</div>';
-      html += '<div class="cal-event-desc">' + ev.desc + '</div>';
-      html += '<div class="cal-event-tags">';
-      ev.tags.slice(0,3).forEach(t => {
-        const cls = tagsCores[t] || 'tag-green';
-        html += '<span class="cal-tag ' + cls + '">' + t + '</span>';
-      });
-      html += '</div></div></div>';
-    });
-    html += '</div></div>';
-  });
-
-  html += '<button class="pdf-btn" onclick="imprimirCalendario()">Imprimir / Salvar como PDF</button>';
+  html += '<div class="cal-panel" id="panel-cliente">';
+  html += renderCliente(clientes, nome, _calParams);
+  html += '<div class="pdf-btns-row">';
+  html += '<button class="pdf-download-btn" onclick="gerarPDFCliente()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Baixar PDF para o Cliente</button>';
+  html += '</div></div>';
 
   document.getElementById('cal-output').innerHTML = html;
-  document.getElementById('cal-output').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  document.getElementById('cal-output').scrollIntoView({ behavior:'smooth', block:'start' });
 }
 
-function imprimirCalendario() {
-  window.print();
+// ===== UTILITARIOS PDF =====
+function pdfCores() {
+  return {
+    DARK:[41,43,45], PINK:[255,64,170], PURPLE:[96,2,152],
+    LIGHT:[248,247,245], WHITE:[255,255,255], GRAY:[120,120,120], MUTED:[80,80,80],
+    GREEN_BG:[230,248,237], GREEN_TX:[22,120,60],
+    YELLOW_BG:[255,248,220], YELLOW_TX:[140,90,0],
+    PINK_BG:[255,225,242], PINK_TX:[160,0,90],
+    PP_BG:[235,220,255], PP_TX:[80,0,130],
+  };
+}
+function corFundo(cor, C) {
+  return cor==='green'?C.GREEN_BG:cor==='yellow'?C.YELLOW_BG:cor==='pink'?C.PINK_BG:C.PP_BG;
+}
+function corTexto(cor, C) {
+  return cor==='green'?C.GREEN_TX:cor==='yellow'?C.YELLOW_TX:cor==='pink'?C.PINK_TX:C.PP_TX;
+}
+function labelTipo(cor) {
+  return cor==='green'?'ONBOARDING':cor==='yellow'?'CRIACAO':cor==='pink'?'PRODUCAO':'TRAFEGO';
+}
+
+function drawHeader(pdf, pageN, titulo, subtitulo, C, W, MARGIN) {
+  const { setFillColor:sf, setTextColor:st, setFont:fn, setFontSize:fz, text, rect } = pdf;
+  sf.call(pdf,...C.DARK); rect.call(pdf,0,0,W,18,'F');
+  sf.call(pdf,...C.PINK); rect.call(pdf,0,0,4,18,'F');
+  fn.call(pdf,'helvetica','bold'); fz.call(pdf,8); st.call(pdf,...C.WHITE);
+  text.call(pdf,'raphia.ag',MARGIN+6,11);
+  fn.call(pdf,'helvetica','normal'); st.call(pdf,...C.GRAY);
+  text.call(pdf,titulo,W/2,11,{align:'center'});
+  text.call(pdf,'Pag. '+pageN,W-MARGIN,11,{align:'right'});
+  return 22;
+}
+
+function drawFooter(pdf, H, W, MARGIN, C) {
+  pdf.setFillColor(...C.LIGHT); pdf.rect(0,H-11,W,11,'F');
+  pdf.setFont('helvetica','normal'); pdf.setFontSize(6.5); pdf.setTextColor(...C.GRAY);
+  pdf.text('raphia.ag 2026 — Uso interno e confidencial — Dias uteis de Fortaleza/CE',MARGIN,H-4);
+  pdf.text('Gerado em '+fmtDFull(new Date()),W-MARGIN,H-4,{align:'right'});
+}
+
+// ===== PDF INTERNO =====
+function gerarPDFInterno() {
+  const loading = document.getElementById('pdf-loading');
+  loading.style.display = 'flex';
+  setTimeout(() => {
+    try {
+      const { jsPDF } = window.jspdf;
+      const pdf = new jsPDF({orientation:'portrait',unit:'mm',format:'a4'});
+      const W=210,H=297,MARGIN=12,COL=W-MARGIN*2;
+      const C = pdfCores();
+      const eventos = _eventosInternos;
+      const p = _calParams;
+      const sf=(c)=>pdf.setFillColor(c[0],c[1],c[2]);
+      const st=(c)=>pdf.setTextColor(c[0],c[1],c[2]);
+      const fn=(w,s)=>pdf.setFont('helvetica',s||w);
+
+      // CAPA
+      sf(C.DARK); pdf.rect(0,0,W,H,'F');
+      pdf.setGState(new pdf.GState({opacity:0.18}));
+      sf(C.PURPLE); pdf.circle(182,45,52,'F');
+      sf(C.PINK); pdf.circle(22,235,38,'F');
+      pdf.setGState(new pdf.GState({opacity:1}));
+      sf(C.PINK); pdf.rect(0,0,4,H,'F');
+
+      fn('normal'); pdf.setFontSize(8); st(C.GRAY);
+      pdf.text('RAPHIA.AG — USO INTERNO — CONFIDENCIAL',MARGIN+6,18);
+
+      fn('bold'); pdf.setFontSize(34); st(C.WHITE);
+      pdf.text('Calendario',MARGIN+6,76);
+      st(C.PINK); pdf.text('Operacional',MARGIN+6,91);
+      fn('bold'); pdf.setFontSize(15); st(C.WHITE);
+      pdf.text(p.nome,MARGIN+6,110);
+
+      sf(C.PINK); pdf.setGState(new pdf.GState({opacity:0.35}));
+      pdf.rect(MARGIN+6,116,COL-6,0.5,'F');
+      pdf.setGState(new pdf.GState({opacity:1}));
+
+      fn('normal'); pdf.setFontSize(9); st([160,160,160]);
+      pdf.text('Periodo: '+fmtDFull(eventos[0].data)+' ate '+fmtDFull(eventos[eventos.length-1].data),MARGIN+6,124);
+      pdf.text('Ciclo de producao encerrado em ate 30 dias uteis',MARGIN+6,131);
+
+      // Badges
+      let bx=MARGIN+6, by=144;
+      const svcBadges=[];
+      if(p.criacao) svcBadges.push({l:'Criacao',bg:C.YELLOW_BG,tx:C.YELLOW_TX});
+      if(p.producao){
+        if(p.reels>0) svcBadges.push({l:p.reels+' Reels',bg:C.PINK_BG,tx:C.PINK_TX});
+        if(p.carrosseis>0) svcBadges.push({l:p.carrosseis+' Carrosseis',bg:C.PINK_BG,tx:C.PINK_TX});
+        if(p.posts>0) svcBadges.push({l:p.posts+' Posts',bg:C.PINK_BG,tx:C.PINK_TX});
+      }
+      if(p.trafego){
+        if(p.platMeta) svcBadges.push({l:'Meta Ads',bg:C.PP_BG,tx:C.PP_TX});
+        if(p.platGoogle) svcBadges.push({l:'Google Ads',bg:C.PP_BG,tx:C.PP_TX});
+        svcBadges.push({l:p.campanhas+' Campanhas',bg:C.PP_BG,tx:C.PP_TX});
+      }
+      fn('bold'); pdf.setFontSize(7.5);
+      svcBadges.forEach(b=>{
+        const tw=pdf.getTextWidth(b.l)+10;
+        if(bx+tw>W-MARGIN){bx=MARGIN+6;by+=11;}
+        sf(b.bg); pdf.roundedRect(bx,by-5.5,tw,7.5,2,2,'F');
+        st(b.tx); pdf.text(b.l,bx+5,by);
+        bx+=tw+5;
+      });
+
+      // Stats capa
+      sf([50,52,55]); pdf.rect(0,H-50,W,50,'F');
+      sf(C.PINK); pdf.rect(0,H-50,W,0.6,'F');
+      fn('normal'); pdf.setFontSize(7.5); st([140,140,140]);
+      pdf.text('Total de atividades',MARGIN+4,H-36);
+      pdf.text('Total de entregas',MARGIN+52,H-36);
+      pdf.text('Sede',MARGIN+100,H-36);
+      fn('bold'); pdf.setFontSize(16); st(C.WHITE);
+      pdf.text(String(eventos.length),MARGIN+4,H-25);
+      pdf.text(String(eventos.filter(e=>e.entrega).length),MARGIN+52,H-25);
+      pdf.text('Fortaleza / CE',MARGIN+100,H-25);
+      fn('normal'); pdf.setFontSize(6.5); st([80,80,80]);
+      pdf.text('Uso interno confidencial — raphia.ag 2026',MARGIN+4,H-12);
+      pdf.text('Somente dias uteis | Feriados Fortaleza/CE excluidos',W-MARGIN,H-12,{align:'right'});
+
+      // PAGINAS DE SEMANAS
+      const semanas={};
+      eventos.forEach(ev=>{
+        const diff=Math.floor((ev.data-p.inicio)/(1000*60*60*24));
+        const sem=Math.floor(diff/7)+1;
+        if(!semanas[sem]) semanas[sem]=[];
+        semanas[sem].push(ev);
+      });
+
+      let pageN=2;
+      let firstPg=true;
+      Object.keys(semanas).sort((a,b)=>+a-+b).forEach(sem=>{
+        const evs=semanas[sem];
+        pdf.addPage();
+        let y=drawHeader(pdf,pageN,'Calendario Interno — '+p.nome,'',C,W,MARGIN);
+
+        // Legenda na primeira pagina de semana
+        if(firstPg){
+          const legs=[
+            {l:'Onboarding',bg:C.GREEN_BG,tx:C.GREEN_TX},
+            {l:'Criacao',bg:C.YELLOW_BG,tx:C.YELLOW_TX},
+            {l:'Producao',bg:C.PINK_BG,tx:C.PINK_TX},
+            {l:'Trafego',bg:C.PP_BG,tx:C.PP_TX},
+            {l:'★ Entrega',bg:[240,240,240],tx:[60,60,60]},
+          ];
+          let lx=MARGIN; fn('bold'); pdf.setFontSize(7);
+          legs.forEach(l=>{
+            const tw=pdf.getTextWidth(l.l)+8;
+            sf(l.bg); pdf.roundedRect(lx,y,tw,6.5,1.5,1.5,'F');
+            st(l.tx); pdf.text(l.l,lx+4,y+4.5);
+            lx+=tw+4;
+          });
+          y+=12; firstPg=false;
+        }
+
+        // Header semana
+        sf(C.LIGHT); pdf.rect(MARGIN,y,COL,9,'F');
+        sf(C.PINK); pdf.rect(MARGIN,y,3,9,'F');
+        fn('bold'); pdf.setFontSize(10.5); st(C.DARK);
+        pdf.text('SEMANA '+sem,MARGIN+7,y+6.5);
+        fn('normal'); pdf.setFontSize(8); st(C.GRAY);
+        pdf.text(evs.length+' atividade'+(evs.length>1?'s':''),W-MARGIN,y+6.5,{align:'right'});
+        y+=13;
+
+        evs.forEach(ev=>{
+          fn('normal'); pdf.setFontSize(7.5);
+          const descL=pdf.splitTextToSize(ev.desc,COL-56);
+          const cardH=Math.max(20,10+descL.length*4.1+4);
+          if(y+cardH+12>H-13){
+            drawFooter(pdf,H,W,MARGIN,C);
+            pdf.addPage(); pageN++;
+            y=drawHeader(pdf,pageN,'Calendario Interno — '+p.nome,'',C,W,MARGIN);
+            y+=2;
+          }
+          const fg=corFundo(ev.cor,C); const tx=corTexto(ev.cor,C);
+          sf(fg); pdf.roundedRect(MARGIN,y,COL,cardH,2,2,'F');
+          sf(tx); pdf.rect(MARGIN,y,3,cardH,'F');
+          // Data
+          fn('bold'); pdf.setFontSize(11); st(tx);
+          pdf.text(fmtD(ev.data),MARGIN+6,y+8);
+          fn('normal'); pdf.setFontSize(7); st(C.GRAY);
+          pdf.text(DIAS_NOME[ev.data.getDay()],MARGIN+6,y+13.5);
+          // Separador
+          sf([200,200,200]); pdf.rect(MARGIN+36,y+3,0.4,cardH-6,'F');
+          // Tipo
+          fn('bold'); pdf.setFontSize(6.5); st(tx);
+          pdf.text((ev.entrega?'★ ':'')+labelTipo(ev.cor),MARGIN+41,y+6);
+          // Nome
+          fn('bold'); pdf.setFontSize(9); st(C.DARK);
+          const nomeL=pdf.splitTextToSize(ev.nome,COL-48);
+          pdf.text(nomeL[0],MARGIN+41,y+12);
+          // Desc
+          fn('normal'); pdf.setFontSize(7.5); st(C.MUTED);
+          pdf.text(descL,MARGIN+41,y+18);
+          y+=cardH+3;
+        });
+
+        drawFooter(pdf,H,W,MARGIN,C);
+        pageN++;
+      });
+
+      // Pagina de resumo
+      pdf.addPage();
+      let y=drawHeader(pdf,pageN,'Resumo do Ciclo — '+p.nome,'',C,W,MARGIN);
+      sf(C.LIGHT); pdf.rect(0,y,W,H-y,'F');
+      y+=8;
+      fn('bold'); pdf.setFontSize(16); st(C.DARK);
+      pdf.text('Resumo do Ciclo',MARGIN,y); y+=4;
+      sf(C.PINK); pdf.rect(MARGIN,y,20,0.7,'F'); y+=10;
+      // Cards
+      const cards=[
+        {l:'Atividades',v:String(eventos.length),s:'total no ciclo'},
+        {l:'Entregas',v:String(eventos.filter(e=>e.entrega).length),s:'marcos para o cliente'},
+        {l:'Semanas',v:String(Object.keys(semanas).length),s:'de trabalho'},
+      ];
+      const cw=(COL-8)/3;
+      cards.forEach((c,i)=>{
+        const cx=MARGIN+i*(cw+4);
+        sf(C.WHITE); pdf.roundedRect(cx,y,cw,26,2,2,'F');
+        sf(C.PINK); pdf.rect(cx,y,cw,3,'F');
+        fn('normal'); pdf.setFontSize(7.5); st(C.GRAY); pdf.text(c.l,cx+5,y+7);
+        fn('bold'); pdf.setFontSize(18); st(C.DARK); pdf.text(c.v,cx+5,y+19);
+        fn('normal'); pdf.setFontSize(7); st(C.GRAY); pdf.text(c.s,cx+5,y+25);
+      });
+      y+=32;
+      fn('bold'); pdf.setFontSize(11); st(C.DARK); pdf.text('Entregaveis Contratados',MARGIN,y); y+=9;
+      svcBadges.forEach(b=>{
+        sf(b.bg); pdf.roundedRect(MARGIN,y,COL,9,2,2,'F');
+        fn('bold'); pdf.setFontSize(8.5); st(b.tx); pdf.text('• '+b.l,MARGIN+5,y+6.5); y+=12;
+      });
+      y+=4;
+      fn('bold'); pdf.setFontSize(11); st(C.DARK); pdf.text('Observacoes',MARGIN,y); y+=8;
+      const obs=['Ciclo de producao encerrado em ate 30 dias uteis.','Feriados nacionais, estaduais e municipais de Fortaleza/CE excluidos.','Prazos de aprovacao de 48h uteis incluidos no planejamento.','Aprovacao via aprovaraphia.com.br ou WhatsApp conforme preferencia do cliente.','Reports de trafego enviados toda sexta-feira para clientes com trafego pago.'];
+      fn('normal'); pdf.setFontSize(8.5); st(C.MUTED);
+      obs.forEach(o=>{pdf.text('• '+o,MARGIN+2,y);y+=6.5;});
+      drawFooter(pdf,H,W,MARGIN,C);
+
+      const nomeArq='cal-interno-'+p.nome.toLowerCase().replace(/\s+/g,'-').replace(/[^a-z0-9-]/g,'')+'.pdf';
+      pdf.save(nomeArq);
+    } catch(e){ console.error(e); alert('Erro ao gerar PDF: '+e.message); }
+    finally { document.getElementById('pdf-loading').style.display='none'; }
+  }, 100);
+}
+
+// ===== PDF CLIENTE =====
+function gerarPDFCliente() {
+  const loading = document.getElementById('pdf-loading');
+  loading.style.display = 'flex';
+  setTimeout(()=>{
+    try {
+      const { jsPDF } = window.jspdf;
+      const pdf = new jsPDF({orientation:'portrait',unit:'mm',format:'a4'});
+      const W=210,H=297,MARGIN=14,COL=W-MARGIN*2;
+      const C = pdfCores();
+      const eventos = _eventosCliente;
+      const p = _calParams;
+      const sf=(c)=>pdf.setFillColor(c[0],c[1],c[2]);
+      const st=(c)=>pdf.setTextColor(c[0],c[1],c[2]);
+      const fn=(w,s)=>pdf.setFont('helvetica',s||w);
+
+      // CAPA CLIENTE — mais limpa, profissional
+      sf(C.DARK); pdf.rect(0,0,W,H,'F');
+      // Degradê lateral
+      for(let i=0;i<80;i++){
+        const alpha=0.003*(80-i);
+        pdf.setGState(new pdf.GState({opacity:alpha}));
+        sf(C.PINK); pdf.rect(0,i*2,W,2,'F');
+      }
+      pdf.setGState(new pdf.GState({opacity:1}));
+      sf(C.PINK); pdf.rect(0,0,5,H,'F');
+      // Detalhe geometrico
+      pdf.setGState(new pdf.GState({opacity:0.06}));
+      sf(C.WHITE); pdf.circle(175,H/2,70,'F');
+      pdf.setGState(new pdf.GState({opacity:1}));
+
+      // Tag de doc
+      sf([50,52,55]); pdf.roundedRect(MARGIN+6,22,50,8,2,2,'F');
+      fn('bold'); pdf.setFontSize(7.5); st(C.PINK);
+      pdf.text('CRONOGRAMA DO CLIENTE',MARGIN+9,27.5);
+
+      // Titulo
+      fn('bold'); pdf.setFontSize(30); st(C.WHITE);
+      pdf.text('Previsao de',MARGIN+6,68);
+      st(C.PINK); pdf.text('Entregas',MARGIN+6,83);
+      fn('normal'); pdf.setFontSize(28); st(C.WHITE);
+
+      // Nome do cliente
+      fn('bold'); pdf.setFontSize(14); st(C.WHITE);
+      pdf.text(p.nome,MARGIN+6,100);
+      sf(C.PINK); pdf.setGState(new pdf.GState({opacity:0.4}));
+      pdf.rect(MARGIN+6,104,COL-6,0.5,'F');
+      pdf.setGState(new pdf.GState({opacity:1}));
+
+      // Periodo
+      fn('normal'); pdf.setFontSize(9); st([180,180,180]);
+      pdf.text('Periodo previsto: '+fmtDFull(eventos[0].data)+' — '+fmtDFull(eventos[eventos.length-1].data),MARGIN+6,112);
+      pdf.text('Total de marcos: '+eventos.length+' entregas/reunioes',MARGIN+6,119);
+
+      // Entregaveis badges na capa
+      let bx=MARGIN+6, by=132;
+      fn('bold'); pdf.setFontSize(7.5);
+      const svcBadges=[];
+      if(p.criacao) svcBadges.push({l:'Criacao de Conteudo',bg:C.YELLOW_BG,tx:C.YELLOW_TX});
+      if(p.producao){
+        if(p.reels>0) svcBadges.push({l:p.reels+' Reel(s)',bg:C.PINK_BG,tx:C.PINK_TX});
+        if(p.carrosseis>0) svcBadges.push({l:p.carrosseis+' Carrossel(is)',bg:C.PINK_BG,tx:C.PINK_TX});
+        if(p.posts>0) svcBadges.push({l:p.posts+' Post(s)',bg:C.PINK_BG,tx:C.PINK_TX});
+      }
+      if(p.trafego){
+        if(p.platMeta) svcBadges.push({l:'Meta Ads',bg:C.PP_BG,tx:C.PP_TX});
+        if(p.platGoogle) svcBadges.push({l:'Google Ads',bg:C.PP_BG,tx:C.PP_TX});
+        svcBadges.push({l:p.campanhas+' Campanha(s)',bg:C.PP_BG,tx:C.PP_TX});
+      }
+      svcBadges.forEach(b=>{
+        const tw=pdf.getTextWidth(b.l)+10;
+        if(bx+tw>W-MARGIN){bx=MARGIN+6;by+=11;}
+        sf(b.bg); pdf.roundedRect(bx,by-5.5,tw,7.5,2,2,'F');
+        st(b.tx); pdf.text(b.l,bx+5,by);
+        bx+=tw+5;
+      });
+
+      // Bottom bar capa
+      sf([50,52,55]); pdf.rect(0,H-46,W,46,'F');
+      sf(C.PINK); pdf.rect(0,H-46,W,0.6,'F');
+      fn('normal'); pdf.setFontSize(7.5); st([140,140,140]);
+      pdf.text('Agencia',MARGIN+4,H-32); pdf.text('Cidade',MARGIN+55,H-32); pdf.text('Contato',MARGIN+105,H-32);
+      fn('bold'); pdf.setFontSize(13); st(C.WHITE);
+      pdf.text('raphia.ag',MARGIN+4,H-22); pdf.text('Fortaleza, CE',MARGIN+55,H-22);
+      fn('normal'); pdf.setFontSize(10); st([200,200,200]);
+      pdf.text('aprovaraphia.com.br',MARGIN+105,H-22);
+      fn('normal'); pdf.setFontSize(6.5); st([70,70,70]);
+      pdf.text('Documento para uso do cliente — nao compartilhar externamente',MARGIN+4,H-10);
+      pdf.text('2026',W-MARGIN,H-10,{align:'right'});
+
+      // PAGINA DE CRONOGRAMA
+      pdf.addPage();
+      sf(C.LIGHT); pdf.rect(0,0,W,H,'F');
+      sf(C.DARK); pdf.rect(0,0,W,16,'F');
+      sf(C.PINK); pdf.rect(0,0,5,16,'F');
+      fn('bold'); pdf.setFontSize(8); st(C.WHITE);
+      pdf.text('raphia.ag — Cronograma de Entregas',MARGIN+6,10.5);
+      fn('normal'); st(C.GRAY); pdf.text(p.nome,W/2,10.5,{align:'center'});
+      pdf.text('Pag. 2',W-MARGIN,10.5,{align:'right'});
+
+      let y=22;
+      fn('bold'); pdf.setFontSize(14); st(C.DARK);
+      pdf.text('Cronograma de Entregas',MARGIN,y); y+=4;
+      sf(C.PINK); pdf.rect(MARGIN,y,18,0.7,'F'); y+=10;
+
+      // Legenda
+      fn('bold'); pdf.setFontSize(7);
+      const legs=[{l:'Gestao',bg:C.GREEN_BG,tx:C.GREEN_TX},{l:'Criacao',bg:C.YELLOW_BG,tx:C.YELLOW_TX},{l:'Producao',bg:C.PINK_BG,tx:C.PINK_TX},{l:'Trafego',bg:C.PP_BG,tx:C.PP_TX}];
+      let lx=MARGIN;
+      legs.forEach(l=>{
+        const tw=pdf.getTextWidth(l.l)+8;
+        sf(l.bg); pdf.roundedRect(lx,y,tw,6.5,1.5,1.5,'F');
+        st(l.tx); pdf.text(l.l,lx+4,y+4.5); lx+=tw+5;
+      });
+      y+=11;
+
+      // Tabela
+      // Header
+      sf(C.DARK); pdf.rect(MARGIN,y,COL,9,'F');
+      fn('bold'); pdf.setFontSize(8); st(C.WHITE);
+      pdf.text('DATA',MARGIN+4,y+6.5);
+      pdf.text('DIA',MARGIN+22,y+6.5);
+      pdf.text('ENTREGA / MARCO',MARGIN+48,y+6.5);
+      pdf.text('TIPO',W-MARGIN-16,y+6.5);
+      y+=10;
+
+      let row=0;
+      eventos.forEach(ev=>{
+        fn('normal'); pdf.setFontSize(8.5);
+        const nomeL=pdf.splitTextToSize(ev.nome,COL-68);
+        const rowH=Math.max(9,nomeL.length*4.8+4);
+        if(y+rowH>H-16){
+          drawFooter(pdf,H,W,MARGIN,C);
+          pdf.addPage();
+          sf(C.LIGHT); pdf.rect(0,0,W,H,'F');
+          sf(C.DARK); pdf.rect(0,0,W,16,'F');
+          sf(C.PINK); pdf.rect(0,0,5,16,'F');
+          fn('bold'); pdf.setFontSize(8); st(C.WHITE);
+          pdf.text('raphia.ag — Cronograma de Entregas (cont.)',MARGIN+6,10.5);
+          fn('normal'); st(C.GRAY); pdf.text(p.nome,W/2,10.5,{align:'center'});
+          y=20;
+          // Repetir header tabela
+          sf(C.DARK); pdf.rect(MARGIN,y,COL,9,'F');
+          fn('bold'); pdf.setFontSize(8); st(C.WHITE);
+          pdf.text('DATA',MARGIN+4,y+6.5); pdf.text('DIA',MARGIN+22,y+6.5);
+          pdf.text('ENTREGA / MARCO',MARGIN+48,y+6.5); pdf.text('TIPO',W-MARGIN-16,y+6.5);
+          y+=10; row=0;
+        }
+        // Row fundo alternado
+        if(row%2===0){sf([242,241,239]); pdf.rect(MARGIN,y,COL,rowH,'F');}
+        else{sf(C.WHITE); pdf.rect(MARGIN,y,COL,rowH,'F');}
+        // Borda lateral cor
+        const borda=corTexto(ev.cor,C);
+        sf(borda); pdf.rect(MARGIN,y,3,rowH,'F');
+        // Conteudo
+        fn('bold'); pdf.setFontSize(9.5); st(C.PINK);
+        pdf.text(fmtD(ev.data),MARGIN+6,y+rowH/2+3.5);
+        fn('normal'); pdf.setFontSize(7.5); st(C.GRAY);
+        pdf.text(DIAS_NOME[ev.data.getDay()],MARGIN+23,y+rowH/2+3.5);
+        fn('normal'); pdf.setFontSize(8.5); st(C.DARK);
+        pdf.text(nomeL,MARGIN+48,y+(rowH-nomeL.length*4.8)/2+5.5);
+        // Badge tipo
+        const tipoMap={green:'Gestao',yellow:'Criacao',pink:'Producao',purple:'Trafego'};
+        const fg=corFundo(ev.cor,C), tx=corTexto(ev.cor,C);
+        const tl=tipoMap[ev.cor]||'';
+        fn('bold'); pdf.setFontSize(6.5);
+        const tw2=pdf.getTextWidth(tl)+6;
+        sf(fg); pdf.roundedRect(W-MARGIN-tw2-2,y+rowH/2-2.5,tw2,6,1.5,1.5,'F');
+        st(tx); pdf.text(tl,W-MARGIN-tw2+1,y+rowH/2+2.5);
+        y+=rowH; row++;
+      });
+
+      // Rodape com observacoes
+      y+=8;
+      if(y+30>H-14){drawFooter(pdf,H,W,MARGIN,C);pdf.addPage();sf(C.LIGHT);pdf.rect(0,0,W,H,'F');y=22;}
+      fn('bold'); pdf.setFontSize(10); st(C.DARK); pdf.text('Informacoes importantes',MARGIN,y); y+=8;
+      const obs=['Todas as datas consideram apenas dias uteis (sem feriados de Fortaleza/CE).','Aprovacao de conteudos: prazo de 48 horas uteis apos o envio.','Duvidas e comunicacao: via WhatsApp ou aprovaraphia.com.br.','Ajustes no cronograma podem ser necessarios conforme aprovacoes e feedbacks.'];
+      fn('normal'); pdf.setFontSize(8.5); st(C.MUTED);
+      obs.forEach(o=>{pdf.text('• '+o,MARGIN+2,y);y+=7;});
+      drawFooter(pdf,H,W,MARGIN,C);
+
+      const nomeArq='cronograma-cliente-'+p.nome.toLowerCase().replace(/\s+/g,'-').replace(/[^a-z0-9-]/g,'')+'.pdf';
+      pdf.save(nomeArq);
+    } catch(e){ console.error(e); alert('Erro ao gerar PDF: '+e.message); }
+    finally { document.getElementById('pdf-loading').style.display='none'; }
+  }, 100);
 }
 </script>
 
