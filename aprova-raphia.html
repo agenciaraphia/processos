@@ -32,6 +32,17 @@
   --font:'Hanken Grotesk',sans-serif;--font-display:'Bricolage Grotesque',sans-serif;--font-mono:'JetBrains Mono',monospace;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+.ico{width:1em;height:1em;display:inline-block;vertical-align:-0.14em;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;}
+.ico-lg{width:1.35em;height:1.35em;}
+.ico-xl{width:2em;height:2em;stroke-width:1.6;}
+.ico-spin{animation:spin 1.1s linear infinite;}
+.ico-pulse{animation:icoPulse 1.6s ease-in-out infinite;}
+@keyframes icoPulse{0%,100%{transform:scale(1);}50%{transform:scale(1.15);}}
+.ico-pop{animation:icoPop .4s var(--ease-out);}
+@keyframes icoPop{0%{transform:scale(.5);opacity:0;}60%{transform:scale(1.15);}100%{transform:scale(1);opacity:1;}}
+.gold-ic{color:#FFD34D;}
+.silver-ic{color:#C9CEE0;}
+.bronze-ic{color:#CD7F32;}
 html,body{min-height:100%;font-family:var(--font);background:var(--void);color:var(--text);}
 h1,h2,h3,h4{font-weight:700;font-family:var(--font-display);letter-spacing:-.01em;}
 p,span,label,input,textarea,select,button{font-family:var(--font);font-weight:400;}
@@ -73,26 +84,26 @@ button:active{transform:scale(.97);}
 @media(max-width:768px){.hero-title{font-size:1.8rem;}}
 
 /* ===== LOGIN ===== */
-#view-login{align-items:stretch;justify-content:center;position:relative;overflow:hidden;}
-.login-shell{display:flex;width:100%;max-width:1080px;margin:auto;min-height:640px;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-lg);border:1px solid var(--border);position:relative;z-index:1;}
-.login-brand{flex:1.1;background:linear-gradient(165deg,rgba(255,61,138,.16),rgba(124,92,255,.14) 55%,rgba(37,230,200,.1));position:relative;display:flex;flex-direction:column;justify-content:center;padding:56px;overflow:hidden;}
-.login-brand::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 20%,rgba(255,255,255,.12),transparent 55%);}
-.login-brand-logo{position:relative;z-index:1;margin-bottom:38px;}
-.login-brand-logo img{height:34px;filter:brightness(0) invert(1);}
-.login-brand h1{position:relative;z-index:1;font-size:2.4rem;line-height:1.08;letter-spacing:-.02em;color:#fff;max-width:380px;}
-.login-brand p{position:relative;z-index:1;font-size:.92rem;color:rgba(255,255,255,.72);margin-top:16px;max-width:360px;line-height:1.6;}
-.login-brand-stats{position:relative;z-index:1;display:flex;gap:28px;margin-top:44px;}
-.login-brand-stats div strong{display:block;font-family:var(--font-display);font-size:1.5rem;color:#fff;}
-.login-brand-stats div span{font-size:.68rem;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.08em;}
-.login-card{background:rgba(10,11,20,.72);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);flex:1;max-width:440px;padding:56px 46px;display:flex;flex-direction:column;justify-content:center;animation:fadeUp .5s var(--ease-out);}
-.login-logo{text-align:left;margin-bottom:30px;}
-.login-logo img{height:32px;object-fit:contain;filter:brightness(0) invert(1);}
+#view-login{align-items:center;justify-content:center;position:relative;overflow:hidden;padding:40px 20px;}
+.login-stage{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;width:100%;max-width:460px;text-align:center;}
+.login-mark{margin-bottom:30px;animation:fadeUp .5s var(--ease-out);}
+.login-headline{font-size:1.7rem;line-height:1.22;letter-spacing:-.01em;color:#fff;max-width:420px;}
+.login-card-ring{position:relative;width:100%;border-radius:calc(var(--radius-lg) + 3px);padding:2px;overflow:hidden;animation:fadeUp .6s var(--ease-out) .05s both;box-shadow:0 0 70px rgba(var(--pink-rgb),.16),0 0 110px rgba(var(--violet-rgb),.12);}
+.login-card-ring::before{content:'';position:absolute;inset:-60%;background:conic-gradient(var(--pink),var(--violet),var(--cyan),var(--pink));animation:spin 6s linear infinite;}
+.login-card{position:relative;z-index:1;background:#0A0B14;backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border-radius:var(--radius-lg);width:100%;padding:44px 38px;display:flex;flex-direction:column;box-shadow:0 30px 80px rgba(0,0,0,.55);}
+.login-logo{text-align:center;margin-bottom:28px;}
+.login-logo img{height:34px;object-fit:contain;}
 .login-logo p{font-size:.82rem;color:var(--text-dim);margin-top:10px;}
+.login-brand-stats{position:relative;display:flex;gap:32px;margin-top:32px;justify-content:center;}
+.login-brand-stats div strong{display:block;font-family:var(--font-display);font-size:1.4rem;color:#fff;}
+.login-brand-stats div span{font-size:.66rem;color:rgba(255,255,255,.55);text-transform:uppercase;letter-spacing:.08em;}
 .login-tabs{display:flex;margin-bottom:24px;border-radius:var(--radius-sm);overflow:hidden;border:1px solid var(--border);background:var(--panel);padding:3px;gap:3px;}
 .login-tab{flex:1;padding:10px;text-align:center;cursor:pointer;font-size:.82rem;font-weight:700;border-radius:10px;transition:var(--tr);user-select:none;color:var(--text-dim);}
 .login-tab.active{background:var(--grad-brand);color:#fff;box-shadow:var(--glow-pink);}
 .fg{margin-bottom:17px;}
 .fg label{display:block;font-size:.68rem;font-weight:700;margin-bottom:8px;text-transform:uppercase;letter-spacing:.1em;color:var(--text-dim);}
+select{color-scheme:dark;}
+select option{background:#12141F;color:#F5F6FC;}
 .fg input,.fg select,.fg textarea{width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:.92rem;background:var(--panel);transition:var(--tr);font-family:var(--font);color:var(--text);}
 .fg input::placeholder,.fg textarea::placeholder{color:var(--text-faint);}
 .fg input:focus,.fg select:focus,.fg textarea:focus{outline:none;border-color:var(--pink);background:var(--panel-2);box-shadow:0 0 0 4px rgba(var(--pink-rgb),.16);}
@@ -112,7 +123,7 @@ button:active{transform:scale(.97);}
 .eye-inline{background:none;border:none;cursor:pointer;color:var(--text-dim);font-size:.95rem;padding:2px;transition:color .18s;}
 .eye-inline:hover{color:var(--text);}
 .err.show{display:block;}
-.login-footer{text-align:left;margin-top:22px;font-size:.75rem;color:var(--text-faint);}
+.login-footer{text-align:center;margin-top:26px;font-size:.75rem;color:var(--text-faint);}
 
 /* ===== NAVBAR ===== */
 .navbar{background:rgba(10,11,20,.6);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);padding:0 28px;height:66px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;flex-shrink:0;}
@@ -510,42 +521,102 @@ body.view-client .del-content-btn { display: none !important; }
 <script src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script>
 </head>
 <body>
+<svg style="display:none" aria-hidden="true">
+<symbol id="i-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 4.5-5"/></symbol>
+<symbol id="i-x-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m9.5 9.5 5 5m0-5-5 5"/></symbol>
+<symbol id="i-pencil" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></symbol>
+<symbol id="i-image" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="2"/><path d="m21 15-5-5L5 21"/></symbol>
+<symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></symbol>
+<symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+<symbol id="i-user" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+<symbol id="i-trophy" viewBox="0 0 24 24"><path d="M8 21h8M12 17v4M7 4h10v4a5 5 0 0 1-10 0Z"/><path d="M17 5h2.5a1.5 1.5 0 0 1 0 3H17M7 5H4.5a1.5 1.5 0 0 0 0 3H7"/></symbol>
+<symbol id="i-medal" viewBox="0 0 24 24"><circle cx="12" cy="15" r="6"/><path d="m9 10-3.5-6M15 10l3.5-6" /><path d="m10 15 1.3 1.3L14.5 13"/></symbol>
+<symbol id="i-trash" viewBox="0 0 24 24"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0-1 14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2L4 6h16Z"/></symbol>
+<symbol id="i-play" viewBox="0 0 24 24"><path d="M7 3.5v17l14-8.5Z" fill="currentColor" stroke="none"/></symbol>
+<symbol id="i-bar-chart" viewBox="0 0 24 24"><path d="M3 3v18h18"/><rect x="7" y="12" width="3" height="6"/><rect x="12" y="8" width="3" height="10"/><rect x="17" y="5" width="3" height="13"/></symbol>
+<symbol id="i-trending-up" viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></symbol>
+<symbol id="i-message" viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-8.9 8.5 8.9 8.9 0 0 1-3.6-.8L3 21l1.8-4.5a8.4 8.4 0 0 1-.8-3.6A8.4 8.4 0 0 1 12.5 4a8.5 8.5 0 0 1 8.5 8.5Z"/></symbol>
+<symbol id="i-save" viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2Z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></symbol>
+<symbol id="i-palette" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c1 0 1.8-.8 1.8-1.8 0-.5-.2-.9-.5-1.2-.3-.3-.5-.7-.5-1.2 0-1 .8-1.8 1.8-1.8H17c2.8 0 5-2.2 5-5 0-4.4-4.5-8-10-8Z"/><circle cx="7.5" cy="11" r="1"/><circle cx="10.5" cy="7" r="1"/><circle cx="15.5" cy="8" r="1"/></symbol>
+<symbol id="i-smartphone" viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></symbol>
+<symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></symbol>
+<symbol id="i-refresh" viewBox="0 0 24 24"><path d="M3 12a9 9 0 0 1 15.4-6.36L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15.4 6.36L3 16"/><path d="M3 21v-5h5"/></symbol>
+<symbol id="i-camera" viewBox="0 0 24 24"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3Z"/><circle cx="12" cy="13" r="3.2"/></symbol>
+<symbol id="i-video" viewBox="0 0 24 24"><path d="m22 8.5-6 4 6 4v-8Z"/><rect x="2" y="6" width="14" height="12" rx="2"/></symbol>
+<symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></symbol>
+<symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7.5"/><path d="m21 21-4.3-4.3"/></symbol>
+<symbol id="i-share" viewBox="0 0 24 24"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6.5-10 7-10-7"/></symbol>
+<symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+<symbol id="i-flame" viewBox="0 0 24 24"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.4-.5-2-1-3-1.1-2.1-.2-4 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.2.4-2.3 1-3a2.5 2.5 0 0 0 2.5 2.5Z"/></symbol>
+<symbol id="i-mic" viewBox="0 0 24 24"><path d="M12 1a4 4 0 0 1 4 4v6a4 4 0 0 1-8 0V5a4 4 0 0 1 4-4zm0 2a2 2 0 0 0-2 2v6a2 2 0 0 0 4 0V5a2 2 0 0 0-2-2zm-7 8a7 7 0 0 0 14 0h2a9 9 0 0 1-8 8.94V22h-2v-2.06A9 9 0 0 1 3 11h2z" fill="currentColor" stroke="none"/></symbol>
+<symbol id="i-file-text" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><polyline points="14 2 14 8 20 8"/><path d="M16 13H8M16 17H8M9.5 9H8"/></symbol>
+<symbol id="i-upload" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><path d="M12 3v12"/></symbol>
+<symbol id="i-download" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><path d="M12 15V3"/></symbol>
+<symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5.2"/><circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none"/></symbol>
+<symbol id="i-rocket" viewBox="0 0 24 24"><path d="M4.5 16.5c-1.5 1.3-2 5-2 5s3.7-.5 5-2c.7-.8.7-2.1-.1-2.9a2.2 2.2 0 0 0-2.9-.1Z"/><path d="m12 15-3-3a22 22 0 0 1 2-4A12.9 12.9 0 0 1 22 2c0 2.7-.8 7.5-6 11a22 22 0 0 1-4 2Z"/><path d="M9 12H4s.6-3 2-4c1.6-1.1 5 0 5 0"/><path d="M12 15v5s3-.5 4-2c1.1-1.6 0-5 0-5"/></symbol>
+<symbol id="i-credit-card" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></symbol>
+<symbol id="i-briefcase" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></symbol>
+<symbol id="i-clipboard" viewBox="0 0 24 24"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/></symbol>
+<symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4.5M12 8h.01"/></symbol>
+<symbol id="i-crown" viewBox="0 0 24 24"><path d="m3 19 1.5-9L9 14l3-7 3 7 4.5-4L21 19Z"/></symbol>
+<symbol id="i-zap" viewBox="0 0 24 24"><polygon points="12.5 2 4 13 11 13 10 22 19.5 10.5 12.5 10.5 12.5 2" fill="currentColor" stroke="none"/></symbol>
+<symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 5h6l2 2h10a1 1 0 0 1 1 1v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a1 1 0 0 1 1-1Z"/></symbol>
+<symbol id="i-tool" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.6-3.6a6 6 0 0 1-7.7 7.7L6.5 20.5a2.1 2.1 0 0 1-3-3l7.1-7.1a6 6 0 0 1 7.7-7.7Z"/></symbol>
+<symbol id="i-award" viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.5 12.9 17 22l-5-3-5 3 1.5-9.1"/></symbol>
+<symbol id="i-alert" viewBox="0 0 24 24"><path d="m21.7 18-8-14a2 2 0 0 0-3.4 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.7-3Z"/><path d="M12 9v4M12 17h.01"/></symbol>
+<symbol id="i-key" viewBox="0 0 24 24"><circle cx="8" cy="15" r="4.5"/><path d="m11 12 8.5-8.5M16.5 6.5l3 3M19 4l1.5 1.5"/></symbol>
+<symbol id="i-sparkles" viewBox="0 0 24 24"><path d="m12 3-1.5 4.5L6 9l4.5 1.5L12 15l1.5-4.5L18 9l-4.5-1.5Z"/><path d="M5 17.5 4.3 19l-1.5.7 1.5.7.7 1.6.7-1.6 1.5-.7-1.5-.7Z"/></symbol>
+<symbol id="i-star" viewBox="0 0 24 24"><polygon points="12 2.5 15 8.9 22 9.9 17 14.9 18.2 22 12 18.6 5.8 22 7 14.9 2 9.9 9 8.9 12 2.5" fill="currentColor" stroke="none"/></symbol>
+<symbol id="i-handshake" viewBox="0 0 24 24"><path d="m2 12 4-4 3.5 2.5L13 7l4 4"/><path d="M6 12l4 4 2-2 2 2 4-4"/><path d="M17 8l4 4-3 3"/></symbol>
+<symbol id="i-gem" viewBox="0 0 24 24"><path d="M6 3h12l4 6-10 12L2 9Z"/><path d="M11 3 8 9l4 12 4-12-3-6M2 9h20"/></symbol>
+<symbol id="i-music" viewBox="0 0 24 24"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></symbol>
+<symbol id="i-instagram" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1"/></symbol>
+<symbol id="i-facebook" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M14 8.5h-1.5a1.5 1.5 0 0 0-1.5 1.5v2H9v2.5h2V21h2.5v-6.5H15l.5-2.5h-2V10c0-.4.3-.7.8-.7H15Z" fill="currentColor" stroke="none"/></symbol>
+<symbol id="i-youtube" viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="4"/><path d="M10 9.5v5l5-2.5Z" fill="currentColor" stroke="none"/></symbol>
+<symbol id="i-linkedin" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><line x1="7.5" y1="10.5" x2="7.5" y2="16.5"/><circle cx="7.5" cy="7.2" r="0.6" fill="currentColor" stroke="currentColor"/><path d="M11.5 16.5v-4a2 2 0 0 1 4 0v4M11.5 11v5.5"/></symbol>
+<symbol id="i-x-social" viewBox="0 0 24 24"><path d="M5 5l14 14M19 5 5 19"/></symbol>
+<symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.5"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.5"/></symbol>
+<symbol id="i-arrow-left" viewBox="0 0 24 24"><path d="M19 12H5M11 18l-6-6 6-6"/></symbol>
+</svg>
 <div id="bg-aurora"><div class="aurora-blob b1"></div><div class="aurora-blob b2"></div><div class="aurora-blob b3"></div></div>
 <div class="loader" id="loader"><div class="spin"></div><p style="font-size:.86rem;font-weight:700;color:var(--gray);">Carregando...</p></div>
 <div class="toast-box" id="toastBox"></div>
 
 <!-- LOGIN -->
 <div id="view-login" class="view active">
-  <div class="login-shell">
-    <div class="login-brand">
-      <div class="hero-eyebrow">Aprova Raphia</div>
-      <h1>Aprovação de conteúdo<br>que <span class="grad-text">flui</span> em tempo real.</h1>
-      <p>Calendário, feed e fluxo de aprovação em um só lugar — para clientes e equipe acompanharem cada entrega sem trocar mil mensagens.</p>
-      <div class="login-brand-stats">
-        <div><strong>100%</strong><span>Rastreável</span></div>
-        <div><strong>24/7</strong><span>Disponível</span></div>
-        <div><strong>1</strong><span>Fonte da verdade</span></div>
+  <div class="login-stage">
+    <div class="login-mark">
+      <div class="hero-eyebrow" style="justify-content:center;">Aprova Raphia</div>
+      <h1 class="login-headline">Aprovação de conteúdo que <span class="grad-text">flui</span> em tempo real.</h1>
+    </div>
+    <div class="login-card-ring">
+      <div class="login-card">
+        <div class="login-logo">
+          <img id="logo-login" src="" alt="Raphia Lab" />
+          <p>Plataforma de Aprovação de Conteúdo</p>
+        </div>
+        <div class="login-tabs">
+          <div class="login-tab active" id="ltab-client" onclick="switchLTab('client')">Cliente</div>
+          <div class="login-tab" id="ltab-admin" onclick="switchLTab('admin')">Administrador</div>
+        </div>
+        <div class="fg"><label>E-mail</label><input type="email" id="l-email" placeholder="seu@email.com" /></div>
+        <div class="fg"><label>Senha</label>
+        <div class="pwd-wrap">
+          <input type="password" id="l-pwd" placeholder="••••••••" />
+          <button type="button" class="eye-btn" onclick="togglePwd('l-pwd',this)" tabindex="-1"></button>
+        </div></div>
+        <p class="err" id="l-err">E-mail ou senha incorretos.</p>
+        <button class="btn-primary" style="margin-top:6px;" onclick="doLogin()">Entrar</button>
       </div>
     </div>
-  <div class="login-card">
-    <div class="login-logo">
-      <img id="logo-login" src="" alt="Raphia Lab" />
-      <p>Plataforma de Aprovação de Conteúdo</p>
+    <div class="login-brand-stats">
+      <div><strong>100%</strong><span>Rastreável</span></div>
+      <div><strong>24/7</strong><span>Disponível</span></div>
+      <div><strong>1</strong><span>Fonte da verdade</span></div>
     </div>
-    <div class="login-tabs">
-      <div class="login-tab active" id="ltab-client" onclick="switchLTab('client')">Cliente</div>
-      <div class="login-tab" id="ltab-admin" onclick="switchLTab('admin')">Administrador</div>
-    </div>
-    <div class="fg"><label>E-mail</label><input type="email" id="l-email" placeholder="seu@email.com" /></div>
-    <div class="fg"><label>Senha</label>
-    <div class="pwd-wrap">
-      <input type="password" id="l-pwd" placeholder="••••••••" />
-      <button type="button" class="eye-btn" onclick="togglePwd('l-pwd',this)" tabindex="-1"></button>
-    </div></div>
-    <p class="err" id="l-err">E-mail ou senha incorretos.</p>
-    <button class="btn-primary" style="margin-top:6px;" onclick="doLogin()">Entrar</button>
     <p class="login-footer">© <span id="footer-year"></span> Raphia Lab · Todos os direitos reservados</p>
-  </div>
   </div>
 </div>
 
@@ -560,8 +631,8 @@ body.view-client .del-content-btn { display: none !important; }
     </div>
   </nav>
   <div class="client-tabs">
-    <div class="c-tab active" id="ctab-calendar" onclick="switchCTab('calendar')">📅 Calendário</div>
-    <div class="c-tab" id="ctab-feed" onclick="switchCTab('feed')">📸 Feed</div>
+    <div class="c-tab active" id="ctab-calendar" onclick="switchCTab('calendar')"><svg class="ico"><use href="#i-calendar"></use></svg> Calendário</div>
+    <div class="c-tab" id="ctab-feed" onclick="switchCTab('feed')"><svg class="ico"><use href="#i-camera"></use></svg> Feed</div>
   </div>
   <div id="panel-calendar" class="cal-wrap">
     <div class="cal-header">
@@ -608,15 +679,15 @@ body.view-client .del-content-btn { display: none !important; }
         <img id="logo-sidebar" src="" alt="Raphia Lab" />
         <p>Painel Administrativo</p>
       </div>
-      <div class="nav-item active" id="anav-dashboard" onclick="goSec('dashboard',this)"><span class="ni">📊</span><span>Dashboard</span></div>
-      <div class="nav-item" id="anav-clients" onclick="goSec('clients',this)"><span class="ni">👥</span><span>Clientes</span></div>
-      <div class="nav-item" id="anav-upload" onclick="goSec('upload',this)"><span class="ni">📤</span><span>Upload de Mídia</span></div>
-      <div class="nav-item" id="anav-calendars" onclick="goSec('calendars',this)"><span class="ni">📅</span><span>Calendários</span></div>
-      <div class="nav-item" id="anav-feed" onclick="goSec('feed',this)"><span class="ni">📱</span><span>Feed</span></div>
-      <div class="nav-item" id="anav-staff" onclick="goSec('staff',this)"><span class="ni">👤</span><span>Equipe</span></div>
-      <div class="nav-item" id="anav-report" onclick="goSec('report',this)"><span class="ni">📊</span><span>Relatório</span></div>
-      <div class="nav-item" id="anav-placar" onclick="goSec('placar',this)"><span class="ni">🏆</span><span>Placar</span></div>
-      <div class="nav-item" id="anav-medias" onclick="goSec('medias',this)"><span class="ni">🖼️</span><span>Mídias</span></div>
+      <div class="nav-item active" id="anav-dashboard" onclick="goSec('dashboard',this)"><span class="ni"><svg class="ico"><use href="#i-grid"></use></svg></span><span>Dashboard</span></div>
+      <div class="nav-item" id="anav-clients" onclick="goSec('clients',this)"><span class="ni"><svg class="ico"><use href="#i-users"></use></svg></span><span>Clientes</span></div>
+      <div class="nav-item" id="anav-upload" onclick="goSec('upload',this)"><span class="ni"><svg class="ico"><use href="#i-upload"></use></svg></span><span>Upload de Mídia</span></div>
+      <div class="nav-item" id="anav-calendars" onclick="goSec('calendars',this)"><span class="ni"><svg class="ico"><use href="#i-calendar"></use></svg></span><span>Calendários</span></div>
+      <div class="nav-item" id="anav-feed" onclick="goSec('feed',this)"><span class="ni"><svg class="ico"><use href="#i-image"></use></svg></span><span>Feed</span></div>
+      <div class="nav-item" id="anav-staff" onclick="goSec('staff',this)"><span class="ni"><svg class="ico"><use href="#i-user"></use></svg></span><span>Equipe</span></div>
+      <div class="nav-item" id="anav-report" onclick="goSec('report',this)"><span class="ni"><svg class="ico"><use href="#i-bar-chart"></use></svg></span><span>Relatório</span></div>
+      <div class="nav-item" id="anav-placar" onclick="goSec('placar',this)"><span class="ni"><svg class="ico"><use href="#i-trophy"></use></svg></span><span>Placar</span></div>
+      <div class="nav-item" id="anav-medias" onclick="goSec('medias',this)"><span class="ni"><svg class="ico"><use href="#i-image"></use></svg></span><span>Mídias</span></div>
     </aside>
     <main class="admin-main">
       <div class="a-sec active" id="sec-dashboard">
@@ -637,8 +708,8 @@ body.view-client .del-content-btn { display: none !important; }
         <div class="upload-card">
           <!-- Tabs -->
           <div style="display:flex;gap:0;border-bottom:2px solid var(--bg);margin-bottom:18px;">
-            <button id="up-tab-btn-content" onclick="switchUpTab('content')" style="flex:1;padding:10px;background:none;border:none;font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:.85rem;cursor:pointer;border-bottom:2px solid var(--pink);margin-bottom:-2px;color:var(--text);">📝 Conteúdo</button>
-            <button id="up-tab-btn-media"   onclick="switchUpTab('media')"   style="flex:1;padding:10px;background:none;border:none;font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:.85rem;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;color:var(--gray);">🖼️ Mídia</button>
+            <button id="up-tab-btn-content" onclick="switchUpTab('content')" style="flex:1;padding:10px;background:none;border:none;font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:.85rem;cursor:pointer;border-bottom:2px solid var(--pink);margin-bottom:-2px;color:var(--text);"><svg class="ico"><use href="#i-file-text"></use></svg> Conteúdo</button>
+            <button id="up-tab-btn-media"   onclick="switchUpTab('media')"   style="flex:1;padding:10px;background:none;border:none;font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:.85rem;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;color:var(--gray);"><svg class="ico"><use href="#i-image"></use></svg> Mídia</button>
           </div>
           <!-- Shared: cliente + tipo -->
           <div class="frow">
@@ -665,7 +736,7 @@ body.view-client .del-content-btn { display: none !important; }
               <label>Texto do Conteúdo <span style="font-size:.72rem;color:var(--gray);font-weight:400;">(tema, descrição ou roteiro para aprovação)</span></label>
               <textarea id="up-content-text" rows="4" placeholder="Descreva o tema do post, roteiro do reels ou texto principal..."></textarea>
             </div>
-            <button class="btn-primary" onclick="submitContentOnly()">📝 Salvar Conteúdo</button>
+            <button class="btn-primary" onclick="submitContentOnly()"><svg class="ico"><use href="#i-save"></use></svg> Salvar Conteúdo</button>
           </div>
 
           <!-- ── TAB MÍDIA ── -->
@@ -687,7 +758,7 @@ body.view-client .del-content-btn { display: none !important; }
             <div class="fg">
               <label>Arquivos (fotos e vídeos)</label>
               <div class="drop-z" id="drop-z" ondragover="onDragOver(event)" ondragleave="onDragLeave()" ondrop="onDrop(event)" onclick="document.getElementById('up-file').click()" style="cursor:pointer;">
-                <div class="dicon">📁</div>
+                <div class="dicon"><svg class="ico"><use href="#i-folder"></use></svg></div>
                 <p><strong>Clique</strong> ou arraste arquivos aqui</p>
                 <p style="font-size:.74rem;margin-top:2px;">JPG · PNG · MP4 · MOV (até 10MB para vídeos)</p>
               </div>
@@ -697,7 +768,7 @@ body.view-client .del-content-btn { display: none !important; }
               <p class="prog-txt" id="prog-txt"></p>
             </div>
             <div class="fg" id="cloudinary-cover-wrap" style="display:none;">
-              <label style="font-size:.77rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;display:block;margin-bottom:7px;">🖼️ Capa do Vídeo</label>
+              <label style="font-size:.77rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;display:block;margin-bottom:7px;"><svg class="ico"><use href="#i-image"></use></svg> Capa do Vídeo</label>
               <p style="font-size:.74rem;color:var(--gray);margin-top:-4px;margin-bottom:10px;">Adicione uma imagem de capa para o vídeo aparecer no feed (1080x1920 recomendado).</p>
               <div id="cl-cover-drop" onclick="document.getElementById('up-cl-cover').click()" style="border:2px dashed var(--gray-mid);border-radius:10px;padding:18px;text-align:center;cursor:pointer;transition:all .2s;background:var(--bg);">
                 <div id="cl-cover-preview" style="display:none;position:relative;width:fit-content;margin:0 auto;">
@@ -705,25 +776,25 @@ body.view-client .del-content-btn { display: none !important; }
                   <button onclick="removeClCover(event)" style="position:absolute;top:-7px;right:-7px;background:var(--black);color:#fff;border:none;border-radius:50%;width:20px;height:20px;cursor:pointer;font-size:.7rem;display:flex;align-items:center;justify-content:center;">×</button>
                 </div>
                 <div id="cl-cover-placeholder">
-                  <div style="font-size:1.5rem;">🖼️</div>
+                  <div style="font-size:1.5rem;"><svg class="ico"><use href="#i-image"></use></svg></div>
                   <p style="font-size:.78rem;color:var(--gray);margin:6px 0 0;">Clique para selecionar a capa</p>
                 </div>
               </div>
               <input type="file" id="up-cl-cover" accept="image/*" style="display:none;" onchange="onClCoverSelect(event)" />
             </div>
             <div class="fg" id="drive-link-wrap">
-              <label>🎬 Link do Google Drive (vídeo grande)</label>
+              <label><svg class="ico"><use href="#i-video"></use></svg> Link do Google Drive (vídeo grande)</label>
               <input type="url" id="up-drive-link" placeholder="https://drive.google.com/file/d/..." />
               <p style="font-size:.74rem;color:var(--gray);margin-top:5px;">Compartilhe o vídeo como "Qualquer pessoa com o link pode ver".</p>
               <div style="margin-top:12px;">
-                <label style="font-size:.77rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;display:block;margin-bottom:7px;">🖼️ Capa do Vídeo (opcional)</label>
+                <label style="font-size:.77rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;display:block;margin-bottom:7px;"><svg class="ico"><use href="#i-image"></use></svg> Capa do Vídeo (opcional)</label>
                 <div id="cover-drop" onclick="document.getElementById('up-cover').click()" style="border:2px dashed var(--gray-mid);border-radius:10px;padding:18px;text-align:center;cursor:pointer;transition:all .2s;background:var(--bg);">
                   <div id="cover-preview" style="display:none;position:relative;width:fit-content;margin:0 auto;">
                     <img id="cover-img" src="" style="max-height:120px;border-radius:8px;display:block;" />
                     <button onclick="removeCover(event)" style="position:absolute;top:-7px;right:-7px;background:var(--black);color:#fff;border:none;border-radius:50%;width:20px;height:20px;cursor:pointer;font-size:.7rem;display:flex;align-items:center;justify-content:center;">×</button>
                   </div>
                   <div id="cover-placeholder">
-                    <div style="font-size:1.5rem;">🖼️</div>
+                    <div style="font-size:1.5rem;"><svg class="ico"><use href="#i-image"></use></svg></div>
                     <p style="font-size:.78rem;color:var(--gray);margin-top:4px;">Clique para selecionar a capa</p>
                   </div>
                 </div>
@@ -732,10 +803,10 @@ body.view-client .del-content-btn { display: none !important; }
             </div>
             <div class="fg"><label>Legenda</label><textarea id="up-caption" rows="3" placeholder="Legenda para o cliente..."></textarea></div>
             <div class="fg" id="up-drive-download-wrap" style="display:none;">
-              <label>🔗 Link Drive para Download <span style="font-size:.72rem;color:var(--gray);font-weight:400;">(para Social Medias baixarem o arquivo em alta qualidade)</span></label>
+              <label><svg class="ico"><use href="#i-link"></use></svg> Link Drive para Download <span style="font-size:.72rem;color:var(--gray);font-weight:400;">(para Social Medias baixarem o arquivo em alta qualidade)</span></label>
               <input type="url" id="up-drive-download" placeholder="https://drive.google.com/drive/folders/..." />
             </div>
-            <button class="btn-primary" onclick="submitUpload()">📤 Enviar Mídia</button>
+            <button class="btn-primary" onclick="submitUpload()"><svg class="ico"><use href="#i-upload"></use></svg> Enviar Mídia</button>
           </div>
         </div>
       </div>
@@ -743,11 +814,10 @@ body.view-client .del-content-btn { display: none !important; }
       <!-- PLACAR SECTION -->
       <div class="a-sec" id="sec-placar">
         <div class="hero-eyebrow">Gamificação da Equipe</div>
-        <div class="sec-hdr"><h2>🏆 Placar</h2></div>
-        <p class="hero-sub" style="margin-top:-14px;margin-bottom:20px;">Pontos por aprovação de primeira, ofensiva de dias ativos e medalhas — quem entrega com mais qualidade sobe no pódio.</p>
+        <div class="sec-hdr"><h2><svg class="ico"><use href="#i-trophy"></use></svg> Placar</h2></div>
         <div style="display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap;">
-          <button class="chip active" id="rank-tab-quality" onclick="switchRankTab('quality')">🎯 Qualidade</button>
-          <button class="chip" id="rank-tab-volume" onclick="switchRankTab('volume')">📊 Volume</button>
+          <button class="chip active" id="rank-tab-quality" onclick="switchRankTab('quality')"><svg class="ico"><use href="#i-target"></use></svg> Qualidade</button>
+          <button class="chip" id="rank-tab-volume" onclick="switchRankTab('volume')"><svg class="ico"><use href="#i-bar-chart"></use></svg> Volume</button>
         </div>
         <div id="placar-quality" style="display:block;">
           <div id="leaderboard-quality"></div>
@@ -757,11 +827,11 @@ body.view-client .del-content-btn { display: none !important; }
         </div>
       </div>
       <div class="a-sec" id="sec-migrate" style="display:none;">
-        <div class="sec-hdr"><h2>🔧 Migração de Capas</h2></div>
+        <div class="sec-hdr"><h2><svg class="ico"><use href="#i-tool"></use></svg> Migração de Capas</h2></div>
         <div class="upload-card">
           <p style="font-size:.88rem;margin-bottom:16px;">Migra capas de reels armazenadas como base64 para o Cloudinary, reduzindo o tamanho do banco e acelerando o carregamento.</p>
           <div id="migrate-status" style="font-size:.82rem;color:var(--gray);margin-bottom:12px;"></div>
-          <button class="btn-primary" onclick="runCoverMigration()" id="btn-migrate">🚀 Iniciar Migração</button>
+          <button class="btn-primary" onclick="runCoverMigration()" id="btn-migrate"><svg class="ico"><use href="#i-rocket"></use></svg> Iniciar Migração</button>
         </div>
       </div>
       <div class="a-sec" id="sec-calendars">
@@ -795,7 +865,7 @@ body.view-client .del-content-btn { display: none !important; }
         <div class="sec-hdr" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;">
           <h2>Equipe</h2>
           <div style="display:flex;gap:8px;">
-            <button class="btn-pink" onclick="openDuosModal()" id="btn-duplas">👥 Duplas</button>
+            <button class="btn-pink" onclick="openDuosModal()" id="btn-duplas"><svg class="ico"><use href="#i-users"></use></svg> Duplas</button>
             <button class="btn-pink" onclick="openStaffModal()">+ Novo Funcionário</button>
           </div>
         </div>
@@ -815,7 +885,7 @@ body.view-client .del-content-btn { display: none !important; }
       </div>
     <!-- REPORT SECTION -->
       <div class="a-sec" id="sec-report">
-        <div class="sec-hdr"><h2>📊 Relatório de Clientes</h2></div>
+        <div class="sec-hdr"><h2><svg class="ico"><use href="#i-bar-chart"></use></svg> Relatório de Clientes</h2></div>
         <!-- Filters -->
         <div class="report-section" style="margin-bottom:16px;">
           <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end;">
@@ -840,22 +910,22 @@ body.view-client .del-content-btn { display: none !important; }
               <label>Ano</label>
               <input type="number" id="rep-year" value="" style="width:90px;" onchange="loadReport()" />
             </div>
-            <button class="btn-pink" style="padding:10px 18px;font-size:.82rem;" onclick="downloadReport()">⬇️ Baixar PDF</button>
+            <button class="btn-pink" style="padding:10px 18px;font-size:.82rem;" onclick="downloadReport()"><svg class="ico"><use href="#i-download"></use></svg> Baixar PDF</button>
           </div>
         </div>
         <!-- Cycle config (admin/staff) -->
         <div class="report-section" id="rep-cycle-wrap" style="display:none;">
-          <h3>🗓️ Ciclo Mensal</h3>
+          <h3><svg class="ico"><use href="#i-calendar"></use></svg> Ciclo Mensal</h3>
           <div class="frow">
             <!-- Payment -->
             <div style="flex:1;">
-              <p style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--gray);margin-bottom:10px;">💳 Pagamento</p>
+              <p style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--gray);margin-bottom:10px;"><svg class="ico"><use href="#i-credit-card"></use></svg> Pagamento</p>
               <div class="fg">
                 <label>Status</label>
                 <select id="cyc-payment">
-                  <option value="pending">⏳ Pendente</option>
-                  <option value="paid">✅ Pago</option>
-                  <option value="overdue">❌ Atrasado</option>
+                  <option value="pending"><svg class="ico"><use href="#i-clock"></use></svg> Pendente</option>
+                  <option value="paid"><svg class="ico"><use href="#i-check-circle"></use></svg> Pago</option>
+                  <option value="overdue"><svg class="ico"><use href="#i-x-circle"></use></svg> Atrasado</option>
                 </select>
               </div>
               <div class="fg">
@@ -865,7 +935,7 @@ body.view-client .del-content-btn { display: none !important; }
             </div>
             <!-- Recording days -->
             <div style="flex:1;">
-              <p style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--gray);margin-bottom:10px;">📅 Dias de Gravação</p>
+              <p style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--gray);margin-bottom:10px;"><svg class="ico"><use href="#i-calendar"></use></svg> Dias de Gravação</p>
               <div style="display:flex;gap:8px;margin-bottom:8px;">
                 <input type="date" id="cyc-rec-input" style="flex:1;padding:10px;border:1.5px solid var(--gray-mid);border-radius:var(--radius-sm);font-family:'Hanken Grotesk',sans-serif;font-size:.86rem;background:var(--bg);" />
                 <button onclick="addRecordingDay()" class="btn-pink" style="padding:8px 14px;font-size:.82rem;">+ Add</button>
@@ -877,34 +947,34 @@ body.view-client .del-content-btn { display: none !important; }
 
           <!-- Engagement Metrics -->
           <div style="margin-top:16px;border-top:2px solid var(--bg);padding-top:14px;">
-            <p style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--gray);margin-bottom:12px;">📈 Métricas de Engajamento</p>
+            <p style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--gray);margin-bottom:12px;"><svg class="ico"><use href="#i-trending-up"></use></svg> Métricas de Engajamento</p>
             <div class="metrics-grid">
               <div class="metric-input-card">
-                <label>👁️ Visualizações</label>
+                <label><svg class="ico"><use href="#i-eye"></use></svg> Visualizações</label>
                 <input type="number" id="met-views" placeholder="0" min="0" />
               </div>
               <div class="metric-input-card">
-                <label>👥 Contas Alcançadas</label>
+                <label><svg class="ico"><use href="#i-users"></use></svg> Contas Alcançadas</label>
                 <input type="number" id="met-reach" placeholder="0" min="0" />
               </div>
               <div class="metric-input-card">
-                <label>🔍 Visitas ao Perfil</label>
+                <label><svg class="ico"><use href="#i-search"></use></svg> Visitas ao Perfil</label>
                 <input type="number" id="met-profile" placeholder="0" min="0" />
               </div>
               <div class="metric-input-card">
-                <label>💬 Interações</label>
+                <label><svg class="ico"><use href="#i-message"></use></svg> Interações</label>
                 <input type="number" id="met-interactions" placeholder="0" min="0" />
               </div>
               <div class="metric-input-card">
-                <label>↗️ Compartilhamentos</label>
+                <label><svg class="ico"><use href="#i-share"></use></svg> Compartilhamentos</label>
                 <input type="number" id="met-shares" placeholder="0" min="0" />
               </div>
               <div class="metric-input-card">
-                <label>💌 Respostas</label>
+                <label><svg class="ico"><use href="#i-mail"></use></svg> Respostas</label>
                 <input type="number" id="met-replies" placeholder="0" min="0" />
               </div>
               <div class="metric-input-card">
-                <label>➕ Novos Seguidores</label>
+                <label><svg class="ico"><use href="#i-plus"></use></svg> Novos Seguidores</label>
                 <input type="number" id="met-followers" placeholder="0" min="0" />
               </div>
             </div>
@@ -912,44 +982,44 @@ body.view-client .del-content-btn { display: none !important; }
 
           <!-- Top 3 Reels -->
           <div style="margin-top:16px;border-top:2px solid var(--bg);padding-top:14px;">
-            <p style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--gray);margin-bottom:12px;">🏆 Top 3 Reels do Mês</p>
+            <p style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--gray);margin-bottom:12px;"><svg class="ico"><use href="#i-trophy"></use></svg> Top 3 Reels do Mês</p>
             <div style="display:grid;gap:10px;">
               <div style="display:grid;grid-template-columns:28px 1fr 1fr;gap:8px;align-items:center;">
-                <span style="font-size:1.2rem;text-align:center;">🥇</span>
+                <span style="font-size:1.2rem;text-align:center;"><svg class="ico ico-lg gold-ic"><use href="#i-medal"></use></svg></span>
                 <div class="fg" style="margin:0;"><label style="font-size:.68rem;">Nome</label><input type="text" id="reel1-name" placeholder="Nome do reel" /></div>
                 <div class="fg" style="margin:0;"><label style="font-size:.68rem;">Link do Instagram</label><input type="url" id="reel1-link" placeholder="https://instagram.com/reel/..." /></div>
               </div>
               <div style="display:grid;grid-template-columns:28px 1fr 1fr;gap:8px;align-items:center;">
-                <span style="font-size:1.2rem;text-align:center;">🥈</span>
+                <span style="font-size:1.2rem;text-align:center;"><svg class="ico ico-lg silver-ic"><use href="#i-medal"></use></svg></span>
                 <div class="fg" style="margin:0;"><label style="font-size:.68rem;">Nome</label><input type="text" id="reel2-name" placeholder="Nome do reel" /></div>
                 <div class="fg" style="margin:0;"><label style="font-size:.68rem;">Link do Instagram</label><input type="url" id="reel2-link" placeholder="https://instagram.com/reel/..." /></div>
               </div>
               <div style="display:grid;grid-template-columns:28px 1fr 1fr;gap:8px;align-items:center;">
-                <span style="font-size:1.2rem;text-align:center;">🥉</span>
+                <span style="font-size:1.2rem;text-align:center;"><svg class="ico ico-lg bronze-ic"><use href="#i-medal"></use></svg></span>
                 <div class="fg" style="margin:0;"><label style="font-size:.68rem;">Nome</label><input type="text" id="reel3-name" placeholder="Nome do reel" /></div>
                 <div class="fg" style="margin:0;"><label style="font-size:.68rem;">Link do Instagram</label><input type="url" id="reel3-link" placeholder="https://instagram.com/reel/..." /></div>
               </div>
             </div>
           </div>
-          <button class="btn-primary" style="width:100%;margin-top:16px;" onclick="saveCycle()">💾 Salvar Dados do Ciclo</button>
+          <button class="btn-primary" style="width:100%;margin-top:16px;" onclick="saveCycle()"><svg class="ico"><use href="#i-save"></use></svg> Salvar Dados do Ciclo</button>
         </div>
         <!-- Metrics -->
         <div id="rep-metrics" style="display:none;">
           <div class="report-grid" id="rep-cards"></div>
           <!-- Rejection comments -->
           <div class="report-section" id="rep-rejections-wrap" style="display:none;">
-            <h3>💬 Comentários de Reprovação</h3>
+            <h3><svg class="ico"><use href="#i-message"></use></svg> Comentários de Reprovação</h3>
             <div id="rep-rejections"></div>
           </div>
           <!-- Alteration history -->
           <div class="report-section" id="rep-history-wrap" style="display:none;">
-            <h3>🔄 Histórico de Alterações da Equipe</h3>
+            <h3><svg class="ico"><use href="#i-refresh"></use></svg> Histórico de Alterações da Equipe</h3>
             <div id="rep-history"></div>
           </div>
         </div>
         <!-- Top 3 Reels preview (browser) -->
         <div id="rep-reels-wrap" style="display:none;" class="report-section">
-          <h3>🏆 Top 3 Reels do Mês</h3>
+          <h3><svg class="ico"><use href="#i-trophy"></use></svg> Top 3 Reels do Mês</h3>
           <div id="rep-reels-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;"></div>
         </div>
         <div id="rep-empty" style="text-align:center;padding:40px;color:var(--gray);font-size:.88rem;display:none;">
@@ -964,7 +1034,7 @@ body.view-client .del-content-btn { display: none !important; }
 <div class="overlay" id="modal-duos">
   <div class="modal" style="max-width:580px;">
     <button class="modal-x" onclick="closeModal('modal-duos')">✕</button>
-    <h3 style="margin-bottom:16px;">👥 Duplas por Cliente</h3>
+    <h3 style="margin-bottom:16px;"><svg class="ico"><use href="#i-users"></use></svg> Duplas por Cliente</h3>
     <div id="duos-list" style="margin-bottom:16px;"></div>
     <div style="background:var(--bg);border-radius:12px;padding:16px;">
       <p style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--gray);margin-bottom:12px;">+ Nova Dupla</p>
@@ -972,14 +1042,14 @@ body.view-client .del-content-btn { display: none !important; }
         <div class="fg"><label>Cliente</label>
           <select id="duo-client" style="width:100%;padding:9px;border:1.5px solid var(--gray-mid);border-radius:8px;font-family:'Hanken Grotesk',sans-serif;font-size:.86rem;background:var(--bg);"></select>
         </div>
-        <div class="fg"><label>✍️ Redator</label>
+        <div class="fg"><label><svg class="ico"><use href="#i-pencil"></use></svg> Redator</label>
           <select id="duo-redator" style="width:100%;padding:9px;border:1.5px solid var(--gray-mid);border-radius:8px;font-family:'Hanken Grotesk',sans-serif;font-size:.86rem;background:var(--bg);"></select>
         </div>
-        <div class="fg"><label>🎨 Projetista</label>
+        <div class="fg"><label><svg class="ico"><use href="#i-palette"></use></svg> Projetista</label>
           <select id="duo-projetista" style="width:100%;padding:9px;border:1.5px solid var(--gray-mid);border-radius:8px;font-family:'Hanken Grotesk',sans-serif;font-size:.86rem;background:var(--bg);"></select>
         </div>
       </div>
-      <button class="btn-primary" style="width:100%;margin-top:4px;" onclick="saveDuo()">💾 Salvar Dupla</button>
+      <button class="btn-primary" style="width:100%;margin-top:4px;" onclick="saveDuo()"><svg class="ico"><use href="#i-save"></use></svg> Salvar Dupla</button>
     </div>
   </div>
 </div>
@@ -1010,7 +1080,7 @@ body.view-client .del-content-btn { display: none !important; }
         </div>
         <div style="text-align:center;background:var(--bg);border-radius:12px;padding:12px;">
           <div id="profile-streak" style="font-size:1.4rem;font-weight:800;color:#FFB84D;"></div>
-          <div style="font-size:.68rem;color:var(--gray);font-weight:700;">🔥 OFENSIVA</div>
+          <div style="font-size:.68rem;color:var(--gray);font-weight:700;"><svg class="ico"><use href="#i-flame"></use></svg> OFENSIVA</div>
         </div>
       </div>
       <!-- Level progress -->
@@ -1022,18 +1092,18 @@ body.view-client .del-content-btn { display: none !important; }
         <div class="progress-bar-wrap"><div class="progress-bar" id="profile-progress"></div></div>
       </div>
       <!-- Badges -->
-      <p style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--gray);margin-bottom:8px;">🏅 Medalhas</p>
+      <p style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--gray);margin-bottom:8px;"><svg class="ico"><use href="#i-award"></use></svg> Medalhas</p>
       <div class="badge-grid" id="profile-badges"></div>
       <!-- Edit own profile (if own) -->
       <div id="profile-edit-wrap" style="display:none;margin-top:16px;border-top:2px solid var(--bg);padding-top:14px;">
-        <p style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--gray);margin-bottom:10px;">✏️ Editar Perfil</p>
+        <p style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--gray);margin-bottom:10px;"><svg class="ico"><use href="#i-pencil"></use></svg> Editar Perfil</p>
         <div class="fg"><label>Cargo</label><input type="text" id="profile-edit-cargo" placeholder="Ex: Social Media" /></div>
         <div class="fg"><label>Função</label>
           <select id="profile-edit-funcao" style="width:100%;padding:9px;border:1.5px solid var(--gray-mid);border-radius:8px;font-family:'Hanken Grotesk',sans-serif;font-size:.86rem;background:var(--bg);">
-            <option value="copy">✍️ Redator (Copy)</option>
-            <option value="midia">🎨 Projetista (Mídia)</option>
-            <option value="social">📱 Social Media</option>
-            <option value="gestor">👔 Gestor</option>
+            <option value="copy"><svg class="ico"><use href="#i-pencil"></use></svg> Redator (Copy)</option>
+            <option value="midia"><svg class="ico"><use href="#i-palette"></use></svg> Projetista (Mídia)</option>
+            <option value="social"><svg class="ico"><use href="#i-smartphone"></use></svg> Social Media</option>
+            <option value="gestor"><svg class="ico"><use href="#i-briefcase"></use></svg> Gestor</option>
             <option value="outro">Outro</option>
           </select>
         </div>
@@ -1041,7 +1111,7 @@ body.view-client .del-content-btn { display: none !important; }
         <div class="fg"><label>Foto de Perfil</label>
           <input type="file" id="profile-photo-input" accept="image/*" onchange="onProfilePhotoSelect(event)" />
         </div>
-        <button class="btn-primary" style="width:100%;margin-top:4px;" onclick="saveProfile()">💾 Salvar Perfil</button>
+        <button class="btn-primary" style="width:100%;margin-top:4px;" onclick="saveProfile()"><svg class="ico"><use href="#i-save"></use></svg> Salvar Perfil</button>
       </div>
     </div>
   </div>
@@ -1072,8 +1142,8 @@ body.view-client .del-content-btn { display: none !important; }
     </div>
     <!-- Tab switcher -->
     <div style="display:flex;gap:0;border-bottom:2px solid var(--bg);margin-bottom:16px;">
-      <button id="tab-btn-content" onclick="switchModalTab('content')" style="flex:1;padding:10px;background:none;border:none;font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:.85rem;cursor:pointer;border-bottom:2px solid var(--pink);margin-bottom:-2px;color:var(--text);">📝 Conteúdo</button>
-      <button id="tab-btn-media" onclick="switchModalTab('media')" style="flex:1;padding:10px;background:none;border:none;font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:.85rem;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;color:var(--gray);">🖼️ Mídia</button>
+      <button id="tab-btn-content" onclick="switchModalTab('content')" style="flex:1;padding:10px;background:none;border:none;font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:.85rem;cursor:pointer;border-bottom:2px solid var(--pink);margin-bottom:-2px;color:var(--text);"><svg class="ico"><use href="#i-file-text"></use></svg> Conteúdo</button>
+      <button id="tab-btn-media" onclick="switchModalTab('media')" style="flex:1;padding:10px;background:none;border:none;font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:.85rem;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;color:var(--gray);"><svg class="ico"><use href="#i-image"></use></svg> Mídia</button>
     </div>
     <!-- TAB: Conteúdo -->
     <div id="tab-content">
@@ -1084,7 +1154,7 @@ body.view-client .del-content-btn { display: none !important; }
         <!-- Client edit area -->
         <div id="c-content-edit-wrap" style="display:none;margin-top:10px;">
           <textarea id="c-content-edit-txt" rows="5" style="width:100%;border:2px solid var(--black);border-radius:10px;padding:12px;font-family:'Hanken Grotesk',sans-serif;font-size:.88rem;resize:vertical;"></textarea>
-          <button class="btn-primary" style="margin-top:8px;width:100%;" onclick="saveContentEdit()">💾 Salvar e Aprovar</button>
+          <button class="btn-primary" style="margin-top:8px;width:100%;" onclick="saveContentEdit()"><svg class="ico"><use href="#i-save"></use></svg> Salvar e Aprovar</button>
         </div>
       </div>
       <div id="c-content-status-wrap" style="margin-bottom:12px;"></div>
@@ -1098,7 +1168,7 @@ body.view-client .del-content-btn { display: none !important; }
     <!-- TAB: Mídia -->
     <div id="tab-media" style="display:none;">
       <div id="no-media-msg" style="display:none;text-align:center;padding:32px 16px;background:var(--bg);border-radius:14px;margin-bottom:16px;">
-        <div style="font-size:2rem;margin-bottom:10px;">🎨</div>
+        <div style="font-size:2rem;margin-bottom:10px;"><svg class="ico ico-xl"><use href="#i-palette"></use></svg></div>
         <p style="font-weight:700;font-size:.92rem;margin-bottom:6px;">Mídia em produção</p>
         <p style="font-size:.82rem;color:var(--gray);line-height:1.55;">A mídia está sendo preparada pela nossa equipe de profissionais e em breve estará disponível para aprovação.</p>
       </div>
@@ -1113,7 +1183,7 @@ body.view-client .del-content-btn { display: none !important; }
           </a>
         </div>
         <div id="c-history-wrap" style="display:none;margin-top:10px;background:var(--bg);border-radius:10px;padding:10px 14px;">
-          <p style="font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--gray);margin-bottom:6px;">📋 Histórico de Alterações</p>
+          <p style="font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--gray);margin-bottom:6px;"><svg class="ico"><use href="#i-clipboard"></use></svg> Histórico de Alterações</p>
           <div id="c-history-list" style="font-size:.78rem;max-height:160px;overflow-y:auto;"></div>
         </div>
         <div id="c-status"></div>
@@ -1126,7 +1196,7 @@ body.view-client .del-content-btn { display: none !important; }
         <div class="cmt-area" id="area-edit">
           <label>Sugestão de Edição</label>
           <div style="display:flex;gap:8px;align-items:flex-start;">
-            <textarea id="txt-edit" placeholder="Descreva as alterações desejadas... ou grave um áudio 🎤" style="flex:1;min-height:82px;"></textarea>
+            <textarea id="txt-edit" placeholder="Descreva as alterações desejadas... ou grave um áudio" style="flex:1;min-height:82px;"></textarea>
             <div style="display:flex;flex-direction:column;align-items:center;gap:4px;padding-top:2px;">
               <button class="audio-rec-btn start" id="audio-rec-btn" onclick="toggleRecording()" title="Gravar áudio">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1a4 4 0 0 1 4 4v6a4 4 0 0 1-8 0V5a4 4 0 0 1 4-4zm0 2a2 2 0 0 0-2 2v6a2 2 0 0 0 4 0V5a2 2 0 0 0-2-2zm-7 8a7 7 0 0 0 14 0h2a9 9 0 0 1-8 8.94V22h-2v-2.06A9 9 0 0 1 3 11h2z"/></svg>
@@ -1141,7 +1211,7 @@ body.view-client .del-content-btn { display: none !important; }
     </div>
     <!-- Edit card (admin/staff only) -->
     <div id="admin-edit-wrap" style="display:none;margin-top:16px;border-top:2px solid var(--bg);padding-top:14px;">
-      <p style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--gray);margin-bottom:10px;">✏️ Editar Card</p>
+      <p style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--gray);margin-bottom:10px;"><svg class="ico"><use href="#i-pencil"></use></svg> Editar Card</p>
       <div class="fg" style="margin-bottom:12px;">
         <label>Tipo de Conteúdo</label>
         <select id="edit-type" style="width:100%;padding:10px 14px;border:1.5px solid var(--gray-mid);border-radius:var(--radius-sm);font-size:.92rem;background:var(--bg);font-family:'Hanken Grotesk',sans-serif;">
@@ -1169,7 +1239,7 @@ body.view-client .del-content-btn { display: none !important; }
         </div>
         <!-- Capa do vídeo -->
         <div class="fg" id="edit-cover-section" style="display:none;">
-          <label>🖼️ Capa do vídeo</label>
+          <label><svg class="ico"><use href="#i-image"></use></svg> Capa do vídeo</label>
           <div id="edit-cover-current-wrap" style="display:none;margin-bottom:8px;">
             <p style="font-size:.74rem;color:var(--gray);margin-bottom:5px;">Capa atual:</p>
             <img id="edit-cover-current-img" src="" style="height:80px;border-radius:8px;border:2px solid var(--gray-mid);object-fit:cover;display:block;" />
@@ -1179,32 +1249,32 @@ body.view-client .del-content-btn { display: none !important; }
               <img id="edit-cover-img" src="" style="max-height:100px;border-radius:8px;display:block;" />
               <button onclick="removeEditCover(event)" style="position:absolute;top:-7px;right:-7px;background:var(--black);color:#fff;border:none;border-radius:50%;width:20px;height:20px;cursor:pointer;font-size:.7rem;">×</button>
             </div>
-            <div id="edit-cover-placeholder"><div style="font-size:1.3rem;">🖼️</div><p style="font-size:.76rem;color:var(--gray);margin:4px 0 0;">Clique para selecionar nova capa</p></div>
+            <div id="edit-cover-placeholder"><div style="font-size:1.3rem;"><svg class="ico"><use href="#i-image"></use></svg></div><p style="font-size:.76rem;color:var(--gray);margin:4px 0 0;">Clique para selecionar nova capa</p></div>
           </div>
           <input type="file" id="edit-cover-input" accept="image/*" style="display:none;" onchange="onEditCoverSelect(event)" />
         </div>
         <!-- Link Google Drive -->
         <div class="fg" id="edit-drive-wrap">
-          <label>🎬 Link Google Drive</label>
+          <label><svg class="ico"><use href="#i-video"></use></svg> Link Google Drive</label>
           <div id="edit-drive-current" style="display:none;font-size:.75rem;color:var(--gray);margin-bottom:6px;word-break:break-all;"></div>
           <input type="url" id="edit-drive-link" placeholder="https://drive.google.com/file/d/..." />
           <p style="font-size:.72rem;color:var(--gray);margin-top:4px;">Apague e cole o novo link para substituir.</p>
         </div>
         <!-- Nota da alteração -->
         <div class="fg">
-          <label>📝 Nota da alteração <span style="font-size:.72rem;color:var(--gray);font-weight:400;">(opcional)</span></label>
+          <label><svg class="ico"><use href="#i-file-text"></use></svg> Nota da alteração <span style="font-size:.72rem;color:var(--gray);font-weight:400;">(opcional)</span></label>
           <input type="text" id="edit-note" placeholder="Ex: Corrigido texto do motion, ajustado corte final..." />
         </div>
         <!-- Histórico -->
         <div class="fg" id="edit-history-wrap" style="display:none;">
-          <label>📋 Histórico de Alterações</label>
+          <label><svg class="ico"><use href="#i-clipboard"></use></svg> Histórico de Alterações</label>
           <div id="edit-history-list" style="background:var(--bg);border-radius:10px;padding:10px 14px;max-height:180px;overflow-y:auto;font-size:.78rem;"></div>
         </div>
       </div>
-      <button class="btn-primary" style="width:100%;margin-top:10px;" onclick="saveCardEdit()">💾 Salvar Alterações</button>
+      <button class="btn-primary" style="width:100%;margin-top:10px;" onclick="saveCardEdit()"><svg class="ico"><use href="#i-save"></use></svg> Salvar Alterações</button>
     </div>
     <div id="admin-del-wrap" style="display:none;margin-top:10px;">
-      <button class="del-content-btn" onclick="deleteContent()">🗑️ Apagar este conteúdo permanentemente</button>
+      <button class="del-content-btn" onclick="deleteContent()"><svg class="ico"><use href="#i-trash"></use></svg> Apagar este conteúdo permanentemente</button>
     </div>
   </div>
 </div>
@@ -1280,6 +1350,12 @@ body.view-client .del-content-btn { display: none !important; }
 </div>
 
 <script>
+// ============================================================
+// ICONS — inline SVG sprite helper (replaces emoji glyphs everywhere)
+// ============================================================
+function ic(name, cls) {
+  return '<svg class="ico'+(cls?' '+cls:'')+'"><use href="#i-'+name+'"></use></svg>';
+}
 // ============================================================
 // CONFIG
 // ============================================================
@@ -1427,7 +1503,7 @@ var ST = {
 // ============================================================
 function fmtDate(d) { return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate()); }
 function pad(n) { return String(n).padStart(2,'0'); }
-function typeIcon(t) { return ({post:'📸',carrossel:'🖼️',reel:'🎬',story:'📱'})[t]||'📄'; }
+function typeIcon(t) { return ({post:ic('camera'),carrossel:ic('image'),reel:ic('video'),story:ic('smartphone')})[t]||ic('file-text'); }
 function stLabel(s)  { return ({pending:'Pendente',approved:'Mídia Aprovada',rejected:'Mídia Reprovada',edit:'Edição Mídia',scheduled:'Programado',published:'Publicado','content_pending':'Conteúdo Pendente','content_approved':'Conteúdo Aprovado','content_rejected':'Conteúdo Reprovado'})[s]||s; }
 function stClass(s)  { return ({pending:'tag-pending',approved:'tag-approved',rejected:'tag-rejected',edit:'tag-edit',scheduled:'tag-scheduled',published:'tag-published','content_pending':'tag-pending','content_approved':'tag-approved','content_rejected':'tag-rejected'})[s]||''; }
 
@@ -1462,7 +1538,7 @@ function closeModal(id) {
 function applyLogos() {
   ['logo-login','logo-nav','logo-footer','logo-nav-admin'].forEach(function(id) {
     var el = document.getElementById(id); if (!el) return;
-    el.src = LOGO;
+    el.src = LOGO_WHITE;
     el.style.filter = 'none';
   });
   var sb = document.getElementById('logo-sidebar');
@@ -1472,7 +1548,7 @@ function applyLogos() {
 function showToast(msg, type) {
   var t = document.createElement('div');
   t.className = 'toast ' + ({success:'ok',error:'er',info:'inf'}[type]||'inf');
-  t.innerHTML = '<span>'+({success:'✅',error:'❌',info:'ℹ️'}[type]||'ℹ️')+'</span><span>'+msg+'</span>';
+  t.innerHTML = '<span>'+({success:ic('check-circle'),error:ic('x-circle'),info:ic('info')}[type]||ic('info'))+'</span><span>'+msg+'</span>';
   document.getElementById('toastBox').appendChild(t);
   setTimeout(function(){ t.remove(); }, 4000);
 }
@@ -1784,12 +1860,12 @@ function switchCTab(tab) {
 }
 
 function renderSocials(socials) {
-  var icons = {instagram:'📸',tiktok:'🎵',facebook:'📘',youtube:'▶️',linkedin:'💼',twitter:'🐦'};
+  var icons = {instagram:ic('instagram'),tiktok:ic('music'),facebook:ic('facebook'),youtube:ic('youtube'),linkedin:ic('linkedin'),twitter:ic('x-social')};
   var wrap = document.getElementById('client-socials'); wrap.innerHTML='';
   Object.keys(socials).forEach(function(k){
     if(!socials[k]) return;
     var a=document.createElement('a'); a.className='soc-btn'; a.href=socials[k]; a.target='_blank'; a.title=k;
-    a.textContent=icons[k]||'🔗'; wrap.appendChild(a);
+    a.innerHTML=icons[k]||ic('link'); wrap.appendChild(a);
   });
 }
 
@@ -2025,11 +2101,11 @@ function openContentModal(content) {
   document.getElementById('c-title').textContent=content.title||'';
   // Time badge
   var tb=document.getElementById('c-time-badge');
-  if(tb) tb.textContent = content.time ? '🕐 '+content.time : '';
+  if(tb) tb.textContent = content.time ? content.time : '';
   // Date + time in content tab
   var dtr=document.getElementById('c-date-time-row');
-  if(dtr) dtr.innerHTML=(content.date?'📅 '+content.date:'')+
-    (content.time?' &nbsp;·&nbsp; 🕐 '+content.time:'');
+  if(dtr) dtr.innerHTML=(content.date?ic('calendar')+' '+content.date:'')+
+    (content.time?' &nbsp;·&nbsp; '+content.time:'');
   // Default to content tab if has content_text and no media, else media
   var hasMedia = files && files.length > 0;
   var hasContentText = content.content_text && content.content_text.trim().length > 0;
@@ -2060,7 +2136,7 @@ function openContentModal(content) {
     bca.onclick=approveContentText;
     var bcr=document.createElement('button'); bcr.className='btn-content-reject'; bcr.textContent='✕ Reprovar';
     bcr.onclick=function(){ if(area_cr){area_cr.style.display=''; area_cr.scrollIntoView({behavior:'smooth'});} };
-    var bce=document.createElement('button'); bce.className='btn-content-edit'; bce.textContent='✏️ Editar Texto';
+    var bce=document.createElement('button'); bce.className='btn-content-edit'; bce.innerHTML=ic('pencil')+' Editar Texto';
     bce.onclick=function(){
       var ew=document.getElementById('c-content-edit-wrap'); if(!ew)return;
       document.getElementById('c-content-edit-txt').value=content.content_text||'';
@@ -2152,7 +2228,7 @@ function openContentModal(content) {
   if (!ST.isAdmin && !ST.isStaff && content.status !== 'approved' && content.status !== 'rejected') {
     var ba=document.createElement('button');ba.className='btn-approve';ba.textContent='✓ Aprovar';ba.onclick=approveContent;
     var br=document.createElement('button');br.className='btn-reject';br.textContent='✕ Reprovar';br.onclick=function(){showCA('reject');};
-    var be=document.createElement('button');be.className='btn-edit-req';be.textContent='✏️ Sugerir Edição';be.onclick=function(){showCA('edit');};
+    var be=document.createElement('button');be.className='btn-edit-req';be.innerHTML=ic('pencil')+' Sugerir Edição';be.onclick=function(){showCA('edit');};
     ab.appendChild(ba);ab.appendChild(br);ab.appendChild(be);
   }
   // Scheduled + Published buttons — only for admin/staff
@@ -2271,7 +2347,7 @@ function getClientName(clientId, cb) {
 function approveContentText() {
   var c = ST.selContent; if (!c) return;
   var ct = c.content_text || '';
-  var histEntryAt={date:new Date().toLocaleDateString('pt-BR')+' '+new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'}),action:'✅ Conteúdo aprovado',note:'',by:ST.user?ST.user.name:'Cliente'};
+  var histEntryAt={date:new Date().toLocaleDateString('pt-BR')+' '+new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'}),action:'Conteúdo aprovado',note:'',by:ST.user?ST.user.name:'Cliente'};
   var newHistAt=(c.media_history||[]).concat(histEntryAt);
   sbPatch('contents','id=eq.'+c.id,{content_status:'approved',content_comment:'',media_history:newHistAt})
     .then(function(){
@@ -2294,7 +2370,7 @@ function confirmContentReject() {
   var c = ST.selContent; if (!c) return;
   var cm = document.getElementById('txt-content-reject').value.trim();
   if (!cm) { showToast('Descreva o motivo.','error'); return; }
-  var histCR={date:new Date().toLocaleDateString('pt-BR')+' '+new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'}),action:'❌ Conteúdo reprovado',note:cm,by:ST.user?ST.user.name:'Cliente'};
+  var histCR={date:new Date().toLocaleDateString('pt-BR')+' '+new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'}),action:'Conteúdo reprovado',note:cm,by:ST.user?ST.user.name:'Cliente'};
   var newHistCR=(c.media_history||[]).concat(histCR);
   sbPatch('contents','id=eq.'+c.id,{content_status:'rejected',content_comment:cm,media_history:newHistCR})
     .then(function(){
@@ -2342,7 +2418,7 @@ function renderMediaOrder(files) {
     var thumbUrl = getFileThumb(f);
     var thumb = document.createElement(thumbUrl?'img':'div');
     if(thumbUrl){ thumb.src=thumbUrl; thumb.style.cssText='width:72px;height:72px;object-fit:cover;object-position:center center;border-radius:8px;cursor:grab;border:2px solid var(--gray-mid);display:block;'; }
-    else { thumb.style.cssText='width:72px;height:72px;background:#111;border-radius:8px;cursor:grab;border:2px solid var(--gray-mid);display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.5rem;'; thumb.textContent='▶'; }
+    else { thumb.style.cssText='width:72px;height:72px;background:#111;border-radius:8px;cursor:grab;border:2px solid var(--gray-mid);display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.5rem;'; thumb.innerHTML=ic('play'); }
     var num = document.createElement('span'); num.className='mo-num'; num.textContent=i+1;
     // Delete button
     var del = document.createElement('button');
@@ -2526,7 +2602,7 @@ function saveCardEdit() {
       Object.assign(c, updates);
       loader(false);
       showToast('Card atualizado! ✓','success');
-      var tb=document.getElementById('c-time-badge'); if(tb) tb.textContent=updates.time?'🕐 '+updates.time:'';
+      var tb=document.getElementById('c-time-badge'); if(tb) tb.textContent=updates.time?updates.time:'';
       document.getElementById('c-title').textContent=updates.title;
       var cb=document.getElementById('c-badge'); if(cb && updates.type) cb.textContent=updates.type.toUpperCase();
       var capEl=document.getElementById('c-caption'); if(capEl) capEl.innerHTML=(updates.caption||'Sem legenda.').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
@@ -2563,7 +2639,7 @@ function markEditing() {
   var c = ST.selContent; if (!c) return;
   var histEntry = {
     date: new Date().toLocaleDateString('pt-BR')+' '+new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'}),
-    action: '✏️ Em Edição — equipe trabalhando na alteração',
+    action: 'Em Edição — equipe trabalhando na alteração',
     note: '',
     by: ST.user ? ST.user.name : 'Equipe'
   };
@@ -2573,7 +2649,7 @@ function markEditing() {
     .then(function(){
       c.status='edit'; c.comment=''; c.media_history=newHist;
       loader(false);
-      showToast('Marcado como Em Edição ✏️','info');
+      showToast('Marcado como Em Edição','info');
       renderEditHistory(newHist);
       renderCalendar(ST.currentDayAdmin);
       try{sessionStorage.removeItem('rl_cache');}catch(e){}
@@ -2587,7 +2663,7 @@ function markContent(status) {
   updateContentStatus(c.id, status, '', function() {
     loader(false);
     closeModal('modal-content');
-    showToast(status === 'scheduled' ? '🕐 Marcado como Programado!' : '✅ Marcado como Publicado!', 'success');
+    showToast(status === 'scheduled' ? 'Marcado como Programado!' : 'Marcado como Publicado!', 'success');
     addActivity((ST.user ? ST.user.name : '') + ' marcou "' + c.title + '" como ' + labels[status], status);
   });
 }
@@ -2596,7 +2672,7 @@ function approveContent(){
   var c=ST.selContent; if(!c)return;
   loader(true);
   // Register in history
-  var histEntry={date:new Date().toLocaleDateString('pt-BR')+' '+new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'}),action:'✅ Mídia aprovada',note:'',by:ST.user?ST.user.name:'Cliente'};
+  var histEntry={date:new Date().toLocaleDateString('pt-BR')+' '+new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'}),action:'Mídia aprovada',note:'',by:ST.user?ST.user.name:'Cliente'};
   var newHist=(c.media_history||[]).concat(histEntry);
   sbPatch('contents','id=eq.'+c.id,{media_history:newHist}).then(function(){c.media_history=newHist;}).catch(function(){});
   updateContentStatus(c.id,'approved','',function(){
@@ -2615,7 +2691,7 @@ function confirmReject(){
   if(!cm){showToast('Justifique a reprovação.','error');return;}
   loader(true);
   // Register in history
-  var histEntry={date:new Date().toLocaleDateString('pt-BR')+' '+new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'}),action:'❌ Mídia reprovada',note:cm,by:ST.user?ST.user.name:'Cliente'};
+  var histEntry={date:new Date().toLocaleDateString('pt-BR')+' '+new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'}),action:'Mídia reprovada',note:cm,by:ST.user?ST.user.name:'Cliente'};
   var newHist=(c.media_history||[]).concat(histEntry);
   sbPatch('contents','id=eq.'+c.id,{media_history:newHist}).then(function(){c.media_history=newHist;}).catch(function(){});
   updateContentStatus(c.id,'rejected',cm,function(){
@@ -2693,7 +2769,7 @@ function startRecording() {
     }
     // Show live preview in status
     var status = document.getElementById('audio-status');
-    if (status) status.textContent = (_finalTranscript + interim).trim() || '🎤 Ouvindo...';
+    if (status) status.textContent = (_finalTranscript + interim).trim() || 'Ouvindo...';
   };
 
   _recognition.onerror = function(e) {
@@ -2723,7 +2799,7 @@ function startRecording() {
   var btn = document.getElementById('audio-rec-btn');
   if (btn) { btn.className='audio-rec-btn stop'; btn.innerHTML=STOP_SVG; btn.title='Parar gravação'; }
   document.getElementById('audio-timer').style.display = '';
-  document.getElementById('audio-status').textContent = '🎤 Ouvindo...';
+  document.getElementById('audio-status').textContent = 'Ouvindo...';
   _recSeconds = 0;
   _recTimer = setInterval(function() {
     _recSeconds++;
@@ -2743,7 +2819,7 @@ function stopRecording() {
   var btn = document.getElementById('audio-rec-btn');
   if (btn) { btn.className='audio-rec-btn start'; btn.innerHTML=MIC_SVG; btn.title='Gravar novamente'; }
   document.getElementById('audio-timer').style.display = 'none';
-  document.getElementById('audio-status').textContent = '⏳ Processando...';
+  document.getElementById('audio-status').textContent = 'Processando...';
   _finalTranscript = '';
   // Small delay to let final recognition results arrive
   setTimeout(function() {
@@ -2756,9 +2832,9 @@ function stopRecording() {
         if (ta.value.trim()) ta.value += '\n\n';
         ta.value += txt;
       }
-      document.getElementById('audio-status').textContent = '✅ Pronto!';
+      document.getElementById('audio-status').textContent = 'Pronto!';
     } else {
-      document.getElementById('audio-status').textContent = '⚠️ Nenhuma fala detectada.';
+      document.getElementById('audio-status').textContent = 'Nenhuma fala detectada.';
     }
     setTimeout(function(){ document.getElementById('audio-status').textContent=''; }, 3000);
   }, 600);
@@ -2785,7 +2861,7 @@ function confirmEdit(){
   // Register client comment in media_history
   var histEntry = {
     date:   new Date().toLocaleDateString('pt-BR')+' '+new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'}),
-    action: '✏️ Pedido de alteração',
+    action: 'Pedido de alteração',
     note:   cm,
     by:     ST.user ? ST.user.name : 'Cliente'
   };
@@ -2795,7 +2871,7 @@ function confirmEdit(){
     .catch(function(){});
   updateContentStatus(c.id,'edit',cm,function(){
     loader(false); closeModal('modal-content');
-    showToast('Sugestão enviada! ✏️','info');
+    showToast('Sugestão enviada!','info');
     addActivity((ST.user?ST.user.name:'')+' sugeriu edição em "'+c.title+'"','edit');
     getClientName(c.client_id, function(name){
       sendNotification('edit', c, name, cm);
@@ -2829,13 +2905,13 @@ function sendNotification(action, content, clientName, comment) {
 function _dispatchNotification(action, content, clientName, comment, ccList) {
 
   var actionLabels = {
-    approved:          '✅ Mídia Aprovada',
-    rejected:          '❌ Mídia Reprovada',
-    edit:              '✏️ Sugestão de Edição Mídia',
-    scheduled:         '🕐 Programado',
-    published:         '✅ Publicado',
-    content_approved:  '✅ Conteúdo Aprovado',
-    content_rejected:  '❌ Conteúdo Reprovado'
+    approved:          'Mídia Aprovada',
+    rejected:          'Mídia Reprovada',
+    edit:              'Sugestão de Edição Mídia',
+    scheduled:         'Programado',
+    published:         'Publicado',
+    content_approved:  'Conteúdo Aprovado',
+    content_rejected:  'Conteúdo Reprovado'
   };
   var actionColors = {
     approved:         '#15803D',
@@ -2924,7 +3000,7 @@ function renderReelsPreview(reels) {
   if (!wrap || !grid) return;
   if (!reels || !reels.length) { wrap.style.display = 'none'; return; }
   wrap.style.display = '';
-  var medals = ['🥇','🥈','🥉'];
+  var medals = [ic('medal','ico-lg gold-ic'),ic('medal','ico-lg silver-ic'),ic('medal','ico-lg bronze-ic')];
   grid.innerHTML = '';
   grid.style.gridTemplateColumns = 'repeat('+Math.min(reels.length,3)+',1fr)';
   reels.forEach(function(r, i) {
@@ -2956,7 +3032,7 @@ function renderReelsPreview(reels) {
         var lnk = document.createElement('a');
         lnk.href = r.link; lnk.target = '_blank';
         lnk.style.cssText = 'font-size:.8rem;color:var(--pink);display:block;margin-top:8px;';
-        lnk.textContent = '▶ Ver no Instagram';
+        lnk.textContent = 'Ver no Instagram';
         col.appendChild(lnk);
       }
     }
@@ -2989,7 +3065,7 @@ function copyCardLink() {
   var link = base + '?card=' + c.id;
   if (navigator.clipboard && navigator.clipboard.writeText) {
     navigator.clipboard.writeText(link).then(function() {
-      showToast('Link copiado! 🔗','success');
+      showToast('Link copiado!','success');
       var btn = document.getElementById('copy-link-btn');
       if (btn) { btn.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Copiado!'; btn.style.background='var(--grad-brand)'; btn.style.color='#fff'; setTimeout(function(){ btn.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg> Copiar link'; btn.style.background='var(--panel)'; btn.style.color='var(--gray)'; }, 2000); }
     }).catch(function() { fallbackCopy(link); });
@@ -2999,7 +3075,7 @@ function fallbackCopy(text) {
   var ta = document.createElement('textarea'); ta.value = text;
   ta.style.cssText = 'position:fixed;opacity:0;top:0;left:0;';
   document.body.appendChild(ta); ta.select();
-  try { document.execCommand('copy'); showToast('Link copiado! 🔗','success'); } catch(e) { showToast('Copie: '+text,'info'); }
+  try { document.execCommand('copy'); showToast('Link copiado!','success'); } catch(e) { showToast('Copie: '+text,'info'); }
   document.body.removeChild(ta);
 }
 
@@ -3010,7 +3086,7 @@ function showConfirm(opts) {
   ov.className = 'confirm-overlay';
   ov.innerHTML =
     '<div class="confirm-box">' +
-      '<div class="confirm-icon">'+(opts.icon||'🗑️')+'</div>' +
+      '<div class="confirm-icon">'+(opts.icon||ic('trash','ico-xl'))+'</div>' +
       '<h3>'+(opts.title||'Confirmar')+'</h3>' +
       '<p>'+(opts.message||'Tem certeza?')+'</p>' +
       '<div class="confirm-btns">' +
@@ -3028,7 +3104,7 @@ function showConfirm(opts) {
 function deleteContent() {
   var c = ST.selContent; if (!c) return;
   showConfirm({
-    icon: '🗑️',
+    icon: ic('trash','ico-xl'),
     title: 'Apagar conteúdo?',
     message: 'Você está prestes a apagar <strong>"'+(c.title||'este conteúdo')+'"</strong> permanentemente. As mídias também serão removidas do Cloudinary. Esta ação não pode ser desfeita.',
     confirmText: 'Sim, apagar',
@@ -3060,7 +3136,7 @@ function _doDeleteContent(c) {
       ST.contents = ST.contents.filter(function(x){ return x.id !== c.id; });
       loader(false);
       closeModal('modal-content');
-      showToast('Conteúdo apagado! 🗑️', 'info');
+      showToast('Conteúdo apagado!', 'info');
       renderCalendar(ST.currentDayAdmin);
       renderMediaGrid();
       renderDashboard();
@@ -3158,7 +3234,7 @@ function buildFilledCell(cell,content,idx,gridId,clientId,admin){
   } else if(f&&isVideoFile(f)){
     var vph=document.createElement('div');
     vph.style.cssText='width:100%;height:100%;background:#111;display:flex;align-items:center;justify-content:center;font-size:2.5rem;color:#fff;';
-    vph.textContent='▶';
+    vph.innerHTML=ic('play');
     cell.appendChild(vph);
   } else{
     var ph=document.createElement('div');ph.className='feed-cell-empty';ph.textContent=typeIcon(content.type);cell.appendChild(ph);
@@ -3178,7 +3254,7 @@ function buildFilledCell(cell,content,idx,gridId,clientId,admin){
     var g=document.createElement('div');g.className='drag-ghost';
     var ghostThumb = getContentThumb(content);
     if(ghostThumb){var gi=document.createElement('img');gi.src=ghostThumb;gi.style.cssText='width:100%;height:100%;object-fit:cover;object-position:center center;';g.appendChild(gi);}
-    else{g.style.cssText='background:#111;display:flex;align-items:center;justify-content:center;font-size:2rem;color:#fff;';g.textContent='▶';}
+    else{g.style.cssText='background:#111;display:flex;align-items:center;justify-content:center;font-size:2rem;color:#fff;';g.innerHTML=ic('play');}
     g.style.left=(x-55)+'px';g.style.top=(y-73)+'px';
     document.body.appendChild(g);DRAG.ghost=g;cell.classList.add('dragging');
   }
@@ -3377,11 +3453,11 @@ function renderDashboard(){
   var pen=ST.contents.filter(function(c){return c.status==='pending';}).length;
   var rej=ST.contents.filter(function(c){return c.status==='rejected';}).length;
   document.getElementById('stats-grid').innerHTML=
-    '<div class="stat-card"><div class="si">👥</div><div class="sn">'+ST.clients.length+'</div><div class="sl">Clientes</div></div>'+
-    '<div class="stat-card"><div class="si">📄</div><div class="sn">'+ST.contents.length+'</div><div class="sl">Conteúdos</div></div>'+
-    '<div class="stat-card"><div class="si">✅</div><div class="sn" style="color:#3DDC84">'+app+'</div><div class="sl">Aprovados</div></div>'+
-    '<div class="stat-card"><div class="si">⏳</div><div class="sn" style="color:#FFB84D">'+pen+'</div><div class="sl">Pendentes</div></div>'+
-    '<div class="stat-card"><div class="si">❌</div><div class="sn" style="color:#FF5C5C">'+rej+'</div><div class="sl">Reprovados</div></div>';
+    '<div class="stat-card"><div class="si"><svg class="ico"><use href="#i-users"></use></svg></div><div class="sn">'+ST.clients.length+'</div><div class="sl">Clientes</div></div>'+
+    '<div class="stat-card"><div class="si"><svg class="ico"><use href="#i-file-text"></use></svg></div><div class="sn">'+ST.contents.length+'</div><div class="sl">Conteúdos</div></div>'+
+    '<div class="stat-card"><div class="si" style="color:#3DDC84"><svg class="ico"><use href="#i-check-circle"></use></svg></div><div class="sn" style="color:#3DDC84">'+app+'</div><div class="sl">Aprovados</div></div>'+
+    '<div class="stat-card"><div class="si" style="color:#FFB84D"><svg class="ico"><use href="#i-clock"></use></svg></div><div class="sn" style="color:#FFB84D">'+pen+'</div><div class="sl">Pendentes</div></div>'+
+    '<div class="stat-card"><div class="si" style="color:#FF5C5C"><svg class="ico"><use href="#i-x-circle"></use></svg></div><div class="sn" style="color:#FF5C5C">'+rej+'</div><div class="sl">Reprovados</div></div>';
   animateStatNums(document.getElementById('stats-grid'));
   var acts=ST.activities;
   document.getElementById('act-list').innerHTML=acts.length?acts.slice(0,10).map(function(a){
@@ -3406,9 +3482,9 @@ function renderClientsTable(){
       '<td style="font-size:.74rem;color:var(--gray);">'+soc+'</td>'+
       '<td><span style="background:var(--panel-2);color:var(--text);padding:2px 8px;border-radius:20px;font-size:.74rem;font-weight:700;">'+cnt+'</span></td>'+
       '<td><div class="act-btns">'+
-        '<button class="bic bic-v" title="Ver calendário">📅</button>'+
-        '<button class="bic bic-e" title="Editar">✏️</button>'+
-        '<button class="bic bic-d" title="Remover">🗑️</button>'+
+        '<button class="bic bic-v" title="Ver calendário"><svg class="ico"><use href="#i-calendar"></use></svg></button>'+
+        '<button class="bic bic-e" title="Editar"><svg class="ico"><use href="#i-pencil"></use></svg></button>'+
+        '<button class="bic bic-d" title="Remover"><svg class="ico"><use href="#i-trash"></use></svg></button>'+
       '</div></td>';
     if (ST.isAdmin) {
       var pdiv=document.createElement('div'); pdiv.className='pwd-cell';
@@ -3502,8 +3578,8 @@ function renderStaffTable() {
         (ST.isAdmin ? '<td id="spwdcell-'+s.id+'" style="display:none;"></td>' : '')+
         '<td style="font-size:.78rem;">'+names+'</td>'+
         '<td><div class="act-btns">'+
-          '<button class="bic bic-e" title="Editar">✏️</button>'+
-          '<button class="bic bic-d" title="Remover">🗑️</button>'+
+          '<button class="bic bic-e" title="Editar"><svg class="ico"><use href="#i-pencil"></use></svg></button>'+
+          '<button class="bic bic-d" title="Remover"><svg class="ico"><use href="#i-trash"></use></svg></button>'+
         '</div></td>';
       if (ST.isAdmin) {
         var spdiv=document.createElement('div'); spdiv.className='pwd-cell';
@@ -3646,7 +3722,7 @@ function renderMediaGrid(){
     if(mgThumb){var img=document.createElement('img');img.className='pc-thumb';img.src=mgThumb;card.appendChild(img);}
     else{var ph=document.createElement('div');ph.className='pc-thumb-ph';ph.textContent=typeIcon(c.type);card.appendChild(ph);}
     var info=document.createElement('div');info.className='pc-info';
-    info.innerHTML='<div class="pc-type">'+c.type+' · '+c.date+'</div><div class="pc-title">'+(c.title||'')+'</div><div style="margin-top:4px;"><span class="tag '+stClass(getDisplayStatus(c).key)+'">'+getDisplayStatus(c).label+'</span></div>'+(c.comment?'<div style="font-size:.71rem;color:var(--gray);margin-top:4px;">💬 '+c.comment+'</div>':'');
+    info.innerHTML='<div class="pc-type">'+c.type+' · '+c.date+'</div><div class="pc-title">'+(c.title||'')+'</div><div style="margin-top:4px;"><span class="tag '+stClass(getDisplayStatus(c).key)+'">'+getDisplayStatus(c).label+'</span></div>'+(c.comment?'<div style="font-size:.71rem;color:var(--gray);margin-top:4px;">'+ic('message')+' '+c.comment+'</div>':'');
     card.appendChild(info);wrap.appendChild(card);
   });
 }
@@ -3994,7 +4070,7 @@ function getDriveToken() {
   return new Promise(function(resolve, reject) {
     if (driveToken) { resolve(driveToken); return; }
     if (!gisReady) { reject(new Error('Google ainda carregando. Tente novamente em alguns segundos.')); return; }
-    showToast('🔑 Autorize o acesso ao Google Drive no popup que vai abrir...', 'info');
+    showToast('Autorize o acesso ao Google Drive no popup que vai abrir...', 'info');
     var client = google.accounts.oauth2.initTokenClient({
       client_id: GOOGLE_CLIENT_ID,
       scope: 'https://www.googleapis.com/auth/drive.file',
@@ -4133,7 +4209,7 @@ function submitContentOnly() {
     document.getElementById('up-time').value='';
     document.getElementById('up-title').value='';
     document.getElementById('up-content-text').value='';
-    showToast('Conteúdo criado! 🎉','success');
+    showToast('Conteúdo criado!','success');
     renderDashboard();
     addActivity('Conteúdo criado para '+cn.name,'info');
     try{sessionStorage.removeItem('rl_cache');}catch(e){}
@@ -4267,8 +4343,8 @@ function runCoverMigration() {
   });
 
   if (!toMigrate.length) {
-    status.textContent = '✅ Nenhuma capa base64 encontrada! Tudo já está no Cloudinary.';
-    btn.textContent = '✅ Concluído';
+    status.textContent = 'Nenhuma capa base64 encontrada! Tudo já está no Cloudinary.';
+    btn.textContent = 'Concluído';
     return;
   }
 
@@ -4306,8 +4382,8 @@ function runCoverMigration() {
 
   function processNext(idx) {
     if (idx >= toMigrate.length) {
-      status.textContent = '✅ Migração concluída! ' + done + ' capas migradas, ' + errors + ' erros.';
-      btn.textContent = '✅ Concluído';
+      status.textContent = 'Migração concluída! ' + done + ' capas migradas, ' + errors + ' erros.';
+      btn.textContent = 'Concluído';
       btn.disabled = false;
       saveDataCache();
       sessionStorage.removeItem('rl_cache');
@@ -4399,11 +4475,11 @@ function loadReport() {
   // Content metric cards — will be combined with cycle cards after load
   var months = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
   var contentCards = [
-    '<div class="report-card"><div class="rc-val">'+total+'</div><div class="rc-lbl">📄 Posts com Mídia</div></div>',
-    '<div class="report-card green"><div class="rc-val">'+approved+'</div><div class="rc-lbl">✅ Aprovados</div></div>',
-    '<div class="report-card red"><div class="rc-val">'+rejected+'</div><div class="rc-lbl">❌ Reprovados</div></div>',
-    '<div class="report-card yellow"><div class="rc-val">'+pending+'</div><div class="rc-lbl">⏳ Pendentes</div></div>',
-    '<div class="report-card blue"><div class="rc-val">'+alterations+'</div><div class="rc-lbl">🔄 Alterações</div></div>',
+    '<div class="report-card"><div class="rc-val">'+total+'</div><div class="rc-lbl"><svg class="ico"><use href="#i-file-text"></use></svg> Posts com Mídia</div></div>',
+    '<div class="report-card green"><div class="rc-val">'+approved+'</div><div class="rc-lbl"><svg class="ico"><use href="#i-check-circle"></use></svg> Aprovados</div></div>',
+    '<div class="report-card red"><div class="rc-val">'+rejected+'</div><div class="rc-lbl"><svg class="ico"><use href="#i-x-circle"></use></svg> Reprovados</div></div>',
+    '<div class="report-card yellow"><div class="rc-val">'+pending+'</div><div class="rc-lbl"><svg class="ico"><use href="#i-clock"></use></svg> Pendentes</div></div>',
+    '<div class="report-card blue"><div class="rc-val">'+alterations+'</div><div class="rc-lbl"><svg class="ico"><use href="#i-refresh"></use></svg> Alterações</div></div>',
   ].join('');
   // Set immediately so user sees content stats right away
   document.getElementById('rep-cards').innerHTML = contentCards;
@@ -4499,21 +4575,21 @@ function loadReport() {
         renderReelsPreview([]);
       }
       // Payment + recording cards
-      var payBadge = { paid:'<span class="payment-badge paid">✅ Pago</span>', pending:'<span class="payment-badge pending">⏳ Pendente</span>', overdue:'<span class="payment-badge overdue">❌ Atrasado</span>' };
+      var payBadge = { paid:'<span class="payment-badge paid"><svg class="ico"><use href="#i-check-circle"></use></svg> Pago</span>', pending:'<span class="payment-badge pending"><svg class="ico"><use href="#i-clock"></use></svg> Pendente</span>', overdue:'<span class="payment-badge overdue"><svg class="ico"><use href="#i-x-circle"></use></svg> Atrasado</span>' };
       var ps = REP.cycle ? (REP.cycle.payment_status||'pending') : 'pending';
       var recDays = REP.cycle ? (REP.cycle.recording_days || []) : [];
       var payDate = REP.cycle && REP.cycle.payment_date ? ' · '+REP.cycle.payment_date.split('-').reverse().join('/') : '';
-      var cycleCard = '<div class="report-card pink"><div class="rc-val" style="font-size:1rem;">'+(payBadge[ps]||'')+'</div><div class="rc-lbl">💳 Pagamento'+payDate+'</div></div>';
-      var recCard = recDays.length ? '<div class="report-card"><div class="rc-val" style="font-size:.85rem;line-height:1.5;">'+recDays.map(function(d){return d.split('-').reverse().join('/');}).join('<br>')+'</div><div class="rc-lbl">📅 Gravação(ões)</div></div>' : '';
+      var cycleCard = '<div class="report-card pink"><div class="rc-val" style="font-size:1rem;">'+(payBadge[ps]||'')+'</div><div class="rc-lbl"><svg class="ico"><use href="#i-credit-card"></use></svg> Pagamento'+payDate+'</div></div>';
+      var recCard = recDays.length ? '<div class="report-card"><div class="rc-val" style="font-size:.85rem;line-height:1.5;">'+recDays.map(function(d){return d.split('-').reverse().join('/');}).join('<br>')+'</div><div class="rc-lbl"><svg class="ico"><use href="#i-calendar"></use></svg> Gravação(ões)</div></div>' : '';
       // Engagement metric cards (only filled ones)
       var metDefs = [
-        {key:'views',label:'👁️ Visualizações',cls:'blue'},
-        {key:'reach',label:'👥 Contas Alcançadas',cls:'blue'},
-        {key:'profile',label:'🔍 Visitas ao Perfil',cls:'purple'},
-        {key:'interactions',label:'💬 Interações',cls:'green'},
-        {key:'shares',label:'↗️ Compartilhamentos',cls:'green'},
-        {key:'replies',label:'💌 Respostas',cls:'yellow'},
-        {key:'followers',label:'➕ Novos Seguidores',cls:'pink'}
+        {key:'views',label:'<svg class="ico"><use href="#i-eye"></use></svg> Visualizações',cls:'blue'},
+        {key:'reach',label:'<svg class="ico"><use href="#i-users"></use></svg> Contas Alcançadas',cls:'blue'},
+        {key:'profile',label:'<svg class="ico"><use href="#i-search"></use></svg> Visitas ao Perfil',cls:'purple'},
+        {key:'interactions',label:'<svg class="ico"><use href="#i-message"></use></svg> Interações',cls:'green'},
+        {key:'shares',label:'<svg class="ico"><use href="#i-share"></use></svg> Compartilhamentos',cls:'green'},
+        {key:'replies',label:'<svg class="ico"><use href="#i-mail"></use></svg> Respostas',cls:'yellow'},
+        {key:'followers',label:'<svg class="ico"><use href="#i-plus"></use></svg> Novos Seguidores',cls:'pink'}
       ];
       var metCards = metDefs.filter(function(m){ return mets[m.key] !== null && mets[m.key] !== undefined; })
         .map(function(m){ return '<div class="report-card '+m.cls+'"><div class="rc-val">'+Number(mets[m.key]).toLocaleString('pt-BR')+'</div><div class="rc-lbl">'+m.label+'</div></div>'; }).join('');
@@ -4544,7 +4620,7 @@ function renderRecDays() {
     var parts = d.split('-');
     var label = parts[2]+'/'+parts[1]+'/'+parts[0];
     var span = document.createElement('span'); span.className='rec-day-tag';
-    span.textContent = '📅 '+label+' ';
+    span.innerHTML = ic('calendar')+' '+label+' ';
     var btn = document.createElement('button'); btn.textContent='×';
     (function(date){ btn.onclick = function(){ removeRecDay(date); }; })(d);
     span.appendChild(btn); wrap.appendChild(span);
@@ -4631,7 +4707,7 @@ function downloadReport() {
 
   var cycle = REP.cycle || {};
   var mets  = cycle.metrics || {};
-  var payStatus = {paid:'✅ Pago', pending:'⏳ Pendente', overdue:'❌ Atrasado'};
+  var payStatus = {paid:'Pago', pending:'Pendente', overdue:'Atrasado'};
   var payColor  = {paid:'#15803D', pending:'#B45309', overdue:'#DC2626'};
   var ps = cycle.payment_status || 'pending';
   var recDays = cycle.recording_days || [];
@@ -4657,13 +4733,13 @@ function downloadReport() {
 
   // Engagement metrics — only filled ones
   var metDefs = [
-    {key:'views',        icon:'👁️',  label:'Visualizações'},
-    {key:'reach',        icon:'👥',  label:'Contas Alcançadas'},
-    {key:'profile',      icon:'🔍',  label:'Visitas ao Perfil'},
-    {key:'interactions', icon:'💬',  label:'Interações'},
-    {key:'shares',       icon:'↗️',  label:'Compartilhamentos'},
-    {key:'replies',      icon:'💌',  label:'Respostas'},
-    {key:'followers',    icon:'➕',  label:'Novos Seguidores'}
+    {key:'views',        icon:'',  label:'Visualizações'},
+    {key:'reach',        icon:'',  label:'Contas Alcançadas'},
+    {key:'profile',      icon:'',  label:'Visitas ao Perfil'},
+    {key:'interactions', icon:'',  label:'Interações'},
+    {key:'shares',       icon:'',  label:'Compartilhamentos'},
+    {key:'replies',      icon:'',  label:'Respostas'},
+    {key:'followers',    icon:'',  label:'Novos Seguidores'}
   ];
   var filledMets = metDefs.filter(function(m){ return mets[m.key] !== null && mets[m.key] !== undefined; });
   var metHtml = filledMets.length ? filledMets.map(function(m){
@@ -4703,41 +4779,41 @@ function downloadReport() {
     '<\/div>'+
     // Cycle
     (Object.keys(cycle).length ?
-      '<div class="section"><div class="section-title">🗓️ Ciclo Mensal<\/div>'+
+      '<div class="section"><div class="section-title">Ciclo Mensal<\/div>'+
       '<div>'+
-        (recDays.length ? recDays.map(function(d){ return '<span class="pill">📅 '+d.split('-').reverse().join('\/')+'<\/span>'; }).join('') : '')+
+        (recDays.length ? recDays.map(function(d){ return '<span class="pill">'+d.split('-').reverse().join('\/')+'<\/span>'; }).join('') : '')+
         '<span class="pill" style="color:'+payColor[ps]+';">'+(payStatus[ps]||'')+'<\/span>'+
-        (cycle.payment_date ? '<span class="pill">📆 Pago em: '+cycle.payment_date.split('-').reverse().join('\/')+'<\/span>' : '')+
+        (cycle.payment_date ? '<span class="pill">Pago em: '+cycle.payment_date.split('-').reverse().join('\/')+'<\/span>' : '')+
       '<\/div>'+
       (cycle.notes ? '<p style="font-size:.83rem;color:#75798F;margin-top:8px;">'+cycle.notes+'<\/p>' : '')+
       '<\/div><hr class="divider"\/>' : '')+
     // Content metrics
-    '<div class="section"><div class="section-title">📊 Resumo de Conteúdo<\/div>'+
+    '<div class="section"><div class="section-title">Resumo de Conteúdo<\/div>'+
     '<div class="metrics-row">'+
       '<div class="metric"><div class="val">'+total+'<\/div><div class="lbl">Posts com Mídia<\/div><\/div>'+
-      '<div class="metric"><div class="val" style="color:#15803D">'+approved+'<\/div><div class="lbl">✅ Aprovados<\/div><\/div>'+
-      '<div class="metric"><div class="val" style="color:#DC2626">'+rejected+'<\/div><div class="lbl">❌ Reprovados<\/div><\/div>'+
-      '<div class="metric"><div class="val" style="color:#B45309">'+pending+'<\/div><div class="lbl">⏳ Pendentes<\/div><\/div>'+
-      '<div class="metric"><div class="val" style="color:#1D4ED8">'+alterations+'<\/div><div class="lbl">🔄 Alterações<\/div><\/div>'+
+      '<div class="metric"><div class="val" style="color:#15803D">'+approved+'<\/div><div class="lbl">Aprovados<\/div><\/div>'+
+      '<div class="metric"><div class="val" style="color:#DC2626">'+rejected+'<\/div><div class="lbl">Reprovados<\/div><\/div>'+
+      '<div class="metric"><div class="val" style="color:#B45309">'+pending+'<\/div><div class="lbl">Pendentes<\/div><\/div>'+
+      '<div class="metric"><div class="val" style="color:#1D4ED8">'+alterations+'<\/div><div class="lbl">Alterações<\/div><\/div>'+
     '<\/div><\/div>'+
     // Engagement metrics (only if filled)
     (filledMets.length ?
       '<hr class="divider"\/>'+
-      '<div class="section"><div class="section-title">📈 Métricas de Engajamento<\/div>'+
+      '<div class="section"><div class="section-title">Métricas de Engajamento<\/div>'+
       '<div class="eng-grid">'+metHtml+'<\/div><\/div>' : '')+
     // Top 3 Reels — visual podium for PDF (no iframe, clickable links)
     (cycle.top_reels && cycle.top_reels.length ?
-      '<hr class="divider"\/>'+'<div class="section"><div class="section-title">🏆 Top 3 Reels do Mês<\/div>'+
+      '<hr class="divider"\/>'+'<div class="section"><div class="section-title">Top 3 Reels do Mês<\/div>'+
       '<div style="display:flex;align-items:flex-end;justify-content:center;gap:12px;padding:20px 0;">'+
       (function(){
-        var medals  = ['🥇','🥈','🥉'];
+        var medals  = ['1º','2º','3º'];
         var heights = ['160px','120px','100px'];
         var bgColors= ['#FFD700','#C7CEDE','#CD7F32'];
         var fontsz  = ['2.2rem','1.6rem','1.4rem'];
         var order   = cycle.top_reels.length >= 2 ? [1,0,2] : [0,1,2];
         return order.filter(function(idx){ return idx < cycle.top_reels.length; }).map(function(idx){
           var r = cycle.top_reels[idx];
-          var btn = r.link ? '<a href="'+r.link+'" target="_blank" style="display:inline-block;margin-top:10px;background:#FF3D8A;color:#fff;padding:7px 16px;border-radius:20px;font-size:.72rem;font-weight:700;text-decoration:none;">▶ Ver Reel<\/a>' : '';
+          var btn = r.link ? '<a href="'+r.link+'" target="_blank" style="display:inline-block;margin-top:10px;background:#FF3D8A;color:#fff;padding:7px 16px;border-radius:20px;font-size:.72rem;font-weight:700;text-decoration:none;">Ver Reel<\/a>' : '';
           return '<div style="text-align:center;flex:1;max-width:200px;">'+
             '<div style="font-size:'+fontsz[idx]+';margin-bottom:6px;">'+medals[idx]+'<\/div>'+
             '<div style="font-size:.82rem;font-weight:700;margin-bottom:10px;min-height:36px;color:#000;">'+(r.name||'')+'<\/div>'+
@@ -4749,7 +4825,7 @@ function downloadReport() {
       '<\/div><\/div>' : '')+
     // History
     '<hr class="divider"\/>'+
-    '<div class="section"><div class="section-title">🔄 Histórico de Alterações<\/div>'+histHtml+'<\/div>'+
+    '<div class="section"><div class="section-title">Histórico de Alterações<\/div>'+histHtml+'<\/div>'+
     '<div class="footer">Raphia Lab · Plataforma de Aprovação de Conteúdo · © '+new Date().getFullYear()+'<\/div>'+
     '<\/div><\/body><\/html>';
 
@@ -4777,26 +4853,26 @@ var GAME = {
 };
 
 var BADGE_DEFS = {
-  'first_approval':  { icon:'✨', name:'Primeira Aprovação', desc:'Primeiro card aprovado pela dupla' },
-  'impecavel':       { icon:'💯', name:'Impecável', desc:'Semana sem nenhuma reprovação' },
-  'sniper':          { icon:'🎯', name:'Sniper', desc:'10 cards aprovados na 1ª tentativa seguidos' },
-  'mestre':          { icon:'👑', name:'Mestre', desc:'50 aprovações acumuladas' },
-  'relampago':       { icon:'⚡', name:'Relâmpago', desc:'5 cards entregues antes da data original' },
-  'turbo':           { icon:'🚀', name:'Turbo', desc:'Alteração concluída em menos de 2h' },
-  'streak_7':        { icon:'🔥', name:'Semana em Chamas', desc:'7 dias de ofensiva' },
-  'streak_15':       { icon:'⚡', name:'Imparável', desc:'15 dias de ofensiva' },
-  'streak_30':       { icon:'💫', name:'Lenda', desc:'30 dias de ofensiva' },
-  'streak_60':       { icon:'🏆', name:'Imortal', desc:'60 dias de ofensiva' },
-  'veterano':        { icon:'🌟', name:'Veterano', desc:'3 meses na plataforma' },
-  'parceiro':        { icon:'🤝', name:'Parceiro Perfeito', desc:'Dupla com 100% de aprovação em um mês' },
-  'mes_perfeito':    { icon:'📈', name:'Mês Perfeito', desc:'Zero reprovações no mês' }
+  'first_approval':  { icon:ic('sparkles'), name:'Primeira Aprovação', desc:'Primeiro card aprovado pela dupla' },
+  'impecavel':       { icon:ic('check-circle'), name:'Impecável', desc:'Semana sem nenhuma reprovação' },
+  'sniper':          { icon:ic('target'), name:'Sniper', desc:'10 cards aprovados na 1ª tentativa seguidos' },
+  'mestre':          { icon:ic('crown'), name:'Mestre', desc:'50 aprovações acumuladas' },
+  'relampago':       { icon:ic('zap'), name:'Relâmpago', desc:'5 cards entregues antes da data original' },
+  'turbo':           { icon:ic('rocket'), name:'Turbo', desc:'Alteração concluída em menos de 2h' },
+  'streak_7':        { icon:ic('flame'), name:'Semana em Chamas', desc:'7 dias de ofensiva' },
+  'streak_15':       { icon:ic('zap'), name:'Imparável', desc:'15 dias de ofensiva' },
+  'streak_30':       { icon:ic('sparkles'), name:'Lenda', desc:'30 dias de ofensiva' },
+  'streak_60':       { icon:ic('trophy'), name:'Imortal', desc:'60 dias de ofensiva' },
+  'veterano':        { icon:ic('star'), name:'Veterano', desc:'3 meses na plataforma' },
+  'parceiro':        { icon:ic('handshake'), name:'Parceiro Perfeito', desc:'Dupla com 100% de aprovação em um mês' },
+  'mes_perfeito':    { icon:ic('trending-up'), name:'Mês Perfeito', desc:'Zero reprovações no mês' }
 };
 
 var LEVELS = [
-  { key:'bronze',  label:'🥉 Iniciante',        min:0,   max:50,  cls:'bronze' },
-  { key:'silver',  label:'🥈 Criativo',          min:51,  max:100, cls:'silver' },
-  { key:'gold',    label:'🥇 Expert',            min:101, max:200, cls:'gold' },
-  { key:'diamond', label:'💎 Mestre da Raphia',  min:201, max:9999,cls:'diamond' }
+  { key:'bronze',  label:'Iniciante',        min:0,   max:50,  cls:'bronze' },
+  { key:'silver',  label:'Criativo',          min:51,  max:100, cls:'silver' },
+  { key:'gold',    label:'Expert',            min:101, max:200, cls:'gold' },
+  { key:'diamond', label:'Mestre da Raphia',  min:201, max:9999,cls:'diamond' }
 ];
 
 // Feriados nacionais + Fortaleza
@@ -5009,7 +5085,7 @@ function renderLeaderboard(type) {
   } else {
     rows.sort(function(a,b){ return b.pts - a.pts; });
   }
-  var medals = ['🥇','🥈','🥉'];
+  var medals = [ic('medal','ico-lg gold-ic'),ic('medal','ico-lg silver-ic'),ic('medal','ico-lg bronze-ic')];
   el.innerHTML = '';
   if (!rows.length) { el.innerHTML = '<p style="text-align:center;color:var(--gray);padding:20px;">Nenhum dado ainda.</p>'; return; }
 
@@ -5023,7 +5099,7 @@ function renderLeaderboard(type) {
   }
   function subLabel(row) {
     var lv = getLevel(row.pts);
-    return lv.label+' · '+(row.profile.cargo||row.profile.funcao||'')+(row.streak?' · 🔥 '+row.streak+' dias':'');
+    return lv.label+' · '+(row.profile.cargo||row.profile.funcao||'')+(row.streak?' · '+ic('flame')+' '+row.streak+' dias':'');
   }
 
   // Podium for top 3 (visual order 2nd / 1st / 3rd via CSS)
@@ -5036,7 +5112,7 @@ function renderLeaderboard(type) {
       card.className = 'lb-pod-card p' + (i + 1);
       card.onclick = function(){ openStaffProfile(row.staff.id); };
       card.innerHTML =
-        (i === 0 ? '<div class="lb-pod-crown">👑</div>' : '') +
+        (i === 0 ? '<div class="lb-pod-crown">'+ic('crown','ico-xl')+'</div>' : '') +
         '<div class="lb-pod-medal">' + medals[i] + '</div>' +
         avatarHtml(row, i === 0 ? 76 : 64) +
         '<div class="lb-pod-name">' + row.staff.name + '</div>' +
@@ -5088,7 +5164,7 @@ function openStaffProfile(staffId) {
   // Populate
   document.getElementById('profile-name').textContent = s.name;
   document.getElementById('profile-cargo').textContent = prof.cargo || '';
-  document.getElementById('profile-funcao').textContent = prof.funcao ? ({copy:'✍️ Redator',midia:'🎨 Projetista',social:'📱 Social Media',gestor:'👔 Gestor'}[prof.funcao]||prof.funcao) : '';
+  document.getElementById('profile-funcao').innerHTML = prof.funcao ? ({copy:ic('pencil')+' Redator',midia:ic('palette')+' Projetista',social:ic('smartphone')+' Social Media',gestor:ic('briefcase')+' Gestor'}[prof.funcao]||prof.funcao) : '';
   document.getElementById('profile-bio').textContent = prof.bio || '';
   document.getElementById('profile-pts').textContent = pts.total||0;
   document.getElementById('profile-quality').textContent = quality+'%';
@@ -5110,7 +5186,7 @@ function openStaffProfile(staffId) {
     var pill = document.createElement('div');
     pill.className = 'badge-pill'+(has?' earned':'');
     pill.title = def.desc;
-    pill.textContent = def.icon+' '+def.name;
+    pill.innerHTML = def.icon+' '+def.name;
     pill.style.opacity = has ? '1' : '0.35';
     bg.appendChild(pill);
   });
@@ -5188,7 +5264,7 @@ function renderDuosList() {
       '<div>'+
         '<div style="font-weight:700;font-size:.88rem;">'+(client?client.name:'Cliente')+'</div>'+
         '<div style="font-size:.78rem;color:var(--gray);margin-top:2px;">'+
-          '✍️ '+(redator?redator.name:'—')+' &nbsp;·&nbsp; 🎨 '+(proj?proj.name:'—')+
+          ic('pencil')+' '+(redator?redator.name:'—')+' &nbsp;·&nbsp; '+ic('palette')+' '+(proj?proj.name:'—')+
         '</div>'+
       '</div>'+
       '<button class="duo-del-btn" style="background:none;border:none;cursor:pointer;color:var(--gray);font-size:1.1rem;">×</button>';
