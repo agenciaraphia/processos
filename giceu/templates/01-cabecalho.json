@@ -1,0 +1,428 @@
+{
+ "content": [
+  {
+   "id": "2161cf9",
+   "elType": "container",
+   "settings": {
+    "content_width": "full",
+    "flex_direction": "column",
+    "flex_gap": {
+     "unit": "px",
+     "size": 0,
+     "column": "0",
+     "row": "0",
+     "isLinked": true
+    },
+    "padding": {
+     "unit": "px",
+     "top": "0",
+     "right": "0",
+     "bottom": "0",
+     "left": "0",
+     "isLinked": true
+    },
+    "css_classes": "gx-assets"
+   },
+   "elements": [
+    {
+     "id": "890d668",
+     "elType": "widget",
+     "widgetType": "html",
+     "settings": {
+      "html": "<style>:root{ --gx-blue:#7590c1;--gx-blue-deep:#4a6699;--gx-ink:#1b2540;--gx-mist:#e8edf6; --gx-graphite:#363334;--gx-paper:#fdfdfd;--gx-muted:#6b6768;--gx-line:#e6e3e3; --gx-display:'Newsreader',Georgia,serif;--gx-body:'Public Sans',system-ui,sans-serif; --gx-mono:'IBM Plex Mono',ui-monospace,monospace; --gx-ease:cubic-bezier(.23,1,.32,1);--gx-ease-io:cubic-bezier(.77,0,.175,1); --gx-radius:18px;}/* bloco de estilos: invisível no site, etiquetado no editor */.gx-assets{display:none!important}body.elementor-editor-active .gx-assets{display:flex!important;padding:6px 12px!important;background:repeating-linear-gradient(45deg,#e8edf6 0 8px,#fdfdfd 8px 16px)}body.elementor-editor-active .gx-assets::before{content:\"Estilos e interações GICEU (não remover)\";font:500 11px/1.4 var(--gx-mono);color:#4a6699;letter-spacing:.08em;text-transform:uppercase}@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}body{background:var(--gx-paper);color:var(--gx-graphite);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}::selection{background:var(--gx-blue);color:var(--gx-paper)}/* tipografia */.elementor-widget-text-editor p{margin:0 0 1em}.elementor-widget-text-editor p:last-child{margin-bottom:0}.elementor-widget-text-editor a{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.2em;transition:color .2s ease}.elementor-heading-title em{font-style:italic;color:var(--gx-blue)}.gx-on-blue .elementor-heading-title em{color:var(--gx-ink)}.gx-on-dark .elementor-heading-title em{color:var(--gx-blue)}.gx-balance .elementor-heading-title{text-wrap:balance}.gx-pretty p{text-wrap:pretty}.gx-eyebrow .elementor-heading-title{display:inline-flex;align-items:center;gap:.75em}.gx-eyebrow .elementor-heading-title::before{content:\"\";width:.7em;height:.7em;border-radius:50%;border:2px solid currentColor;flex:none}/* botões */.gx-btn .elementor-button{white-space:nowrap;transition:background-color .22s ease,color .22s ease,border-color .22s ease,transform .16s var(--gx-ease);-webkit-tap-highlight-color:transparent}.gx-btn .elementor-button:active{transform:scale(.97)}.gx-btn .elementor-button-text::after{content:\"\\2192\";display:inline-block;margin-left:.55em;transition:transform .25s var(--gx-ease)}.gx-btn.gx-btn--plain .elementor-button-text::after{content:none}@media (hover:hover) and (pointer:fine){.gx-btn .elementor-button:hover .elementor-button-text::after{transform:translateX(4px)}}.gx-btn .elementor-button:focus-visible,.gx-focus a:focus-visible,.gx-legend button:focus-visible{outline:2px solid var(--gx-blue-deep);outline-offset:3px}.gx-on-blue .gx-btn .elementor-button:focus-visible,.gx-on-dark .gx-btn .elementor-button:focus-visible{outline-color:var(--gx-paper)}/* cartões */.gx-card{transition:transform .35s var(--gx-ease),box-shadow .35s var(--gx-ease),border-color .25s ease;border:1px solid var(--gx-line)}@media (hover:hover) and (pointer:fine){.gx-card:hover{transform:translateY(-4px);box-shadow:0 18px 40px -24px rgba(27,37,64,.35);border-color:var(--gx-blue)}}/* selos de linha, como num mapa de transporte */.gx-badge{display:inline-flex;align-items:center;justify-content:center;width:52px;height:52px;border-radius:50%;font:600 15px/1 var(--gx-mono);letter-spacing:.02em;color:var(--gx-paper);background:var(--gx-blue);box-shadow:0 0 0 5px var(--gx-paper)}.gx-badge--l2{background:var(--gx-graphite)}.gx-badge--fm{background:var(--gx-paper);color:var(--gx-blue-deep);box-shadow:inset 0 0 0 3px var(--gx-blue),0 0 0 5px var(--gx-paper)}.gx-mist .gx-badge{box-shadow:0 0 0 5px var(--gx-mist)}.gx-mist .gx-badge--fm{box-shadow:inset 0 0 0 3px var(--gx-blue),0 0 0 5px var(--gx-mist)}/* etiquetas */.gx-tags{display:flex;flex-wrap:wrap;gap:10px;margin:0;padding:0;list-style:none}.gx-tags li{font:500 14px/1 var(--gx-body);padding:11px 16px;border-radius:999px;border:1px solid var(--gx-line);background:var(--gx-paper);color:var(--gx-graphite)}/* fatos em lista de definição */.gx-facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;margin:0;border-top:1px solid var(--gx-line)}.gx-facts div{padding:18px 18px 18px 0;border-bottom:1px solid var(--gx-line)}.gx-facts dt{font:500 11.5px/1.3 var(--gx-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--gx-blue-deep);margin:0 0 6px}.gx-facts dd{margin:0;font:400 22px/1.25 var(--gx-display);color:var(--gx-graphite)}/* entrada ao rolar: sobe 18px e aparece, com cascata curta */html.gx-ready .gx-reveal{opacity:0;transform:translate3d(0,18px,0);transition:opacity .7s var(--gx-ease) var(--gx-delay,0ms),transform .9s var(--gx-ease) var(--gx-delay,0ms)}html.gx-ready .gx-reveal.is-in{opacity:1;transform:none}/* traçados que se desenham */.gx-path{stroke-dasharray:1;stroke-dashoffset:0}html.gx-ready .gx-draw .gx-path{stroke-dashoffset:1;transition:stroke-dashoffset 1.6s var(--gx-ease-io) var(--gx-pd,0ms)}html.gx-ready .gx-draw.is-in .gx-path{stroke-dashoffset:0}html.gx-ready .gx-draw .gx-stn{opacity:0;transform:scale(.6);transition:opacity .4s ease var(--d,0ms),transform .5s var(--gx-ease) var(--d,0ms)}html.gx-ready .gx-draw.is-in .gx-stn{opacity:1;transform:none}.gx-stn{transform-box:fill-box;transform-origin:center}@media (prefers-reduced-motion:reduce){ html.gx-ready .gx-reveal{transform:none;transition:opacity .4s ease} html.gx-ready .gx-draw .gx-path{stroke-dashoffset:0;transition:none} html.gx-ready .gx-draw .gx-stn{transform:none;transition:opacity .4s ease} .gx-btn .elementor-button,.gx-card{transition:background-color .2s ease,color .2s ease,border-color .2s ease} .gx-card:hover{transform:none!important}}/* faixa institucional */.gx-topbar .elementor-heading-title a,.gx-topbar a{color:inherit;transition:color .2s ease}.gx-topbar a:hover{color:var(--gx-paper)}/* barra principal: ganha fundo translúcido e fio ao rolar */.gx-header{transition:background-color .3s ease,box-shadow .3s ease,padding .3s var(--gx-ease);backdrop-filter:saturate(1.4) blur(0);-webkit-backdrop-filter:saturate(1.4) blur(0)}.gx-header.elementor-sticky--effects,body.gx-scrolled .gx-header{background-color:rgba(253,253,253,.86)!important;box-shadow:0 1px 0 var(--gx-line);backdrop-filter:saturate(1.4) blur(14px);-webkit-backdrop-filter:saturate(1.4) blur(14px);padding-top:10px!important;padding-bottom:10px!important}/* marca: GICEU + ponto de estação */.gx-logo .elementor-heading-title a{color:inherit}.gx-logo .elementor-heading-title::after{content:\"\";display:inline-block;width:.3em;height:.3em;margin-left:.08em;border-radius:50%;background:var(--gx-blue);box-shadow:0 0 0 0 rgba(117,144,193,.5);transition:transform .3s var(--gx-ease),box-shadow .5s ease}@media (hover:hover) and (pointer:fine){.gx-logo:hover .elementor-heading-title::after{transform:scale(1.3);box-shadow:0 0 0 6px rgba(117,144,193,0)}}.gx-logo-sub{border-left:1px solid var(--gx-line);padding-left:14px}/* menu: ponto azul no lugar do sublinhado */.gx-nav .elementor-nav-menu--main .elementor-item{position:relative}.gx-nav .elementor-nav-menu--main .elementor-item::after{content:\"\"!important;position:absolute;left:50%;bottom:0;width:6px;height:6px;margin-left:-3px;border-radius:50%;background:var(--gx-blue);opacity:0;transform:translateY(4px) scale(.6);transition:opacity .2s ease,transform .3s var(--gx-ease);display:block!important}.gx-nav .elementor-nav-menu--main .elementor-item:hover::after,.gx-nav .elementor-nav-menu--main .elementor-item:focus-visible::after,.gx-nav .elementor-nav-menu--main .elementor-item.elementor-item-active::after{opacity:1;transform:none}.gx-nav .elementor-nav-menu--dropdown{border-top:1px solid var(--gx-line);box-shadow:0 24px 40px -28px rgba(27,37,64,.4)}.gx-nav .elementor-menu-toggle{border-radius:50%;transition:background-color .2s ease,transform .16s var(--gx-ease)}.gx-nav .elementor-menu-toggle:active{transform:scale(.94)}/* botão do podcast no cabeçalho */.gx-cta-pod .elementor-button-icon i{transition:transform .35s var(--gx-ease)}@media (hover:hover) and (pointer:fine){.gx-cta-pod .elementor-button:hover .elementor-button-icon i{transform:rotate(-12deg) scale(1.08)}}</style>\n<script>(function(){\n if(window.__gx)return;window.__gx=1;\n var d=document,root=d.documentElement;\n function ready(fn){d.readyState!=='loading'?fn():d.addEventListener('DOMContentLoaded',fn)}\n var editor=/elementor-editor-active/.test(d.body?d.body.className:'')||/elementor-preview/.test(location.search);\n function onScroll(){d.body&&d.body.classList.toggle('gx-scrolled',window.scrollY>40)}\n window.addEventListener('scroll',onScroll,{passive:true});ready(onScroll);\n ready(function(){\n  // destaque das linhas no mapa ao passar o mouse na legenda\n  d.querySelectorAll('[data-gx-hl]').forEach(function(b){\n   var m=b.closest('.gx-map-wrap');m=m&&m.querySelector('.gx-map');if(!m)return;\n   function on(){m.setAttribute('data-hl',b.getAttribute('data-gx-hl'))}\n   function off(){m.removeAttribute('data-hl')}\n   b.addEventListener('mouseenter',on);b.addEventListener('focus',on);\n   b.addEventListener('mouseleave',off);b.addEventListener('blur',off);\n  });\n  // índice para cascatas\n  d.querySelectorAll('.gx-stagger').forEach(function(p){\n   p.querySelectorAll('.gx-reveal').forEach(function(k,i){k.style.setProperty('--gx-delay',Math.min(i*70,420)+'ms')});\n  });\n  d.querySelectorAll('.gx-metro li,.gx-wave span').forEach(function(li){li.style.setProperty('--i',[].indexOf.call(li.parentNode.children,li))});\n  var all=d.querySelectorAll('.gx-reveal,.gx-draw'),live=d.querySelectorAll('.gx-live');\n  if(editor||!('IntersectionObserver' in window)){\n   all.forEach(function(e){e.classList.add('is-in')});live.forEach(function(e){e.classList.add('is-playing')});return;\n  }\n  root.classList.add('gx-ready');\n  var io=new IntersectionObserver(function(es){es.forEach(function(e){\n   if(e.isIntersecting){e.target.classList.add('is-in');io.unobserve(e.target)}\n  })},{rootMargin:'0px 0px -8% 0px',threshold:.12});\n  all.forEach(function(e){io.observe(e)});\n  // animações contínuas só rodam quando visíveis\n  var lo=new IntersectionObserver(function(es){es.forEach(function(e){\n   var el=e.target;\n   if(e.isIntersecting){clearTimeout(el.__gxT);el.__gxT=setTimeout(function(){el.classList.add('is-playing')},el.classList.contains('gx-wave')?1400:0)}\n   else{clearTimeout(el.__gxT);el.classList.remove('is-playing')}\n  })},{threshold:0});\n  live.forEach(function(e){lo.observe(e)});\n });\n})();</script>"
+     },
+     "elements": []
+    }
+   ],
+   "isInner": false
+  },
+  {
+   "id": "239bffa",
+   "elType": "container",
+   "settings": {
+    "content_width": "boxed",
+    "flex_direction": "row",
+    "flex_gap": {
+     "unit": "px",
+     "size": 20,
+     "column": "20",
+     "row": "20",
+     "isLinked": true
+    },
+    "padding": {
+     "unit": "px",
+     "top": "9",
+     "right": "24",
+     "bottom": "9",
+     "left": "24",
+     "isLinked": false
+    },
+    "boxed_width": {
+     "unit": "px",
+     "size": 1200,
+     "sizes": []
+    },
+    "flex_justify_content": "space-between",
+    "flex_align_items": "center",
+    "padding_mobile": {
+     "unit": "px",
+     "top": "8",
+     "right": "20",
+     "bottom": "8",
+     "left": "20",
+     "isLinked": false
+    },
+    "background_background": "classic",
+    "background_color": "#363334",
+    "css_classes": "gx-topbar",
+    "hide_mobile": "hidden-mobile"
+   },
+   "elements": [
+    {
+     "id": "fa93d5b",
+     "elType": "widget",
+     "widgetType": "heading",
+     "settings": {
+      "title": "Universidade Federal do Ceará · Instituto de Cultura e Arte",
+      "header_size": "p",
+      "title_color": "rgba(253,253,253,0.72)",
+      "typography_typography": "custom",
+      "typography_font_family": "IBM Plex Mono",
+      "typography_font_size": {
+       "unit": "px",
+       "size": 11,
+       "sizes": []
+      },
+      "typography_font_weight": "500",
+      "typography_line_height": {
+       "unit": "em",
+       "size": 1.4,
+       "sizes": []
+      },
+      "typography_letter_spacing": {
+       "unit": "em",
+       "size": 0.12,
+       "sizes": []
+      },
+      "typography_text_transform": "uppercase",
+      "_element_width": "auto",
+      "_flex_size": "none"
+     },
+     "elements": []
+    },
+    {
+     "id": "97ddd05",
+     "elType": "widget",
+     "widgetType": "heading",
+     "settings": {
+      "title": "@giceu.ufc",
+      "header_size": "p",
+      "title_color": "rgba(253,253,253,0.72)",
+      "typography_typography": "custom",
+      "typography_font_family": "IBM Plex Mono",
+      "typography_font_size": {
+       "unit": "px",
+       "size": 11,
+       "sizes": []
+      },
+      "typography_font_weight": "500",
+      "typography_line_height": {
+       "unit": "em",
+       "size": 1.4,
+       "sizes": []
+      },
+      "typography_letter_spacing": {
+       "unit": "em",
+       "size": 0.12,
+       "sizes": []
+      },
+      "link": {
+       "url": "https://www.instagram.com/giceu.ufc/",
+       "is_external": "",
+       "nofollow": "",
+       "custom_attributes": ""
+      },
+      "hide_mobile": "hidden-mobile",
+      "_element_width": "auto",
+      "_flex_size": "none"
+     },
+     "elements": []
+    }
+   ],
+   "isInner": false
+  },
+  {
+   "id": "655683b",
+   "elType": "container",
+   "settings": {
+    "content_width": "boxed",
+    "flex_direction": "row",
+    "flex_gap": {
+     "unit": "px",
+     "size": 24,
+     "column": "24",
+     "row": "24",
+     "isLinked": true
+    },
+    "padding": {
+     "unit": "px",
+     "top": "20",
+     "right": "24",
+     "bottom": "20",
+     "left": "24",
+     "isLinked": false
+    },
+    "boxed_width": {
+     "unit": "px",
+     "size": 1200,
+     "sizes": []
+    },
+    "flex_justify_content": "space-between",
+    "flex_align_items": "center",
+    "flex_gap_mobile": {
+     "unit": "px",
+     "size": 12,
+     "column": "12",
+     "row": "12",
+     "isLinked": true
+    },
+    "padding_mobile": {
+     "unit": "px",
+     "top": "14",
+     "right": "20",
+     "bottom": "14",
+     "left": "20",
+     "isLinked": false
+    },
+    "background_background": "classic",
+    "background_color": "#fdfdfd",
+    "css_classes": "gx-header",
+    "sticky": "top",
+    "sticky_on": [
+     "desktop",
+     "tablet",
+     "mobile"
+    ],
+    "sticky_offset": 0,
+    "sticky_effects_offset": 40,
+    "z_index": 99
+   },
+   "elements": [
+    {
+     "id": "29b03fa",
+     "elType": "widget",
+     "widgetType": "heading",
+     "settings": {
+      "title": "GICEU",
+      "header_size": "p",
+      "title_color": "#363334",
+      "typography_typography": "custom",
+      "typography_font_family": "Newsreader",
+      "typography_font_size": {
+       "unit": "px",
+       "size": 32,
+       "sizes": []
+      },
+      "typography_font_size_mobile": {
+       "unit": "px",
+       "size": 28,
+       "sizes": []
+      },
+      "typography_font_weight": "500",
+      "typography_line_height": {
+       "unit": "em",
+       "size": 1,
+       "sizes": []
+      },
+      "typography_letter_spacing": {
+       "unit": "em",
+       "size": -0.01,
+       "sizes": []
+      },
+      "link": {
+       "url": "/",
+       "is_external": "",
+       "nofollow": "",
+       "custom_attributes": ""
+      },
+      "_css_classes": "gx-logo",
+      "_element_width": "auto",
+      "_flex_size": "none"
+     },
+     "elements": []
+    },
+    {
+     "id": "65f6bea",
+     "elType": "widget",
+     "widgetType": "text-editor",
+     "settings": {
+      "editor": "<p>Imagem, Consumo e<br>Experiência Urbana</p>",
+      "text_color": "#6b6768",
+      "typography_typography": "custom",
+      "typography_font_family": "Public Sans",
+      "typography_font_size": {
+       "unit": "px",
+       "size": 12,
+       "sizes": []
+      },
+      "typography_font_weight": "500",
+      "typography_line_height": {
+       "unit": "em",
+       "size": 1.3,
+       "sizes": []
+      },
+      "_css_classes": "gx-logo-sub",
+      "hide_tablet": "hidden-tablet",
+      "hide_mobile": "hidden-mobile",
+      "_element_width": "auto",
+      "_flex_size": "none"
+     },
+     "elements": []
+    },
+    {
+     "id": "2eb49f2",
+     "elType": "widget",
+     "widgetType": "nav-menu",
+     "settings": {
+      "layout": "horizontal",
+      "align_items": "center",
+      "pointer": "none",
+      "submenu_icon": {
+       "value": "fas fa-chevron-down",
+       "library": "fa-solid"
+      },
+      "dropdown": "tablet",
+      "full_width": "stretch",
+      "toggle": "burger",
+      "toggle_align": "right",
+      "color_menu_item": "#363334",
+      "color_menu_item_hover": "#4a6699",
+      "color_menu_item_active": "#363334",
+      "padding_horizontal_menu_item": {
+       "unit": "px",
+       "size": 14,
+       "sizes": []
+      },
+      "padding_vertical_menu_item": {
+       "unit": "px",
+       "size": 10,
+       "sizes": []
+      },
+      "menu_typography_typography": "custom",
+      "menu_typography_font_family": "Public Sans",
+      "menu_typography_font_size": {
+       "unit": "px",
+       "size": 15,
+       "sizes": []
+      },
+      "menu_typography_font_weight": "500",
+      "menu_typography_line_height": {
+       "unit": "em",
+       "size": 1.2,
+       "sizes": []
+      },
+      "color_dropdown_item": "#363334",
+      "background_color_dropdown_item": "#fdfdfd",
+      "color_dropdown_item_hover": "#fdfdfd",
+      "background_color_dropdown_item_hover": "#363334",
+      "dropdown_typography_typography": "custom",
+      "dropdown_typography_font_family": "Public Sans",
+      "dropdown_typography_font_size": {
+       "unit": "px",
+       "size": 17,
+       "sizes": []
+      },
+      "dropdown_typography_font_weight": "500",
+      "padding_vertical_dropdown_item": {
+       "unit": "px",
+       "size": 16,
+       "sizes": []
+      },
+      "toggle_color": "#363334",
+      "toggle_background_color": "rgba(0,0,0,0)",
+      "toggle_size": {
+       "unit": "px",
+       "size": 22,
+       "sizes": []
+      },
+      "_css_classes": "gx-nav",
+      "_flex_size": "grow",
+      "_element_width": "auto"
+     },
+     "elements": []
+    },
+    {
+     "id": "f865596",
+     "elType": "widget",
+     "widgetType": "button",
+     "settings": {
+      "text": "Ouça o podcast",
+      "link": {
+       "url": "/podcast/",
+       "is_external": "",
+       "nofollow": "",
+       "custom_attributes": ""
+      },
+      "background_color": "#363334",
+      "button_text_color": "#fdfdfd",
+      "button_background_hover_color": "#4a6699",
+      "hover_color": "#fdfdfd",
+      "border_radius": {
+       "unit": "px",
+       "top": "999",
+       "right": "999",
+       "bottom": "999",
+       "left": "999",
+       "isLinked": true
+      },
+      "text_padding": {
+       "unit": "px",
+       "top": "13",
+       "right": "22",
+       "bottom": "13",
+       "left": "22",
+       "isLinked": false
+      },
+      "typography_typography": "custom",
+      "typography_font_family": "Public Sans",
+      "typography_font_size": {
+       "unit": "px",
+       "size": 14,
+       "sizes": []
+      },
+      "typography_font_weight": "600",
+      "typography_line_height": {
+       "unit": "em",
+       "size": 1.2,
+       "sizes": []
+      },
+      "typography_letter_spacing": {
+       "unit": "em",
+       "size": 0.005,
+       "sizes": []
+      },
+      "selected_icon": {
+       "value": "fas fa-headphones",
+       "library": "fa-solid"
+      },
+      "icon_indent": {
+       "unit": "px",
+       "size": 10,
+       "sizes": []
+      },
+      "_css_classes": "gx-btn gx-btn--plain gx-cta-pod",
+      "hide_mobile": "hidden-mobile",
+      "_element_width": "auto",
+      "_flex_size": "none"
+     },
+     "elements": []
+    }
+   ],
+   "isInner": false
+  }
+ ],
+ "page_settings": [],
+ "version": "0.4",
+ "title": "GICEU · Cabeçalho",
+ "type": "header"
+}

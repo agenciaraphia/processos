@@ -1,0 +1,3606 @@
+{
+ "content": [
+  {
+   "id": "c10dd04",
+   "elType": "container",
+   "settings": {
+    "content_width": "full",
+    "flex_direction": "column",
+    "flex_gap": {
+     "unit": "px",
+     "size": 0,
+     "column": "0",
+     "row": "0",
+     "isLinked": true
+    },
+    "padding": {
+     "unit": "px",
+     "top": "0",
+     "right": "0",
+     "bottom": "0",
+     "left": "0",
+     "isLinked": true
+    },
+    "css_classes": "gx-assets"
+   },
+   "elements": [
+    {
+     "id": "5723c47",
+     "elType": "widget",
+     "widgetType": "html",
+     "settings": {
+      "html": "<style>:root{ --gx-blue:#7590c1;--gx-blue-deep:#4a6699;--gx-ink:#1b2540;--gx-mist:#e8edf6; --gx-graphite:#363334;--gx-paper:#fdfdfd;--gx-muted:#6b6768;--gx-line:#e6e3e3; --gx-display:'Newsreader',Georgia,serif;--gx-body:'Public Sans',system-ui,sans-serif; --gx-mono:'IBM Plex Mono',ui-monospace,monospace; --gx-ease:cubic-bezier(.23,1,.32,1);--gx-ease-io:cubic-bezier(.77,0,.175,1); --gx-radius:18px;}/* bloco de estilos: invisível no site, etiquetado no editor */.gx-assets{display:none!important}body.elementor-editor-active .gx-assets{display:flex!important;padding:6px 12px!important;background:repeating-linear-gradient(45deg,#e8edf6 0 8px,#fdfdfd 8px 16px)}body.elementor-editor-active .gx-assets::before{content:\"Estilos e interações GICEU (não remover)\";font:500 11px/1.4 var(--gx-mono);color:#4a6699;letter-spacing:.08em;text-transform:uppercase}@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}body{background:var(--gx-paper);color:var(--gx-graphite);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}::selection{background:var(--gx-blue);color:var(--gx-paper)}/* tipografia */.elementor-widget-text-editor p{margin:0 0 1em}.elementor-widget-text-editor p:last-child{margin-bottom:0}.elementor-widget-text-editor a{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.2em;transition:color .2s ease}.elementor-heading-title em{font-style:italic;color:var(--gx-blue)}.gx-on-blue .elementor-heading-title em{color:var(--gx-ink)}.gx-on-dark .elementor-heading-title em{color:var(--gx-blue)}.gx-balance .elementor-heading-title{text-wrap:balance}.gx-pretty p{text-wrap:pretty}.gx-eyebrow .elementor-heading-title{display:inline-flex;align-items:center;gap:.75em}.gx-eyebrow .elementor-heading-title::before{content:\"\";width:.7em;height:.7em;border-radius:50%;border:2px solid currentColor;flex:none}/* botões */.gx-btn .elementor-button{white-space:nowrap;transition:background-color .22s ease,color .22s ease,border-color .22s ease,transform .16s var(--gx-ease);-webkit-tap-highlight-color:transparent}.gx-btn .elementor-button:active{transform:scale(.97)}.gx-btn .elementor-button-text::after{content:\"\\2192\";display:inline-block;margin-left:.55em;transition:transform .25s var(--gx-ease)}.gx-btn.gx-btn--plain .elementor-button-text::after{content:none}@media (hover:hover) and (pointer:fine){.gx-btn .elementor-button:hover .elementor-button-text::after{transform:translateX(4px)}}.gx-btn .elementor-button:focus-visible,.gx-focus a:focus-visible,.gx-legend button:focus-visible{outline:2px solid var(--gx-blue-deep);outline-offset:3px}.gx-on-blue .gx-btn .elementor-button:focus-visible,.gx-on-dark .gx-btn .elementor-button:focus-visible{outline-color:var(--gx-paper)}/* cartões */.gx-card{transition:transform .35s var(--gx-ease),box-shadow .35s var(--gx-ease),border-color .25s ease;border:1px solid var(--gx-line)}@media (hover:hover) and (pointer:fine){.gx-card:hover{transform:translateY(-4px);box-shadow:0 18px 40px -24px rgba(27,37,64,.35);border-color:var(--gx-blue)}}/* selos de linha, como num mapa de transporte */.gx-badge{display:inline-flex;align-items:center;justify-content:center;width:52px;height:52px;border-radius:50%;font:600 15px/1 var(--gx-mono);letter-spacing:.02em;color:var(--gx-paper);background:var(--gx-blue);box-shadow:0 0 0 5px var(--gx-paper)}.gx-badge--l2{background:var(--gx-graphite)}.gx-badge--fm{background:var(--gx-paper);color:var(--gx-blue-deep);box-shadow:inset 0 0 0 3px var(--gx-blue),0 0 0 5px var(--gx-paper)}.gx-mist .gx-badge{box-shadow:0 0 0 5px var(--gx-mist)}.gx-mist .gx-badge--fm{box-shadow:inset 0 0 0 3px var(--gx-blue),0 0 0 5px var(--gx-mist)}/* etiquetas */.gx-tags{display:flex;flex-wrap:wrap;gap:10px;margin:0;padding:0;list-style:none}.gx-tags li{font:500 14px/1 var(--gx-body);padding:11px 16px;border-radius:999px;border:1px solid var(--gx-line);background:var(--gx-paper);color:var(--gx-graphite)}/* fatos em lista de definição */.gx-facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;margin:0;border-top:1px solid var(--gx-line)}.gx-facts div{padding:18px 18px 18px 0;border-bottom:1px solid var(--gx-line)}.gx-facts dt{font:500 11.5px/1.3 var(--gx-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--gx-blue-deep);margin:0 0 6px}.gx-facts dd{margin:0;font:400 22px/1.25 var(--gx-display);color:var(--gx-graphite)}/* entrada ao rolar: sobe 18px e aparece, com cascata curta */html.gx-ready .gx-reveal{opacity:0;transform:translate3d(0,18px,0);transition:opacity .7s var(--gx-ease) var(--gx-delay,0ms),transform .9s var(--gx-ease) var(--gx-delay,0ms)}html.gx-ready .gx-reveal.is-in{opacity:1;transform:none}/* traçados que se desenham */.gx-path{stroke-dasharray:1;stroke-dashoffset:0}html.gx-ready .gx-draw .gx-path{stroke-dashoffset:1;transition:stroke-dashoffset 1.6s var(--gx-ease-io) var(--gx-pd,0ms)}html.gx-ready .gx-draw.is-in .gx-path{stroke-dashoffset:0}html.gx-ready .gx-draw .gx-stn{opacity:0;transform:scale(.6);transition:opacity .4s ease var(--d,0ms),transform .5s var(--gx-ease) var(--d,0ms)}html.gx-ready .gx-draw.is-in .gx-stn{opacity:1;transform:none}.gx-stn{transform-box:fill-box;transform-origin:center}@media (prefers-reduced-motion:reduce){ html.gx-ready .gx-reveal{transform:none;transition:opacity .4s ease} html.gx-ready .gx-draw .gx-path{stroke-dashoffset:0;transition:none} html.gx-ready .gx-draw .gx-stn{transform:none;transition:opacity .4s ease} .gx-btn .elementor-button,.gx-card{transition:background-color .2s ease,color .2s ease,border-color .2s ease} .gx-card:hover{transform:none!important}}/* hero */.gx-hero-title .elementor-heading-title::after{content:\"\";display:inline-block;width:.16em;height:.16em;margin-left:.04em;border-radius:50%;background:var(--gx-blue)}.gx-coords{font:500 11.5px/1.5 var(--gx-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--gx-muted);display:flex;gap:28px;flex-wrap:wrap;align-items:center}.gx-coords span{display:inline-flex;align-items:center;gap:10px}.gx-coords span::before{content:\"\";width:18px;height:1px;background:currentColor}/* mapa das linhas */.gx-map{position:relative}.gx-map svg{display:block;width:100%;height:auto;overflow:visible}.gx-map .gx-line{transition:opacity .35s ease}.gx-map[data-hl] .gx-line{opacity:.14}.gx-map[data-hl=\"l1\"] .gx-l1,.gx-map[data-hl=\"l2\"] .gx-l2,.gx-map[data-hl=\"l3\"] .gx-l3{opacity:1}.gx-map .gx-lbl{font:500 11px var(--gx-mono);letter-spacing:.12em;fill:var(--gx-muted)}.gx-map .gx-term{font:italic 400 24px var(--gx-display)}.gx-map .gx-l3 .gx-dash{opacity:0;transition:opacity .8s ease 1.3s}.gx-map.is-in .gx-l3 .gx-dash,html:not(.gx-ready) .gx-map .gx-l3 .gx-dash{opacity:1}.gx-legend{display:flex;flex-wrap:wrap;gap:8px 18px;margin:18px 0 0;padding:0;list-style:none}.gx-legend button{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:10px;font:500 13px/1.3 var(--gx-body);color:var(--gx-graphite);padding:6px 2px;border-radius:6px}.gx-legend i{width:22px;height:6px;border-radius:6px;background:var(--gx-blue)}.gx-legend [data-gx-hl=\"l2\"] i{background:var(--gx-graphite)}.gx-legend [data-gx-hl=\"l3\"] i{background:repeating-linear-gradient(90deg,var(--gx-blue-deep) 0 6px,transparent 6px 10px)}.gx-legend b{font:500 11px var(--gx-mono);letter-spacing:.1em;color:var(--gx-muted)}.gx-tags--lg li{font-size:17px;padding:15px 22px}.gx-tags--lg li:nth-child(n+5){background:var(--gx-mist);border-color:var(--gx-mist)}/* linha que liga os três cartões */.gx-linerow{position:relative}.gx-linerow::before{content:\"\";position:absolute;left:0;right:0;top:23px;height:6px;border-radius:6px;background:linear-gradient(90deg,var(--gx-blue) 0 34%,var(--gx-graphite) 34% 67%,var(--gx-blue-deep) 67% 100%);transform-origin:left;z-index:1}.gx-linerow>.gx-linecard{z-index:auto}.gx-linerow .gx-badge{position:relative;z-index:2}html.gx-ready .gx-linerow.gx-draw::before{transform:scaleX(0);transition:transform 1.5s var(--gx-ease-io) .2s}html.gx-ready .gx-linerow.gx-draw.is-in::before{transform:scaleX(1)}@media (hover:hover) and (pointer:fine){.gx-linecard.gx-card:hover{transform:none}}@media (max-width:1024px){.gx-linerow::before{display:none}}.gx-track{position:relative;height:6px;margin:0 26px}.gx-track::before{content:\"\";position:absolute;inset:0;border-radius:6px;background:linear-gradient(90deg,var(--gx-blue) 0 50%,var(--gx-graphite) 50% 100%);transform-origin:left;transform:scaleX(1)}html.gx-ready .gx-track.gx-draw::before{transform:scaleX(0);transition:transform 1.5s var(--gx-ease-io)}html.gx-ready .gx-track.gx-draw.is-in::before{transform:scaleX(1)}.gx-linecard{position:relative}.gx-linecard>.gx-badge-w{margin-top:-26px}.gx-badge-w,.gx-badge-w .elementor-widget-container{line-height:0}/* equalizador do bloco do podcast */.gx-eq{display:flex;align-items:center;gap:6px;height:220px}.gx-eq span{flex:1;min-width:4px;height:var(--h);border-radius:6px;background:var(--gx-paper);transform-origin:center;opacity:.95}.gx-eq span:nth-child(3n){background:var(--gx-ink)}.gx-eq.is-playing span{animation:gx-eq var(--t,1.2s) ease-in-out var(--dl,0s) infinite alternate}@keyframes gx-eq{from{transform:scaleY(1)}to{transform:scaleY(.35)}}/* letreiro da imprensa */.gx-marquee{overflow:hidden;-webkit-mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}.gx-marquee__track{display:flex;width:max-content;gap:0}.gx-marquee__track span{display:inline-flex;align-items:center;white-space:nowrap;font:italic 400 clamp(30px,4vw,54px)/1.2 var(--gx-display);color:var(--gx-paper);padding:0 .55em}.gx-marquee__track span::after{content:\"\";width:.2em;height:.2em;border-radius:50%;background:var(--gx-blue);margin-left:1.1em}.gx-marquee.is-playing .gx-marquee__track{animation:gx-marquee 38s linear infinite}.gx-marquee:hover .gx-marquee__track{animation-play-state:paused}@keyframes gx-marquee{to{transform:translateX(-50%)}}/* posts */.gx-posts .elementor-post{background:var(--gx-paper);border:1px solid var(--gx-line);border-radius:var(--gx-radius);overflow:hidden;transition:transform .35s var(--gx-ease),box-shadow .35s var(--gx-ease),border-color .25s ease}.gx-posts .elementor-post__thumbnail__link{margin:0!important;display:block}.gx-posts .elementor-post__thumbnail{border-radius:0;overflow:hidden;padding-bottom:62%;position:relative}.gx-posts .elementor-post__thumbnail img{transition:transform .8s var(--gx-ease)}.gx-posts .elementor-post__text{padding:22px 24px 26px}.gx-posts .elementor-post__title{font:500 22px/1.2 var(--gx-display);margin:0 0 10px}.gx-posts .elementor-post__title a{color:var(--gx-graphite);text-decoration:none}.gx-posts .elementor-post__meta-data{font:500 11.5px/1.4 var(--gx-mono)!important;letter-spacing:.1em;text-transform:uppercase;color:var(--gx-blue-deep)!important;margin:0 0 12px}.gx-posts .elementor-post__excerpt p{font:400 15.5px/1.6 var(--gx-body);color:var(--gx-muted);margin:0 0 16px}.gx-posts .elementor-post__read-more{font:600 14px/1 var(--gx-body)!important;color:var(--gx-graphite)!important;text-decoration:none}.gx-posts .elementor-post__read-more::after{content:\" \\2192\";display:inline-block;transition:transform .25s var(--gx-ease)}@media (hover:hover) and (pointer:fine){ .gx-posts .elementor-post:hover{transform:translateY(-4px);box-shadow:0 18px 40px -24px rgba(27,37,64,.35);border-color:var(--gx-blue)} .gx-posts .elementor-post:hover .elementor-post__thumbnail img{transform:scale(1.04)} .gx-posts .elementor-post:hover .elementor-post__read-more::after{transform:translateX(4px)}}@media (prefers-reduced-motion:reduce){.gx-eq.is-playing span,.gx-marquee.is-playing .gx-marquee__track{animation:none}.gx-marquee__track{flex-wrap:wrap;width:auto}.gx-marquee__track span[aria-hidden]{display:none}}</style>\n<script>(function(){\n if(window.__gx)return;window.__gx=1;\n var d=document,root=d.documentElement;\n function ready(fn){d.readyState!=='loading'?fn():d.addEventListener('DOMContentLoaded',fn)}\n var editor=/elementor-editor-active/.test(d.body?d.body.className:'')||/elementor-preview/.test(location.search);\n function onScroll(){d.body&&d.body.classList.toggle('gx-scrolled',window.scrollY>40)}\n window.addEventListener('scroll',onScroll,{passive:true});ready(onScroll);\n ready(function(){\n  // destaque das linhas no mapa ao passar o mouse na legenda\n  d.querySelectorAll('[data-gx-hl]').forEach(function(b){\n   var m=b.closest('.gx-map-wrap');m=m&&m.querySelector('.gx-map');if(!m)return;\n   function on(){m.setAttribute('data-hl',b.getAttribute('data-gx-hl'))}\n   function off(){m.removeAttribute('data-hl')}\n   b.addEventListener('mouseenter',on);b.addEventListener('focus',on);\n   b.addEventListener('mouseleave',off);b.addEventListener('blur',off);\n  });\n  // índice para cascatas\n  d.querySelectorAll('.gx-stagger').forEach(function(p){\n   p.querySelectorAll('.gx-reveal').forEach(function(k,i){k.style.setProperty('--gx-delay',Math.min(i*70,420)+'ms')});\n  });\n  d.querySelectorAll('.gx-metro li,.gx-wave span').forEach(function(li){li.style.setProperty('--i',[].indexOf.call(li.parentNode.children,li))});\n  var all=d.querySelectorAll('.gx-reveal,.gx-draw'),live=d.querySelectorAll('.gx-live');\n  if(editor||!('IntersectionObserver' in window)){\n   all.forEach(function(e){e.classList.add('is-in')});live.forEach(function(e){e.classList.add('is-playing')});return;\n  }\n  root.classList.add('gx-ready');\n  var io=new IntersectionObserver(function(es){es.forEach(function(e){\n   if(e.isIntersecting){e.target.classList.add('is-in');io.unobserve(e.target)}\n  })},{rootMargin:'0px 0px -8% 0px',threshold:.12});\n  all.forEach(function(e){io.observe(e)});\n  // animações contínuas só rodam quando visíveis\n  var lo=new IntersectionObserver(function(es){es.forEach(function(e){\n   var el=e.target;\n   if(e.isIntersecting){clearTimeout(el.__gxT);el.__gxT=setTimeout(function(){el.classList.add('is-playing')},el.classList.contains('gx-wave')?1400:0)}\n   else{clearTimeout(el.__gxT);el.classList.remove('is-playing')}\n  })},{threshold:0});\n  live.forEach(function(e){lo.observe(e)});\n });\n})();</script>"
+     },
+     "elements": []
+    }
+   ],
+   "isInner": false
+  },
+  {
+   "id": "19334c1",
+   "elType": "container",
+   "settings": {
+    "content_width": "boxed",
+    "flex_direction": "column",
+    "flex_gap": {
+     "unit": "px",
+     "size": 48,
+     "column": "48",
+     "row": "48",
+     "isLinked": true
+    },
+    "padding": {
+     "unit": "px",
+     "top": "64",
+     "right": "24",
+     "bottom": "80",
+     "left": "24",
+     "isLinked": false
+    },
+    "boxed_width": {
+     "unit": "px",
+     "size": 1200,
+     "sizes": []
+    },
+    "flex_gap_mobile": {
+     "unit": "px",
+     "size": 40,
+     "column": "40",
+     "row": "40",
+     "isLinked": true
+    },
+    "padding_tablet": {
+     "unit": "px",
+     "top": "56",
+     "right": "32",
+     "bottom": "72",
+     "left": "32",
+     "isLinked": false
+    },
+    "padding_mobile": {
+     "unit": "px",
+     "top": "40",
+     "right": "20",
+     "bottom": "64",
+     "left": "20",
+     "isLinked": false
+    },
+    "html_tag": "section"
+   },
+   "elements": [
+    {
+     "id": "dd3d403",
+     "elType": "container",
+     "settings": {
+      "content_width": "full",
+      "flex_direction": "row",
+      "flex_gap": {
+       "unit": "px",
+       "size": 48,
+       "column": "48",
+       "row": "48",
+       "isLinked": true
+      },
+      "padding": {
+       "unit": "px",
+       "top": "0",
+       "right": "0",
+       "bottom": "0",
+       "left": "0",
+       "isLinked": true
+      },
+      "flex_justify_content": "space-between",
+      "flex_align_items": "center",
+      "flex_direction_tablet": "column"
+     },
+     "elements": [
+      {
+       "id": "52a1c7e",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "flex_gap": {
+         "unit": "px",
+         "size": 22,
+         "column": "22",
+         "row": "22",
+         "isLinked": true
+        },
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        },
+        "width": {
+         "unit": "%",
+         "size": 52,
+         "sizes": []
+        },
+        "width_tablet": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "css_classes": "gx-stagger"
+       },
+       "elements": [
+        {
+         "id": "26cc374",
+         "elType": "widget",
+         "widgetType": "heading",
+         "settings": {
+          "title": "Grupo de pesquisa · UFC · desde 2013",
+          "header_size": "p",
+          "title_color": "#4a6699",
+          "typography_typography": "custom",
+          "typography_font_family": "IBM Plex Mono",
+          "typography_font_size": {
+           "unit": "px",
+           "size": 12,
+           "sizes": []
+          },
+          "typography_font_weight": "500",
+          "typography_line_height": {
+           "unit": "em",
+           "size": 1.4,
+           "sizes": []
+          },
+          "typography_letter_spacing": {
+           "unit": "em",
+           "size": 0.14,
+           "sizes": []
+          },
+          "typography_text_transform": "uppercase",
+          "_css_classes": "gx-eyebrow gx-reveal"
+         },
+         "elements": []
+        },
+        {
+         "id": "69a970f",
+         "elType": "widget",
+         "widgetType": "heading",
+         "settings": {
+          "title": "GICEU",
+          "header_size": "h1",
+          "title_color": "#363334",
+          "typography_typography": "custom",
+          "typography_font_family": "Newsreader",
+          "typography_font_size": {
+           "unit": "px",
+           "size": 176,
+           "sizes": []
+          },
+          "typography_font_size_tablet": {
+           "unit": "px",
+           "size": 132,
+           "sizes": []
+          },
+          "typography_font_size_mobile": {
+           "unit": "px",
+           "size": 96,
+           "sizes": []
+          },
+          "typography_font_weight": "500",
+          "typography_line_height": {
+           "unit": "em",
+           "size": 0.86,
+           "sizes": []
+          },
+          "typography_letter_spacing": {
+           "unit": "em",
+           "size": -0.035,
+           "sizes": []
+          },
+          "_css_classes": "gx-hero-title gx-reveal"
+         },
+         "elements": []
+        },
+        {
+         "id": "18fe935",
+         "elType": "widget",
+         "widgetType": "heading",
+         "settings": {
+          "title": "Grupo de Pesquisa de Imagem, Consumo e Experiência Urbana em Processos e Produtos de Comunicação",
+          "header_size": "p",
+          "title_color": "#363334",
+          "typography_typography": "custom",
+          "typography_font_family": "Public Sans",
+          "typography_font_size": {
+           "unit": "px",
+           "size": 20,
+           "sizes": []
+          },
+          "typography_font_size_mobile": {
+           "unit": "px",
+           "size": 17,
+           "sizes": []
+          },
+          "typography_font_weight": "500",
+          "typography_line_height": {
+           "unit": "em",
+           "size": 1.45,
+           "sizes": []
+          },
+          "_css_classes": "gx-reveal gx-balance"
+         },
+         "elements": []
+        },
+        {
+         "id": "f26f07b",
+         "elType": "widget",
+         "widgetType": "heading",
+         "settings": {
+          "title": "Como a cidade se <em>comunica</em>, se <em>consome</em> e se <em>vive</em>.",
+          "header_size": "p",
+          "title_color": "#363334",
+          "typography_typography": "custom",
+          "typography_font_family": "Newsreader",
+          "typography_font_size": {
+           "unit": "px",
+           "size": 34,
+           "sizes": []
+          },
+          "typography_font_size_mobile": {
+           "unit": "px",
+           "size": 27,
+           "sizes": []
+          },
+          "typography_font_weight": "400",
+          "typography_line_height": {
+           "unit": "em",
+           "size": 1.15,
+           "sizes": []
+          },
+          "typography_letter_spacing": {
+           "unit": "em",
+           "size": -0.01,
+           "sizes": []
+          },
+          "_css_classes": "gx-reveal gx-balance"
+         },
+         "elements": []
+        },
+        {
+         "id": "ee3265c",
+         "elType": "widget",
+         "widgetType": "text-editor",
+         "settings": {
+          "editor": "<p>Pesquisa da UFC sobre imagens, imaginários e consumo nos espaços urbanos.</p>",
+          "text_color": "#6b6768",
+          "typography_typography": "custom",
+          "typography_font_family": "Public Sans",
+          "typography_font_size": {
+           "unit": "px",
+           "size": 18,
+           "sizes": []
+          },
+          "typography_font_size_mobile": {
+           "unit": "px",
+           "size": 16,
+           "sizes": []
+          },
+          "typography_font_weight": "400",
+          "typography_line_height": {
+           "unit": "em",
+           "size": 1.65,
+           "sizes": []
+          },
+          "_css_classes": "gx-pretty gx-reveal"
+         },
+         "elements": []
+        },
+        {
+         "id": "69fa313",
+         "elType": "container",
+         "settings": {
+          "content_width": "full",
+          "flex_direction": "row",
+          "flex_gap": {
+           "unit": "px",
+           "size": 12,
+           "column": "12",
+           "row": "12",
+           "isLinked": true
+          },
+          "padding": {
+           "unit": "px",
+           "top": "0",
+           "right": "0",
+           "bottom": "0",
+           "left": "0",
+           "isLinked": true
+          },
+          "flex_align_items": "center",
+          "flex_wrap": "wrap",
+          "css_classes": "gx-reveal"
+         },
+         "elements": [
+          {
+           "id": "f8a3f37",
+           "elType": "widget",
+           "widgetType": "button",
+           "settings": {
+            "text": "Conheça o grupo",
+            "link": {
+             "url": "/sobre-nos/",
+             "is_external": "",
+             "nofollow": "",
+             "custom_attributes": ""
+            },
+            "background_color": "#363334",
+            "button_text_color": "#fdfdfd",
+            "button_background_hover_color": "#4a6699",
+            "hover_color": "#fdfdfd",
+            "border_radius": {
+             "unit": "px",
+             "top": "999",
+             "right": "999",
+             "bottom": "999",
+             "left": "999",
+             "isLinked": true
+            },
+            "text_padding": {
+             "unit": "px",
+             "top": "15",
+             "right": "26",
+             "bottom": "15",
+             "left": "26",
+             "isLinked": false
+            },
+            "typography_typography": "custom",
+            "typography_font_family": "Public Sans",
+            "typography_font_size": {
+             "unit": "px",
+             "size": 15,
+             "sizes": []
+            },
+            "typography_font_weight": "600",
+            "typography_line_height": {
+             "unit": "em",
+             "size": 1.2,
+             "sizes": []
+            },
+            "typography_letter_spacing": {
+             "unit": "em",
+             "size": 0.005,
+             "sizes": []
+            },
+            "_css_classes": "gx-btn",
+            "_element_width": "auto",
+            "_flex_size": "none"
+           },
+           "elements": []
+          },
+          {
+           "id": "fcd2cd7",
+           "elType": "widget",
+           "widgetType": "button",
+           "settings": {
+            "text": "Ouça o podcast",
+            "link": {
+             "url": "/podcast/",
+             "is_external": "",
+             "nofollow": "",
+             "custom_attributes": ""
+            },
+            "background_color": "rgba(0,0,0,0)",
+            "button_text_color": "#363334",
+            "button_background_hover_color": "#363334",
+            "hover_color": "#fdfdfd",
+            "border_radius": {
+             "unit": "px",
+             "top": "999",
+             "right": "999",
+             "bottom": "999",
+             "left": "999",
+             "isLinked": true
+            },
+            "text_padding": {
+             "unit": "px",
+             "top": "15",
+             "right": "26",
+             "bottom": "15",
+             "left": "26",
+             "isLinked": false
+            },
+            "typography_typography": "custom",
+            "typography_font_family": "Public Sans",
+            "typography_font_size": {
+             "unit": "px",
+             "size": 15,
+             "sizes": []
+            },
+            "typography_font_weight": "600",
+            "typography_line_height": {
+             "unit": "em",
+             "size": 1.2,
+             "sizes": []
+            },
+            "typography_letter_spacing": {
+             "unit": "em",
+             "size": 0.005,
+             "sizes": []
+            },
+            "border_border": "solid",
+            "border_width": {
+             "unit": "px",
+             "top": "1.5",
+             "right": "1.5",
+             "bottom": "1.5",
+             "left": "1.5",
+             "isLinked": true
+            },
+            "border_color": "#363334",
+            "button_hover_border_color": "#363334",
+            "selected_icon": {
+             "value": "fas fa-headphones",
+             "library": "fa-solid"
+            },
+            "icon_indent": {
+             "unit": "px",
+             "size": 10,
+             "sizes": []
+            },
+            "_css_classes": "gx-btn gx-btn--plain",
+            "_element_width": "auto",
+            "_flex_size": "none"
+           },
+           "elements": []
+          }
+         ],
+         "isInner": true
+        }
+       ],
+       "isInner": true
+      },
+      {
+       "id": "04e22a3",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "flex_gap": {
+         "unit": "px",
+         "size": 24,
+         "column": "24",
+         "row": "24",
+         "isLinked": true
+        },
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        },
+        "width": {
+         "unit": "%",
+         "size": 44,
+         "sizes": []
+        },
+        "width_tablet": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "css_classes": "gx-reveal"
+       },
+       "elements": [
+        {
+         "id": "d67bdfa",
+         "elType": "widget",
+         "widgetType": "html",
+         "settings": {
+          "html": "<div class=\"gx-map-wrap\">\n<div class=\"gx-map gx-draw\">\n<svg viewBox=\"0 0 600 520\" role=\"img\" aria-labelledby=\"gxMapTitle gxMapDesc\">\n<title id=\"gxMapTitle\">As linhas de pesquisa do GICEU desenhadas como um mapa de transporte</title>\n<desc id=\"gxMapDesc\">A Linha 1, Comunicação e Cidade, passa por afetos, cotidiano e imaginários. A Linha 2, Comunicação e Consumo, passa por moda, marcas e feiras. As duas se cruzam no ICA, Campus do Pici, de onde sai o ramal Fortaleza em Música.</desc>\n<defs>\n<pattern id=\"gxGrid\" width=\"40\" height=\"40\" patternUnits=\"userSpaceOnUse\"><path d=\"M40 0H0V40\" fill=\"none\" stroke=\"#e6e3e3\" stroke-width=\"1\"/></pattern>\n<radialGradient id=\"gxFade\" cx=\"50%\" cy=\"50%\" r=\"55%\"><stop offset=\"0\" stop-color=\"#fff\"/><stop offset=\"1\" stop-color=\"#fff\" stop-opacity=\"0\"/></radialGradient>\n<mask id=\"gxMask\"><rect width=\"600\" height=\"520\" fill=\"url(#gxFade)\"/></mask>\n</defs>\n<rect width=\"600\" height=\"520\" fill=\"url(#gxGrid)\" mask=\"url(#gxMask)\"/>\n<g class=\"gx-line gx-l2\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n <path class=\"gx-path\" pathLength=\"1\" style=\"--gx-pd:250ms\" d=\"M60 140H170L290 260H420L500 340V470\" stroke=\"#363334\" stroke-width=\"10\"/>\n <circle class=\"gx-stn\" style=\"--d:900ms\" cx=\"60\" cy=\"140\" r=\"9\" fill=\"#363334\" stroke=\"#fdfdfd\" stroke-width=\"4\"/>\n <circle class=\"gx-stn\" style=\"--d:1000ms\" cx=\"170\" cy=\"140\" r=\"7\" fill=\"#fdfdfd\" stroke=\"#363334\" stroke-width=\"4\"/>\n <circle class=\"gx-stn\" style=\"--d:1200ms\" cx=\"420\" cy=\"260\" r=\"7\" fill=\"#fdfdfd\" stroke=\"#363334\" stroke-width=\"4\"/>\n <circle class=\"gx-stn\" style=\"--d:1500ms\" cx=\"500\" cy=\"470\" r=\"9\" fill=\"#363334\" stroke=\"#fdfdfd\" stroke-width=\"4\"/>\n <text class=\"gx-lbl\" x=\"60\" y=\"118\">MODA</text>\n <text class=\"gx-lbl\" x=\"170\" y=\"118\" text-anchor=\"middle\">MARCAS</text>\n <text class=\"gx-lbl\" x=\"404\" y=\"292\" text-anchor=\"end\">FEIRAS</text>\n <text class=\"gx-term\" x=\"484\" y=\"478\" text-anchor=\"end\" fill=\"#363334\">Consumo</text>\n</g>\n<g class=\"gx-line gx-l1\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n <path class=\"gx-path\" pathLength=\"1\" d=\"M40 430H160L290 300V200L390 100H540\" stroke=\"#7590c1\" stroke-width=\"10\"/>\n <circle class=\"gx-stn\" style=\"--d:700ms\" cx=\"40\" cy=\"430\" r=\"9\" fill=\"#7590c1\" stroke=\"#fdfdfd\" stroke-width=\"4\"/>\n <circle class=\"gx-stn\" style=\"--d:850ms\" cx=\"160\" cy=\"430\" r=\"7\" fill=\"#fdfdfd\" stroke=\"#7590c1\" stroke-width=\"4\"/>\n <circle class=\"gx-stn\" style=\"--d:1100ms\" cx=\"290\" cy=\"200\" r=\"7\" fill=\"#fdfdfd\" stroke=\"#7590c1\" stroke-width=\"4\"/>\n <circle class=\"gx-stn\" style=\"--d:1400ms\" cx=\"540\" cy=\"100\" r=\"9\" fill=\"#7590c1\" stroke=\"#fdfdfd\" stroke-width=\"4\"/>\n <text class=\"gx-lbl\" x=\"40\" y=\"462\">AFETOS</text>\n <text class=\"gx-lbl\" x=\"160\" y=\"462\" text-anchor=\"middle\">COTIDIANO</text>\n <text class=\"gx-lbl\" x=\"306\" y=\"204\">IMAGINÁRIOS</text>\n <text class=\"gx-term\" x=\"540\" y=\"76\" text-anchor=\"end\" fill=\"#4a6699\">Cidade</text>\n</g>\n<g class=\"gx-line gx-l3\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n <path class=\"gx-dash\" d=\"M290 260L320 230H470\" stroke=\"#4a6699\" stroke-width=\"6\" stroke-dasharray=\"2 12\"/>\n <circle class=\"gx-stn\" style=\"--d:1700ms\" cx=\"470\" cy=\"230\" r=\"8\" fill=\"#fdfdfd\" stroke=\"#4a6699\" stroke-width=\"4\"/>\n <text class=\"gx-term\" x=\"486\" y=\"238\" fill=\"#4a6699\">Música</text>\n</g>\n<g class=\"gx-stn\" style=\"--d:1250ms\">\n <circle cx=\"290\" cy=\"260\" r=\"15\" fill=\"#fdfdfd\" stroke=\"#363334\" stroke-width=\"5\"/>\n <circle cx=\"290\" cy=\"260\" r=\"5\" fill=\"#7590c1\"/>\n</g>\n<text class=\"gx-lbl\" x=\"272\" y=\"294\" text-anchor=\"end\" style=\"fill:#363334\">ICA · PICI</text>\n</svg>\n</div>\n<ul class=\"gx-legend\" aria-label=\"Legenda do mapa\">\n <li><button type=\"button\" data-gx-hl=\"l1\"><i></i>Linha 1 <b>Comunicação e Cidade</b></button></li>\n <li><button type=\"button\" data-gx-hl=\"l2\"><i></i>Linha 2 <b>Comunicação e Consumo</b></button></li>\n <li><button type=\"button\" data-gx-hl=\"l3\"><i></i>Projeto <b>Fortaleza em Música</b></button></li>\n</ul>\n</div>"
+         },
+         "elements": []
+        }
+       ],
+       "isInner": true
+      }
+     ],
+     "isInner": true
+    },
+    {
+     "id": "f58c53c",
+     "elType": "widget",
+     "widgetType": "html",
+     "settings": {
+      "html": "<div class=\"gx-coords\"><span>Fortaleza, Ceará</span><span>3°43′S 38°32′O</span><span>ICA · Campus do Pici</span></div>",
+      "_css_classes": "gx-reveal"
+     },
+     "elements": []
+    }
+   ],
+   "isInner": false
+  },
+  {
+   "id": "0342ce8",
+   "elType": "container",
+   "settings": {
+    "content_width": "boxed",
+    "flex_direction": "column",
+    "flex_gap": {
+     "unit": "px",
+     "size": 56,
+     "column": "56",
+     "row": "56",
+     "isLinked": true
+    },
+    "padding": {
+     "unit": "px",
+     "top": "120",
+     "right": "24",
+     "bottom": "120",
+     "left": "24",
+     "isLinked": false
+    },
+    "boxed_width": {
+     "unit": "px",
+     "size": 1200,
+     "sizes": []
+    },
+    "flex_gap_mobile": {
+     "unit": "px",
+     "size": 40,
+     "column": "40",
+     "row": "40",
+     "isLinked": true
+    },
+    "padding_tablet": {
+     "unit": "px",
+     "top": "96",
+     "right": "32",
+     "bottom": "96",
+     "left": "32",
+     "isLinked": false
+    },
+    "padding_mobile": {
+     "unit": "px",
+     "top": "76",
+     "right": "20",
+     "bottom": "76",
+     "left": "20",
+     "isLinked": false
+    },
+    "html_tag": "section",
+    "border_border": "solid",
+    "border_width": {
+     "unit": "px",
+     "top": "1",
+     "right": "0",
+     "bottom": "0",
+     "left": "0",
+     "isLinked": false
+    },
+    "border_color": "#e6e3e3"
+   },
+   "elements": [
+    {
+     "id": "d61a014",
+     "elType": "container",
+     "settings": {
+      "content_width": "full",
+      "flex_direction": "row",
+      "flex_gap": {
+       "unit": "px",
+       "size": 48,
+       "column": "48",
+       "row": "48",
+       "isLinked": true
+      },
+      "padding": {
+       "unit": "px",
+       "top": "0",
+       "right": "0",
+       "bottom": "0",
+       "left": "0",
+       "isLinked": true
+      },
+      "flex_justify_content": "space-between",
+      "flex_align_items": "flex-start",
+      "flex_direction_tablet": "column"
+     },
+     "elements": [
+      {
+       "id": "44c7b23",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "flex_gap": {
+         "unit": "px",
+         "size": 24,
+         "column": "24",
+         "row": "24",
+         "isLinked": true
+        },
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        },
+        "width": {
+         "unit": "%",
+         "size": 40,
+         "sizes": []
+        },
+        "width_tablet": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "css_classes": "gx-stagger"
+       },
+       "elements": [
+        {
+         "id": "72a3fc1",
+         "elType": "widget",
+         "widgetType": "heading",
+         "settings": {
+          "title": "Quem somos",
+          "header_size": "p",
+          "title_color": "#4a6699",
+          "typography_typography": "custom",
+          "typography_font_family": "IBM Plex Mono",
+          "typography_font_size": {
+           "unit": "px",
+           "size": 12,
+           "sizes": []
+          },
+          "typography_font_weight": "500",
+          "typography_line_height": {
+           "unit": "em",
+           "size": 1.4,
+           "sizes": []
+          },
+          "typography_letter_spacing": {
+           "unit": "em",
+           "size": 0.14,
+           "sizes": []
+          },
+          "typography_text_transform": "uppercase",
+          "_css_classes": "gx-eyebrow gx-reveal"
+         },
+         "elements": []
+        },
+        {
+         "id": "e6400f6",
+         "elType": "widget",
+         "widgetType": "heading",
+         "settings": {
+          "title": "A cidade pela lente da <em>comunicação</em>.",
+          "header_size": "h2",
+          "title_color": "#363334",
+          "typography_typography": "custom",
+          "typography_font_family": "Newsreader",
+          "typography_font_size": {
+           "unit": "px",
+           "size": 52,
+           "sizes": []
+          },
+          "typography_font_size_tablet": {
+           "unit": "px",
+           "size": 42,
+           "sizes": []
+          },
+          "typography_font_size_mobile": {
+           "unit": "px",
+           "size": 34,
+           "sizes": []
+          },
+          "typography_font_weight": "400",
+          "typography_line_height": {
+           "unit": "em",
+           "size": 1.06,
+           "sizes": []
+          },
+          "typography_letter_spacing": {
+           "unit": "em",
+           "size": -0.015,
+           "sizes": []
+          },
+          "_css_classes": "gx-balance gx-reveal"
+         },
+         "elements": []
+        }
+       ],
+       "isInner": true
+      },
+      {
+       "id": "3f37d87",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "flex_gap": {
+         "unit": "px",
+         "size": 32,
+         "column": "32",
+         "row": "32",
+         "isLinked": true
+        },
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        },
+        "width": {
+         "unit": "%",
+         "size": 54,
+         "sizes": []
+        },
+        "width_tablet": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "css_classes": "gx-stagger"
+       },
+       "elements": [
+        {
+         "id": "bb9a983",
+         "elType": "widget",
+         "widgetType": "text-editor",
+         "settings": {
+          "editor": "<p>O GICEU reúne pesquisadoras e pesquisadores dos cursos de Publicidade e Propaganda, Jornalismo e Moda da Universidade Federal do Ceará. Desde 2013, estudamos como a comunicação, o consumo e a vida urbana se entrelaçam, e como as experiências de quem vive a cidade produzem imagens, imaginários e modos de consumir.</p>",
+          "text_color": "#363334",
+          "typography_typography": "custom",
+          "typography_font_family": "Public Sans",
+          "typography_font_size": {
+           "unit": "px",
+           "size": 20,
+           "sizes": []
+          },
+          "typography_font_size_mobile": {
+           "unit": "px",
+           "size": 18,
+           "sizes": []
+          },
+          "typography_font_weight": "400",
+          "typography_line_height": {
+           "unit": "em",
+           "size": 1.6,
+           "sizes": []
+          },
+          "_css_classes": "gx-pretty gx-reveal"
+         },
+         "elements": []
+        },
+        {
+         "id": "ccb6161",
+         "elType": "widget",
+         "widgetType": "html",
+         "settings": {
+          "html": "<dl class=\"gx-facts\"><div><dt>Desde</dt><dd>2013</dd></div><div><dt>Instituição</dt><dd>Universidade Federal do Ceará</dd></div><div><dt>Cursos</dt><dd>Publicidade e Propaganda, Jornalismo e Moda</dd></div><div><dt>Sede</dt><dd>ICA, Campus do Pici</dd></div></dl>",
+          "_css_classes": "gx-reveal"
+         },
+         "elements": []
+        },
+        {
+         "id": "7c68300",
+         "elType": "container",
+         "settings": {
+          "content_width": "full",
+          "flex_direction": "row",
+          "flex_gap": {
+           "unit": "px",
+           "size": 12,
+           "column": "12",
+           "row": "12",
+           "isLinked": true
+          },
+          "padding": {
+           "unit": "px",
+           "top": "0",
+           "right": "0",
+           "bottom": "0",
+           "left": "0",
+           "isLinked": true
+          },
+          "flex_align_items": "center",
+          "flex_wrap": "wrap",
+          "css_classes": "gx-reveal"
+         },
+         "elements": [
+          {
+           "id": "84590ea",
+           "elType": "widget",
+           "widgetType": "button",
+           "settings": {
+            "text": "Saiba mais sobre o grupo",
+            "link": {
+             "url": "/sobre-nos/",
+             "is_external": "",
+             "nofollow": "",
+             "custom_attributes": ""
+            },
+            "background_color": "#363334",
+            "button_text_color": "#fdfdfd",
+            "button_background_hover_color": "#4a6699",
+            "hover_color": "#fdfdfd",
+            "border_radius": {
+             "unit": "px",
+             "top": "999",
+             "right": "999",
+             "bottom": "999",
+             "left": "999",
+             "isLinked": true
+            },
+            "text_padding": {
+             "unit": "px",
+             "top": "15",
+             "right": "26",
+             "bottom": "15",
+             "left": "26",
+             "isLinked": false
+            },
+            "typography_typography": "custom",
+            "typography_font_family": "Public Sans",
+            "typography_font_size": {
+             "unit": "px",
+             "size": 15,
+             "sizes": []
+            },
+            "typography_font_weight": "600",
+            "typography_line_height": {
+             "unit": "em",
+             "size": 1.2,
+             "sizes": []
+            },
+            "typography_letter_spacing": {
+             "unit": "em",
+             "size": 0.005,
+             "sizes": []
+            },
+            "_css_classes": "gx-btn",
+            "_element_width": "auto",
+            "_flex_size": "none"
+           },
+           "elements": []
+          }
+         ],
+         "isInner": true
+        }
+       ],
+       "isInner": true
+      }
+     ],
+     "isInner": true
+    }
+   ],
+   "isInner": false
+  },
+  {
+   "id": "409a196",
+   "elType": "container",
+   "settings": {
+    "content_width": "boxed",
+    "flex_direction": "column",
+    "flex_gap": {
+     "unit": "px",
+     "size": 64,
+     "column": "64",
+     "row": "64",
+     "isLinked": true
+    },
+    "padding": {
+     "unit": "px",
+     "top": "120",
+     "right": "24",
+     "bottom": "120",
+     "left": "24",
+     "isLinked": false
+    },
+    "boxed_width": {
+     "unit": "px",
+     "size": 1200,
+     "sizes": []
+    },
+    "flex_gap_mobile": {
+     "unit": "px",
+     "size": 40,
+     "column": "40",
+     "row": "40",
+     "isLinked": true
+    },
+    "padding_tablet": {
+     "unit": "px",
+     "top": "96",
+     "right": "32",
+     "bottom": "96",
+     "left": "32",
+     "isLinked": false
+    },
+    "padding_mobile": {
+     "unit": "px",
+     "top": "76",
+     "right": "20",
+     "bottom": "76",
+     "left": "20",
+     "isLinked": false
+    },
+    "background_background": "classic",
+    "background_color": "#e8edf6",
+    "css_classes": "gx-mist",
+    "html_tag": "section"
+   },
+   "elements": [
+    {
+     "id": "1f11a6b",
+     "elType": "container",
+     "settings": {
+      "content_width": "full",
+      "flex_direction": "row",
+      "flex_gap": {
+       "unit": "px",
+       "size": 48,
+       "column": "48",
+       "row": "48",
+       "isLinked": true
+      },
+      "padding": {
+       "unit": "px",
+       "top": "0",
+       "right": "0",
+       "bottom": "0",
+       "left": "0",
+       "isLinked": true
+      },
+      "flex_justify_content": "space-between",
+      "flex_align_items": "flex-end",
+      "flex_direction_tablet": "column"
+     },
+     "elements": [
+      {
+       "id": "ec81caa",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "flex_gap": {
+         "unit": "px",
+         "size": 24,
+         "column": "24",
+         "row": "24",
+         "isLinked": true
+        },
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        },
+        "width": {
+         "unit": "%",
+         "size": 64,
+         "sizes": []
+        },
+        "width_tablet": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "css_classes": "gx-stagger"
+       },
+       "elements": [
+        {
+         "id": "ea1eb9c",
+         "elType": "widget",
+         "widgetType": "heading",
+         "settings": {
+          "title": "O que investigamos",
+          "header_size": "p",
+          "title_color": "#4a6699",
+          "typography_typography": "custom",
+          "typography_font_family": "IBM Plex Mono",
+          "typography_font_size": {
+           "unit": "px",
+           "size": 12,
+           "sizes": []
+          },
+          "typography_font_weight": "500",
+          "typography_line_height": {
+           "unit": "em",
+           "size": 1.4,
+           "sizes": []
+          },
+          "typography_letter_spacing": {
+           "unit": "em",
+           "size": 0.14,
+           "sizes": []
+          },
+          "typography_text_transform": "uppercase",
+          "_css_classes": "gx-eyebrow gx-reveal"
+         },
+         "elements": []
+        },
+        {
+         "id": "e8798c9",
+         "elType": "widget",
+         "widgetType": "heading",
+         "settings": {
+          "title": "Duas linhas de pesquisa e um projeto que leva a cidade para a <em>rua</em>.",
+          "header_size": "h2",
+          "title_color": "#363334",
+          "typography_typography": "custom",
+          "typography_font_family": "Newsreader",
+          "typography_font_size": {
+           "unit": "px",
+           "size": 52,
+           "sizes": []
+          },
+          "typography_font_size_tablet": {
+           "unit": "px",
+           "size": 42,
+           "sizes": []
+          },
+          "typography_font_size_mobile": {
+           "unit": "px",
+           "size": 34,
+           "sizes": []
+          },
+          "typography_font_weight": "400",
+          "typography_line_height": {
+           "unit": "em",
+           "size": 1.06,
+           "sizes": []
+          },
+          "typography_letter_spacing": {
+           "unit": "em",
+           "size": -0.015,
+           "sizes": []
+          },
+          "_css_classes": "gx-balance gx-reveal"
+         },
+         "elements": []
+        }
+       ],
+       "isInner": true
+      }
+     ],
+     "isInner": true
+    },
+    {
+     "id": "21ff55c",
+     "elType": "container",
+     "settings": {
+      "content_width": "full",
+      "flex_direction": "row",
+      "flex_gap": {
+       "unit": "px",
+       "size": 24,
+       "column": "24",
+       "row": "24",
+       "isLinked": true
+      },
+      "padding": {
+       "unit": "px",
+       "top": "26",
+       "right": "0",
+       "bottom": "0",
+       "left": "0",
+       "isLinked": false
+      },
+      "flex_justify_content": "space-between",
+      "flex_gap_mobile": {
+       "unit": "px",
+       "size": 48,
+       "column": "48",
+       "row": "48",
+       "isLinked": true
+      },
+      "padding_tablet": {
+       "unit": "px",
+       "top": "26",
+       "right": "0",
+       "bottom": "0",
+       "left": "0",
+       "isLinked": false
+      },
+      "flex_direction_tablet": "column",
+      "css_classes": "gx-linerow gx-draw gx-stagger"
+     },
+     "elements": [
+      {
+       "id": "f79a2d9",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "flex_gap": {
+         "unit": "px",
+         "size": 16,
+         "column": "16",
+         "row": "16",
+         "isLinked": true
+        },
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "28",
+         "bottom": "30",
+         "left": "28",
+         "isLinked": false
+        },
+        "background_background": "classic",
+        "background_color": "#fdfdfd",
+        "width": {
+         "unit": "%",
+         "size": 31.5,
+         "sizes": []
+        },
+        "width_tablet": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "border_radius": {
+         "unit": "px",
+         "top": "18",
+         "right": "18",
+         "bottom": "18",
+         "left": "18",
+         "isLinked": true
+        },
+        "css_classes": "gx-card gx-linecard gx-reveal"
+       },
+       "elements": [
+        {
+         "id": "a2aed16",
+         "elType": "widget",
+         "widgetType": "html",
+         "settings": {
+          "html": "<span class=\"gx-badge \" aria-hidden=\"true\">L1</span>",
+          "_css_classes": "gx-badge-w"
+         },
+         "elements": []
+        },
+        {
+         "id": "8d99110",
+         "elType": "widget",
+         "widgetType": "heading",
+         "settings": {
+          "title": "Linha 1",
+          "header_size": "p",
+          "title_color": "#4a6699",
+          "typography_typography": "custom",
+          "typography_font_family": "IBM Plex Mono",
+          "typography_font_size": {
+           "unit": "px",
+           "size": 11.5,
+           "sizes": []
+          },
+          "typography_font_weight": "500",
+          "typography_line_height": {
+           "unit": "em",
+           "size": 1.4,
+           "sizes": []
+          },
+          "typography_letter_spacing": {
+           "unit": "em",
+           "size": 0.12,
+           "sizes": []
+          },
+          "typography_text_transform": "uppercase"
+         },
+         "elements": []
+        },
+        {
+         "id": "a1b797d",
+         "elType": "widget",
+         "widgetType": "heading",
+         "settings": {
+          "title": "Comunicação e Cidade",
+          "header_size": "h3",
+          "title_color": "#363334",
+          "typography_typography": "custom",
+          "typography_font_family": "Newsreader",
+          "typography_font_size": {
+           "unit": "px",
+           "size": 26,
+           "sizes": []
+          },
+          "typography_font_size_mobile": {
+           "unit": "px",
+           "size": 23,
+           "sizes": []
+          },
+          "typography_font_weight": "500",
+          "typography_line_height": {
+           "unit": "em",
+           "size": 1.15,
+           "sizes": []
+          },
+          "typography_letter_spacing": {
+           "unit": "em",
+           "size": -0.01,
+           "sizes": []
+          }
+         },
+         "elements": []
+        },
+        {
+         "id": "daac9bc",
+         "elType": "widget",
+         "widgetType": "text-editor",
+         "settings": {
+          "editor": "<p>A cidade como lugar de criação de representações, imagens e imaginários, vista pelas práticas cotidianas e pelos afetos das paisagens urbanas.</p>",
+          "text_color": "#6b6768",
+          "typography_typography": "custom",
+          "typography_font_family": "Public Sans",
+          "typography_font_size": {
+           "unit": "px",
+           "size": 17,
+           "sizes": []
+          },
+          "typography_font_size_mobile": {
+           "unit": "px",
+           "size": 16,
+           "sizes": []
+          },
+          "typography_font_weight": "400",
+          "typography_line_height": {
+           "unit": "em",
+           "size": 1.65,
+           "sizes": []
+          },
+          "_css_classes": "gx-pretty",
+          "_flex_size": "grow"
+         },
+         "elements": []
+        },
+        {
+         "id": "18f1465",
+         "elType": "widget",
+         "widgetType": "button",
+         "settings": {
+          "text": "Conheça a linha",
+          "link": {
+           "url": "/projetos/#linha-1",
+           "is_external": "",
+           "nofollow": "",
+           "custom_attributes": ""
+          },
+          "background_color": "rgba(0,0,0,0)",
+          "button_text_color": "#363334",
+          "button_background_hover_color": "#363334",
+          "hover_color": "#fdfdfd",
+          "border_radius": {
+           "unit": "px",
+           "top": "999",
+           "right": "999",
+           "bottom": "999",
+           "left": "999",
+           "isLinked": true
+          },
+          "text_padding": {
+           "unit": "px",
+           "top": "12",
+           "right": "20",
+           "bottom": "12",
+           "left": "20",
+           "isLinked": false
+          },
+          "typography_typography": "custom",
+          "typography_font_family": "Public Sans",
+          "typography_font_size": {
+           "unit": "px",
+           "size": 14,
+           "sizes": []
+          },
+          "typography_font_weight": "600",
+          "typography_line_height": {
+           "unit": "em",
+           "size": 1.2,
+           "sizes": []
+          },
+          "typography_letter_spacing": {
+           "unit": "em",
+           "size": 0.005,
+           "sizes": []
+          },
+          "border_border": "solid",
+          "border_width": {
+           "unit": "px",
+           "top": "1.5",
+           "right": "1.5",
+           "bottom": "1.5",
+           "left": "1.5",
+           "isLinked": true
+          },
+          "border_color": "#363334",
+          "button_hover_border_color": "#363334",
+          "_css_classes": "gx-btn"
+         },
+         "elements": []
+        }
+       ],
+       "isInner": true
+      },
+      {
+       "id": "f51bf7a",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "flex_gap": {
+         "unit": "px",
+         "size": 16,
+         "column": "16",
+         "row": "16",
+         "isLinked": true
+        },
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "28",
+         "bottom": "30",
+         "left": "28",
+         "isLinked": false
+        },
+        "background_background": "classic",
+        "background_color": "#fdfdfd",
+        "width": {
+         "unit": "%",
+         "size": 31.5,
+         "sizes": []
+        },
+        "width_tablet": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "border_radius": {
+         "unit": "px",
+         "top": "18",
+         "right": "18",
+         "bottom": "18",
+         "left": "18",
+         "isLinked": true
+        },
+        "css_classes": "gx-card gx-linecard gx-reveal"
+       },
+       "elements": [
+        {
+         "id": "6ca688b",
+         "elType": "widget",
+         "widgetType": "html",
+         "settings": {
+          "html": "<span class=\"gx-badge gx-badge--l2\" aria-hidden=\"true\">L2</span>",
+          "_css_classes": "gx-badge-w"
+         },
+         "elements": []
+        },
+        {
+         "id": "f428b88",
+         "elType": "widget",
+         "widgetType": "heading",
+         "settings": {
+          "title": "Linha 2",
+          "header_size": "p",
+          "title_color": "#4a6699",
+          "typography_typography": "custom",
+          "typography_font_family": "IBM Plex Mono",
+          "typography_font_size": {
+           "unit": "px",
+           "size": 11.5,
+           "sizes": []
+          },
+          "typography_font_weight": "500",
+          "typography_line_height": {
+           "unit": "em",
+           "size": 1.4,
+           "sizes": []
+          },
+          "typography_letter_spacing": {
+           "unit": "em",
+           "size": 0.12,
+           "sizes": []
+          },
+          "typography_text_transform": "uppercase"
+         },
+         "elements": []
+        },
+        {
+         "id": "7afe5c6",
+         "elType": "widget",
+         "widgetType": "heading",
+         "settings": {
+          "title": "Comunicação e Consumo",
+          "header_size": "h3",
+          "title_color": "#363334",
+          "typography_typography": "custom",
+          "typography_font_family": "Newsreader",
+          "typography_font_size": {
+           "unit": "px",
+           "size": 26,
+           "sizes": []
+          },
+          "typography_font_size_mobile": {
+           "unit": "px",
+           "size": 23,
+           "sizes": []
+          },
+          "typography_font_weight": "500",
+          "typography_line_height": {
+           "unit": "em",
+           "size": 1.15,
+           "sizes": []
+          },
+          "typography_letter_spacing": {
+           "unit": "em",
+           "size": -0.01,
+           "sizes": []
+          }
+         },
+         "elements": []
+        },
+        {
+         "id": "156a4be",
+         "elType": "widget",
+         "widgetType": "text-editor",
+         "settings": {
+          "editor": "<p>O consumo em processos e produtos de comunicação, com estudos sobre moda, marcas, gastronomia, jogos, feiras e produtos culturais.</p>",
+          "text_color": "#6b6768",
+          "typography_typography": "custom",
+          "typography_font_family": "Public Sans",
+          "typography_font_size": {
+           "unit": "px",
+           "size": 17,
+           "sizes": []
+          },
+          "typography_font_size_mobile": {
+           "unit": "px",
+           "size": 16,
+           "sizes": []
+          },
+          "typography_font_weight": "400",
+          "typography_line_height": {
+           "unit": "em",
+           "size": 1.65,
+           "sizes": []
+          },
+          "_css_classes": "gx-pretty",
+          "_flex_size": "grow"
+         },
+         "elements": []
+        },
+        {
+         "id": "55e9770",
+         "elType": "widget",
+         "widgetType": "button",
+         "settings": {
+          "text": "Conheça a linha",
+          "link": {
+           "url": "/projetos/#linha-2",
+           "is_external": "",
+           "nofollow": "",
+           "custom_attributes": ""
+          },
+          "background_color": "rgba(0,0,0,0)",
+          "button_text_color": "#363334",
+          "button_background_hover_color": "#363334",
+          "hover_color": "#fdfdfd",
+          "border_radius": {
+           "unit": "px",
+           "top": "999",
+           "right": "999",
+           "bottom": "999",
+           "left": "999",
+           "isLinked": true
+          },
+          "text_padding": {
+           "unit": "px",
+           "top": "12",
+           "right": "20",
+           "bottom": "12",
+           "left": "20",
+           "isLinked": false
+          },
+          "typography_typography": "custom",
+          "typography_font_family": "Public Sans",
+          "typography_font_size": {
+           "unit": "px",
+           "size": 14,
+           "sizes": []
+          },
+          "typography_font_weight": "600",
+          "typography_line_height": {
+           "unit": "em",
+           "size": 1.2,
+           "sizes": []
+          },
+          "typography_letter_spacing": {
+           "unit": "em",
+           "size": 0.005,
+           "sizes": []
+          },
+          "border_border": "solid",
+          "border_width": {
+           "unit": "px",
+           "top": "1.5",
+           "right": "1.5",
+           "bottom": "1.5",
+           "left": "1.5",
+           "isLinked": true
+          },
+          "border_color": "#363334",
+          "button_hover_border_color": "#363334",
+          "_css_classes": "gx-btn"
+         },
+         "elements": []
+        }
+       ],
+       "isInner": true
+      },
+      {
+       "id": "1adf411",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "flex_gap": {
+         "unit": "px",
+         "size": 16,
+         "column": "16",
+         "row": "16",
+         "isLinked": true
+        },
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "28",
+         "bottom": "30",
+         "left": "28",
+         "isLinked": false
+        },
+        "background_background": "classic",
+        "background_color": "#fdfdfd",
+        "width": {
+         "unit": "%",
+         "size": 31.5,
+         "sizes": []
+        },
+        "width_tablet": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "border_radius": {
+         "unit": "px",
+         "top": "18",
+         "right": "18",
+         "bottom": "18",
+         "left": "18",
+         "isLinked": true
+        },
+        "css_classes": "gx-card gx-linecard gx-reveal"
+       },
+       "elements": [
+        {
+         "id": "e53c4d1",
+         "elType": "widget",
+         "widgetType": "html",
+         "settings": {
+          "html": "<span class=\"gx-badge gx-badge--fm\" aria-hidden=\"true\">FM</span>",
+          "_css_classes": "gx-badge-w"
+         },
+         "elements": []
+        },
+        {
+         "id": "ca84df8",
+         "elType": "widget",
+         "widgetType": "heading",
+         "settings": {
+          "title": "Projeto",
+          "header_size": "p",
+          "title_color": "#4a6699",
+          "typography_typography": "custom",
+          "typography_font_family": "IBM Plex Mono",
+          "typography_font_size": {
+           "unit": "px",
+           "size": 11.5,
+           "sizes": []
+          },
+          "typography_font_weight": "500",
+          "typography_line_height": {
+           "unit": "em",
+           "size": 1.4,
+           "sizes": []
+          },
+          "typography_letter_spacing": {
+           "unit": "em",
+           "size": 0.12,
+           "sizes": []
+          },
+          "typography_text_transform": "uppercase"
+         },
+         "elements": []
+        },
+        {
+         "id": "ce10759",
+         "elType": "widget",
+         "widgetType": "heading",
+         "settings": {
+          "title": "Fortaleza em Música",
+          "header_size": "h3",
+          "title_color": "#363334",
+          "typography_typography": "custom",
+          "typography_font_family": "Newsreader",
+          "typography_font_size": {
+           "unit": "px",
+           "size": 26,
+           "sizes": []
+          },
+          "typography_font_size_mobile": {
+           "unit": "px",
+           "size": 23,
+           "sizes": []
+          },
+          "typography_font_weight": "500",
+          "typography_line_height": {
+           "unit": "em",
+           "size": 1.15,
+           "sizes": []
+          },
+          "typography_letter_spacing": {
+           "unit": "em",
+           "size": -0.01,
+           "sizes": []
+          }
+         },
+         "elements": []
+        },
+        {
+         "id": "b18a7c9",
+         "elType": "widget",
+         "widgetType": "text-editor",
+         "settings": {
+          "editor": "<p>Um mapa afetivo das canções que contam Fortaleza, reunido em aplicativo e álbum de figurinhas.</p>",
+          "text_color": "#6b6768",
+          "typography_typography": "custom",
+          "typography_font_family": "Public Sans",
+          "typography_font_size": {
+           "unit": "px",
+           "size": 17,
+           "sizes": []
+          },
+          "typography_font_size_mobile": {
+           "unit": "px",
+           "size": 16,
+           "sizes": []
+          },
+          "typography_font_weight": "400",
+          "typography_line_height": {
+           "unit": "em",
+           "size": 1.65,
+           "sizes": []
+          },
+          "_css_classes": "gx-pretty",
+          "_flex_size": "grow"
+         },
+         "elements": []
+        },
+        {
+         "id": "5d3b442",
+         "elType": "widget",
+         "widgetType": "button",
+         "settings": {
+          "text": "Conheça o projeto",
+          "link": {
+           "url": "/projetos/#fortaleza-em-musica",
+           "is_external": "",
+           "nofollow": "",
+           "custom_attributes": ""
+          },
+          "background_color": "rgba(0,0,0,0)",
+          "button_text_color": "#363334",
+          "button_background_hover_color": "#363334",
+          "hover_color": "#fdfdfd",
+          "border_radius": {
+           "unit": "px",
+           "top": "999",
+           "right": "999",
+           "bottom": "999",
+           "left": "999",
+           "isLinked": true
+          },
+          "text_padding": {
+           "unit": "px",
+           "top": "12",
+           "right": "20",
+           "bottom": "12",
+           "left": "20",
+           "isLinked": false
+          },
+          "typography_typography": "custom",
+          "typography_font_family": "Public Sans",
+          "typography_font_size": {
+           "unit": "px",
+           "size": 14,
+           "sizes": []
+          },
+          "typography_font_weight": "600",
+          "typography_line_height": {
+           "unit": "em",
+           "size": 1.2,
+           "sizes": []
+          },
+          "typography_letter_spacing": {
+           "unit": "em",
+           "size": 0.005,
+           "sizes": []
+          },
+          "border_border": "solid",
+          "border_width": {
+           "unit": "px",
+           "top": "1.5",
+           "right": "1.5",
+           "bottom": "1.5",
+           "left": "1.5",
+           "isLinked": true
+          },
+          "border_color": "#363334",
+          "button_hover_border_color": "#363334",
+          "_css_classes": "gx-btn"
+         },
+         "elements": []
+        }
+       ],
+       "isInner": true
+      }
+     ],
+     "isInner": true
+    }
+   ],
+   "isInner": false
+  },
+  {
+   "id": "9f8b2aa",
+   "elType": "container",
+   "settings": {
+    "content_width": "boxed",
+    "flex_direction": "column",
+    "flex_gap": {
+     "unit": "px",
+     "size": 56,
+     "column": "56",
+     "row": "56",
+     "isLinked": true
+    },
+    "padding": {
+     "unit": "px",
+     "top": "120",
+     "right": "24",
+     "bottom": "120",
+     "left": "24",
+     "isLinked": false
+    },
+    "boxed_width": {
+     "unit": "px",
+     "size": 1200,
+     "sizes": []
+    },
+    "flex_gap_mobile": {
+     "unit": "px",
+     "size": 40,
+     "column": "40",
+     "row": "40",
+     "isLinked": true
+    },
+    "padding_tablet": {
+     "unit": "px",
+     "top": "96",
+     "right": "32",
+     "bottom": "96",
+     "left": "32",
+     "isLinked": false
+    },
+    "padding_mobile": {
+     "unit": "px",
+     "top": "76",
+     "right": "20",
+     "bottom": "76",
+     "left": "20",
+     "isLinked": false
+    },
+    "html_tag": "section"
+   },
+   "elements": [
+    {
+     "id": "b9910de",
+     "elType": "container",
+     "settings": {
+      "content_width": "full",
+      "flex_direction": "row",
+      "flex_gap": {
+       "unit": "px",
+       "size": 48,
+       "column": "48",
+       "row": "48",
+       "isLinked": true
+      },
+      "padding": {
+       "unit": "px",
+       "top": "0",
+       "right": "0",
+       "bottom": "0",
+       "left": "0",
+       "isLinked": true
+      },
+      "flex_justify_content": "space-between",
+      "flex_align_items": "center",
+      "flex_direction_tablet": "column"
+     },
+     "elements": [
+      {
+       "id": "6c70c6d",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "flex_gap": {
+         "unit": "px",
+         "size": 24,
+         "column": "24",
+         "row": "24",
+         "isLinked": true
+        },
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        },
+        "width": {
+         "unit": "%",
+         "size": 52,
+         "sizes": []
+        },
+        "width_tablet": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "css_classes": "gx-stagger"
+       },
+       "elements": [
+        {
+         "id": "24c6d40",
+         "elType": "widget",
+         "widgetType": "heading",
+         "settings": {
+          "title": "Quem faz o GICEU",
+          "header_size": "p",
+          "title_color": "#4a6699",
+          "typography_typography": "custom",
+          "typography_font_family": "IBM Plex Mono",
+          "typography_font_size": {
+           "unit": "px",
+           "size": 12,
+           "sizes": []
+          },
+          "typography_font_weight": "500",
+          "typography_line_height": {
+           "unit": "em",
+           "size": 1.4,
+           "sizes": []
+          },
+          "typography_letter_spacing": {
+           "unit": "em",
+           "size": 0.14,
+           "sizes": []
+          },
+          "typography_text_transform": "uppercase",
+          "_css_classes": "gx-eyebrow gx-reveal"
+         },
+         "elements": []
+        },
+        {
+         "id": "11843f6",
+         "elType": "widget",
+         "widgetType": "heading",
+         "settings": {
+          "title": "Gente de muitos lugares em torno de uma pergunta <em>comum</em>.",
+          "header_size": "h2",
+          "title_color": "#363334",
+          "typography_typography": "custom",
+          "typography_font_family": "Newsreader",
+          "typography_font_size": {
+           "unit": "px",
+           "size": 52,
+           "sizes": []
+          },
+          "typography_font_size_tablet": {
+           "unit": "px",
+           "size": 42,
+           "sizes": []
+          },
+          "typography_font_size_mobile": {
+           "unit": "px",
+           "size": 34,
+           "sizes": []
+          },
+          "typography_font_weight": "400",
+          "typography_line_height": {
+           "unit": "em",
+           "size": 1.06,
+           "sizes": []
+          },
+          "typography_letter_spacing": {
+           "unit": "em",
+           "size": -0.015,
+           "sizes": []
+          },
+          "_css_classes": "gx-balance gx-reveal"
+         },
+         "elements": []
+        },
+        {
+         "id": "a73ac8c",
+         "elType": "widget",
+         "widgetType": "text-editor",
+         "settings": {
+          "editor": "<p>Professoras, professores, doutorandos, mestrandos e graduandos de diferentes instituições, unidos pelo interesse em compreender a cidade pela lente da comunicação.</p>",
+          "text_color": "#6b6768",
+          "typography_typography": "custom",
+          "typography_font_family": "Public Sans",
+          "typography_font_size": {
+           "unit": "px",
+           "size": 20,
+           "sizes": []
+          },
+          "typography_font_size_mobile": {
+           "unit": "px",
+           "size": 18,
+           "sizes": []
+          },
+          "typography_font_weight": "400",
+          "typography_line_height": {
+           "unit": "em",
+           "size": 1.6,
+           "sizes": []
+          },
+          "_css_classes": "gx-pretty gx-reveal"
+         },
+         "elements": []
+        },
+        {
+         "id": "c66d564",
+         "elType": "container",
+         "settings": {
+          "content_width": "full",
+          "flex_direction": "row",
+          "flex_gap": {
+           "unit": "px",
+           "size": 12,
+           "column": "12",
+           "row": "12",
+           "isLinked": true
+          },
+          "padding": {
+           "unit": "px",
+           "top": "0",
+           "right": "0",
+           "bottom": "0",
+           "left": "0",
+           "isLinked": true
+          },
+          "flex_align_items": "center",
+          "flex_wrap": "wrap",
+          "css_classes": "gx-reveal"
+         },
+         "elements": [
+          {
+           "id": "83c15ed",
+           "elType": "widget",
+           "widgetType": "button",
+           "settings": {
+            "text": "Conheça os pesquisadores",
+            "link": {
+             "url": "/pesquisadores/",
+             "is_external": "",
+             "nofollow": "",
+             "custom_attributes": ""
+            },
+            "background_color": "#363334",
+            "button_text_color": "#fdfdfd",
+            "button_background_hover_color": "#4a6699",
+            "hover_color": "#fdfdfd",
+            "border_radius": {
+             "unit": "px",
+             "top": "999",
+             "right": "999",
+             "bottom": "999",
+             "left": "999",
+             "isLinked": true
+            },
+            "text_padding": {
+             "unit": "px",
+             "top": "15",
+             "right": "26",
+             "bottom": "15",
+             "left": "26",
+             "isLinked": false
+            },
+            "typography_typography": "custom",
+            "typography_font_family": "Public Sans",
+            "typography_font_size": {
+             "unit": "px",
+             "size": 15,
+             "sizes": []
+            },
+            "typography_font_weight": "600",
+            "typography_line_height": {
+             "unit": "em",
+             "size": 1.2,
+             "sizes": []
+            },
+            "typography_letter_spacing": {
+             "unit": "em",
+             "size": 0.005,
+             "sizes": []
+            },
+            "_css_classes": "gx-btn",
+            "_element_width": "auto",
+            "_flex_size": "none"
+           },
+           "elements": []
+          }
+         ],
+         "isInner": true
+        }
+       ],
+       "isInner": true
+      },
+      {
+       "id": "0c1bec0",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "flex_gap": {
+         "unit": "px",
+         "size": 20,
+         "column": "20",
+         "row": "20",
+         "isLinked": true
+        },
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        },
+        "width": {
+         "unit": "%",
+         "size": 40,
+         "sizes": []
+        },
+        "width_tablet": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "css_classes": "gx-stagger"
+       },
+       "elements": [
+        {
+         "id": "f5522e6",
+         "elType": "widget",
+         "widgetType": "heading",
+         "settings": {
+          "title": "Quem pesquisa com a gente",
+          "header_size": "p",
+          "title_color": "#6b6768",
+          "typography_typography": "custom",
+          "typography_font_family": "IBM Plex Mono",
+          "typography_font_size": {
+           "unit": "px",
+           "size": 11.5,
+           "sizes": []
+          },
+          "typography_font_weight": "500",
+          "typography_line_height": {
+           "unit": "em",
+           "size": 1.4,
+           "sizes": []
+          },
+          "typography_letter_spacing": {
+           "unit": "em",
+           "size": 0.12,
+           "sizes": []
+          },
+          "typography_text_transform": "uppercase",
+          "_css_classes": "gx-reveal"
+         },
+         "elements": []
+        },
+        {
+         "id": "610ba98",
+         "elType": "widget",
+         "widgetType": "html",
+         "settings": {
+          "html": "<ul class=\"gx-tags gx-tags--lg\"><li>Professoras e professores</li><li>Doutorandos</li><li>Mestrandos</li><li>Graduandos</li><li>Universidades do Ceará</li><li>do Brasil</li><li>e do exterior</li></ul>",
+          "_css_classes": "gx-reveal"
+         },
+         "elements": []
+        }
+       ],
+       "isInner": true
+      }
+     ],
+     "isInner": true
+    }
+   ],
+   "isInner": false
+  },
+  {
+   "id": "722d6fa",
+   "elType": "container",
+   "settings": {
+    "content_width": "boxed",
+    "flex_direction": "column",
+    "flex_gap": {
+     "unit": "px",
+     "size": 56,
+     "column": "56",
+     "row": "56",
+     "isLinked": true
+    },
+    "padding": {
+     "unit": "px",
+     "top": "120",
+     "right": "24",
+     "bottom": "120",
+     "left": "24",
+     "isLinked": false
+    },
+    "boxed_width": {
+     "unit": "px",
+     "size": 1200,
+     "sizes": []
+    },
+    "flex_gap_mobile": {
+     "unit": "px",
+     "size": 40,
+     "column": "40",
+     "row": "40",
+     "isLinked": true
+    },
+    "padding_tablet": {
+     "unit": "px",
+     "top": "96",
+     "right": "32",
+     "bottom": "96",
+     "left": "32",
+     "isLinked": false
+    },
+    "padding_mobile": {
+     "unit": "px",
+     "top": "76",
+     "right": "20",
+     "bottom": "76",
+     "left": "20",
+     "isLinked": false
+    },
+    "background_background": "classic",
+    "background_color": "#7590c1",
+    "css_classes": "gx-on-blue",
+    "html_tag": "section"
+   },
+   "elements": [
+    {
+     "id": "d0e3bdc",
+     "elType": "container",
+     "settings": {
+      "content_width": "full",
+      "flex_direction": "row",
+      "flex_gap": {
+       "unit": "px",
+       "size": 48,
+       "column": "48",
+       "row": "48",
+       "isLinked": true
+      },
+      "padding": {
+       "unit": "px",
+       "top": "0",
+       "right": "0",
+       "bottom": "0",
+       "left": "0",
+       "isLinked": true
+      },
+      "flex_justify_content": "space-between",
+      "flex_align_items": "center",
+      "flex_direction_tablet": "column"
+     },
+     "elements": [
+      {
+       "id": "1fe9773",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "flex_gap": {
+         "unit": "px",
+         "size": 24,
+         "column": "24",
+         "row": "24",
+         "isLinked": true
+        },
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        },
+        "width": {
+         "unit": "%",
+         "size": 46,
+         "sizes": []
+        },
+        "width_tablet": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "css_classes": "gx-stagger"
+       },
+       "elements": [
+        {
+         "id": "a581d31",
+         "elType": "widget",
+         "widgetType": "heading",
+         "settings": {
+          "title": "Podcast · Fortaleza e Música",
+          "header_size": "p",
+          "title_color": "#1b2540",
+          "typography_typography": "custom",
+          "typography_font_family": "IBM Plex Mono",
+          "typography_font_size": {
+           "unit": "px",
+           "size": 12,
+           "sizes": []
+          },
+          "typography_font_weight": "500",
+          "typography_line_height": {
+           "unit": "em",
+           "size": 1.4,
+           "sizes": []
+          },
+          "typography_letter_spacing": {
+           "unit": "em",
+           "size": 0.14,
+           "sizes": []
+          },
+          "typography_text_transform": "uppercase",
+          "_css_classes": "gx-eyebrow gx-reveal"
+         },
+         "elements": []
+        },
+        {
+         "id": "f1e5e77",
+         "elType": "widget",
+         "widgetType": "heading",
+         "settings": {
+          "title": "Ouça o <em>podcast</em>.",
+          "header_size": "h2",
+          "title_color": "#fdfdfd",
+          "typography_typography": "custom",
+          "typography_font_family": "Newsreader",
+          "typography_font_size": {
+           "unit": "px",
+           "size": 64,
+           "sizes": []
+          },
+          "typography_font_size_tablet": {
+           "unit": "px",
+           "size": 52,
+           "sizes": []
+          },
+          "typography_font_size_mobile": {
+           "unit": "px",
+           "size": 40,
+           "sizes": []
+          },
+          "typography_font_weight": "400",
+          "typography_line_height": {
+           "unit": "em",
+           "size": 1.06,
+           "sizes": []
+          },
+          "typography_letter_spacing": {
+           "unit": "em",
+           "size": -0.015,
+           "sizes": []
+          },
+          "_css_classes": "gx-balance gx-reveal"
+         },
+         "elements": []
+        },
+        {
+         "id": "0a7722c",
+         "elType": "widget",
+         "widgetType": "text-editor",
+         "settings": {
+          "editor": "<p>Conversas sobre cidade, consumo e cultura, direto da pesquisa para o seu fone de ouvido. Escute o episódio mais recente e acompanhe o programa na sua plataforma favorita.</p>",
+          "text_color": "#1b2540",
+          "typography_typography": "custom",
+          "typography_font_family": "Public Sans",
+          "typography_font_size": {
+           "unit": "px",
+           "size": 20,
+           "sizes": []
+          },
+          "typography_font_size_mobile": {
+           "unit": "px",
+           "size": 18,
+           "sizes": []
+          },
+          "typography_font_weight": "400",
+          "typography_line_height": {
+           "unit": "em",
+           "size": 1.6,
+           "sizes": []
+          },
+          "_css_classes": "gx-pretty gx-reveal"
+         },
+         "elements": []
+        },
+        {
+         "id": "06c8937",
+         "elType": "container",
+         "settings": {
+          "content_width": "full",
+          "flex_direction": "row",
+          "flex_gap": {
+           "unit": "px",
+           "size": 12,
+           "column": "12",
+           "row": "12",
+           "isLinked": true
+          },
+          "padding": {
+           "unit": "px",
+           "top": "0",
+           "right": "0",
+           "bottom": "0",
+           "left": "0",
+           "isLinked": true
+          },
+          "flex_align_items": "center",
+          "flex_wrap": "wrap",
+          "css_classes": "gx-reveal"
+         },
+         "elements": [
+          {
+           "id": "ed75a90",
+           "elType": "widget",
+           "widgetType": "button",
+           "settings": {
+            "text": "Ouvir agora",
+            "link": {
+             "url": "/podcast/",
+             "is_external": "",
+             "nofollow": "",
+             "custom_attributes": ""
+            },
+            "background_color": "#fdfdfd",
+            "button_text_color": "#363334",
+            "button_background_hover_color": "#1b2540",
+            "hover_color": "#fdfdfd",
+            "border_radius": {
+             "unit": "px",
+             "top": "999",
+             "right": "999",
+             "bottom": "999",
+             "left": "999",
+             "isLinked": true
+            },
+            "text_padding": {
+             "unit": "px",
+             "top": "15",
+             "right": "26",
+             "bottom": "15",
+             "left": "26",
+             "isLinked": false
+            },
+            "typography_typography": "custom",
+            "typography_font_family": "Public Sans",
+            "typography_font_size": {
+             "unit": "px",
+             "size": 15,
+             "sizes": []
+            },
+            "typography_font_weight": "600",
+            "typography_line_height": {
+             "unit": "em",
+             "size": 1.2,
+             "sizes": []
+            },
+            "typography_letter_spacing": {
+             "unit": "em",
+             "size": 0.005,
+             "sizes": []
+            },
+            "_css_classes": "gx-btn",
+            "_element_width": "auto",
+            "_flex_size": "none"
+           },
+           "elements": []
+          }
+         ],
+         "isInner": true
+        }
+       ],
+       "isInner": true
+      },
+      {
+       "id": "3d68262",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "flex_gap": {
+         "unit": "px",
+         "size": 24,
+         "column": "24",
+         "row": "24",
+         "isLinked": true
+        },
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        },
+        "width": {
+         "unit": "%",
+         "size": 46,
+         "sizes": []
+        },
+        "width_tablet": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "css_classes": "gx-reveal"
+       },
+       "elements": [
+        {
+         "id": "379970b",
+         "elType": "widget",
+         "widgetType": "html",
+         "settings": {
+          "html": "<div class=\"gx-eq gx-live\" aria-hidden=\"true\"><span style=\"--h:14%;--t:1.1s;--dl:0.0s\"></span><span style=\"--h:31%;--t:1.2s;--dl:-0.2s\"></span><span style=\"--h:44%;--t:1.3s;--dl:-0.4s\"></span><span style=\"--h:51%;--t:1.4s;--dl:-0.6s\"></span><span style=\"--h:51%;--t:1.5s;--dl:-0.8s\"></span><span style=\"--h:43%;--t:1.6s;--dl:-1.0s\"></span><span style=\"--h:39%;--t:1.7s;--dl:-1.2s\"></span><span style=\"--h:54%;--t:1.8s;--dl:-1.4s\"></span><span style=\"--h:63%;--t:1.9s;--dl:-1.6s\"></span><span style=\"--h:63%;--t:1.1s;--dl:-0.1s\"></span><span style=\"--h:54%;--t:1.2s;--dl:-0.3s\"></span><span style=\"--h:41%;--t:1.3s;--dl:-0.5s\"></span><span style=\"--h:52%;--t:1.4s;--dl:-0.7s\"></span><span style=\"--h:55%;--t:1.5s;--dl:-0.9s\"></span><span style=\"--h:47%;--t:1.6s;--dl:-1.1s\"></span><span style=\"--h:57%;--t:1.7s;--dl:-1.3s\"></span><span style=\"--h:76%;--t:1.8s;--dl:-1.5s\"></span><span style=\"--h:91%;--t:1.9s;--dl:0.0s\"></span><span style=\"--h:94%;--t:1.1s;--dl:-0.2s\"></span><span style=\"--h:84%;--t:1.2s;--dl:-0.4s\"></span><span style=\"--h:64%;--t:1.3s;--dl:-0.6s\"></span><span style=\"--h:48%;--t:1.4s;--dl:-0.8s\"></span><span style=\"--h:68%;--t:1.5s;--dl:-1.0s\"></span><span style=\"--h:79%;--t:1.6s;--dl:-1.2s\"></span><span style=\"--h:78%;--t:1.7s;--dl:-1.4s\"></span><span style=\"--h:66%;--t:1.8s;--dl:-1.6s\"></span><span style=\"--h:50%;--t:1.9s;--dl:-0.1s\"></span><span style=\"--h:39%;--t:1.1s;--dl:-0.3s\"></span><span style=\"--h:44%;--t:1.2s;--dl:-0.5s\"></span><span style=\"--h:40%;--t:1.3s;--dl:-0.7s\"></span><span style=\"--h:34%;--t:1.4s;--dl:-0.9s\"></span><span style=\"--h:41%;--t:1.5s;--dl:-1.1s\"></span><span style=\"--h:44%;--t:1.6s;--dl:-1.3s\"></span><span style=\"--h:40%;--t:1.7s;--dl:-1.5s\"></span><span style=\"--h:30%;--t:1.8s;--dl:0.0s\"></span><span style=\"--h:14%;--t:1.9s;--dl:-0.2s\"></span></div>"
+         },
+         "elements": []
+        }
+       ],
+       "isInner": true
+      }
+     ],
+     "isInner": true
+    }
+   ],
+   "isInner": false
+  },
+  {
+   "id": "feb5e10",
+   "elType": "container",
+   "settings": {
+    "content_width": "boxed",
+    "flex_direction": "column",
+    "flex_gap": {
+     "unit": "px",
+     "size": 56,
+     "column": "56",
+     "row": "56",
+     "isLinked": true
+    },
+    "padding": {
+     "unit": "px",
+     "top": "120",
+     "right": "24",
+     "bottom": "120",
+     "left": "24",
+     "isLinked": false
+    },
+    "boxed_width": {
+     "unit": "px",
+     "size": 1200,
+     "sizes": []
+    },
+    "flex_gap_mobile": {
+     "unit": "px",
+     "size": 40,
+     "column": "40",
+     "row": "40",
+     "isLinked": true
+    },
+    "padding_tablet": {
+     "unit": "px",
+     "top": "96",
+     "right": "32",
+     "bottom": "96",
+     "left": "32",
+     "isLinked": false
+    },
+    "padding_mobile": {
+     "unit": "px",
+     "top": "76",
+     "right": "20",
+     "bottom": "76",
+     "left": "20",
+     "isLinked": false
+    },
+    "html_tag": "section"
+   },
+   "elements": [
+    {
+     "id": "cf1bad7",
+     "elType": "container",
+     "settings": {
+      "content_width": "full",
+      "flex_direction": "row",
+      "flex_gap": {
+       "unit": "px",
+       "size": 48,
+       "column": "48",
+       "row": "48",
+       "isLinked": true
+      },
+      "padding": {
+       "unit": "px",
+       "top": "0",
+       "right": "0",
+       "bottom": "0",
+       "left": "0",
+       "isLinked": true
+      },
+      "flex_justify_content": "space-between",
+      "flex_align_items": "flex-end",
+      "flex_direction_tablet": "column"
+     },
+     "elements": [
+      {
+       "id": "765c489",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "flex_gap": {
+         "unit": "px",
+         "size": 24,
+         "column": "24",
+         "row": "24",
+         "isLinked": true
+        },
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        },
+        "width": {
+         "unit": "%",
+         "size": 44,
+         "sizes": []
+        },
+        "width_tablet": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "css_classes": "gx-stagger"
+       },
+       "elements": [
+        {
+         "id": "0348c06",
+         "elType": "widget",
+         "widgetType": "heading",
+         "settings": {
+          "title": "Blog da Cidade",
+          "header_size": "p",
+          "title_color": "#4a6699",
+          "typography_typography": "custom",
+          "typography_font_family": "IBM Plex Mono",
+          "typography_font_size": {
+           "unit": "px",
+           "size": 12,
+           "sizes": []
+          },
+          "typography_font_weight": "500",
+          "typography_line_height": {
+           "unit": "em",
+           "size": 1.4,
+           "sizes": []
+          },
+          "typography_letter_spacing": {
+           "unit": "em",
+           "size": 0.14,
+           "sizes": []
+          },
+          "typography_text_transform": "uppercase",
+          "_css_classes": "gx-eyebrow gx-reveal"
+         },
+         "elements": []
+        },
+        {
+         "id": "b61d4b2",
+         "elType": "widget",
+         "widgetType": "heading",
+         "settings": {
+          "title": "Últimas do blog",
+          "header_size": "h2",
+          "title_color": "#363334",
+          "typography_typography": "custom",
+          "typography_font_family": "Newsreader",
+          "typography_font_size": {
+           "unit": "px",
+           "size": 52,
+           "sizes": []
+          },
+          "typography_font_size_tablet": {
+           "unit": "px",
+           "size": 42,
+           "sizes": []
+          },
+          "typography_font_size_mobile": {
+           "unit": "px",
+           "size": 34,
+           "sizes": []
+          },
+          "typography_font_weight": "400",
+          "typography_line_height": {
+           "unit": "em",
+           "size": 1.06,
+           "sizes": []
+          },
+          "typography_letter_spacing": {
+           "unit": "em",
+           "size": -0.015,
+           "sizes": []
+          },
+          "_css_classes": "gx-balance gx-reveal"
+         },
+         "elements": []
+        }
+       ],
+       "isInner": true
+      },
+      {
+       "id": "8ae0a9e",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "flex_gap": {
+         "unit": "px",
+         "size": 20,
+         "column": "20",
+         "row": "20",
+         "isLinked": true
+        },
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        },
+        "width": {
+         "unit": "%",
+         "size": 40,
+         "sizes": []
+        },
+        "width_tablet": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "css_classes": "gx-stagger"
+       },
+       "elements": [
+        {
+         "id": "88b563b",
+         "elType": "widget",
+         "widgetType": "text-editor",
+         "settings": {
+          "editor": "<p>Novidades do grupo, eventos, publicações e bastidores das pesquisas.</p>",
+          "text_color": "#6b6768",
+          "typography_typography": "custom",
+          "typography_font_family": "Public Sans",
+          "typography_font_size": {
+           "unit": "px",
+           "size": 18,
+           "sizes": []
+          },
+          "typography_font_size_mobile": {
+           "unit": "px",
+           "size": 16,
+           "sizes": []
+          },
+          "typography_font_weight": "400",
+          "typography_line_height": {
+           "unit": "em",
+           "size": 1.65,
+           "sizes": []
+          },
+          "_css_classes": "gx-pretty gx-reveal"
+         },
+         "elements": []
+        },
+        {
+         "id": "d4d33fb",
+         "elType": "container",
+         "settings": {
+          "content_width": "full",
+          "flex_direction": "row",
+          "flex_gap": {
+           "unit": "px",
+           "size": 12,
+           "column": "12",
+           "row": "12",
+           "isLinked": true
+          },
+          "padding": {
+           "unit": "px",
+           "top": "0",
+           "right": "0",
+           "bottom": "0",
+           "left": "0",
+           "isLinked": true
+          },
+          "flex_align_items": "center",
+          "flex_wrap": "wrap",
+          "css_classes": "gx-reveal"
+         },
+         "elements": [
+          {
+           "id": "95f1452",
+           "elType": "widget",
+           "widgetType": "button",
+           "settings": {
+            "text": "Ver todas as notícias",
+            "link": {
+             "url": "/blog/",
+             "is_external": "",
+             "nofollow": "",
+             "custom_attributes": ""
+            },
+            "background_color": "rgba(0,0,0,0)",
+            "button_text_color": "#363334",
+            "button_background_hover_color": "#363334",
+            "hover_color": "#fdfdfd",
+            "border_radius": {
+             "unit": "px",
+             "top": "999",
+             "right": "999",
+             "bottom": "999",
+             "left": "999",
+             "isLinked": true
+            },
+            "text_padding": {
+             "unit": "px",
+             "top": "15",
+             "right": "26",
+             "bottom": "15",
+             "left": "26",
+             "isLinked": false
+            },
+            "typography_typography": "custom",
+            "typography_font_family": "Public Sans",
+            "typography_font_size": {
+             "unit": "px",
+             "size": 15,
+             "sizes": []
+            },
+            "typography_font_weight": "600",
+            "typography_line_height": {
+             "unit": "em",
+             "size": 1.2,
+             "sizes": []
+            },
+            "typography_letter_spacing": {
+             "unit": "em",
+             "size": 0.005,
+             "sizes": []
+            },
+            "border_border": "solid",
+            "border_width": {
+             "unit": "px",
+             "top": "1.5",
+             "right": "1.5",
+             "bottom": "1.5",
+             "left": "1.5",
+             "isLinked": true
+            },
+            "border_color": "#363334",
+            "button_hover_border_color": "#363334",
+            "_css_classes": "gx-btn",
+            "_element_width": "auto",
+            "_flex_size": "none"
+           },
+           "elements": []
+          }
+         ],
+         "isInner": true
+        }
+       ],
+       "isInner": true
+      }
+     ],
+     "isInner": true
+    },
+    {
+     "id": "e98cb00",
+     "elType": "widget",
+     "widgetType": "posts",
+     "settings": {
+      "_skin": "classic",
+      "posts_post_type": "post",
+      "classic_columns": "3",
+      "classic_columns_tablet": "2",
+      "classic_columns_mobile": "1",
+      "classic_posts_per_page": 3,
+      "classic_thumbnail": "top",
+      "classic_item_ratio": {
+       "unit": "px",
+       "size": 0.62,
+       "sizes": []
+      },
+      "classic_title_tag": "h3",
+      "classic_excerpt_length": 20,
+      "classic_meta_data": [
+       "date"
+      ],
+      "classic_read_more_text": "Ler o post",
+      "classic_column_gap": {
+       "unit": "px",
+       "size": 28,
+       "sizes": []
+      },
+      "classic_row_gap": {
+       "unit": "px",
+       "size": 40,
+       "sizes": []
+      },
+      "_css_classes": "gx-posts gx-reveal"
+     },
+     "elements": []
+    }
+   ],
+   "isInner": false
+  },
+  {
+   "id": "ded1599",
+   "elType": "container",
+   "settings": {
+    "content_width": "full",
+    "flex_direction": "column",
+    "flex_gap": {
+     "unit": "px",
+     "size": 64,
+     "column": "64",
+     "row": "64",
+     "isLinked": true
+    },
+    "padding": {
+     "unit": "px",
+     "top": "120",
+     "right": "0",
+     "bottom": "120",
+     "left": "0",
+     "isLinked": false
+    },
+    "flex_gap_mobile": {
+     "unit": "px",
+     "size": 48,
+     "column": "48",
+     "row": "48",
+     "isLinked": true
+    },
+    "padding_tablet": {
+     "unit": "px",
+     "top": "96",
+     "right": "0",
+     "bottom": "96",
+     "left": "0",
+     "isLinked": false
+    },
+    "padding_mobile": {
+     "unit": "px",
+     "top": "76",
+     "right": "0",
+     "bottom": "76",
+     "left": "0",
+     "isLinked": false
+    },
+    "background_background": "classic",
+    "background_color": "#363334",
+    "css_classes": "gx-on-dark",
+    "html_tag": "section"
+   },
+   "elements": [
+    {
+     "id": "1b6eae6",
+     "elType": "container",
+     "settings": {
+      "content_width": "boxed",
+      "flex_direction": "column",
+      "flex_gap": {
+       "unit": "px",
+       "size": 0,
+       "column": "0",
+       "row": "0",
+       "isLinked": true
+      },
+      "padding": {
+       "unit": "px",
+       "top": "0",
+       "right": "24",
+       "bottom": "0",
+       "left": "24",
+       "isLinked": false
+      },
+      "boxed_width": {
+       "unit": "px",
+       "size": 1200,
+       "sizes": []
+      },
+      "padding_tablet": {
+       "unit": "px",
+       "top": "0",
+       "right": "32",
+       "bottom": "0",
+       "left": "32",
+       "isLinked": false
+      },
+      "padding_mobile": {
+       "unit": "px",
+       "top": "0",
+       "right": "20",
+       "bottom": "0",
+       "left": "20",
+       "isLinked": false
+      }
+     },
+     "elements": [
+      {
+       "id": "2569c78",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "row",
+        "flex_gap": {
+         "unit": "px",
+         "size": 48,
+         "column": "48",
+         "row": "48",
+         "isLinked": true
+        },
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        },
+        "flex_justify_content": "space-between",
+        "flex_align_items": "flex-end",
+        "flex_direction_tablet": "column"
+       },
+       "elements": [
+        {
+         "id": "a5175e6",
+         "elType": "container",
+         "settings": {
+          "content_width": "full",
+          "flex_direction": "column",
+          "flex_gap": {
+           "unit": "px",
+           "size": 24,
+           "column": "24",
+           "row": "24",
+           "isLinked": true
+          },
+          "padding": {
+           "unit": "px",
+           "top": "0",
+           "right": "0",
+           "bottom": "0",
+           "left": "0",
+           "isLinked": true
+          },
+          "width": {
+           "unit": "%",
+           "size": 44,
+           "sizes": []
+          },
+          "width_tablet": {
+           "unit": "%",
+           "size": 100,
+           "sizes": []
+          },
+          "css_classes": "gx-stagger"
+         },
+         "elements": [
+          {
+           "id": "e64e5d4",
+           "elType": "widget",
+           "widgetType": "heading",
+           "settings": {
+            "title": "GICEU na mídia",
+            "header_size": "p",
+            "title_color": "#7590c1",
+            "typography_typography": "custom",
+            "typography_font_family": "IBM Plex Mono",
+            "typography_font_size": {
+             "unit": "px",
+             "size": 12,
+             "sizes": []
+            },
+            "typography_font_weight": "500",
+            "typography_line_height": {
+             "unit": "em",
+             "size": 1.4,
+             "sizes": []
+            },
+            "typography_letter_spacing": {
+             "unit": "em",
+             "size": 0.14,
+             "sizes": []
+            },
+            "typography_text_transform": "uppercase",
+            "_css_classes": "gx-eyebrow gx-reveal"
+           },
+           "elements": []
+          },
+          {
+           "id": "99828ab",
+           "elType": "widget",
+           "widgetType": "heading",
+           "settings": {
+            "title": "A pesquisa já foi <em>notícia</em>.",
+            "header_size": "h2",
+            "title_color": "#fdfdfd",
+            "typography_typography": "custom",
+            "typography_font_family": "Newsreader",
+            "typography_font_size": {
+             "unit": "px",
+             "size": 52,
+             "sizes": []
+            },
+            "typography_font_size_tablet": {
+             "unit": "px",
+             "size": 42,
+             "sizes": []
+            },
+            "typography_font_size_mobile": {
+             "unit": "px",
+             "size": 34,
+             "sizes": []
+            },
+            "typography_font_weight": "400",
+            "typography_line_height": {
+             "unit": "em",
+             "size": 1.06,
+             "sizes": []
+            },
+            "typography_letter_spacing": {
+             "unit": "em",
+             "size": -0.015,
+             "sizes": []
+            },
+            "_css_classes": "gx-balance gx-reveal"
+           },
+           "elements": []
+          }
+         ],
+         "isInner": true
+        },
+        {
+         "id": "600719e",
+         "elType": "container",
+         "settings": {
+          "content_width": "full",
+          "flex_direction": "column",
+          "flex_gap": {
+           "unit": "px",
+           "size": 24,
+           "column": "24",
+           "row": "24",
+           "isLinked": true
+          },
+          "padding": {
+           "unit": "px",
+           "top": "0",
+           "right": "0",
+           "bottom": "0",
+           "left": "0",
+           "isLinked": true
+          },
+          "width": {
+           "unit": "%",
+           "size": 46,
+           "sizes": []
+          },
+          "width_tablet": {
+           "unit": "%",
+           "size": 100,
+           "sizes": []
+          },
+          "css_classes": "gx-stagger"
+         },
+         "elements": [
+          {
+           "id": "13b082e",
+           "elType": "widget",
+           "widgetType": "text-editor",
+           "settings": {
+            "editor": "<p>O trabalho do grupo já foi destaque na imprensa cearense. Veja o que G1, O Povo, Diário do Nordeste, Rádio Universitária FM e Rádio FM Assembleia publicaram sobre o Fortaleza em Música.</p>",
+            "text_color": "rgba(253,253,253,0.75)",
+            "typography_typography": "custom",
+            "typography_font_family": "Public Sans",
+            "typography_font_size": {
+             "unit": "px",
+             "size": 18,
+             "sizes": []
+            },
+            "typography_font_size_mobile": {
+             "unit": "px",
+             "size": 16,
+             "sizes": []
+            },
+            "typography_font_weight": "400",
+            "typography_line_height": {
+             "unit": "em",
+             "size": 1.65,
+             "sizes": []
+            },
+            "_css_classes": "gx-pretty gx-reveal"
+           },
+           "elements": []
+          },
+          {
+           "id": "0aecea4",
+           "elType": "container",
+           "settings": {
+            "content_width": "full",
+            "flex_direction": "row",
+            "flex_gap": {
+             "unit": "px",
+             "size": 12,
+             "column": "12",
+             "row": "12",
+             "isLinked": true
+            },
+            "padding": {
+             "unit": "px",
+             "top": "0",
+             "right": "0",
+             "bottom": "0",
+             "left": "0",
+             "isLinked": true
+            },
+            "flex_align_items": "center",
+            "flex_wrap": "wrap",
+            "css_classes": "gx-reveal"
+           },
+           "elements": [
+            {
+             "id": "1e91586",
+             "elType": "widget",
+             "widgetType": "button",
+             "settings": {
+              "text": "Ver mais na mídia",
+              "link": {
+               "url": "/category/giceu-na-midia/",
+               "is_external": "",
+               "nofollow": "",
+               "custom_attributes": ""
+              },
+              "background_color": "#fdfdfd",
+              "button_text_color": "#363334",
+              "button_background_hover_color": "#1b2540",
+              "hover_color": "#fdfdfd",
+              "border_radius": {
+               "unit": "px",
+               "top": "999",
+               "right": "999",
+               "bottom": "999",
+               "left": "999",
+               "isLinked": true
+              },
+              "text_padding": {
+               "unit": "px",
+               "top": "15",
+               "right": "26",
+               "bottom": "15",
+               "left": "26",
+               "isLinked": false
+              },
+              "typography_typography": "custom",
+              "typography_font_family": "Public Sans",
+              "typography_font_size": {
+               "unit": "px",
+               "size": 15,
+               "sizes": []
+              },
+              "typography_font_weight": "600",
+              "typography_line_height": {
+               "unit": "em",
+               "size": 1.2,
+               "sizes": []
+              },
+              "typography_letter_spacing": {
+               "unit": "em",
+               "size": 0.005,
+               "sizes": []
+              },
+              "_css_classes": "gx-btn",
+              "_element_width": "auto",
+              "_flex_size": "none"
+             },
+             "elements": []
+            }
+           ],
+           "isInner": true
+          }
+         ],
+         "isInner": true
+        }
+       ],
+       "isInner": true
+      }
+     ],
+     "isInner": true
+    },
+    {
+     "id": "7896e93",
+     "elType": "widget",
+     "widgetType": "html",
+     "settings": {
+      "html": "<div class=\"gx-marquee gx-live\"><div class=\"gx-marquee__track\"><span>G1</span><span>O Povo</span><span>Diário do Nordeste</span><span>Rádio Universitária FM</span><span>Rádio FM Assembleia</span><span aria-hidden=\"true\">G1</span><span aria-hidden=\"true\">O Povo</span><span aria-hidden=\"true\">Diário do Nordeste</span><span aria-hidden=\"true\">Rádio Universitária FM</span><span aria-hidden=\"true\">Rádio FM Assembleia</span></div></div>",
+      "_css_classes": "gx-reveal"
+     },
+     "elements": []
+    }
+   ],
+   "isInner": false
+  },
+  {
+   "id": "87478e0",
+   "elType": "container",
+   "settings": {
+    "content_width": "boxed",
+    "flex_direction": "column",
+    "flex_gap": {
+     "unit": "px",
+     "size": 56,
+     "column": "56",
+     "row": "56",
+     "isLinked": true
+    },
+    "padding": {
+     "unit": "px",
+     "top": "120",
+     "right": "24",
+     "bottom": "120",
+     "left": "24",
+     "isLinked": false
+    },
+    "boxed_width": {
+     "unit": "px",
+     "size": 1200,
+     "sizes": []
+    },
+    "flex_gap_mobile": {
+     "unit": "px",
+     "size": 40,
+     "column": "40",
+     "row": "40",
+     "isLinked": true
+    },
+    "padding_tablet": {
+     "unit": "px",
+     "top": "96",
+     "right": "32",
+     "bottom": "96",
+     "left": "32",
+     "isLinked": false
+    },
+    "padding_mobile": {
+     "unit": "px",
+     "top": "76",
+     "right": "20",
+     "bottom": "76",
+     "left": "20",
+     "isLinked": false
+    },
+    "background_background": "classic",
+    "background_color": "#e8edf6",
+    "html_tag": "section"
+   },
+   "elements": [
+    {
+     "id": "8989a04",
+     "elType": "container",
+     "settings": {
+      "content_width": "full",
+      "flex_direction": "column",
+      "flex_gap": {
+       "unit": "px",
+       "size": 24,
+       "column": "24",
+       "row": "24",
+       "isLinked": true
+      },
+      "padding": {
+       "unit": "px",
+       "top": "0",
+       "right": "0",
+       "bottom": "0",
+       "left": "0",
+       "isLinked": true
+      },
+      "width": {
+       "unit": "%",
+       "size": 72,
+       "sizes": []
+      },
+      "width_tablet": {
+       "unit": "%",
+       "size": 100,
+       "sizes": []
+      },
+      "css_classes": "gx-stagger"
+     },
+     "elements": [
+      {
+       "id": "0b508c4",
+       "elType": "widget",
+       "widgetType": "heading",
+       "settings": {
+        "title": "Contato",
+        "header_size": "p",
+        "title_color": "#4a6699",
+        "typography_typography": "custom",
+        "typography_font_family": "IBM Plex Mono",
+        "typography_font_size": {
+         "unit": "px",
+         "size": 12,
+         "sizes": []
+        },
+        "typography_font_weight": "500",
+        "typography_line_height": {
+         "unit": "em",
+         "size": 1.4,
+         "sizes": []
+        },
+        "typography_letter_spacing": {
+         "unit": "em",
+         "size": 0.14,
+         "sizes": []
+        },
+        "typography_text_transform": "uppercase",
+        "_css_classes": "gx-eyebrow gx-reveal"
+       },
+       "elements": []
+      },
+      {
+       "id": "c65740a",
+       "elType": "widget",
+       "widgetType": "heading",
+       "settings": {
+        "title": "Quer pesquisar com a gente, propor uma parceria ou conversar sobre um projeto?",
+        "header_size": "h2",
+        "title_color": "#363334",
+        "typography_typography": "custom",
+        "typography_font_family": "Newsreader",
+        "typography_font_size": {
+         "unit": "px",
+         "size": 46,
+         "sizes": []
+        },
+        "typography_font_size_tablet": {
+         "unit": "px",
+         "size": 38,
+         "sizes": []
+        },
+        "typography_font_size_mobile": {
+         "unit": "px",
+         "size": 30,
+         "sizes": []
+        },
+        "typography_font_weight": "400",
+        "typography_line_height": {
+         "unit": "em",
+         "size": 1.06,
+         "sizes": []
+        },
+        "typography_letter_spacing": {
+         "unit": "em",
+         "size": -0.015,
+         "sizes": []
+        },
+        "_css_classes": "gx-balance gx-reveal"
+       },
+       "elements": []
+      },
+      {
+       "id": "b60bfb4",
+       "elType": "widget",
+       "widgetType": "text-editor",
+       "settings": {
+        "editor": "<p>Escreva para o GICEU.</p>",
+        "text_color": "#6b6768",
+        "typography_typography": "custom",
+        "typography_font_family": "Public Sans",
+        "typography_font_size": {
+         "unit": "px",
+         "size": 20,
+         "sizes": []
+        },
+        "typography_font_size_mobile": {
+         "unit": "px",
+         "size": 18,
+         "sizes": []
+        },
+        "typography_font_weight": "400",
+        "typography_line_height": {
+         "unit": "em",
+         "size": 1.6,
+         "sizes": []
+        },
+        "_css_classes": "gx-pretty gx-reveal"
+       },
+       "elements": []
+      },
+      {
+       "id": "7dc5f1b",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "row",
+        "flex_gap": {
+         "unit": "px",
+         "size": 12,
+         "column": "12",
+         "row": "12",
+         "isLinked": true
+        },
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        },
+        "flex_align_items": "center",
+        "flex_wrap": "wrap",
+        "css_classes": "gx-reveal"
+       },
+       "elements": [
+        {
+         "id": "bc91bca",
+         "elType": "widget",
+         "widgetType": "button",
+         "settings": {
+          "text": "Entre em contato",
+          "link": {
+           "url": "/contato/",
+           "is_external": "",
+           "nofollow": "",
+           "custom_attributes": ""
+          },
+          "background_color": "#363334",
+          "button_text_color": "#fdfdfd",
+          "button_background_hover_color": "#4a6699",
+          "hover_color": "#fdfdfd",
+          "border_radius": {
+           "unit": "px",
+           "top": "999",
+           "right": "999",
+           "bottom": "999",
+           "left": "999",
+           "isLinked": true
+          },
+          "text_padding": {
+           "unit": "px",
+           "top": "15",
+           "right": "26",
+           "bottom": "15",
+           "left": "26",
+           "isLinked": false
+          },
+          "typography_typography": "custom",
+          "typography_font_family": "Public Sans",
+          "typography_font_size": {
+           "unit": "px",
+           "size": 15,
+           "sizes": []
+          },
+          "typography_font_weight": "600",
+          "typography_line_height": {
+           "unit": "em",
+           "size": 1.2,
+           "sizes": []
+          },
+          "typography_letter_spacing": {
+           "unit": "em",
+           "size": 0.005,
+           "sizes": []
+          },
+          "_css_classes": "gx-btn",
+          "_element_width": "auto",
+          "_flex_size": "none"
+         },
+         "elements": []
+        }
+       ],
+       "isInner": true
+      }
+     ],
+     "isInner": true
+    }
+   ],
+   "isInner": false
+  }
+ ],
+ "page_settings": {
+  "hide_title": "yes"
+ },
+ "version": "0.4",
+ "title": "GICEU · Página inicial",
+ "type": "page"
+}
