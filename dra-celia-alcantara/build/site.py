@@ -168,13 +168,15 @@ CLINIC = {
 # CABEÇALHO
 # =====================================================================
 
-def header_markup(css):
+FONTS_HTML = '''<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Poppins:wght@300;400;500;600&family=Pinyon+Script&display=swap">
+'''
+
+
+def header_markup():
     sub = "".join(f'<li><a href="/{s}/">{n}{ICONS["arrow"]}</a></li>' for s, n, _ in SPECIALTIES)
     sub_m = "".join(f'<li><a href="/{s}/">{n}</a></li>' for s, n, _ in SPECIALTIES)
-    return f"""<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Poppins:wght@300;400;500;600&family=Pinyon+Script&display=swap">
-<style id="dca-global-css">{css}</style>
-<a class="dca-skip" href="#conteudo">Pular para o conteúdo</a>
+    return f"""<a class="dca-skip" href="#conteudo">Pular para o conteúdo</a>
 <div class="dca-header">
  <div class="dca-header__inner">
   <a class="dca-brand" href="/" aria-label="Dra. Célia Alcântara, médica reumatologista · página inicial">
@@ -211,8 +213,8 @@ def header_markup(css):
 </div>"""
 
 
-def build_header(css):
-    return [con([html_w(header_markup(css), title="Cabeçalho · menu, CSS global e fontes")],
+def build_header():
+    return [con([html_w(header_markup(), title="Cabeçalho · menu")],
                 full=True, pad=box(0), gap=0, title="Cabeçalho")]
 
 
@@ -274,10 +276,10 @@ def wa_float():
             f'{ICONS["whatsapp"]}<span class="dca-wa__label">Agendar pelo WhatsApp</span></a>')
 
 
-def build_footer(js):
+def build_footer():
     return [con([
         html_w(footer_markup(), title="Rodapé · conteúdo"),
-        html_w(wa_float() + f"<script>{js}</script>", title="Botão fixo de WhatsApp + animações do site"),
+        html_w(wa_float(), title="Botão fixo de WhatsApp"),
     ], cls="dca-dark", bg=NAVY_DEEP, tag="div", pad=box(104, 28, 36, 28), pad_mobile=box(72, 20, 96, 20), gap=0, boxed=1240,
         title="Rodapé")]
 
@@ -298,7 +300,7 @@ def build_home():
                 ], cls="dca-load", gap=(28, 14)),
                 html_w('<div class="dca-credential"><span><b>CRM</b> 8280</span><span class="dca-dot"></span><span><b>RQE</b> 4354</span>'
                        '<span class="dca-dot"></span><span>Presencial em Fortaleza e telemedicina</span></div>', "dca-load"),
-            ], 54, gap=30, justify="center"),
+            ], 52, gap=30, justify="center"),
             col([
                 image("Dra. Célia Alcântara, médica reumatologista em Fortaleza, em seu consultório", "dca-arch dca-img-reveal",
                       label="Foto da Dra. Célia (retrato vertical 4:5)"),
@@ -319,7 +321,7 @@ def build_home():
                        f'<li class="dca-reveal">{ICONS["video"]}<span>Telemedicina<small>Para todo o Brasil</small></span></li>'
                        f'<li class="dca-reveal">{ICONS["clock"]}<span>Segunda a sexta<small>[Horários a confirmar]</small></span></li></ul>'),
                 button("Agendar agora", wa("Home · atendimento"), "dca-btn dca-btn--gold dca-reveal", WA_ICON, external=True),
-            ], 56, gap=32),
+            ], 52, gap=32),
         ], gap=56, align="center", justify="space-between"),
     ], cls="dca-dark", bg=NAVY, pad=box(88, 28, 88, 28), pad_mobile=box(64, 20, 64, 20), title="Faixa de atendimento")
 
@@ -424,7 +426,7 @@ def build_home():
     sobre = section([
         row([
             col([image("Dra. Célia Alcântara, reumatologista, CRM 8280, RQE 4354", "dca-arch dca-img-reveal",
-                       label="Foto da Dra. Célia (retrato vertical 4:5)")], 40, cls="dca-sticky", width_tablet=70),
+                       label="Foto da Dra. Célia (retrato vertical 4:5)")], 38, cls="dca-sticky", width_tablet=70),
             col([
                 heading("Sobre a Dra. <em>Célia Alcântara</em>", "h2", "dca-h2 dca-reveal"),
                 html_w('<p class="dca-credline">Médica Reumatologista | CRM 8280 | RQE 4354</p>', "dca-reveal"),
@@ -474,7 +476,7 @@ def build_home():
     midia = section([
         row([
             col([heading("Na mídia", "h2", "dca-h2 dca-h2--sm dca-reveal")], 30),
-            col([html_w(f'<ul class="dca-press dca-stagger">{press}</ul>', title="Logos e links de matérias")], 66),
+            col([html_w(f'<ul class="dca-press dca-stagger">{press}</ul>', title="Logos e links de matérias")], 62),
         ], gap=40, align="center", justify="space-between"),
     ], pad=box(104, 28, 40, 28), pad_mobile=box(72, 20, 24, 20), title="Na mídia")
 
@@ -963,7 +965,7 @@ def build_blog():
             col([heading("Ficou com alguma <em>dúvida?</em>", "h2", "dca-h2 dca-reveal"),
                  text("<p>Fale com a nossa equipe pelo WhatsApp. Atendimento presencial em Fortaleza e por telemedicina para todo o Brasil.</p>", "dca-lead dca-reveal")], 56, gap=20),
             btn_row([button("Fale com a nossa equipe pelo WhatsApp", wa("Blog"), "dca-btn dca-btn--gold", WA_ICON, external=True)],
-                    cls="dca-reveal", justify="flex-end", justify_mobile="flex-start", width=40, width_tablet=100, width_mobile=100),
+                    cls="dca-reveal", justify="flex-end", justify_mobile="flex-start", width=36, width_tablet=100, width_mobile=100),
         ], gap=40, align="center", justify="space-between"),
         jsonld({"@context": "https://schema.org", "@graph": [
             {"@type": "Blog", "@id": f"{DOMAIN}/blog/#blog", "url": f"{DOMAIN}/blog/", "name": "Blog | Dicas e informação sobre reumatologia | Dra. Célia Alcântara",
@@ -1137,14 +1139,14 @@ margin:var(--margin-top) var(--margin-right) var(--margin-bottom) var(--margin-l
 def page_html(title, content_nodes, css, js, single=False):
     pv = Preview(placeholder_uri, SAMPLE_POSTS, SAMPLE_POST)
     reset_ids(9000)
-    header = pv.render(build_header(css))
+    header = pv.render(build_header())
     body = pv.render(content_nodes)
-    footer = pv.render(build_footer(js))
+    footer = pv.render(build_footer())
     return f"""<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>{esc(title)} · prévia</title><style>{SHIM}</style><style>{pv.style()}</style></head>
+<title>{esc(title)} · prévia</title><style>{SHIM}</style><style>{pv.style()}</style>{FONTS_HTML}<style>{css}</style></head>
 <body><header class="elementor elementor-location-header">{header}</header>
 <main class="elementor elementor-page">{body}</main>
-<footer class="elementor elementor-location-footer">{footer}</footer></body></html>"""
+<footer class="elementor elementor-location-footer">{footer}</footer><script>{js}</script></body></html>"""
 
 
 def main():
@@ -1154,9 +1156,17 @@ def main():
     out_p = os.path.join(ROOT, "preview")
 
     reset_ids(100)
-    export(os.path.join(out_e, "00-cabecalho.json"), "Cabeçalho · Dra. Célia", "header", build_header(css))
+    export(os.path.join(out_e, "00-cabecalho.json"), "Cabeçalho · Dra. Célia", "header", build_header())
     reset_ids(200)
-    export(os.path.join(out_e, "00-rodape.json"), "Rodapé · Dra. Célia", "footer", build_footer(js))
+    export(os.path.join(out_e, "00-rodape.json"), "Rodapé · Dra. Célia", "footer", build_footer())
+    out_c = os.path.join(ROOT, "codigo-personalizado")
+    os.makedirs(out_c, exist_ok=True)
+    with open(os.path.join(out_c, "01-estilos-e-fontes.html"), "w", encoding="utf-8") as f:
+        f.write("<!-- Elementor > Código personalizado · Local: <head> · Condição: Todo o site -->\n" + FONTS_HTML + "<style id=\"dca-global-css\">\n" + css + "\n</style>\n")
+    with open(os.path.join(out_c, "02-animacoes.html"), "w", encoding="utf-8") as f:
+        f.write("<!-- Elementor > Código personalizado · Local: fim do <body> · Condição: Todo o site -->\n<script>\n" + js + "\n</script>\n")
+    with open(os.path.join(out_c, "estilos-somente-css.css"), "w", encoding="utf-8") as f:
+        f.write("/* Alternativa: colar em Elementor > Configurações do site > CSS personalizado */\n" + css)
 
     seo_rows = []
     for n, (fname, title, slug, builder, seo_t, meta, kw) in enumerate(PAGES):

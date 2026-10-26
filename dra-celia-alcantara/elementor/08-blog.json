@@ -463,7 +463,7 @@
         "flex_direction": "row",
         "width": {
          "unit": "%",
-         "size": 40,
+         "size": 36,
          "sizes": []
         },
         "width_tablet": {
@@ -512,12 +512,6 @@
           "selected_icon": {
            "value": "fab fa-whatsapp",
            "library": "fa-brands"
-          },
-          "icon_align": "left",
-          "icon_indent": {
-           "unit": "px",
-           "size": 10,
-           "sizes": []
           },
           "_css_classes": "dca-btn dca-btn--gold"
          },

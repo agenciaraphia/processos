@@ -97,7 +97,7 @@
         "flex_direction": "column",
         "width": {
          "unit": "%",
-         "size": 54,
+         "size": 52,
          "sizes": []
         },
         "width_tablet": {
@@ -189,12 +189,6 @@
             "selected_icon": {
              "value": "fab fa-whatsapp",
              "library": "fa-brands"
-            },
-            "icon_align": "left",
-            "icon_indent": {
-             "unit": "px",
-             "size": 10,
-             "sizes": []
             },
             "_css_classes": "dca-btn"
            },
@@ -438,7 +432,7 @@
         "flex_direction": "column",
         "width": {
          "unit": "%",
-         "size": 56,
+         "size": 52,
          "sizes": []
         },
         "width_tablet": {
@@ -491,12 +485,6 @@
           "selected_icon": {
            "value": "fab fa-whatsapp",
            "library": "fa-brands"
-          },
-          "icon_align": "left",
-          "icon_indent": {
-           "unit": "px",
-           "size": 10,
-           "sizes": []
           },
           "_css_classes": "dca-btn dca-btn--gold dca-reveal"
          },
@@ -930,12 +918,6 @@
           "selected_icon": {
            "value": "fab fa-whatsapp",
            "library": "fa-brands"
-          },
-          "icon_align": "left",
-          "icon_indent": {
-           "unit": "px",
-           "size": 10,
-           "sizes": []
           },
           "_css_classes": "dca-btn dca-reveal"
          },
@@ -1613,7 +1595,7 @@
         "flex_direction": "column",
         "width": {
          "unit": "%",
-         "size": 40,
+         "size": 38,
          "sizes": []
         },
         "width_tablet": {
@@ -1759,12 +1741,6 @@
           "selected_icon": {
            "value": "fab fa-whatsapp",
            "library": "fa-brands"
-          },
-          "icon_align": "left",
-          "icon_indent": {
-           "unit": "px",
-           "size": 10,
-           "sizes": []
           },
           "_css_classes": "dca-btn dca-btn--gold dca-reveal"
          },
@@ -2197,7 +2173,7 @@
         "flex_direction": "column",
         "width": {
          "unit": "%",
-         "size": 66,
+         "size": 62,
          "sizes": []
         },
         "width_tablet": {
@@ -2447,12 +2423,6 @@
            "value": "fab fa-instagram",
            "library": "fa-brands"
           },
-          "icon_align": "left",
-          "icon_indent": {
-           "unit": "px",
-           "size": 10,
-           "sizes": []
-          },
           "_css_classes": "dca-btn dca-btn--ghost"
          },
          "elements": [],
@@ -2676,12 +2646,6 @@
           "selected_icon": {
            "value": "fab fa-whatsapp",
            "library": "fa-brands"
-          },
-          "icon_align": "left",
-          "icon_indent": {
-           "unit": "px",
-           "size": 10,
-           "sizes": []
           },
           "_css_classes": "dca-btn dca-btn--ghost dca-reveal"
          },

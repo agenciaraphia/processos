@@ -200,12 +200,6 @@
              "value": "fab fa-whatsapp",
              "library": "fa-brands"
             },
-            "icon_align": "left",
-            "icon_indent": {
-             "unit": "px",
-             "size": 10,
-             "sizes": []
-            },
             "_css_classes": "dca-btn"
            },
            "elements": [],
@@ -814,12 +808,6 @@
           "selected_icon": {
            "value": "fab fa-whatsapp",
            "library": "fa-brands"
-          },
-          "icon_align": "left",
-          "icon_indent": {
-           "unit": "px",
-           "size": 10,
-           "sizes": []
           },
           "_css_classes": "dca-btn dca-btn--gold dca-reveal"
          },

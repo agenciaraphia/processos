@@ -131,8 +131,6 @@ def button(label, url, cls="dca-btn", icon=None, external=False, align=None, ico
     s = {"text": label, "link": {"url": url, "is_external": "on" if external else "", "nofollow": "", "custom_attributes": ""}}
     if icon:
         s["selected_icon"] = icon
-        s["icon_align"] = "right" if icon_right else "left"
-        s["icon_indent"] = px(10)
     if align:
         s["align"] = align
     return _w("button", s, cls)
