@@ -22,7 +22,7 @@ Este pacote tem 9 páginas, o cabeçalho e o rodapé, prontos para importar no E
 | `preview/*.html` | Prévia estática | Só para conferência visual (não sobe para o WordPress) |
 
 **Tudo já vem dentro de cada JSON:**
-- **Visual (CSS):** fica no campo **CSS personalizado** da página ou do modelo (aba Avançado das configurações da página, recurso do Elementor Pro).
+- **Visual (CSS):** fica no **CSS personalizado** do container "NÃO APAGAR · estilos e animações do site", no fim de cada página. No cabeçalho e no rodapé, fica no container principal. É um elemento, e não uma configuração da página, porque ao inserir um modelo por "Meus modelos" o Elementor descarta as configurações da página e traz só os elementos.
 - **Fontes:** Playfair Display, Poppins e Pinyon Script são carregadas pela tipografia dos próprios widgets.
 - **Animações:** ficam no widget HTML "NÃO APAGAR · fontes e animações do site", no fim de cada página.
 
@@ -48,7 +48,7 @@ Cada página funciona sozinha, mesmo antes de publicar o cabeçalho e o rodapé.
 | O que aparece | Causa | Solução |
 |---|---|---|
 | Página vazia ou "conteúdo não suportado" depois de inserir o modelo | Containers desligados | Elementor › Configurações › Recursos › **Container Flexbox: Ativo** (e **Otimizar carregamento de DOM**, se aparecer). Atualize o Elementor para a versão 3.16 ou mais nova. |
-| Textos sem estilo, fonte padrão, botões verdes ou cinza | O CSS da página não foi gerado | Elementor › Ferramentas › **Regenerar arquivos e dados**. Confira se o Elementor Pro está ativo e com licença (o CSS personalizado é do Pro). |
+| Textos sem estilo: título azul-claro, botão verde, link rosa | O CSS não carregou: o container "NÃO APAGAR" foi apagado, o Elementor Pro está sem licença ou o arquivo de CSS está em cache | 1) Confira se o container "NÃO APAGAR · estilos e animações do site" está no fim da página (no Navegador do Elementor). 2) Elementor › Ferramentas › **Regenerar arquivos e dados**, e limpe o cache. 3) Se ainda não aparecer, cole `conteudo/css-do-site.css` em Configurações do site › **CSS personalizado**. Essa opção vale para o site todo. |
 | Depois de colar o código, as alterações não aparecem | Cache | Elementor › Ferramentas › **Regenerar arquivos e dados**. Limpe também o cache do plugin (LiteSpeed, WP Rocket etc.) e do Cloudflare. |
 | Conteúdo some ou fica invisível ao rolar | Plugin de otimização atrasando ou combinando o JavaScript | No WP Rocket, LiteSpeed ou Autoptimize, exclua `__dcaInit` de "Atrasar JS", "Combinar JS" e "Adiar JS". |
 | Animações não acontecem (o site aparece estático) | A conta não tem permissão de "HTML não filtrado" e o WordPress removeu o `<script>` (comum em multisite, em algumas hospedagens e com plugins de segurança) | Importe com uma conta de **Administrador** (em multisite, o **Superadministrador**). Mesmo sem o script, o site continua funcionando: menu, menu do celular, cards e WhatsApp foram feitos para funcionar só com CSS. O schema (JSON-LD) também é removido nesse caso, então ative o schema do Rank Math ou do Yoast. |

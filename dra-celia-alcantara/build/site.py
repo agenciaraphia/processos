@@ -1151,15 +1151,26 @@ def page_html(title, content_nodes, css, js, single=False):
 <footer class="elementor elementor-location-footer">{footer}</footer><script>{js}</script></body></html>"""
 
 
-def with_runtime(nodes, js, inside=False):
-    """Anexa fontes + animações ao próprio JSON (widget HTML invisível no fim da página).
-    O script tem trava contra execução dupla, então pode existir na página e no rodapé."""
+def with_runtime(nodes, js, css, inside=False):
+    """Anexa CSS + animações ao conteúdo da página.
+
+    O CSS vai no campo "CSS personalizado" de um ELEMENTO (não nas configurações da página):
+    ao inserir um modelo por "Meus modelos", o Elementor traz os elementos mas descarta as
+    configurações da página. O script tem trava contra execução dupla (página + rodapé)."""
     w = html_w("<script>\n" + js + "\n</script>", "dca-runtime",
-               title="NÃO APAGAR · fontes e animações do site")
+               title="NÃO APAGAR · animações do site")
     if inside:
         nodes[-1]["elements"].append(w)
+        nodes[-1]["settings"]["custom_css"] = css
         return nodes
-    return nodes + [con([w], cls="dca-runtime", full=True, pad=box(0), gap=0, title="NÃO APAGAR · animações")]
+    box_ = con([w], cls="dca-runtime", full=True, pad=box(0), gap=0, title="NÃO APAGAR · estilos e animações do site")
+    box_["settings"]["custom_css"] = css
+    return nodes + [box_]
+
+
+def with_css(nodes, css):
+    nodes[0]["settings"]["custom_css"] = css
+    return nodes
 
 
 def main():
@@ -1169,17 +1180,20 @@ def main():
     out_e = os.path.join(ROOT, "elementor")
     out_p = os.path.join(ROOT, "preview")
 
-    ps = {"custom_css": css}
+    ps = {}
+    with open(os.path.join(ROOT, "conteudo", "css-do-site.css"), "w", encoding="utf-8") as f:
+        f.write("/* Reserva: só use se o visual não aparecer depois de importar.\n"
+                "   Cole em Elementor > Configurações do site > CSS personalizado. */\n" + css)
     reset_ids(100)
-    export(os.path.join(out_e, "00-cabecalho.json"), "Cabeçalho · Dra. Célia", "header", build_header(), dict(ps))
+    export(os.path.join(out_e, "00-cabecalho.json"), "Cabeçalho · Dra. Célia", "header", with_css(build_header(), css), dict(ps))
     reset_ids(200)
-    export(os.path.join(out_e, "00-rodape.json"), "Rodapé · Dra. Célia", "footer", with_runtime(build_footer(), js, inside=True), dict(ps))
+    export(os.path.join(out_e, "00-rodape.json"), "Rodapé · Dra. Célia", "footer", with_runtime(build_footer(), js, css, inside=True), dict(ps))
 
     seo_rows = []
     for n, (fname, title, slug, builder, seo_t, meta, kw) in enumerate(PAGES):
         reset_ids(1000 * (n + 1))
         nodes = builder()
-        export(os.path.join(out_e, f"{fname}.json"), f"{title} · Dra. Célia", "page", with_runtime(nodes, js),
+        export(os.path.join(out_e, f"{fname}.json"), f"{title} · Dra. Célia", "page", with_runtime(nodes, js, css),
                dict(ps, template="elementor_header_footer", hide_title="yes"))
         with open(os.path.join(out_p, f"{fname}.html"), "w", encoding="utf-8") as f:
             f.write(page_html(title, nodes, css, js))
@@ -1187,7 +1201,7 @@ def main():
 
     reset_ids(9500)
     nodes = build_single()
-    export(os.path.join(out_e, "09-modelo-post-blog.json"), "Post do blog · modelo · Dra. Célia", "single-post", with_runtime(nodes, js),
+    export(os.path.join(out_e, "09-modelo-post-blog.json"), "Post do blog · modelo · Dra. Célia", "single-post", with_runtime(nodes, js, css),
            dict(ps, preview_type="single/post", template="elementor_header_footer"))
     with open(os.path.join(out_p, "09-modelo-post-blog.html"), "w", encoding="utf-8") as f:
         f.write(page_html("Post", nodes, css, js, single=True))
