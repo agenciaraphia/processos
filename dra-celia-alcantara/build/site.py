@@ -9,7 +9,7 @@ import sys
 from urllib.parse import quote
 
 sys.path.insert(0, os.path.dirname(__file__))
-from lib import (ICONS, Preview, box, px, button, con, esc, export, heading, html_w, image, pro,
+from lib import (ICONS, icon_css, Preview, box, px, button, con, esc, export, heading, html_w, image, pro,
                  reset_ids, text, WA_ICON)
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -184,32 +184,34 @@ def header_markup():
    <span class="dca-brand__role">Reumatologista</span>
   </a>
   <nav class="dca-nav" aria-label="Menu principal">
-   <ul>
-    <li><a href="/">Início</a></li>
-    <li><a href="/#sobre">Sobre</a></li>
-    <li class="has-sub"><button type="button" aria-expanded="false" aria-controls="dca-sub">Especialidades{ICONS['chev']}</button>
+   <ul class="dca-nav__list">
+    <li class="dca-nav__item"><a class="dca-nav__link" href="/">Início</a></li>
+    <li class="dca-nav__item"><a class="dca-nav__link" href="/#sobre">Sobre</a></li>
+    <li class="dca-nav__item has-sub"><button class="dca-nav__link" type="button" aria-expanded="false" aria-controls="dca-sub">Especialidades{ICONS['chev']}</button>
      <ul class="dca-sub" id="dca-sub">{sub}</ul></li>
-    <li><a href="/blog/">Blog</a></li>
-    <li><a href="#contato">Contato</a></li>
+    <li class="dca-nav__item"><a class="dca-nav__link" href="/blog/">Blog</a></li>
+    <li class="dca-nav__item"><a class="dca-nav__link" href="#contato">Contato</a></li>
    </ul>
   </nav>
   <div class="dca-header__actions">
-   <a class="dca-header__cta" href="{wa()}" target="_blank" rel="noopener">{ICONS['whatsapp']}Agendar consulta</a>
-   <button class="dca-burger" type="button" aria-expanded="false" aria-controls="dca-drawer" aria-label="Abrir menu"><span></span><span></span></button>
+   <a class="dca-header__cta dca-header__cta--top" href="{wa()}" target="_blank" rel="noopener">{ICONS['whatsapp']}Agendar consulta</a>
+   <details class="dca-mmenu">
+    <summary class="dca-burger" aria-label="Menu"><span class="dca-burger__line"></span><span class="dca-burger__line"></span></summary>
+    <div class="dca-drawer" id="dca-drawer">
+     <nav aria-label="Menu principal (celular)">
+      <ul>
+       <li class="dca-drawer__item"><a class="dca-drawer__link" href="/">Início</a></li>
+       <li class="dca-drawer__item"><a class="dca-drawer__link" href="/#sobre">Sobre a Dra. Célia</a></li>
+       <li class="dca-drawer__item"><span class="dca-drawer__label">Especialidades</span><ul class="dca-drawer__sub">{sub_m}</ul></li>
+       <li class="dca-drawer__item"><a class="dca-drawer__link" href="/blog/">Blog</a></li>
+       <li class="dca-drawer__item"><a class="dca-drawer__link" href="#contato">Contato</a></li>
+      </ul>
+     </nav>
+     <div class="dca-drawer__cta"><a class="dca-header__cta" href="{wa()}" target="_blank" rel="noopener">{ICONS['whatsapp']}Agendar pelo WhatsApp</a></div>
+    </div>
+   </details>
   </div>
  </div>
-</div>
-<div class="dca-drawer" id="dca-drawer">
- <nav aria-label="Menu principal (celular)">
-  <ul>
-   <li><a href="/">Início</a></li>
-   <li><a href="/#sobre">Sobre a Dra. Célia</a></li>
-   <li><span class="dca-drawer__label">Especialidades</span><ul class="dca-drawer__sub">{sub_m}</ul></li>
-   <li><a href="/blog/">Blog</a></li>
-   <li><a href="#contato">Contato</a></li>
-  </ul>
- </nav>
- <div class="dca-drawer__cta"><a class="dca-header__cta" href="{wa()}" target="_blank" rel="noopener">{ICONS['whatsapp']}Agendar pelo WhatsApp</a></div>
 </div>"""
 
 
@@ -376,7 +378,7 @@ def build_home():
         ("Tenha um cuidado integral", "Contamos com uma equipe multidisciplinar de nutricionista, fisioterapeuta, educador físico e médico da dor, todos comprometidos com o seu bem-estar e com os melhores resultados para a sua saúde."),
     ]
     cards = "".join(
-        f'<li class="dca-reveal"><div class="dca-flip" tabindex="0" role="button" aria-pressed="false" aria-label="Passo {i}: {t}. Toque para ler">'
+        f'<li class="dca-reveal"><div class="dca-flip" tabindex="0" role="button" aria-label="Passo {i}: {t}. Toque para ler">'
         f'<div class="dca-flip__inner"><div class="dca-flip__face dca-flip__front"><span class="dca-flip__num" aria-hidden="true">{i}</span>'
         f'<div><h3>{t}</h3><span class="dca-flip__hint">{ICONS["rotate"]}Passe o mouse ou toque</span></div></div>'
         f'<div class="dca-flip__face dca-flip__back"><h3>{t}</h3><p>{d}</p></div></div></div></li>'
@@ -445,7 +447,7 @@ def build_home():
                      "a saúde física, a confiança e a esperança.</p>"
                      "<p>Sou grata por praticar uma medicina que controla sintomas e também promove saúde, confiança e uma vida melhor para cada paciente.</p>",
                      "dca-prose dca-reveal"),
-                html_w('<p class="dca-signature" aria-hidden="true">Célia Alcântara</p>'),
+                heading("Célia Alcântara", "p", "dca-signature", family="Pinyon Script", title_label="Assinatura"),
                 button("Agendar consulta", wa("Home · sobre"), "dca-btn dca-btn--gold dca-reveal", WA_ICON, external=True),
             ], 54, gap=28),
         ], gap=80, justify="space-between", align="flex-start"),
@@ -594,7 +596,7 @@ def condition_page(p):
         ], gap=56, justify="space-between"),
     ], bg=LINEN, pad=box(112, 28, 112, 28), title="Quando procurar")
 
-    rel = "".join(f'<li class="dca-reveal"><a href="/{s}/"><div><span>Leia também</span><strong>{n}</strong></div>'
+    rel = "".join(f'<li class="dca-reveal"><a href="/{s}/"><div><span class="dca-related__kicker">Leia também</span><strong>{n}</strong></div>'
                   f'<span class="dca-arrow" aria-hidden="true">{ICONS["arrow"]}</span></a></li>' for s, n in p["related"])
     schema = {"@context": "https://schema.org", "@graph": [
         {"@type": "MedicalWebPage", "@id": f"{DOMAIN}/{p['slug']}/#pagina", "url": f"{DOMAIN}/{p['slug']}/", "name": p["seo_title"],
@@ -1149,39 +1151,44 @@ def page_html(title, content_nodes, css, js, single=False):
 <footer class="elementor elementor-location-footer">{footer}</footer><script>{js}</script></body></html>"""
 
 
+def with_runtime(nodes, js, inside=False):
+    """Anexa fontes + animações ao próprio JSON (widget HTML invisível no fim da página).
+    O script tem trava contra execução dupla, então pode existir na página e no rodapé."""
+    w = html_w("<script>\n" + js + "\n</script>", "dca-runtime",
+               title="NÃO APAGAR · fontes e animações do site")
+    if inside:
+        nodes[-1]["elements"].append(w)
+        return nodes
+    return nodes + [con([w], cls="dca-runtime", full=True, pad=box(0), gap=0, title="NÃO APAGAR · animações")]
+
+
 def main():
-    css = open(os.path.join(ROOT, "assets/dca-global.css"), encoding="utf-8").read()
+    css = open(os.path.join(ROOT, "assets/dca-global.css"), encoding="utf-8").read() + "\n/* Ícones */\n" + icon_css() + "\n"
+    assert ">" not in css and "<" not in css, "CSS não pode ter < ou > (o WordPress converte em entidades)"
     js = open(os.path.join(ROOT, "assets/dca-global.js"), encoding="utf-8").read()
     out_e = os.path.join(ROOT, "elementor")
     out_p = os.path.join(ROOT, "preview")
 
+    ps = {"custom_css": css}
     reset_ids(100)
-    export(os.path.join(out_e, "00-cabecalho.json"), "Cabeçalho · Dra. Célia", "header", build_header())
+    export(os.path.join(out_e, "00-cabecalho.json"), "Cabeçalho · Dra. Célia", "header", build_header(), dict(ps))
     reset_ids(200)
-    export(os.path.join(out_e, "00-rodape.json"), "Rodapé · Dra. Célia", "footer", build_footer())
-    out_c = os.path.join(ROOT, "codigo-personalizado")
-    os.makedirs(out_c, exist_ok=True)
-    with open(os.path.join(out_c, "01-estilos-e-fontes.html"), "w", encoding="utf-8") as f:
-        f.write("<!-- Elementor > Código personalizado · Local: <head> · Condição: Todo o site -->\n" + FONTS_HTML + "<style id=\"dca-global-css\">\n" + css + "\n</style>\n")
-    with open(os.path.join(out_c, "02-animacoes.html"), "w", encoding="utf-8") as f:
-        f.write("<!-- Elementor > Código personalizado · Local: fim do <body> · Condição: Todo o site -->\n<script>\n" + js + "\n</script>\n")
-    with open(os.path.join(out_c, "estilos-somente-css.css"), "w", encoding="utf-8") as f:
-        f.write("/* Alternativa: colar em Elementor > Configurações do site > CSS personalizado */\n" + css)
+    export(os.path.join(out_e, "00-rodape.json"), "Rodapé · Dra. Célia", "footer", with_runtime(build_footer(), js, inside=True), dict(ps))
 
     seo_rows = []
     for n, (fname, title, slug, builder, seo_t, meta, kw) in enumerate(PAGES):
         reset_ids(1000 * (n + 1))
         nodes = builder()
-        export(os.path.join(out_e, f"{fname}.json"), f"{title} · Dra. Célia", "page", nodes,
-               {"template": "elementor_header_footer", "hide_title": "yes"})
+        export(os.path.join(out_e, f"{fname}.json"), f"{title} · Dra. Célia", "page", with_runtime(nodes, js),
+               dict(ps, template="elementor_header_footer", hide_title="yes"))
         with open(os.path.join(out_p, f"{fname}.html"), "w", encoding="utf-8") as f:
             f.write(page_html(title, nodes, css, js))
         seo_rows.append((title, "/" + (slug + "/" if slug else ""), seo_t, meta, kw))
 
     reset_ids(9500)
     nodes = build_single()
-    export(os.path.join(out_e, "09-modelo-post-blog.json"), "Post do blog · modelo · Dra. Célia", "single-post", nodes,
-           {"preview_type": "single/post", "template": "elementor_header_footer"})
+    export(os.path.join(out_e, "09-modelo-post-blog.json"), "Post do blog · modelo · Dra. Célia", "single-post", with_runtime(nodes, js),
+           dict(ps, preview_type="single/post", template="elementor_header_footer"))
     with open(os.path.join(out_p, "09-modelo-post-blog.html"), "w", encoding="utf-8") as f:
         f.write(page_html("Post", nodes, css, js, single=True))
     with open(os.path.join(ROOT, "conteudo", "post-artrite-reumatoide.html"), "w", encoding="utf-8") as f:

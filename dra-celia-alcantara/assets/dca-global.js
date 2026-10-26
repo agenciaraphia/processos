@@ -86,26 +86,22 @@
     li.addEventListener('keydown', function (e) { if (e.key === 'Escape') { open(false); btn.focus(); } });
   });
 
-  /* ---- Menu mobile ---- */
-  var burger = document.querySelector('.dca-burger');
-  var drawer = document.getElementById('dca-drawer');
-  if (burger && drawer) {
-    drawer.querySelectorAll('li').forEach(function (li, i) { li.style.setProperty('--i', i); });
-    function setMenu(v) {
-      burger.setAttribute('aria-expanded', v ? 'true' : 'false');
-      burger.setAttribute('aria-label', v ? 'Fechar menu' : 'Abrir menu');
-      drawer.classList.toggle('is-open', v);
-      drawer.toggleAttribute('inert', !v);
-      document.body.classList.toggle('dca-lock', v);
+  /* ---- Menu mobile (details: abre e fecha mesmo sem JavaScript) ---- */
+  var mmenu = document.querySelector('.dca-mmenu');
+  if (mmenu) {
+    var drawer = mmenu.querySelector('.dca-drawer');
+    mmenu.querySelectorAll('.dca-drawer__item').forEach(function (li, i) { li.style.setProperty('--i', i); });
+    mmenu.addEventListener('toggle', function () {
+      document.body.classList.toggle('dca-lock', mmenu.open);
       if (header) {
         header.classList.remove('is-hidden');
         drawer.style.setProperty('--dca-drawer-top', header.getBoundingClientRect().bottom + 'px');
       }
-    }
-    drawer.setAttribute('inert', '');
-    burger.addEventListener('click', function () { setMenu(burger.getAttribute('aria-expanded') !== 'true'); });
-    drawer.addEventListener('click', function (e) { if (e.target.closest('a')) setMenu(false); });
-    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && drawer.classList.contains('is-open')) { setMenu(false); burger.focus(); } });
+    });
+    drawer.addEventListener('click', function (e) { if (e.target.closest('a')) mmenu.open = false; });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && mmenu.open) { mmenu.open = false; mmenu.querySelector('summary').focus(); }
+    });
   }
 
   /* ---- Página atual no menu ---- */
@@ -124,7 +120,6 @@
     function flip() {
       var v = !card.classList.contains('is-flipped');
       card.classList.toggle('is-flipped', v);
-      card.setAttribute('aria-pressed', v ? 'true' : 'false');
     }
     card.addEventListener('click', flip);
     card.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); flip(); } });

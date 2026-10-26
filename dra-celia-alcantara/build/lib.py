@@ -110,17 +110,23 @@ def _w(wtype, settings, cls="", eid=None, title=None):
     return {"id": uid(), "elType": "widget", "settings": settings, "elements": [], "widgetType": wtype}
 
 
-def heading(title, tag="h2", cls="dca-h2", eid=None, align=None, align_mobile=None, title_label=None):
+def font(family):
+    """Só a família: faz o Elementor carregar a fonte do Google. Tamanhos e pesos vêm do CSS da página."""
+    return {"typography_typography": "custom", "typography_font_family": family}
+
+
+def heading(title, tag="h2", cls="dca-h2", eid=None, align=None, align_mobile=None, title_label=None, family="Playfair Display"):
     s = {"title": title, "header_size": tag}
     if align:
         s["align"] = align
     if align_mobile:
         s["align_mobile"] = align_mobile
+    s.update(font(family))
     return _w("heading", s, cls, eid, title_label)
 
 
 def text(html, cls="dca-prose", eid=None, title=None):
-    return _w("text-editor", {"editor": html}, cls, eid, title)
+    return _w("text-editor", dict({"editor": html}, **font("Poppins")), cls, eid, title)
 
 
 WA_ICON = {"value": "fab fa-whatsapp", "library": "fa-brands"}
@@ -133,6 +139,7 @@ def button(label, url, cls="dca-btn", icon=None, external=False, align=None, ico
         s["selected_icon"] = icon
     if align:
         s["align"] = align
+    s.update(font("Poppins"))
     return _w("button", s, cls)
 
 
@@ -324,11 +331,11 @@ class Preview:
 # ---------------------------------------------------------------- ícones (traço 1.5, mesmo desenho em todo o site)
 
 def _svg(paths, vb="0 0 24 24", fill=False):
-    attrs = 'fill="currentColor"' if fill else 'fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"'
-    return f'<svg viewBox="{vb}" {attrs} aria-hidden="true" focusable="false">{paths}</svg>'
+    attrs = 'fill="#000"' if fill else 'fill="none" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"'
+    return f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="{vb}" {attrs}>{paths}</svg>'
 
 
-ICONS = {
+ICON_SVG = {
     "whatsapp": _svg('<path d="M19.05 4.91A9.82 9.82 0 0 0 12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.91-7.01zm-7.01 15.24h-.01a8.23 8.23 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.7 8.23-8.23 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48a.92.92 0 0 0-.66.31c-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.28z"/>', fill=True),
     "arrow": _svg('<path d="M5 12h14M13 6l6 6-6 6"/>'),
     "chev": _svg('<path d="M6 9l6 6 6-6"/>'),
@@ -337,7 +344,7 @@ ICONS = {
     "clock": _svg('<circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/>'),
     "shield": _svg('<path d="M12 3 5 5.8v5.4c0 4.4 3 8.2 7 9.8 4-1.6 7-5.4 7-9.8V5.8L12 3z"/><path d="m9 12 2.2 2.2L15.5 10"/>'),
     "award": _svg('<circle cx="12" cy="9" r="5.5"/><path d="m8.6 13.4-1.6 7.1 5-2.6 5 2.6-1.6-7.1"/>'),
-    "instagram": _svg('<rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".6" fill="currentColor"/>'),
+    "instagram": _svg('<rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".6" fill="#000"/>'),
     "mail": _svg('<rect x="3" y="5.5" width="18" height="13" rx="2.5"/><path d="m4 7 8 6 8-6"/>'),
     "phone": _svg('<path d="M5.5 3.5h3l1.5 4-2 1.5a11 11 0 0 0 7 7l1.5-2 4 1.5v3a2 2 0 0 1-2 2A16.5 16.5 0 0 1 3.5 5.5a2 2 0 0 1 2-2z"/>'),
     "calendar": _svg('<rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/>'),
@@ -347,6 +354,20 @@ ICONS = {
     "facebook": _svg('<path d="M14 8.5h2.5V5H14a4 4 0 0 0-4 4v2H8v3.5h2V21h3.5v-6.5H16l.5-3.5h-3V9a.5.5 0 0 1 .5-.5z"/>'),
     "linkedin": _svg('<rect x="3.5" y="3.5" width="17" height="17" rx="3"/><path d="M8 10.5V16M8 7.8v.2M11.5 16v-3.2a2.2 2.2 0 0 1 4.4 0V16M11.5 10.5V16"/>'),
 }
+
+
+# Ícones em CSS (máscara): o WordPress remove <svg> do conteúdo quando a conta não tem
+# permissão de "HTML não filtrado"; um <span> com classe sempre passa.
+ICONS = {k: f'<span class="dca-i dca-i--{k}" aria-hidden="true"></span>' for k in ICON_SVG}
+
+
+def icon_css():
+    from urllib.parse import quote as q
+    rules = [".dca-i{display:inline-block;flex:none;width:1em;height:1em;vertical-align:-.125em;background-color:currentColor;"
+             "-webkit-mask:var(--i) center/contain no-repeat;mask:var(--i) center/contain no-repeat}"]
+    for k, svg in ICON_SVG.items():
+        rules.append(f'.dca-i--{k}{{--i:url("data:image/svg+xml,{q(svg, safe=" =:/")}")}}')
+    return "\n".join(rules)
 
 
 def esc(s):

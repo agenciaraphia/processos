@@ -21,35 +21,37 @@ Este pacote tem 9 páginas, o cabeçalho e o rodapé, prontos para importar no E
 | `conteudo/seo.csv` | Títulos SEO, metas e palavras-chave | Rank Math ou Yoast |
 | `preview/*.html` | Prévia estática | Só para conferência visual (não sobe para o WordPress) |
 
-**Importante:** o visual (CSS e fontes) e as animações ficam em `codigo-personalizado/`. Eles entram pelo **Elementor › Código personalizado** (passo 3), não dentro das páginas. Sem esse passo, as páginas aparecem sem estilo.
+**Tudo já vem dentro de cada JSON:**
+- **Visual (CSS):** fica no campo **CSS personalizado** da página ou do modelo (aba Avançado das configurações da página, recurso do Elementor Pro).
+- **Fontes:** Playfair Display, Poppins e Pinyon Script são carregadas pela tipografia dos próprios widgets.
+- **Animações:** ficam no widget HTML "NÃO APAGAR · fontes e animações do site", no fim de cada página.
+
+Cada página funciona sozinha, mesmo antes de publicar o cabeçalho e o rodapé.
 
 ## Passo a passo
 
 1. **Tema:** use o Hello Elementor (recomendado).
-2. **Ativar containers:** em Elementor › Configurações › **Recursos**, deixe **"Container Flexbox" como Ativo** e salve. O site inteiro é feito com containers. Se esse recurso estiver desligado, as páginas importam vazias ou quebradas.
-3. **Código personalizado** (Elementor › Código personalizado › Adicionar novo):
-   - **"Dra. Célia · estilos":** cole todo o conteúdo de `codigo-personalizado/01-estilos-e-fontes.html`. Local: **`<head>`**. Publique com a condição **Todo o site**.
-   - **"Dra. Célia · animações":** cole todo o conteúdo de `codigo-personalizado/02-animacoes.html`. Local: **fim do `<body>`**. Publique com a condição **Todo o site**.
-4. **Configurações do site** (Elementor › Configurações do site):
+2. **Ativar containers:** em Elementor › Configurações › **Recursos**, deixe **"Container Flexbox" como Ativo** e salve.
+3. **Configurações do site** (Elementor › Configurações do site):
    - **Cores globais:** Primária `#3AA9C8`, Secundária `#1F3363`, Texto `#3A4053`, Destaque `#C29F5F`.
    - **Fontes globais:** Primária e Secundária = Playfair Display; Texto e Destaque = Poppins.
    - **Layout:** largura do container 1240 px.
-5. **Importar:** Modelos › Modelos salvos › **Importar modelos** e selecione os 11 JSON.
-6. **Cabeçalho e rodapé:** em Modelos › Construtor de temas, publique o Cabeçalho e o Rodapé com a condição **Todo o site**.
-7. **Páginas:** crie cada página no WordPress com o slug da tabela acima e clique em "Editar com Elementor". No ícone de pasta, aba **Meus modelos**, insira o modelo correspondente. Em Configurações da página, deixe o **layout como "Elementor largura total"**.
-8. **Modelo de post:** publique `09-modelo-post-blog` com a condição **Posts › Todos**. Crie o post "Artrite reumatoide…" com o slug `artrite-reumatoide-fatores-de-risco` e cole o conteúdo de `conteudo/post-artrite-reumatoide.html`.
-9. **Leitura:** em Configurações › Leitura, defina a Home como página inicial estática.
-10. **Domínio no schema:** os dados estruturados usam `https://www.draceliaalcantara.com.br`. Se o domínio for outro, troque em `build/site.py` (`DOMAIN`), rode `python3 build/site.py` e reimporte. Também dá para editar o widget "SEO · dados estruturados" no fim de cada página.
+4. **Importar:** Modelos › Modelos salvos › **Importar modelos** e selecione os 11 JSON.
+5. **Cabeçalho e rodapé:** em Modelos › Construtor de temas, publique o Cabeçalho e o Rodapé com a condição **Todo o site**.
+6. **Páginas:** crie cada página no WordPress com o slug da tabela acima e clique em "Editar com Elementor". No ícone de pasta, aba **Meus modelos**, insira o modelo correspondente. Em Configurações da página, deixe o **layout como "Elementor largura total"**.
+7. **Modelo de post:** publique `09-modelo-post-blog` com a condição **Posts › Todos**. Crie o post "Artrite reumatoide…" com o slug `artrite-reumatoide-fatores-de-risco` e cole o conteúdo de `conteudo/post-artrite-reumatoide.html`.
+8. **Leitura:** em Configurações › Leitura, defina a Home como página inicial estática.
+9. **Domínio no schema:** os dados estruturados usam `https://www.draceliaalcantara.com.br`. Se o domínio for outro, troque em `build/site.py` (`DOMAIN`), rode `python3 build/site.py` e reimporte. Também dá para editar o widget "SEO · dados estruturados" no fim de cada página.
 
 ## Se o WordPress "quebrar" a página
 
 | O que aparece | Causa | Solução |
 |---|---|---|
 | Página vazia ou "conteúdo não suportado" depois de inserir o modelo | Containers desligados | Elementor › Configurações › Recursos › **Container Flexbox: Ativo** (e **Otimizar carregamento de DOM**, se aparecer). Atualize o Elementor para a versão 3.16 ou mais nova. |
-| Textos sem estilo, fonte padrão, botões verdes ou cinza | O CSS não carregou | Faça o passo 3 (Código personalizado). Se preferir, cole `codigo-personalizado/estilos-somente-css.css` em Configurações do site › **CSS personalizado**. |
+| Textos sem estilo, fonte padrão, botões verdes ou cinza | O CSS da página não foi gerado | Elementor › Ferramentas › **Regenerar arquivos e dados**. Confira se o Elementor Pro está ativo e com licença (o CSS personalizado é do Pro). |
 | Depois de colar o código, as alterações não aparecem | Cache | Elementor › Ferramentas › **Regenerar arquivos e dados**. Limpe também o cache do plugin (LiteSpeed, WP Rocket etc.) e do Cloudflare. |
-| Conteúdo some ou fica invisível ao rolar | Plugin de otimização atrasando ou combinando o JavaScript | No WP Rocket, LiteSpeed ou Autoptimize, exclua `dca-global` e `__dcaInit` de "Atrasar JS", "Combinar JS" e "Adiar JS". |
-| Ao salvar, o Elementor apaga o `<script>` ou o `<style>` | O usuário não tem permissão de HTML não filtrado (comum em multisite ou com plugin de segurança) | Faça a edição com uma conta de **Administrador**. Em multisite, use o **Superadministrador**. |
+| Conteúdo some ou fica invisível ao rolar | Plugin de otimização atrasando ou combinando o JavaScript | No WP Rocket, LiteSpeed ou Autoptimize, exclua `__dcaInit` de "Atrasar JS", "Combinar JS" e "Adiar JS". |
+| Animações não acontecem (o site aparece estático) | A conta não tem permissão de "HTML não filtrado" e o WordPress removeu o `<script>` (comum em multisite, em algumas hospedagens e com plugins de segurança) | Importe com uma conta de **Administrador** (em multisite, o **Superadministrador**). Mesmo sem o script, o site continua funcionando: menu, menu do celular, cards e WhatsApp foram feitos para funcionar só com CSS. O schema (JSON-LD) também é removido nesse caso, então ative o schema do Rank Math ou do Yoast. |
 | Menu duplicado, ou cabeçalho e rodapé do tema aparecendo junto | Cabeçalho e rodapé do tema ainda ativos | Use o tema **Hello Elementor** e publique o Cabeçalho e o Rodapé com a condição **Todo o site**. |
 | Página estreita, com barras laterais | Layout da página | Configurações da página (engrenagem) › Layout: **Elementor largura total**. |
 | Erro ao importar o JSON | Arquivo aberto e salvo por outro programa, ou envio bloqueado | Baixe o arquivo de novo, sem abrir no Word ou no bloco de notas. Se a hospedagem bloquear o envio, importe pelo **Elementor › Ferramentas › Importar/Exportar kit** ou peça para liberar arquivos `.json`. |
@@ -120,6 +122,6 @@ O conteúdo fica em `build/site.py`, o visual em `assets/dca-global.css` e as in
 python3 build/site.py
 ```
 
-O comando regera os JSON em `elementor/`, a prévia em `preview/` e o `conteudo/seo.csv`.
+O comando regera os JSON em `elementor/`, a prévia em `preview/` e o `conteudo/seo.csv`. Ele também recusa CSS com `<` ou `>`: o WordPress converte esses caracteres e quebraria os seletores.
 
 Os textos "Especialidades", "Como vou ajudar você?", "Perguntas frequentes", "Formação", o menu e o rodapé estão em widgets HTML, para ter controle total do visual e das animações. Para editar só um texto, abra o widget no Elementor e altere o texto entre as tags.
