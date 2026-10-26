@@ -1,0 +1,554 @@
+{
+ "content": [
+  {
+   "id": "a94c0fd",
+   "elType": "container",
+   "settings": {
+    "content_width": "boxed",
+    "flex_direction": "column",
+    "boxed_width": {
+     "unit": "px",
+     "size": 1240,
+     "sizes": []
+    },
+    "flex_gap": {
+     "unit": "px",
+     "size": 40,
+     "column": "40",
+     "row": "40",
+     "isLinked": true
+    },
+    "flex_gap_mobile": {
+     "unit": "px",
+     "size": 36,
+     "column": "36",
+     "row": "36",
+     "isLinked": true
+    },
+    "padding": {
+     "unit": "px",
+     "top": "40",
+     "right": "28",
+     "bottom": "64",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_tablet": {
+     "unit": "px",
+     "top": "40",
+     "right": "28",
+     "bottom": "64",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_mobile": {
+     "unit": "px",
+     "top": "24",
+     "right": "20",
+     "bottom": "48",
+     "left": "20",
+     "isLinked": false
+    },
+    "html_tag": "section",
+    "_element_id": "conteudo",
+    "css_classes": "dca-sec",
+    "_title": "Topo · H1"
+   },
+   "elements": [
+    {
+     "id": "d94b667",
+     "elType": "widget",
+     "settings": {
+      "html": "<nav class=\"dca-crumbs\" aria-label=\"Você está em\"><ol><li><a href=\"/\">Início</a></li><li><span aria-current=\"page\">Blog</span></li></ol></nav>",
+      "_css_classes": "dca-load"
+     },
+     "elements": [],
+     "widgetType": "html"
+    },
+    {
+     "id": "c0d6645",
+     "elType": "container",
+     "settings": {
+      "content_width": "full",
+      "flex_direction": "row",
+      "flex_direction_tablet": "column",
+      "flex_direction_mobile": "column",
+      "flex_gap": {
+       "unit": "px",
+       "size": 40,
+       "column": "40",
+       "row": "40",
+       "isLinked": true
+      },
+      "flex_justify_content": "space-between",
+      "flex_align_items": "flex-end",
+      "padding": {
+       "unit": "px",
+       "top": "0",
+       "right": "0",
+       "bottom": "0",
+       "left": "0",
+       "isLinked": true
+      }
+     },
+     "elements": [
+      {
+       "id": "b17cdb8",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "width": {
+         "unit": "%",
+         "size": 56,
+         "sizes": []
+        },
+        "width_tablet": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "width_mobile": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "flex_gap": {
+         "unit": "px",
+         "size": 24,
+         "column": "24",
+         "row": "24",
+         "isLinked": true
+        },
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        }
+       },
+       "elements": [
+        {
+         "id": "0b3cbc5",
+         "elType": "widget",
+         "settings": {
+          "title": "Blog de <em>reumatologia</em><span class=\"dca-h1-tail\"><span class=\"dca-sr\">: </span>informação confiável, em linguagem simples</span>",
+          "header_size": "h1",
+          "_css_classes": "dca-display dca-display--md dca-load"
+         },
+         "elements": [],
+         "widgetType": "heading"
+        }
+       ],
+       "isInner": false
+      },
+      {
+       "id": "81e207c",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "width": {
+         "unit": "%",
+         "size": 38,
+         "sizes": []
+        },
+        "width_tablet": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "width_mobile": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "flex_gap": {
+         "unit": "px",
+         "size": 24,
+         "column": "24",
+         "row": "24",
+         "isLinked": true
+        },
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        }
+       },
+       "elements": [
+        {
+         "id": "edd824d",
+         "elType": "widget",
+         "settings": {
+          "editor": "<p>Aqui você encontra artigos sobre doenças reumáticas, sintomas, tratamentos e hábitos que ajudam a viver melhor. Quanto mais conhecimento, mais autonomia para cuidar da sua saúde.</p>",
+          "_css_classes": "dca-lead dca-load"
+         },
+         "elements": [],
+         "widgetType": "text-editor"
+        }
+       ],
+       "isInner": false
+      }
+     ],
+     "isInner": false
+    },
+    {
+     "id": "766f092",
+     "elType": "widget",
+     "settings": {
+      "html": "<nav aria-label=\"Filtrar artigos por tema\"><ul class=\"dca-topics\"><li><a href=\"/blog/\" aria-current=\"page\">Todos</a></li><li><a href=\"/categoria/artrite/\">Artrite</a></li><li><a href=\"/categoria/coluna/\">Coluna</a></li><li><a href=\"/categoria/fibromialgia/\">Fibromialgia</a></li><li><a href=\"/categoria/osteoporose/\">Ossos</a></li><li><a href=\"/categoria/tratamentos/\">Tratamentos</a></li></ul></nav>",
+      "_css_classes": "dca-load",
+      "_title": "Filtro por tema (links de categorias)"
+     },
+     "elements": [],
+     "widgetType": "html"
+    }
+   ],
+   "isInner": false
+  },
+  {
+   "id": "9052434",
+   "elType": "container",
+   "settings": {
+    "content_width": "boxed",
+    "flex_direction": "column",
+    "boxed_width": {
+     "unit": "px",
+     "size": 1240,
+     "sizes": []
+    },
+    "flex_gap": {
+     "unit": "px",
+     "size": 56,
+     "column": "56",
+     "row": "56",
+     "isLinked": true
+    },
+    "flex_gap_mobile": {
+     "unit": "px",
+     "size": 36,
+     "column": "36",
+     "row": "36",
+     "isLinked": true
+    },
+    "padding": {
+     "unit": "px",
+     "top": "0",
+     "right": "28",
+     "bottom": "120",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_tablet": {
+     "unit": "px",
+     "top": "0",
+     "right": "28",
+     "bottom": "120",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_mobile": {
+     "unit": "px",
+     "top": "0",
+     "right": "20",
+     "bottom": "80",
+     "left": "20",
+     "isLinked": false
+    },
+    "html_tag": "section",
+    "css_classes": "dca-sec",
+    "_title": "Artigos"
+   },
+   "elements": [
+    {
+     "id": "6845d38",
+     "elType": "widget",
+     "settings": {
+      "_skin": "classic",
+      "posts_post_type": "post",
+      "classic_columns": "3",
+      "classic_columns_tablet": "2",
+      "classic_columns_mobile": "1",
+      "classic_posts_per_page": 6,
+      "classic_thumbnail": "top",
+      "classic_item_ratio": {
+       "unit": "px",
+       "size": 0.75,
+       "sizes": []
+      },
+      "classic_title_tag": "h2",
+      "classic_excerpt_length": 20,
+      "classic_meta_data": [
+       "date"
+      ],
+      "classic_read_more_text": "Ler artigo",
+      "classic_column_gap": {
+       "unit": "px",
+       "size": 32,
+       "sizes": []
+      },
+      "classic_row_gap": {
+       "unit": "px",
+       "size": 56,
+       "sizes": []
+      },
+      "pagination_type": "numbers",
+      "pagination_page_limit": "",
+      "pagination_numbers_shorten": "yes",
+      "_css_classes": "dca-posts dca-reveal",
+      "_title": "Grade de artigos · 6 por página"
+     },
+     "elements": [],
+     "widgetType": "posts"
+    }
+   ],
+   "isInner": false
+  },
+  {
+   "id": "b81cad4",
+   "elType": "container",
+   "settings": {
+    "content_width": "boxed",
+    "flex_direction": "column",
+    "boxed_width": {
+     "unit": "px",
+     "size": 1240,
+     "sizes": []
+    },
+    "flex_gap": {
+     "unit": "px",
+     "size": 56,
+     "column": "56",
+     "row": "56",
+     "isLinked": true
+    },
+    "flex_gap_mobile": {
+     "unit": "px",
+     "size": 36,
+     "column": "36",
+     "row": "36",
+     "isLinked": true
+    },
+    "padding": {
+     "unit": "px",
+     "top": "96",
+     "right": "28",
+     "bottom": "96",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_tablet": {
+     "unit": "px",
+     "top": "96",
+     "right": "28",
+     "bottom": "96",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_mobile": {
+     "unit": "px",
+     "top": "80",
+     "right": "20",
+     "bottom": "80",
+     "left": "20",
+     "isLinked": false
+    },
+    "background_background": "classic",
+    "background_color": "#F7F4EF",
+    "html_tag": "section",
+    "css_classes": "dca-sec",
+    "_title": "Chamada WhatsApp"
+   },
+   "elements": [
+    {
+     "id": "ee677e1",
+     "elType": "container",
+     "settings": {
+      "content_width": "full",
+      "flex_direction": "row",
+      "flex_direction_tablet": "column",
+      "flex_direction_mobile": "column",
+      "flex_gap": {
+       "unit": "px",
+       "size": 40,
+       "column": "40",
+       "row": "40",
+       "isLinked": true
+      },
+      "flex_justify_content": "space-between",
+      "flex_align_items": "center",
+      "padding": {
+       "unit": "px",
+       "top": "0",
+       "right": "0",
+       "bottom": "0",
+       "left": "0",
+       "isLinked": true
+      }
+     },
+     "elements": [
+      {
+       "id": "3b09e38",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "width": {
+         "unit": "%",
+         "size": 56,
+         "sizes": []
+        },
+        "width_tablet": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "width_mobile": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "flex_gap": {
+         "unit": "px",
+         "size": 20,
+         "column": "20",
+         "row": "20",
+         "isLinked": true
+        },
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        }
+       },
+       "elements": [
+        {
+         "id": "82169ff",
+         "elType": "widget",
+         "settings": {
+          "title": "Ficou com alguma <em>dúvida?</em>",
+          "header_size": "h2",
+          "_css_classes": "dca-h2 dca-reveal"
+         },
+         "elements": [],
+         "widgetType": "heading"
+        },
+        {
+         "id": "5396208",
+         "elType": "widget",
+         "settings": {
+          "editor": "<p>Fale com a nossa equipe pelo WhatsApp. Atendimento presencial em Fortaleza e por telemedicina para todo o Brasil.</p>",
+          "_css_classes": "dca-lead dca-reveal"
+         },
+         "elements": [],
+         "widgetType": "text-editor"
+        }
+       ],
+       "isInner": false
+      },
+      {
+       "id": "c7de09a",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "row",
+        "width": {
+         "unit": "%",
+         "size": 40,
+         "sizes": []
+        },
+        "width_tablet": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "width_mobile": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "flex_gap": {
+         "unit": "px",
+         "size": 14,
+         "column": "14",
+         "row": "14",
+         "isLinked": true
+        },
+        "flex_justify_content": "flex-end",
+        "flex_justify_content_mobile": "flex-start",
+        "flex_align_items": "center",
+        "flex_wrap": "wrap",
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        },
+        "css_classes": "dca-reveal"
+       },
+       "elements": [
+        {
+         "id": "a1df799",
+         "elType": "widget",
+         "settings": {
+          "text": "Fale com a nossa equipe pelo WhatsApp",
+          "link": {
+           "url": "https://wa.me/5585992449528?text=Ol%C3%A1%21%20Vim%20pelo%20site%20%28p%C3%A1gina%20Blog%29%20e%20gostaria%20de%20agendar%20uma%20consulta%20com%20a%20Dra.%20C%C3%A9lia%20Alc%C3%A2ntara.",
+           "is_external": "on",
+           "nofollow": "",
+           "custom_attributes": ""
+          },
+          "selected_icon": {
+           "value": "fab fa-whatsapp",
+           "library": "fa-brands"
+          },
+          "icon_align": "left",
+          "icon_indent": {
+           "unit": "px",
+           "size": 10,
+           "sizes": []
+          },
+          "_css_classes": "dca-btn dca-btn--gold"
+         },
+         "elements": [],
+         "widgetType": "button"
+        }
+       ],
+       "isInner": false
+      }
+     ],
+     "isInner": false
+    },
+    {
+     "id": "7f7e021",
+     "elType": "widget",
+     "settings": {
+      "html": "<script type=\"application/ld+json\">{\"@context\": \"https://schema.org\", \"@graph\": [{\"@type\": \"Blog\", \"@id\": \"https://www.draceliaalcantara.com.br/blog/#blog\", \"url\": \"https://www.draceliaalcantara.com.br/blog/\", \"name\": \"Blog | Dicas e informação sobre reumatologia | Dra. Célia Alcântara\", \"description\": \"Artigos da Dra. Célia Alcântara sobre artrite, fibromialgia, osteoporose e outras doenças reumáticas, com informação clara para cuidar da sua saúde.\", \"inLanguage\": \"pt-BR\", \"author\": {\"@type\": \"Person\", \"name\": \"Dra. Célia Alcântara\", \"url\": \"https://www.draceliaalcantara.com.br/#sobre\"}}, {\"@type\": \"BreadcrumbList\", \"itemListElement\": [{\"@type\": \"ListItem\", \"position\": 1, \"name\": \"Início\", \"item\": \"https://www.draceliaalcantara.com.br/\"}, {\"@type\": \"ListItem\", \"position\": 2, \"name\": \"Blog\", \"item\": \"https://www.draceliaalcantara.com.br/blog/\"}]}]}</script>",
+      "_title": "SEO · dados estruturados (JSON-LD)"
+     },
+     "elements": [],
+     "widgetType": "html"
+    }
+   ],
+   "isInner": false
+  }
+ ],
+ "page_settings": {
+  "template": "elementor_header_footer",
+  "hide_title": "yes"
+ },
+ "version": "0.4",
+ "title": "Blog · Dra. Célia",
+ "type": "page"
+}

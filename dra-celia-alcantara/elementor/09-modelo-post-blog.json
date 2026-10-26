@@ -1,0 +1,602 @@
+{
+ "content": [
+  {
+   "id": "5c08258",
+   "elType": "container",
+   "settings": {
+    "content_width": "boxed",
+    "flex_direction": "column",
+    "boxed_width": {
+     "unit": "px",
+     "size": 860,
+     "sizes": []
+    },
+    "flex_gap": {
+     "unit": "px",
+     "size": 24,
+     "column": "24",
+     "row": "24",
+     "isLinked": true
+    },
+    "flex_gap_mobile": {
+     "unit": "px",
+     "size": 36,
+     "column": "36",
+     "row": "36",
+     "isLinked": true
+    },
+    "padding": {
+     "unit": "px",
+     "top": "40",
+     "right": "28",
+     "bottom": "48",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_tablet": {
+     "unit": "px",
+     "top": "40",
+     "right": "28",
+     "bottom": "48",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_mobile": {
+     "unit": "px",
+     "top": "24",
+     "right": "20",
+     "bottom": "36",
+     "left": "20",
+     "isLinked": false
+    },
+    "html_tag": "section",
+    "_element_id": "conteudo",
+    "css_classes": "dca-sec",
+    "_title": "Topo do artigo"
+   },
+   "elements": [
+    {
+     "id": "2f4d1f5",
+     "elType": "widget",
+     "settings": {
+      "html": "<nav class=\"dca-crumbs\" aria-label=\"Você está em\"><ol><li><a href=\"/\">Início</a></li><li><a href=\"/blog/\">Blog</a></li><li><span aria-current=\"page\">Artigo</span></li></ol></nav>",
+      "_css_classes": "dca-load",
+      "_title": "Breadcrumb"
+     },
+     "elements": [],
+     "widgetType": "html"
+    },
+    {
+     "id": "3a22894",
+     "elType": "widget",
+     "settings": {
+      "header_size": "h1",
+      "_css_classes": "dca-h1-post dca-load",
+      "_title": "Título do post (H1)"
+     },
+     "elements": [],
+     "widgetType": "theme-post-title"
+    },
+    {
+     "id": "6a77a5f",
+     "elType": "widget",
+     "settings": {
+      "view": "inline",
+      "icon_list": [
+       {
+        "_id": "dcad01",
+        "type": "date",
+        "selected_icon": {
+         "value": "far fa-calendar",
+         "library": "fa-regular"
+        }
+       },
+       {
+        "_id": "dcaa01",
+        "type": "author",
+        "selected_icon": {
+         "value": "far fa-user-circle",
+         "library": "fa-regular"
+        }
+       }
+      ],
+      "_css_classes": "dca-post-meta dca-load",
+      "_title": "Data e autora"
+     },
+     "elements": [],
+     "widgetType": "post-info"
+    }
+   ],
+   "isInner": false
+  },
+  {
+   "id": "393175f",
+   "elType": "container",
+   "settings": {
+    "content_width": "boxed",
+    "flex_direction": "column",
+    "boxed_width": {
+     "unit": "px",
+     "size": 1080,
+     "sizes": []
+    },
+    "flex_gap": {
+     "unit": "px",
+     "size": 56,
+     "column": "56",
+     "row": "56",
+     "isLinked": true
+    },
+    "flex_gap_mobile": {
+     "unit": "px",
+     "size": 36,
+     "column": "36",
+     "row": "36",
+     "isLinked": true
+    },
+    "padding": {
+     "unit": "px",
+     "top": "0",
+     "right": "28",
+     "bottom": "56",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_tablet": {
+     "unit": "px",
+     "top": "0",
+     "right": "28",
+     "bottom": "56",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_mobile": {
+     "unit": "px",
+     "top": "0",
+     "right": "16",
+     "bottom": "40",
+     "left": "16",
+     "isLinked": false
+    },
+    "html_tag": "section",
+    "css_classes": "dca-sec",
+    "_title": "Capa"
+   },
+   "elements": [
+    {
+     "id": "17f801c",
+     "elType": "widget",
+     "settings": {
+      "image_size": "full",
+      "_css_classes": "dca-featured dca-img-reveal",
+      "_title": "Imagem de capa"
+     },
+     "elements": [],
+     "widgetType": "theme-post-featured-image"
+    }
+   ],
+   "isInner": false
+  },
+  {
+   "id": "34ac48e",
+   "elType": "container",
+   "settings": {
+    "content_width": "boxed",
+    "flex_direction": "column",
+    "boxed_width": {
+     "unit": "px",
+     "size": 760,
+     "sizes": []
+    },
+    "flex_gap": {
+     "unit": "px",
+     "size": 40,
+     "column": "40",
+     "row": "40",
+     "isLinked": true
+    },
+    "flex_gap_mobile": {
+     "unit": "px",
+     "size": 36,
+     "column": "36",
+     "row": "36",
+     "isLinked": true
+    },
+    "padding": {
+     "unit": "px",
+     "top": "0",
+     "right": "28",
+     "bottom": "96",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_tablet": {
+     "unit": "px",
+     "top": "0",
+     "right": "28",
+     "bottom": "96",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_mobile": {
+     "unit": "px",
+     "top": "0",
+     "right": "20",
+     "bottom": "64",
+     "left": "20",
+     "isLinked": false
+    },
+    "html_tag": "section",
+    "css_classes": "dca-sec",
+    "_title": "Artigo"
+   },
+   "elements": [
+    {
+     "id": "6f70ae7",
+     "elType": "widget",
+     "settings": {
+      "_css_classes": "dca-prose dca-article",
+      "_title": "Conteúdo do artigo"
+     },
+     "elements": [],
+     "widgetType": "theme-post-content"
+    },
+    {
+     "id": "e49c4c0",
+     "elType": "widget",
+     "settings": {
+      "html": "<p class=\"dca-disclaimer\">Este conteúdo é informativo e não substitui a consulta médica. Procure o aconselhamento de um profissional capacitado.</p>"
+     },
+     "elements": [],
+     "widgetType": "html"
+    },
+    {
+     "id": "9f26304",
+     "elType": "container",
+     "settings": {
+      "content_width": "full",
+      "flex_direction": "row",
+      "flex_gap": {
+       "unit": "px",
+       "size": 18,
+       "column": "18",
+       "row": "18",
+       "isLinked": true
+      },
+      "flex_align_items": "center",
+      "flex_wrap": "wrap",
+      "padding": {
+       "unit": "px",
+       "top": "0",
+       "right": "0",
+       "bottom": "0",
+       "left": "0",
+       "isLinked": true
+      }
+     },
+     "elements": [
+      {
+       "id": "bb5c1ae",
+       "elType": "widget",
+       "settings": {
+        "html": "<p class=\"dca-small\" style=\"margin:0\">Compartilhe este artigo</p>"
+       },
+       "elements": [],
+       "widgetType": "html"
+      },
+      {
+       "id": "a0eb909",
+       "elType": "widget",
+       "settings": {
+        "share_buttons": [
+         {
+          "_id": "dcas01",
+          "button": "whatsapp"
+         },
+         {
+          "_id": "dcas02",
+          "button": "facebook"
+         },
+         {
+          "_id": "dcas03",
+          "button": "linkedin"
+         },
+         {
+          "_id": "dcas04",
+          "button": "email"
+         }
+        ],
+        "view": "icon",
+        "skin": "minimal",
+        "shape": "circle",
+        "columns": "0",
+        "alignment": "left",
+        "_css_classes": "dca-share",
+        "_title": "Compartilhar"
+       },
+       "elements": [],
+       "widgetType": "share-buttons"
+      }
+     ],
+     "isInner": false
+    },
+    {
+     "id": "ad094fa",
+     "elType": "widget",
+     "settings": {
+      "html": "<div class=\"dca-author\"><span class=\"dca-author__avatar\" aria-hidden=\"true\">C</span><div><strong>Dra. Célia Alcântara</strong><p>Médica Reumatologista · CRM 8280 · RQE 4354. Título de Reumatologista pela Sociedade Brasileira de Reumatologia, mestre em Ciências Médicas e mais de 15 anos de experiência clínica.</p><p><a class=\"dca-link\" href=\"/#sobre\">Conheça a Dra. Célia</a></p></div></div>",
+      "_css_classes": "dca-reveal",
+      "_title": "Sobre a autora (E-E-A-T)"
+     },
+     "elements": [],
+     "widgetType": "html"
+    }
+   ],
+   "isInner": false
+  },
+  {
+   "id": "0da24df",
+   "elType": "container",
+   "settings": {
+    "content_width": "boxed",
+    "flex_direction": "column",
+    "boxed_width": {
+     "unit": "px",
+     "size": 1080,
+     "sizes": []
+    },
+    "flex_gap": {
+     "unit": "px",
+     "size": 56,
+     "column": "56",
+     "row": "56",
+     "isLinked": true
+    },
+    "flex_gap_mobile": {
+     "unit": "px",
+     "size": 36,
+     "column": "36",
+     "row": "36",
+     "isLinked": true
+    },
+    "padding": {
+     "unit": "px",
+     "top": "0",
+     "right": "28",
+     "bottom": "104",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_tablet": {
+     "unit": "px",
+     "top": "0",
+     "right": "28",
+     "bottom": "104",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_mobile": {
+     "unit": "px",
+     "top": "0",
+     "right": "16",
+     "bottom": "72",
+     "left": "16",
+     "isLinked": false
+    },
+    "html_tag": "section",
+    "css_classes": "dca-sec",
+    "_title": "Caixa de chamada no fim do post"
+   },
+   "elements": [
+    {
+     "id": "78e9e27",
+     "elType": "container",
+     "settings": {
+      "content_width": "full",
+      "flex_direction": "column",
+      "flex_gap": {
+       "unit": "px",
+       "size": 22,
+       "column": "22",
+       "row": "22",
+       "isLinked": true
+      },
+      "padding": {
+       "unit": "px",
+       "top": "64",
+       "right": "64",
+       "bottom": "64",
+       "left": "64",
+       "isLinked": true
+      },
+      "padding_mobile": {
+       "unit": "px",
+       "top": "44",
+       "right": "24",
+       "bottom": "44",
+       "left": "24",
+       "isLinked": false
+      },
+      "background_background": "classic",
+      "background_color": "#1F3363",
+      "css_classes": "dca-panel dca-dark"
+     },
+     "elements": [
+      {
+       "id": "cbf1fc2",
+       "elType": "widget",
+       "settings": {
+        "title": "Sentiu algum desses <em>sintomas?</em>",
+        "header_size": "h2",
+        "_css_classes": "dca-h2 dca-h2--sm dca-reveal"
+       },
+       "elements": [],
+       "widgetType": "heading"
+      },
+      {
+       "id": "adac768",
+       "elType": "widget",
+       "settings": {
+        "editor": "<p>Agende sua consulta com a Dra. Célia Alcântara, presencial em Fortaleza ou por telemedicina.</p>",
+        "_css_classes": "dca-lead dca-reveal"
+       },
+       "elements": [],
+       "widgetType": "text-editor"
+      },
+      {
+       "id": "6108233",
+       "elType": "widget",
+       "settings": {
+        "text": "Agendar pelo WhatsApp",
+        "link": {
+         "url": "https://wa.me/5585992449528?text=Ol%C3%A1%21%20Vim%20pelo%20site%20%28p%C3%A1gina%20Blog%20%C2%B7%20artigo%29%20e%20gostaria%20de%20agendar%20uma%20consulta%20com%20a%20Dra.%20C%C3%A9lia%20Alc%C3%A2ntara.",
+         "is_external": "on",
+         "nofollow": "",
+         "custom_attributes": ""
+        },
+        "selected_icon": {
+         "value": "fab fa-whatsapp",
+         "library": "fa-brands"
+        },
+        "icon_align": "left",
+        "icon_indent": {
+         "unit": "px",
+         "size": 10,
+         "sizes": []
+        },
+        "_css_classes": "dca-btn dca-btn--gold dca-reveal"
+       },
+       "elements": [],
+       "widgetType": "button"
+      }
+     ],
+     "isInner": false
+    }
+   ],
+   "isInner": false
+  },
+  {
+   "id": "c281ea3",
+   "elType": "container",
+   "settings": {
+    "content_width": "boxed",
+    "flex_direction": "column",
+    "boxed_width": {
+     "unit": "px",
+     "size": 1240,
+     "sizes": []
+    },
+    "flex_gap": {
+     "unit": "px",
+     "size": 40,
+     "column": "40",
+     "row": "40",
+     "isLinked": true
+    },
+    "flex_gap_mobile": {
+     "unit": "px",
+     "size": 36,
+     "column": "36",
+     "row": "36",
+     "isLinked": true
+    },
+    "padding": {
+     "unit": "px",
+     "top": "104",
+     "right": "28",
+     "bottom": "120",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_tablet": {
+     "unit": "px",
+     "top": "104",
+     "right": "28",
+     "bottom": "120",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_mobile": {
+     "unit": "px",
+     "top": "72",
+     "right": "20",
+     "bottom": "80",
+     "left": "20",
+     "isLinked": false
+    },
+    "background_background": "classic",
+    "background_color": "#F7F4EF",
+    "html_tag": "section",
+    "css_classes": "dca-sec",
+    "_title": "Leia também"
+   },
+   "elements": [
+    {
+     "id": "2ef97b3",
+     "elType": "widget",
+     "settings": {
+      "title": "Leia <em>também</em>",
+      "header_size": "h2",
+      "_css_classes": "dca-h2 dca-h2--sm dca-reveal"
+     },
+     "elements": [],
+     "widgetType": "heading"
+    },
+    {
+     "id": "6d74ed6",
+     "elType": "widget",
+     "settings": {
+      "_skin": "classic",
+      "posts_post_type": "related",
+      "posts_related_fallback": "fallback_recent",
+      "posts_include": [
+       "terms"
+      ],
+      "posts_related_taxonomies": [
+       "category",
+       "post_tag"
+      ],
+      "classic_columns": "3",
+      "classic_columns_tablet": "2",
+      "classic_columns_mobile": "1",
+      "classic_posts_per_page": 3,
+      "classic_thumbnail": "top",
+      "classic_item_ratio": {
+       "unit": "px",
+       "size": 0.75,
+       "sizes": []
+      },
+      "classic_title_tag": "h3",
+      "classic_excerpt_length": 16,
+      "classic_meta_data": [
+       "date"
+      ],
+      "classic_read_more_text": "Ler artigo",
+      "classic_column_gap": {
+       "unit": "px",
+       "size": 32,
+       "sizes": []
+      },
+      "classic_row_gap": {
+       "unit": "px",
+       "size": 48,
+       "sizes": []
+      },
+      "_css_classes": "dca-posts dca-reveal",
+      "_title": "Leia também · 3 posts relacionados"
+     },
+     "elements": [],
+     "widgetType": "posts"
+    }
+   ],
+   "isInner": false
+  }
+ ],
+ "page_settings": {
+  "preview_type": "single/post",
+  "template": "elementor_header_footer"
+ },
+ "version": "0.4",
+ "title": "Post do blog · modelo · Dra. Célia",
+ "type": "single-post"
+}

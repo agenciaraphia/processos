@@ -1,0 +1,1129 @@
+{
+ "content": [
+  {
+   "id": "6ac6d3e",
+   "elType": "container",
+   "settings": {
+    "content_width": "boxed",
+    "flex_direction": "column",
+    "boxed_width": {
+     "unit": "px",
+     "size": 1240,
+     "sizes": []
+    },
+    "flex_gap": {
+     "unit": "px",
+     "size": 56,
+     "column": "56",
+     "row": "56",
+     "isLinked": true
+    },
+    "flex_gap_mobile": {
+     "unit": "px",
+     "size": 36,
+     "column": "36",
+     "row": "36",
+     "isLinked": true
+    },
+    "padding": {
+     "unit": "px",
+     "top": "40",
+     "right": "28",
+     "bottom": "112",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_tablet": {
+     "unit": "px",
+     "top": "40",
+     "right": "28",
+     "bottom": "112",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_mobile": {
+     "unit": "px",
+     "top": "24",
+     "right": "20",
+     "bottom": "80",
+     "left": "20",
+     "isLinked": false
+    },
+    "html_tag": "section",
+    "_element_id": "conteudo",
+    "css_classes": "dca-sec dca-clip",
+    "_title": "Topo · H1"
+   },
+   "elements": [
+    {
+     "id": "2e3e76c",
+     "elType": "container",
+     "settings": {
+      "content_width": "full",
+      "flex_direction": "row",
+      "flex_direction_tablet": "column",
+      "flex_direction_mobile": "column",
+      "flex_gap": {
+       "unit": "px",
+       "size": 72,
+       "column": "72",
+       "row": "72",
+       "isLinked": true
+      },
+      "flex_gap_mobile": {
+       "unit": "px",
+       "size": 56,
+       "column": "56",
+       "row": "56",
+       "isLinked": true
+      },
+      "flex_justify_content": "space-between",
+      "flex_align_items": "center",
+      "padding": {
+       "unit": "px",
+       "top": "0",
+       "right": "0",
+       "bottom": "0",
+       "left": "0",
+       "isLinked": true
+      }
+     },
+     "elements": [
+      {
+       "id": "cf27c4f",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "width": {
+         "unit": "%",
+         "size": 54,
+         "sizes": []
+        },
+        "width_tablet": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "width_mobile": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "flex_gap": {
+         "unit": "px",
+         "size": 28,
+         "column": "28",
+         "row": "28",
+         "isLinked": true
+        },
+        "flex_justify_content": "center",
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        }
+       },
+       "elements": [
+        {
+         "id": "8cc939e",
+         "elType": "widget",
+         "settings": {
+          "html": "<nav class=\"dca-crumbs\" aria-label=\"Você está em\"><ol><li><a href=\"/\">Início</a></li><li><a href=\"/#especialidades\">Especialidades</a></li><li><span aria-current=\"page\">Terapia imunobiológica</span></li></ol></nav>",
+          "_css_classes": "dca-load"
+         },
+         "elements": [],
+         "widgetType": "html"
+        },
+        {
+         "id": "94b8bfd",
+         "elType": "widget",
+         "settings": {
+          "title": "Terapia imunobiológica<span class=\"dca-h1-tail\"><span class=\"dca-sr\">: </span>indicações, benefícios e acompanhamento em Fortaleza</span>",
+          "header_size": "h1",
+          "_css_classes": "dca-display dca-display--md dca-load"
+         },
+         "elements": [],
+         "widgetType": "heading"
+        },
+        {
+         "id": "a5a2099",
+         "elType": "widget",
+         "settings": {
+          "editor": "<p>Um avanço no tratamento de doenças autoimunes e inflamatórias.</p>",
+          "_css_classes": "dca-lead dca-load"
+         },
+         "elements": [],
+         "widgetType": "text-editor"
+        },
+        {
+         "id": "a58b9d2",
+         "elType": "container",
+         "settings": {
+          "content_width": "full",
+          "flex_direction": "row",
+          "flex_gap": {
+           "unit": "px",
+           "size": 28,
+           "column": "28",
+           "row": "14",
+           "isLinked": false
+          },
+          "flex_align_items": "center",
+          "flex_wrap": "wrap",
+          "padding": {
+           "unit": "px",
+           "top": "0",
+           "right": "0",
+           "bottom": "0",
+           "left": "0",
+           "isLinked": true
+          },
+          "css_classes": "dca-load"
+         },
+         "elements": [
+          {
+           "id": "22325d7",
+           "elType": "widget",
+           "settings": {
+            "text": "Agendar pelo WhatsApp",
+            "link": {
+             "url": "https://wa.me/5585992449528?text=Ol%C3%A1%21%20Vim%20pelo%20site%20%28p%C3%A1gina%20Terapia%20imunobiol%C3%B3gica%29%20e%20gostaria%20de%20agendar%20uma%20consulta%20com%20a%20Dra.%20C%C3%A9lia%20Alc%C3%A2ntara.",
+             "is_external": "on",
+             "nofollow": "",
+             "custom_attributes": ""
+            },
+            "selected_icon": {
+             "value": "fab fa-whatsapp",
+             "library": "fa-brands"
+            },
+            "icon_align": "left",
+            "icon_indent": {
+             "unit": "px",
+             "size": 10,
+             "sizes": []
+            },
+            "_css_classes": "dca-btn"
+           },
+           "elements": [],
+           "widgetType": "button"
+          },
+          {
+           "id": "21e4d44",
+           "elType": "widget",
+           "settings": {
+            "html": "<a class=\"dca-link\" href=\"#o-que-sao\">Ler o guia completo <svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></a>"
+           },
+           "elements": [],
+           "widgetType": "html"
+          }
+         ],
+         "isInner": false
+        },
+        {
+         "id": "5b11eef",
+         "elType": "widget",
+         "settings": {
+          "html": "<div class=\"dca-reviewed\"><span class=\"dca-reviewed__mark\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" focusable=\"false\"><circle cx=\"12\" cy=\"9\" r=\"5.5\"/><path d=\"m8.6 13.4-1.6 7.1 5-2.6 5 2.6-1.6-7.1\"/></svg></span><span><strong>Conteúdo revisado pela Dra. Célia Alcântara</strong>Médica Reumatologista · CRM 8280 · RQE 4354</span></div>",
+          "_css_classes": "dca-load"
+         },
+         "elements": [],
+         "widgetType": "html"
+        }
+       ],
+       "isInner": false
+      },
+      {
+       "id": "9e7e8d8",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "width": {
+         "unit": "%",
+         "size": 38,
+         "sizes": []
+        },
+        "width_tablet": {
+         "unit": "%",
+         "size": 70,
+         "sizes": []
+        },
+        "width_mobile": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "flex_gap": {
+         "unit": "px",
+         "size": 24,
+         "column": "24",
+         "row": "24",
+         "isLinked": true
+        },
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        },
+        "css_classes": "dca-hero-media"
+       },
+       "elements": [
+        {
+         "id": "52d56a3",
+         "elType": "widget",
+         "settings": {
+          "image_size": "full",
+          "_css_classes": "dca-rounded dca-rounded--tall dca-img-reveal",
+          "_title": "FOTO · alt: Profissional de saúde preparando medicação imunobiológica"
+         },
+         "elements": [],
+         "widgetType": "image"
+        },
+        {
+         "id": "eeaba77",
+         "elType": "widget",
+         "settings": {
+          "html": "<div class=\"dca-float-card\"><span class=\"dca-float-card__icon\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" focusable=\"false\"><rect x=\"3\" y=\"6.5\" width=\"12.5\" height=\"11\" rx=\"2.5\"/><path d=\"M15.5 10.5 21 7.5v9l-5.5-3\"/></svg></span><span><strong>Presencial ou on-line</strong>Fortaleza e telemedicina para todo o Brasil</span></div>",
+          "_css_classes": "dca-float dca-reveal"
+         },
+         "elements": [],
+         "widgetType": "html"
+        }
+       ],
+       "isInner": false
+      }
+     ],
+     "isInner": false
+    }
+   ],
+   "isInner": false
+  },
+  {
+   "id": "ad8fb3b",
+   "elType": "container",
+   "settings": {
+    "content_width": "boxed",
+    "flex_direction": "column",
+    "boxed_width": {
+     "unit": "px",
+     "size": 1240,
+     "sizes": []
+    },
+    "flex_gap": {
+     "unit": "px",
+     "size": 56,
+     "column": "56",
+     "row": "56",
+     "isLinked": true
+    },
+    "flex_gap_mobile": {
+     "unit": "px",
+     "size": 36,
+     "column": "36",
+     "row": "36",
+     "isLinked": true
+    },
+    "padding": {
+     "unit": "px",
+     "top": "24",
+     "right": "28",
+     "bottom": "120",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_tablet": {
+     "unit": "px",
+     "top": "24",
+     "right": "28",
+     "bottom": "120",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_mobile": {
+     "unit": "px",
+     "top": "8",
+     "right": "20",
+     "bottom": "72",
+     "left": "20",
+     "isLinked": false
+    },
+    "html_tag": "section",
+    "css_classes": "dca-sec",
+    "_title": "Conteúdo"
+   },
+   "elements": [
+    {
+     "id": "63cfb3d",
+     "elType": "container",
+     "settings": {
+      "content_width": "full",
+      "flex_direction": "row",
+      "flex_direction_tablet": "column",
+      "flex_direction_mobile": "column",
+      "flex_gap": {
+       "unit": "px",
+       "size": 64,
+       "column": "64",
+       "row": "64",
+       "isLinked": true
+      },
+      "flex_justify_content": "space-between",
+      "flex_align_items": "stretch",
+      "padding": {
+       "unit": "px",
+       "top": "0",
+       "right": "0",
+       "bottom": "0",
+       "left": "0",
+       "isLinked": true
+      }
+     },
+     "elements": [
+      {
+       "id": "d988842",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "width": {
+         "unit": "%",
+         "size": 24,
+         "sizes": []
+        },
+        "width_tablet": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "width_mobile": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "flex_gap": {
+         "unit": "px",
+         "size": 24,
+         "column": "24",
+         "row": "24",
+         "isLinked": true
+        },
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        },
+        "css_classes": "dca-toc-col"
+       },
+       "elements": [
+        {
+         "id": "f2cc2dc",
+         "elType": "widget",
+         "settings": {
+          "html": "<nav class=\"dca-toc\" aria-label=\"Nesta página\"><p>Nesta página</p><ol><li><a href=\"#o-que-sao\">O que são</a></li><li><a href=\"#indicacao\">Para quem é indicada</a></li><li><a href=\"#beneficios\">Benefícios</a></li><li><a href=\"#acompanhamento\">Acompanhamento</a></li><li><a href=\"#quando-procurar\">Quando procurar</a></li><li><a href=\"#duvidas\">Dúvidas frequentes</a></li></ol></nav>",
+          "_title": "Sumário lateral"
+         },
+         "elements": [],
+         "widgetType": "html"
+        }
+       ],
+       "isInner": false
+      },
+      {
+       "id": "2d33560",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "width": {
+         "unit": "%",
+         "size": 68,
+         "sizes": []
+        },
+        "width_tablet": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "width_mobile": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "flex_gap": {
+         "unit": "px",
+         "size": 22,
+         "column": "22",
+         "row": "22",
+         "isLinked": true
+        },
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        },
+        "css_classes": "dca-article-col"
+       },
+       "elements": [
+        {
+         "id": "f1ec256",
+         "elType": "widget",
+         "settings": {
+          "title": "O que são os imunobiológicos?",
+          "header_size": "h2",
+          "_css_classes": "dca-h2 dca-h2--sm dca-reveal",
+          "_element_id": "o-que-sao"
+         },
+         "elements": [],
+         "widgetType": "heading"
+        },
+        {
+         "id": "ed0f42b",
+         "elType": "widget",
+         "settings": {
+          "editor": "<p>As terapias imunobiológicas representam um avanço importante no tratamento de doenças autoimunes e inflamatórias. Elas oferecem novas opções para pacientes que não respondem bem aos tratamentos convencionais.</p><p>Esses medicamentos regulam a resposta do sistema imunológico e transformaram o tratamento de condições como <a href=\"/blog/artrite-reumatoide-fatores-de-risco/\">artrite reumatoide</a>, <a href=\"/espondilite-anquilosante/\">espondilite anquilosante</a>, <a href=\"/artrite-psoriasica/\">artrite psoriásica</a>, psoríase e doença de Crohn, entre outras.</p>",
+          "_css_classes": "dca-prose dca-reveal"
+         },
+         "elements": [],
+         "widgetType": "text-editor"
+        },
+        {
+         "id": "d0d4a16",
+         "elType": "widget",
+         "settings": {
+          "title": "Para quem é indicada?",
+          "header_size": "h2",
+          "_css_classes": "dca-h2 dca-h2--sm dca-reveal",
+          "_element_id": "indicacao"
+         },
+         "elements": [],
+         "widgetType": "heading"
+        },
+        {
+         "id": "d4454f7",
+         "elType": "widget",
+         "settings": {
+          "editor": "<p>A indicação é sempre individual e feita pelo médico, depois de avaliar o tipo de doença, a gravidade e a resposta do paciente aos tratamentos anteriores. Em geral, é considerada em casos mais graves ou quando os medicamentos convencionais não controlam a doença.</p>",
+          "_css_classes": "dca-prose dca-reveal"
+         },
+         "elements": [],
+         "widgetType": "text-editor"
+        },
+        {
+         "id": "258dd0f",
+         "elType": "widget",
+         "settings": {
+          "title": "Benefícios",
+          "header_size": "h2",
+          "_css_classes": "dca-h2 dca-h2--sm dca-reveal",
+          "_element_id": "beneficios"
+         },
+         "elements": [],
+         "widgetType": "heading"
+        },
+        {
+         "id": "0139a72",
+         "elType": "widget",
+         "settings": {
+          "editor": "<p>O uso dos imunobiológicos tem trazido resultados muito positivos em diversas doenças.</p><ul><li><strong>Controle efetivo da inflamação.</strong> Pacientes que respondem pouco aos tratamentos tradicionais, como os corticoides, podem ter um controle mais eficaz.</li><li><strong>Prevenção de danos nas articulações e nos órgãos.</strong> Ao reduzir a inflamação de maneira direcionada, a terapia ajuda a evitar lesões permanentes, principalmente na artrite reumatoide e na espondilite anquilosante.</li><li><strong>Melhora da qualidade de vida.</strong> Com menos dor e menos sintomas, o paciente ganha mobilidade e bem-estar.</li><li><strong>Tratamento personalizado.</strong> A terapia pode ser adaptada ao tipo de doença e à resposta de cada paciente.</li></ul>",
+          "_css_classes": "dca-prose dca-reveal"
+         },
+         "elements": [],
+         "widgetType": "text-editor"
+        },
+        {
+         "id": "ba0fc0b",
+         "elType": "widget",
+         "settings": {
+          "title": "Acompanhamento",
+          "header_size": "h2",
+          "_css_classes": "dca-h2 dca-h2--sm dca-reveal",
+          "_element_id": "acompanhamento"
+         },
+         "elements": [],
+         "widgetType": "heading"
+        },
+        {
+         "id": "497a213",
+         "elType": "widget",
+         "settings": {
+          "editor": "<p>Os imunobiológicos exigem avaliação cuidadosa e acompanhamento regular com o reumatologista, para que o tratamento seja seguro e eficaz ao longo do tempo.</p>",
+          "_css_classes": "dca-prose dca-reveal"
+         },
+         "elements": [],
+         "widgetType": "text-editor"
+        }
+       ],
+       "isInner": false
+      }
+     ],
+     "isInner": false
+    }
+   ],
+   "isInner": false
+  },
+  {
+   "id": "9ffadd4",
+   "elType": "container",
+   "settings": {
+    "content_width": "boxed",
+    "flex_direction": "column",
+    "boxed_width": {
+     "unit": "px",
+     "size": 1240,
+     "sizes": []
+    },
+    "flex_gap": {
+     "unit": "px",
+     "size": 56,
+     "column": "56",
+     "row": "56",
+     "isLinked": true
+    },
+    "flex_gap_mobile": {
+     "unit": "px",
+     "size": 36,
+     "column": "36",
+     "row": "36",
+     "isLinked": true
+    },
+    "padding": {
+     "unit": "px",
+     "top": "112",
+     "right": "28",
+     "bottom": "112",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_tablet": {
+     "unit": "px",
+     "top": "112",
+     "right": "28",
+     "bottom": "112",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_mobile": {
+     "unit": "px",
+     "top": "80",
+     "right": "20",
+     "bottom": "80",
+     "left": "20",
+     "isLinked": false
+    },
+    "background_background": "classic",
+    "background_color": "#F7F4EF",
+    "html_tag": "section",
+    "css_classes": "dca-sec",
+    "_title": "Quando procurar"
+   },
+   "elements": [
+    {
+     "id": "5fd46c3",
+     "elType": "container",
+     "settings": {
+      "content_width": "full",
+      "flex_direction": "row",
+      "flex_direction_tablet": "column",
+      "flex_direction_mobile": "column",
+      "flex_gap": {
+       "unit": "px",
+       "size": 56,
+       "column": "56",
+       "row": "56",
+       "isLinked": true
+      },
+      "flex_justify_content": "space-between",
+      "padding": {
+       "unit": "px",
+       "top": "0",
+       "right": "0",
+       "bottom": "0",
+       "left": "0",
+       "isLinked": true
+      }
+     },
+     "elements": [
+      {
+       "id": "551a8b9",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "width": {
+         "unit": "%",
+         "size": 42,
+         "sizes": []
+        },
+        "width_tablet": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "width_mobile": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "flex_gap": {
+         "unit": "px",
+         "size": 28,
+         "column": "28",
+         "row": "28",
+         "isLinked": true
+        },
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        }
+       },
+       "elements": [
+        {
+         "id": "5ca7140",
+         "elType": "widget",
+         "settings": {
+          "html": "<div class=\"dca-joint \" aria-hidden=\"true\"><span class=\"dca-joint__line\"></span><span class=\"dca-joint__node\"></span><span class=\"dca-joint__line\"></span></div>",
+          "_css_classes": "dca-reveal"
+         },
+         "elements": [],
+         "widgetType": "html"
+        },
+        {
+         "id": "da86b52",
+         "elType": "widget",
+         "settings": {
+          "title": "Saiba se a terapia é <em>indicada para você</em>",
+          "header_size": "h2",
+          "_css_classes": "dca-h2 dca-reveal",
+          "_element_id": "quando-procurar"
+         },
+         "elements": [],
+         "widgetType": "heading"
+        }
+       ],
+       "isInner": false
+      },
+      {
+       "id": "5cea811",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "width": {
+         "unit": "%",
+         "size": 50,
+         "sizes": []
+        },
+        "width_tablet": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "width_mobile": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "flex_gap": {
+         "unit": "px",
+         "size": 32,
+         "column": "32",
+         "row": "32",
+         "isLinked": true
+        },
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        }
+       },
+       "elements": [
+        {
+         "id": "e2e39ea",
+         "elType": "widget",
+         "settings": {
+          "editor": "<p>A indicação dos imunobiológicos é sempre individual. Na consulta, a Dra. Célia avalia o tipo de doença, a gravidade e a sua resposta aos tratamentos anteriores.</p><p><strong>Agende já a sua consulta</strong> e saiba como a Dra. Célia Alcântara pode ajudar você.</p>",
+          "_css_classes": "dca-prose dca-reveal"
+         },
+         "elements": [],
+         "widgetType": "text-editor"
+        },
+        {
+         "id": "3d390e8",
+         "elType": "widget",
+         "settings": {
+          "text": "Agendar pelo WhatsApp",
+          "link": {
+           "url": "https://wa.me/5585992449528?text=Ol%C3%A1%21%20Vim%20pelo%20site%20%28p%C3%A1gina%20Terapia%20imunobiol%C3%B3gica%29%20e%20gostaria%20de%20agendar%20uma%20consulta%20com%20a%20Dra.%20C%C3%A9lia%20Alc%C3%A2ntara.",
+           "is_external": "on",
+           "nofollow": "",
+           "custom_attributes": ""
+          },
+          "selected_icon": {
+           "value": "fab fa-whatsapp",
+           "library": "fa-brands"
+          },
+          "icon_align": "left",
+          "icon_indent": {
+           "unit": "px",
+           "size": 10,
+           "sizes": []
+          },
+          "_css_classes": "dca-btn dca-btn--gold dca-reveal"
+         },
+         "elements": [],
+         "widgetType": "button"
+        }
+       ],
+       "isInner": false
+      }
+     ],
+     "isInner": false
+    }
+   ],
+   "isInner": false
+  },
+  {
+   "id": "a935a7d",
+   "elType": "container",
+   "settings": {
+    "content_width": "boxed",
+    "flex_direction": "column",
+    "boxed_width": {
+     "unit": "px",
+     "size": 1240,
+     "sizes": []
+    },
+    "flex_gap": {
+     "unit": "px",
+     "size": 56,
+     "column": "56",
+     "row": "56",
+     "isLinked": true
+    },
+    "flex_gap_mobile": {
+     "unit": "px",
+     "size": 36,
+     "column": "36",
+     "row": "36",
+     "isLinked": true
+    },
+    "padding": {
+     "unit": "px",
+     "top": "120",
+     "right": "28",
+     "bottom": "96",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_tablet": {
+     "unit": "px",
+     "top": "120",
+     "right": "28",
+     "bottom": "96",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_mobile": {
+     "unit": "px",
+     "top": "80",
+     "right": "20",
+     "bottom": "80",
+     "left": "20",
+     "isLinked": false
+    },
+    "html_tag": "section",
+    "css_classes": "dca-sec",
+    "_title": "Perguntas frequentes"
+   },
+   "elements": [
+    {
+     "id": "e2b0f85",
+     "elType": "container",
+     "settings": {
+      "content_width": "full",
+      "flex_direction": "row",
+      "flex_direction_tablet": "column",
+      "flex_direction_mobile": "column",
+      "flex_gap": {
+       "unit": "px",
+       "size": 56,
+       "column": "56",
+       "row": "56",
+       "isLinked": true
+      },
+      "flex_justify_content": "space-between",
+      "padding": {
+       "unit": "px",
+       "top": "0",
+       "right": "0",
+       "bottom": "0",
+       "left": "0",
+       "isLinked": true
+      }
+     },
+     "elements": [
+      {
+       "id": "1682d86",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "width": {
+         "unit": "%",
+         "size": 34,
+         "sizes": []
+        },
+        "width_tablet": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "width_mobile": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "flex_gap": {
+         "unit": "px",
+         "size": 24,
+         "column": "24",
+         "row": "24",
+         "isLinked": true
+        },
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        }
+       },
+       "elements": [
+        {
+         "id": "fbcd167",
+         "elType": "widget",
+         "settings": {
+          "title": "Dúvidas sobre <em>terapia imunobiológica</em>",
+          "header_size": "h2",
+          "_css_classes": "dca-h2 dca-reveal",
+          "_element_id": "duvidas"
+         },
+         "elements": [],
+         "widgetType": "heading"
+        }
+       ],
+       "isInner": false
+      },
+      {
+       "id": "cf88a2c",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "width": {
+         "unit": "%",
+         "size": 60,
+         "sizes": []
+        },
+        "width_tablet": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "width_mobile": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "flex_gap": {
+         "unit": "px",
+         "size": 24,
+         "column": "24",
+         "row": "24",
+         "isLinked": true
+        },
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        }
+       },
+       "elements": [
+        {
+         "id": "f354107",
+         "elType": "widget",
+         "settings": {
+          "html": "<div class=\"dca-faq\"><details class=\"dca-reveal\"><summary><h3>Para quais doenças a terapia imunobiológica é usada?</h3><span class=\"dca-faq__icon\" aria-hidden=\"true\"></span></summary><div class=\"dca-faq__a\"><p>Os imunobiológicos transformaram o tratamento de condições como artrite reumatoide, espondilite anquilosante, artrite psoriásica, psoríase e doença de Crohn, entre outras.</p></div></details><details class=\"dca-reveal\"><summary><h3>Quem pode fazer terapia imunobiológica?</h3><span class=\"dca-faq__icon\" aria-hidden=\"true\"></span></summary><div class=\"dca-faq__a\"><p>A indicação é sempre individual e feita pelo médico, depois de avaliar o tipo de doença, a gravidade e a resposta aos tratamentos anteriores. Em geral, é considerada em casos mais graves ou quando os medicamentos convencionais não controlam a doença.</p></div></details><details class=\"dca-reveal\"><summary><h3>A terapia imunobiológica precisa de acompanhamento?</h3><span class=\"dca-faq__icon\" aria-hidden=\"true\"></span></summary><div class=\"dca-faq__a\"><p>Sim. Os imunobiológicos exigem avaliação cuidadosa e acompanhamento regular com o reumatologista, para que o tratamento seja seguro e eficaz ao longo do tempo.</p></div></details></div>",
+          "_title": "Perguntas frequentes"
+         },
+         "elements": [],
+         "widgetType": "html"
+        }
+       ],
+       "isInner": false
+      }
+     ],
+     "isInner": false
+    }
+   ],
+   "isInner": false
+  },
+  {
+   "id": "00afa03",
+   "elType": "container",
+   "settings": {
+    "content_width": "boxed",
+    "flex_direction": "column",
+    "boxed_width": {
+     "unit": "px",
+     "size": 1240,
+     "sizes": []
+    },
+    "flex_gap": {
+     "unit": "px",
+     "size": 48,
+     "column": "48",
+     "row": "48",
+     "isLinked": true
+    },
+    "flex_gap_mobile": {
+     "unit": "px",
+     "size": 36,
+     "column": "36",
+     "row": "36",
+     "isLinked": true
+    },
+    "padding": {
+     "unit": "px",
+     "top": "0",
+     "right": "28",
+     "bottom": "128",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_tablet": {
+     "unit": "px",
+     "top": "0",
+     "right": "28",
+     "bottom": "128",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_mobile": {
+     "unit": "px",
+     "top": "0",
+     "right": "20",
+     "bottom": "80",
+     "left": "20",
+     "isLinked": false
+    },
+    "html_tag": "section",
+    "css_classes": "dca-sec",
+    "_title": "Leia também + aviso"
+   },
+   "elements": [
+    {
+     "id": "35174fc",
+     "elType": "widget",
+     "settings": {
+      "html": "<ul class=\"dca-related dca-stagger\"><li class=\"dca-reveal\"><a href=\"/artrite-psoriasica/\"><div><span>Leia também</span><strong>Artrite psoriásica</strong></div><span class=\"dca-arrow\" aria-hidden=\"true\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></span></a></li><li class=\"dca-reveal\"><a href=\"/espondilite-anquilosante/\"><div><span>Leia também</span><strong>Espondilite anquilosante</strong></div><span class=\"dca-arrow\" aria-hidden=\"true\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></span></a></li></ul>",
+      "_title": "Leia também (links internos)"
+     },
+     "elements": [],
+     "widgetType": "html"
+    },
+    {
+     "id": "4dc61eb",
+     "elType": "container",
+     "settings": {
+      "content_width": "full",
+      "flex_direction": "row",
+      "flex_direction_tablet": "column",
+      "flex_direction_mobile": "column",
+      "flex_gap": {
+       "unit": "px",
+       "size": 28,
+       "column": "28",
+       "row": "28",
+       "isLinked": true
+      },
+      "flex_justify_content": "space-between",
+      "flex_align_items": "center",
+      "padding": {
+       "unit": "px",
+       "top": "0",
+       "right": "0",
+       "bottom": "0",
+       "left": "0",
+       "isLinked": true
+      }
+     },
+     "elements": [
+      {
+       "id": "c7ad363",
+       "elType": "widget",
+       "settings": {
+        "html": "<div class=\"dca-reviewed\"><span class=\"dca-reviewed__mark\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" focusable=\"false\"><circle cx=\"12\" cy=\"9\" r=\"5.5\"/><path d=\"m8.6 13.4-1.6 7.1 5-2.6 5 2.6-1.6-7.1\"/></svg></span><span><strong>Revisado em 26/10/2026 pela Dra. Célia Alcântara</strong>Médica Reumatologista · CRM 8280 · RQE 4354</span></div>",
+        "_css_classes": "dca-reveal"
+       },
+       "elements": [],
+       "widgetType": "html"
+      },
+      {
+       "id": "5468267",
+       "elType": "widget",
+       "settings": {
+        "html": "<p class=\"dca-disclaimer\">Este conteúdo é informativo e não substitui a consulta médica. Procure o aconselhamento de um profissional capacitado.</p>"
+       },
+       "elements": [],
+       "widgetType": "html"
+      }
+     ],
+     "isInner": false
+    },
+    {
+     "id": "c7162f7",
+     "elType": "widget",
+     "settings": {
+      "html": "<script type=\"application/ld+json\">{\"@context\": \"https://schema.org\", \"@graph\": [{\"@type\": \"MedicalWebPage\", \"@id\": \"https://www.draceliaalcantara.com.br/terapia-imunobiologica/#pagina\", \"url\": \"https://www.draceliaalcantara.com.br/terapia-imunobiologica/\", \"name\": \"Terapia imunobiológica em Fortaleza | Dra. Célia Alcântara\", \"description\": \"Conheça a terapia imunobiológica, tratamento indicado para doenças autoimunes e inflamatórias quando os tratamentos convencionais não bastam. Agende sua consulta.\", \"inLanguage\": \"pt-BR\", \"lastReviewed\": \"2026-10-26\", \"specialty\": \"Rheumatologic\", \"audience\": {\"@type\": \"MedicalAudience\", \"audienceType\": \"Patient\"}, \"reviewedBy\": {\"@id\": \"https://www.draceliaalcantara.com.br/#dra-celia\"}, \"author\": {\"@id\": \"https://www.draceliaalcantara.com.br/#dra-celia\"}, \"about\": {\"@type\": \"MedicalTherapy\", \"name\": \"Terapia imunobiológica\", \"alternateName\": \"Imunobiológicos\", \"relevantSpecialty\": \"Rheumatologic\"}, \"breadcrumb\": {\"@id\": \"https://www.draceliaalcantara.com.br/terapia-imunobiologica/#breadcrumb\"}}, {\"@type\": \"BreadcrumbList\", \"@id\": \"https://www.draceliaalcantara.com.br/terapia-imunobiologica/#breadcrumb\", \"itemListElement\": [{\"@type\": \"ListItem\", \"position\": 1, \"name\": \"Início\", \"item\": \"https://www.draceliaalcantara.com.br/\"}, {\"@type\": \"ListItem\", \"position\": 2, \"name\": \"Especialidades\", \"item\": \"https://www.draceliaalcantara.com.br/#especialidades\"}, {\"@type\": \"ListItem\", \"position\": 3, \"name\": \"Terapia imunobiológica\", \"item\": \"https://www.draceliaalcantara.com.br/terapia-imunobiologica/\"}]}, {\"@type\": \"Person\", \"@id\": \"https://www.draceliaalcantara.com.br/#dra-celia\", \"name\": \"Dra. Célia Alcântara\", \"jobTitle\": \"Médica Reumatologista\", \"description\": \"Médica reumatologista em Fortaleza, CRM 8280, RQE 4354, com mais de 15 anos de experiência clínica.\", \"url\": \"https://www.draceliaalcantara.com.br/#sobre\", \"alumniOf\": [{\"@type\": \"CollegeOrUniversity\", \"name\": \"Universidade Federal do Ceará\"}, {\"@type\": \"EducationalOrganization\", \"name\": \"Escola de Saúde Pública do Ceará\"}], \"hasCredential\": [{\"@type\": \"EducationalOccupationalCredential\", \"credentialCategory\": \"Registro profissional\", \"name\": \"CRM-CE 8280\"}, {\"@type\": \"EducationalOccupationalCredential\", \"credentialCategory\": \"Registro de Qualificação de Especialista\", \"name\": \"RQE 4354 · Reumatologia\"}, {\"@type\": \"EducationalOccupationalCredential\", \"credentialCategory\": \"Título de especialista\", \"name\": \"Título de Reumatologista pela Sociedade Brasileira de Reumatologia\"}, {\"@type\": \"EducationalOccupationalCredential\", \"credentialCategory\": \"degree\", \"name\": \"Mestrado em Ciências Médicas\"}], \"knowsAbout\": [\"Reumatologia\", \"Artrite psoriásica\", \"Espondiloartrites\", \"Espondilite anquilosante\", \"Fibromialgia\", \"Osteoporose\", \"Terapia imunobiológica\", \"Artrite reumatoide\", \"Artrite idiopática juvenil\"], \"worksFor\": {\"@type\": \"Physician\", \"name\": \"Dra. Célia Alcântara · Reumatologista em Fortaleza\", \"url\": \"https://www.draceliaalcantara.com.br/\"}, \"sameAs\": [\"https://www.instagram.com/\"]}, {\"@type\": \"FAQPage\", \"mainEntity\": [{\"@type\": \"Question\", \"name\": \"Para quais doenças a terapia imunobiológica é usada?\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"Os imunobiológicos transformaram o tratamento de condições como artrite reumatoide, espondilite anquilosante, artrite psoriásica, psoríase e doença de Crohn, entre outras.\"}}, {\"@type\": \"Question\", \"name\": \"Quem pode fazer terapia imunobiológica?\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"A indicação é sempre individual e feita pelo médico, depois de avaliar o tipo de doença, a gravidade e a resposta aos tratamentos anteriores. Em geral, é considerada em casos mais graves ou quando os medicamentos convencionais não controlam a doença.\"}}, {\"@type\": \"Question\", \"name\": \"A terapia imunobiológica precisa de acompanhamento?\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"Sim. Os imunobiológicos exigem avaliação cuidadosa e acompanhamento regular com o reumatologista, para que o tratamento seja seguro e eficaz ao longo do tempo.\"}}]}]}</script>",
+      "_title": "SEO · dados estruturados (JSON-LD)"
+     },
+     "elements": [],
+     "widgetType": "html"
+    }
+   ],
+   "isInner": false
+  }
+ ],
+ "page_settings": {
+  "template": "elementor_header_footer",
+  "hide_title": "yes"
+ },
+ "version": "0.4",
+ "title": "Terapia imunobiológica · Dra. Célia",
+ "type": "page"
+}

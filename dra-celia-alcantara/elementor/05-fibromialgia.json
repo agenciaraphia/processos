@@ -1,0 +1,1151 @@
+{
+ "content": [
+  {
+   "id": "7a676f2",
+   "elType": "container",
+   "settings": {
+    "content_width": "boxed",
+    "flex_direction": "column",
+    "boxed_width": {
+     "unit": "px",
+     "size": 1240,
+     "sizes": []
+    },
+    "flex_gap": {
+     "unit": "px",
+     "size": 56,
+     "column": "56",
+     "row": "56",
+     "isLinked": true
+    },
+    "flex_gap_mobile": {
+     "unit": "px",
+     "size": 36,
+     "column": "36",
+     "row": "36",
+     "isLinked": true
+    },
+    "padding": {
+     "unit": "px",
+     "top": "40",
+     "right": "28",
+     "bottom": "112",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_tablet": {
+     "unit": "px",
+     "top": "40",
+     "right": "28",
+     "bottom": "112",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_mobile": {
+     "unit": "px",
+     "top": "24",
+     "right": "20",
+     "bottom": "80",
+     "left": "20",
+     "isLinked": false
+    },
+    "html_tag": "section",
+    "_element_id": "conteudo",
+    "css_classes": "dca-sec dca-clip",
+    "_title": "Topo · H1"
+   },
+   "elements": [
+    {
+     "id": "481aa78",
+     "elType": "container",
+     "settings": {
+      "content_width": "full",
+      "flex_direction": "row",
+      "flex_direction_tablet": "column",
+      "flex_direction_mobile": "column",
+      "flex_gap": {
+       "unit": "px",
+       "size": 72,
+       "column": "72",
+       "row": "72",
+       "isLinked": true
+      },
+      "flex_gap_mobile": {
+       "unit": "px",
+       "size": 56,
+       "column": "56",
+       "row": "56",
+       "isLinked": true
+      },
+      "flex_justify_content": "space-between",
+      "flex_align_items": "center",
+      "padding": {
+       "unit": "px",
+       "top": "0",
+       "right": "0",
+       "bottom": "0",
+       "left": "0",
+       "isLinked": true
+      }
+     },
+     "elements": [
+      {
+       "id": "704c362",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "width": {
+         "unit": "%",
+         "size": 54,
+         "sizes": []
+        },
+        "width_tablet": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "width_mobile": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "flex_gap": {
+         "unit": "px",
+         "size": 28,
+         "column": "28",
+         "row": "28",
+         "isLinked": true
+        },
+        "flex_justify_content": "center",
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        }
+       },
+       "elements": [
+        {
+         "id": "58cd811",
+         "elType": "widget",
+         "settings": {
+          "html": "<nav class=\"dca-crumbs\" aria-label=\"Você está em\"><ol><li><a href=\"/\">Início</a></li><li><a href=\"/#especialidades\">Especialidades</a></li><li><span aria-current=\"page\">Fibromialgia</span></li></ol></nav>",
+          "_css_classes": "dca-load"
+         },
+         "elements": [],
+         "widgetType": "html"
+        },
+        {
+         "id": "a9a8b61",
+         "elType": "widget",
+         "settings": {
+          "title": "Fibromialgia<span class=\"dca-h1-tail\"><span class=\"dca-sr\">: </span>sintomas, diagnóstico e tratamento em Fortaleza</span>",
+          "header_size": "h1",
+          "_css_classes": "dca-display dca-display--md dca-load"
+         },
+         "elements": [],
+         "widgetType": "heading"
+        },
+        {
+         "id": "6dd678b",
+         "elType": "widget",
+         "settings": {
+          "editor": "<p>Síndrome crônica marcada por dor difusa, cansaço e alterações do sono, que tem tratamento e controle.</p>",
+          "_css_classes": "dca-lead dca-load"
+         },
+         "elements": [],
+         "widgetType": "text-editor"
+        },
+        {
+         "id": "bdbe7e8",
+         "elType": "container",
+         "settings": {
+          "content_width": "full",
+          "flex_direction": "row",
+          "flex_gap": {
+           "unit": "px",
+           "size": 28,
+           "column": "28",
+           "row": "14",
+           "isLinked": false
+          },
+          "flex_align_items": "center",
+          "flex_wrap": "wrap",
+          "padding": {
+           "unit": "px",
+           "top": "0",
+           "right": "0",
+           "bottom": "0",
+           "left": "0",
+           "isLinked": true
+          },
+          "css_classes": "dca-load"
+         },
+         "elements": [
+          {
+           "id": "89fa963",
+           "elType": "widget",
+           "settings": {
+            "text": "Agendar pelo WhatsApp",
+            "link": {
+             "url": "https://wa.me/5585992449528?text=Ol%C3%A1%21%20Vim%20pelo%20site%20%28p%C3%A1gina%20Fibromialgia%29%20e%20gostaria%20de%20agendar%20uma%20consulta%20com%20a%20Dra.%20C%C3%A9lia%20Alc%C3%A2ntara.",
+             "is_external": "on",
+             "nofollow": "",
+             "custom_attributes": ""
+            },
+            "selected_icon": {
+             "value": "fab fa-whatsapp",
+             "library": "fa-brands"
+            },
+            "icon_align": "left",
+            "icon_indent": {
+             "unit": "px",
+             "size": 10,
+             "sizes": []
+            },
+            "_css_classes": "dca-btn"
+           },
+           "elements": [],
+           "widgetType": "button"
+          },
+          {
+           "id": "9159c15",
+           "elType": "widget",
+           "settings": {
+            "html": "<a class=\"dca-link\" href=\"#o-que-e\">Ler o guia completo <svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></a>"
+           },
+           "elements": [],
+           "widgetType": "html"
+          }
+         ],
+         "isInner": false
+        },
+        {
+         "id": "f148173",
+         "elType": "widget",
+         "settings": {
+          "html": "<div class=\"dca-reviewed\"><span class=\"dca-reviewed__mark\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" focusable=\"false\"><circle cx=\"12\" cy=\"9\" r=\"5.5\"/><path d=\"m8.6 13.4-1.6 7.1 5-2.6 5 2.6-1.6-7.1\"/></svg></span><span><strong>Conteúdo revisado pela Dra. Célia Alcântara</strong>Médica Reumatologista · CRM 8280 · RQE 4354</span></div>",
+          "_css_classes": "dca-load"
+         },
+         "elements": [],
+         "widgetType": "html"
+        }
+       ],
+       "isInner": false
+      },
+      {
+       "id": "9d06012",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "width": {
+         "unit": "%",
+         "size": 38,
+         "sizes": []
+        },
+        "width_tablet": {
+         "unit": "%",
+         "size": 70,
+         "sizes": []
+        },
+        "width_mobile": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "flex_gap": {
+         "unit": "px",
+         "size": 24,
+         "column": "24",
+         "row": "24",
+         "isLinked": true
+        },
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        },
+        "css_classes": "dca-hero-media"
+       },
+       "elements": [
+        {
+         "id": "ae835ff",
+         "elType": "widget",
+         "settings": {
+          "image_size": "full",
+          "_css_classes": "dca-rounded dca-rounded--tall dca-img-reveal",
+          "_title": "FOTO · alt: Mulher com dor difusa nos ombros e cansaço, sintomas de fibromialgia"
+         },
+         "elements": [],
+         "widgetType": "image"
+        },
+        {
+         "id": "97be294",
+         "elType": "widget",
+         "settings": {
+          "html": "<div class=\"dca-float-card\"><span class=\"dca-float-card__icon\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" focusable=\"false\"><rect x=\"3\" y=\"6.5\" width=\"12.5\" height=\"11\" rx=\"2.5\"/><path d=\"M15.5 10.5 21 7.5v9l-5.5-3\"/></svg></span><span><strong>Presencial ou on-line</strong>Fortaleza e telemedicina para todo o Brasil</span></div>",
+          "_css_classes": "dca-float dca-reveal"
+         },
+         "elements": [],
+         "widgetType": "html"
+        }
+       ],
+       "isInner": false
+      }
+     ],
+     "isInner": false
+    }
+   ],
+   "isInner": false
+  },
+  {
+   "id": "b5c4d8f",
+   "elType": "container",
+   "settings": {
+    "content_width": "boxed",
+    "flex_direction": "column",
+    "boxed_width": {
+     "unit": "px",
+     "size": 1240,
+     "sizes": []
+    },
+    "flex_gap": {
+     "unit": "px",
+     "size": 56,
+     "column": "56",
+     "row": "56",
+     "isLinked": true
+    },
+    "flex_gap_mobile": {
+     "unit": "px",
+     "size": 36,
+     "column": "36",
+     "row": "36",
+     "isLinked": true
+    },
+    "padding": {
+     "unit": "px",
+     "top": "24",
+     "right": "28",
+     "bottom": "120",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_tablet": {
+     "unit": "px",
+     "top": "24",
+     "right": "28",
+     "bottom": "120",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_mobile": {
+     "unit": "px",
+     "top": "8",
+     "right": "20",
+     "bottom": "72",
+     "left": "20",
+     "isLinked": false
+    },
+    "html_tag": "section",
+    "css_classes": "dca-sec",
+    "_title": "Conteúdo"
+   },
+   "elements": [
+    {
+     "id": "894a519",
+     "elType": "container",
+     "settings": {
+      "content_width": "full",
+      "flex_direction": "row",
+      "flex_direction_tablet": "column",
+      "flex_direction_mobile": "column",
+      "flex_gap": {
+       "unit": "px",
+       "size": 64,
+       "column": "64",
+       "row": "64",
+       "isLinked": true
+      },
+      "flex_justify_content": "space-between",
+      "flex_align_items": "stretch",
+      "padding": {
+       "unit": "px",
+       "top": "0",
+       "right": "0",
+       "bottom": "0",
+       "left": "0",
+       "isLinked": true
+      }
+     },
+     "elements": [
+      {
+       "id": "6382077",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "width": {
+         "unit": "%",
+         "size": 24,
+         "sizes": []
+        },
+        "width_tablet": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "width_mobile": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "flex_gap": {
+         "unit": "px",
+         "size": 24,
+         "column": "24",
+         "row": "24",
+         "isLinked": true
+        },
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        },
+        "css_classes": "dca-toc-col"
+       },
+       "elements": [
+        {
+         "id": "080c8f9",
+         "elType": "widget",
+         "settings": {
+          "html": "<nav class=\"dca-toc\" aria-label=\"Nesta página\"><p>Nesta página</p><ol><li><a href=\"#o-que-e\">O que é</a></li><li><a href=\"#sintomas\">Sintomas</a></li><li><a href=\"#diagnostico\">Diagnóstico</a></li><li><a href=\"#tratamento\">Tratamento</a></li><li><a href=\"#dicas\">Dicas para o dia a dia</a></li><li><a href=\"#quando-procurar\">Quando procurar</a></li><li><a href=\"#duvidas\">Dúvidas frequentes</a></li></ol></nav>",
+          "_title": "Sumário lateral"
+         },
+         "elements": [],
+         "widgetType": "html"
+        }
+       ],
+       "isInner": false
+      },
+      {
+       "id": "159453d",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "width": {
+         "unit": "%",
+         "size": 68,
+         "sizes": []
+        },
+        "width_tablet": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "width_mobile": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "flex_gap": {
+         "unit": "px",
+         "size": 22,
+         "column": "22",
+         "row": "22",
+         "isLinked": true
+        },
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        },
+        "css_classes": "dca-article-col"
+       },
+       "elements": [
+        {
+         "id": "9fb77e3",
+         "elType": "widget",
+         "settings": {
+          "title": "O que é a fibromialgia?",
+          "header_size": "h2",
+          "_css_classes": "dca-h2 dca-h2--sm dca-reveal",
+          "_element_id": "o-que-e"
+         },
+         "elements": [],
+         "widgetType": "heading"
+        },
+        {
+         "id": "6d92718",
+         "elType": "widget",
+         "settings": {
+          "editor": "<p>A fibromialgia é uma condição crônica caracterizada por dor musculoesquelética difusa, sensibilidade em várias partes do corpo e sintomas como fadiga e distúrbios do sono. Atinge principalmente mulheres entre 30 e 50 anos, mas pode ocorrer em qualquer idade e em qualquer gênero.</p><p>É classificada como síndrome porque reúne um conjunto de sintomas que vão além da dor. Ela não causa inflamação nem lesão nos tecidos, mas afeta diretamente a qualidade de vida. Estudos recentes indicam que há alterações na forma como o sistema nervoso processa os sinais de dor, o que amplifica a sensibilidade. Por isso é chamada de síndrome de amplificação da dor.</p><p>Fatores genéticos e gatilhos como estresse intenso, infecções ou traumas físicos podem ter papel importante no surgimento da doença.</p>",
+          "_css_classes": "dca-prose dca-reveal"
+         },
+         "elements": [],
+         "widgetType": "text-editor"
+        },
+        {
+         "id": "feeba76",
+         "elType": "widget",
+         "settings": {
+          "title": "Principais sintomas",
+          "header_size": "h2",
+          "_css_classes": "dca-h2 dca-h2--sm dca-reveal",
+          "_element_id": "sintomas"
+         },
+         "elements": [],
+         "widgetType": "heading"
+        },
+        {
+         "id": "a065a0a",
+         "elType": "widget",
+         "settings": {
+          "editor": "<p>A intensidade e a frequência variam de pessoa para pessoa. Os mais comuns são os seguintes.</p><ul><li><strong>Dor generalizada.</strong> Sensação profunda e constante, muitas vezes descrita como queimação ou aperto, que atinge os dois lados do corpo e dura pelo menos três meses.</li><li><strong>Fadiga crônica.</strong> Cansaço persistente, mesmo depois de descansar.</li><li><strong>Distúrbios do sono.</strong> Dificuldade para dormir ou para ter um sono reparador, muitas vezes associada à síndrome das pernas inquietas.</li><li><strong>Dificuldade de concentração.</strong> Conhecida como “fibro fog”, afeta a memória e a clareza mental.</li><li><strong>Sensibilidade aumentada.</strong> Reação exagerada a luz, barulho ou mudanças de temperatura.</li><li><strong>Outros sintomas.</strong> Dor de cabeça, síndrome do intestino irritável e alterações de humor, como ansiedade e depressão.</li></ul>",
+          "_css_classes": "dca-prose dca-reveal"
+         },
+         "elements": [],
+         "widgetType": "text-editor"
+        },
+        {
+         "id": "b6d41db",
+         "elType": "widget",
+         "settings": {
+          "title": "Como funciona o diagnóstico?",
+          "header_size": "h2",
+          "_css_classes": "dca-h2 dca-h2--sm dca-reveal",
+          "_element_id": "diagnostico"
+         },
+         "elements": [],
+         "widgetType": "heading"
+        },
+        {
+         "id": "575319c",
+         "elType": "widget",
+         "settings": {
+          "editor": "<p>O diagnóstico da fibromialgia é clínico e segue os critérios do Colégio Americano de Reumatologia (ACR). Não existe exame de laboratório específico, mas alguns podem ser pedidos para descartar doenças com sintomas parecidos, como artrite reumatoide, lúpus e hipotireoidismo.</p><p>Questionários de avaliação e ferramentas digitais vêm sendo estudados para ajudar a identificar a síndrome mais cedo.</p>",
+          "_css_classes": "dca-prose dca-reveal"
+         },
+         "elements": [],
+         "widgetType": "text-editor"
+        },
+        {
+         "id": "41c4bbf",
+         "elType": "widget",
+         "settings": {
+          "title": "Tratamento da fibromialgia",
+          "header_size": "h2",
+          "_css_classes": "dca-h2 dca-h2--sm dca-reveal",
+          "_element_id": "tratamento"
+         },
+         "elements": [],
+         "widgetType": "heading"
+        },
+        {
+         "id": "1a563ff",
+         "elType": "widget",
+         "settings": {
+          "editor": "<p>A fibromialgia ainda não tem cura, mas o tratamento multidisciplinar ajuda a controlar os sintomas e a melhorar a qualidade de vida. Ele combina medicamentos e medidas sem remédio.</p><p>Entre os medicamentos que podem ser usados estão analgésicos, anti-inflamatórios, antidepressivos tricíclicos, inibidores da recaptação de noradrenalina e serotonina, anticonvulsivantes e relaxantes musculares. A escolha é individual e feita pelo médico.</p><p>As medidas sem remédio são tão importantes quanto os medicamentos. Entre elas estão atividade física regular com supervisão de um educador físico e acompanhamento psicológico.</p>",
+          "_css_classes": "dca-prose dca-reveal"
+         },
+         "elements": [],
+         "widgetType": "text-editor"
+        },
+        {
+         "id": "572fadc",
+         "elType": "widget",
+         "settings": {
+          "title": "Dicas para o dia a dia",
+          "header_size": "h2",
+          "_css_classes": "dca-h2 dca-h2--sm dca-reveal",
+          "_element_id": "dicas"
+         },
+         "elements": [],
+         "widgetType": "heading"
+        },
+        {
+         "id": "8b2c61a",
+         "elType": "widget",
+         "settings": {
+          "editor": "<ul><li><strong>Exercícios físicos regulares.</strong> Atividades aeróbicas leves, como caminhada e natação, reduzem a dor e melhoram o sono.</li><li><strong>Terapia cognitivo-comportamental (TCC).</strong> Ajuda a lidar com o impacto emocional da síndrome.</li><li><strong>Fisioterapia e técnicas de relaxamento.</strong> Massagem, alongamentos e mindfulness.</li><li><strong>Rotina de sono.</strong> Evite cafeína à noite e crie um ambiente favorável ao descanso.</li><li><strong>Alimentação equilibrada,</strong> com nutrientes anti-inflamatórios, que contribui para o bem-estar geral.</li><li><strong>Controle do estresse.</strong> Yoga, meditação e hobbies ajudam a reduzir os sintomas.</li></ul>",
+          "_css_classes": "dca-prose dca-reveal"
+         },
+         "elements": [],
+         "widgetType": "text-editor"
+        }
+       ],
+       "isInner": false
+      }
+     ],
+     "isInner": false
+    }
+   ],
+   "isInner": false
+  },
+  {
+   "id": "43044ce",
+   "elType": "container",
+   "settings": {
+    "content_width": "boxed",
+    "flex_direction": "column",
+    "boxed_width": {
+     "unit": "px",
+     "size": 1240,
+     "sizes": []
+    },
+    "flex_gap": {
+     "unit": "px",
+     "size": 56,
+     "column": "56",
+     "row": "56",
+     "isLinked": true
+    },
+    "flex_gap_mobile": {
+     "unit": "px",
+     "size": 36,
+     "column": "36",
+     "row": "36",
+     "isLinked": true
+    },
+    "padding": {
+     "unit": "px",
+     "top": "112",
+     "right": "28",
+     "bottom": "112",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_tablet": {
+     "unit": "px",
+     "top": "112",
+     "right": "28",
+     "bottom": "112",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_mobile": {
+     "unit": "px",
+     "top": "80",
+     "right": "20",
+     "bottom": "80",
+     "left": "20",
+     "isLinked": false
+    },
+    "background_background": "classic",
+    "background_color": "#F7F4EF",
+    "html_tag": "section",
+    "css_classes": "dca-sec",
+    "_title": "Quando procurar"
+   },
+   "elements": [
+    {
+     "id": "2770a67",
+     "elType": "container",
+     "settings": {
+      "content_width": "full",
+      "flex_direction": "row",
+      "flex_direction_tablet": "column",
+      "flex_direction_mobile": "column",
+      "flex_gap": {
+       "unit": "px",
+       "size": 56,
+       "column": "56",
+       "row": "56",
+       "isLinked": true
+      },
+      "flex_justify_content": "space-between",
+      "padding": {
+       "unit": "px",
+       "top": "0",
+       "right": "0",
+       "bottom": "0",
+       "left": "0",
+       "isLinked": true
+      }
+     },
+     "elements": [
+      {
+       "id": "8872392",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "width": {
+         "unit": "%",
+         "size": 42,
+         "sizes": []
+        },
+        "width_tablet": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "width_mobile": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "flex_gap": {
+         "unit": "px",
+         "size": 28,
+         "column": "28",
+         "row": "28",
+         "isLinked": true
+        },
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        }
+       },
+       "elements": [
+        {
+         "id": "ba7c492",
+         "elType": "widget",
+         "settings": {
+          "html": "<div class=\"dca-joint \" aria-hidden=\"true\"><span class=\"dca-joint__line\"></span><span class=\"dca-joint__node\"></span><span class=\"dca-joint__line\"></span></div>",
+          "_css_classes": "dca-reveal"
+         },
+         "elements": [],
+         "widgetType": "html"
+        },
+        {
+         "id": "a2daae5",
+         "elType": "widget",
+         "settings": {
+          "title": "Quando procurar <em>ajuda especializada?</em>",
+          "header_size": "h2",
+          "_css_classes": "dca-h2 dca-reveal",
+          "_element_id": "quando-procurar"
+         },
+         "elements": [],
+         "widgetType": "heading"
+        }
+       ],
+       "isInner": false
+      },
+      {
+       "id": "7c05f30",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "width": {
+         "unit": "%",
+         "size": 50,
+         "sizes": []
+        },
+        "width_tablet": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "width_mobile": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "flex_gap": {
+         "unit": "px",
+         "size": 32,
+         "column": "32",
+         "row": "32",
+         "isLinked": true
+        },
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        }
+       },
+       "elements": [
+        {
+         "id": "9e0aa44",
+         "elType": "widget",
+         "settings": {
+          "editor": "<p>Se você sente dor persistente em várias partes do corpo, cansaço extremo e dificuldade de concentração, procure um reumatologista. O diagnóstico precoce e o manejo adequado fazem diferença na sua qualidade de vida.</p><p><strong>Agende uma consulta com a Dra. Célia Alcântara</strong> e receba um acompanhamento completo e personalizado, com apoio da nossa equipe multidisciplinar.</p>",
+          "_css_classes": "dca-prose dca-reveal"
+         },
+         "elements": [],
+         "widgetType": "text-editor"
+        },
+        {
+         "id": "9273f0f",
+         "elType": "widget",
+         "settings": {
+          "text": "Agendar pelo WhatsApp",
+          "link": {
+           "url": "https://wa.me/5585992449528?text=Ol%C3%A1%21%20Vim%20pelo%20site%20%28p%C3%A1gina%20Fibromialgia%29%20e%20gostaria%20de%20agendar%20uma%20consulta%20com%20a%20Dra.%20C%C3%A9lia%20Alc%C3%A2ntara.",
+           "is_external": "on",
+           "nofollow": "",
+           "custom_attributes": ""
+          },
+          "selected_icon": {
+           "value": "fab fa-whatsapp",
+           "library": "fa-brands"
+          },
+          "icon_align": "left",
+          "icon_indent": {
+           "unit": "px",
+           "size": 10,
+           "sizes": []
+          },
+          "_css_classes": "dca-btn dca-btn--gold dca-reveal"
+         },
+         "elements": [],
+         "widgetType": "button"
+        }
+       ],
+       "isInner": false
+      }
+     ],
+     "isInner": false
+    }
+   ],
+   "isInner": false
+  },
+  {
+   "id": "4ae87a2",
+   "elType": "container",
+   "settings": {
+    "content_width": "boxed",
+    "flex_direction": "column",
+    "boxed_width": {
+     "unit": "px",
+     "size": 1240,
+     "sizes": []
+    },
+    "flex_gap": {
+     "unit": "px",
+     "size": 56,
+     "column": "56",
+     "row": "56",
+     "isLinked": true
+    },
+    "flex_gap_mobile": {
+     "unit": "px",
+     "size": 36,
+     "column": "36",
+     "row": "36",
+     "isLinked": true
+    },
+    "padding": {
+     "unit": "px",
+     "top": "120",
+     "right": "28",
+     "bottom": "96",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_tablet": {
+     "unit": "px",
+     "top": "120",
+     "right": "28",
+     "bottom": "96",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_mobile": {
+     "unit": "px",
+     "top": "80",
+     "right": "20",
+     "bottom": "80",
+     "left": "20",
+     "isLinked": false
+    },
+    "html_tag": "section",
+    "css_classes": "dca-sec",
+    "_title": "Perguntas frequentes"
+   },
+   "elements": [
+    {
+     "id": "3c59e37",
+     "elType": "container",
+     "settings": {
+      "content_width": "full",
+      "flex_direction": "row",
+      "flex_direction_tablet": "column",
+      "flex_direction_mobile": "column",
+      "flex_gap": {
+       "unit": "px",
+       "size": 56,
+       "column": "56",
+       "row": "56",
+       "isLinked": true
+      },
+      "flex_justify_content": "space-between",
+      "padding": {
+       "unit": "px",
+       "top": "0",
+       "right": "0",
+       "bottom": "0",
+       "left": "0",
+       "isLinked": true
+      }
+     },
+     "elements": [
+      {
+       "id": "e8fc6ba",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "width": {
+         "unit": "%",
+         "size": 34,
+         "sizes": []
+        },
+        "width_tablet": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "width_mobile": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "flex_gap": {
+         "unit": "px",
+         "size": 24,
+         "column": "24",
+         "row": "24",
+         "isLinked": true
+        },
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        }
+       },
+       "elements": [
+        {
+         "id": "8b4b139",
+         "elType": "widget",
+         "settings": {
+          "title": "Dúvidas sobre <em>fibromialgia</em>",
+          "header_size": "h2",
+          "_css_classes": "dca-h2 dca-reveal",
+          "_element_id": "duvidas"
+         },
+         "elements": [],
+         "widgetType": "heading"
+        }
+       ],
+       "isInner": false
+      },
+      {
+       "id": "5b7937a",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "width": {
+         "unit": "%",
+         "size": 60,
+         "sizes": []
+        },
+        "width_tablet": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "width_mobile": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "flex_gap": {
+         "unit": "px",
+         "size": 24,
+         "column": "24",
+         "row": "24",
+         "isLinked": true
+        },
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        }
+       },
+       "elements": [
+        {
+         "id": "b5830ca",
+         "elType": "widget",
+         "settings": {
+          "html": "<div class=\"dca-faq\"><details class=\"dca-reveal\"><summary><h3>A fibromialgia tem cura?</h3><span class=\"dca-faq__icon\" aria-hidden=\"true\"></span></summary><div class=\"dca-faq__a\"><p>Ainda não, mas tem tratamento e controle. O tratamento multidisciplinar combina medicamentos e medidas sem remédio, como atividade física supervisionada e acompanhamento psicológico.</p></div></details><details class=\"dca-reveal\"><summary><h3>Existe exame para diagnosticar fibromialgia?</h3><span class=\"dca-faq__icon\" aria-hidden=\"true\"></span></summary><div class=\"dca-faq__a\"><p>Não existe exame de laboratório específico. O diagnóstico é clínico e segue os critérios do Colégio Americano de Reumatologia (ACR). Alguns exames podem ser pedidos para descartar doenças parecidas, como artrite reumatoide, lúpus e hipotireoidismo.</p></div></details><details class=\"dca-reveal\"><summary><h3>O que é “fibro fog”?</h3><span class=\"dca-faq__icon\" aria-hidden=\"true\"></span></summary><div class=\"dca-faq__a\"><p>É a dificuldade de concentração associada à fibromialgia, que afeta a memória e a clareza mental.</p></div></details><details class=\"dca-reveal\"><summary><h3>Quem é mais afetado pela fibromialgia?</h3><span class=\"dca-faq__icon\" aria-hidden=\"true\"></span></summary><div class=\"dca-faq__a\"><p>Atinge principalmente mulheres entre 30 e 50 anos, mas pode ocorrer em qualquer idade e em qualquer gênero.</p></div></details></div>",
+          "_title": "Perguntas frequentes"
+         },
+         "elements": [],
+         "widgetType": "html"
+        }
+       ],
+       "isInner": false
+      }
+     ],
+     "isInner": false
+    }
+   ],
+   "isInner": false
+  },
+  {
+   "id": "e894b21",
+   "elType": "container",
+   "settings": {
+    "content_width": "boxed",
+    "flex_direction": "column",
+    "boxed_width": {
+     "unit": "px",
+     "size": 1240,
+     "sizes": []
+    },
+    "flex_gap": {
+     "unit": "px",
+     "size": 48,
+     "column": "48",
+     "row": "48",
+     "isLinked": true
+    },
+    "flex_gap_mobile": {
+     "unit": "px",
+     "size": 36,
+     "column": "36",
+     "row": "36",
+     "isLinked": true
+    },
+    "padding": {
+     "unit": "px",
+     "top": "0",
+     "right": "28",
+     "bottom": "128",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_tablet": {
+     "unit": "px",
+     "top": "0",
+     "right": "28",
+     "bottom": "128",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_mobile": {
+     "unit": "px",
+     "top": "0",
+     "right": "20",
+     "bottom": "80",
+     "left": "20",
+     "isLinked": false
+    },
+    "html_tag": "section",
+    "css_classes": "dca-sec",
+    "_title": "Leia também + aviso"
+   },
+   "elements": [
+    {
+     "id": "239e6c6",
+     "elType": "widget",
+     "settings": {
+      "html": "<ul class=\"dca-related dca-stagger\"><li class=\"dca-reveal\"><a href=\"/osteoporose/\"><div><span>Leia também</span><strong>Osteoporose</strong></div><span class=\"dca-arrow\" aria-hidden=\"true\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></span></a></li><li class=\"dca-reveal\"><a href=\"/espondiloartrites/\"><div><span>Leia também</span><strong>Espondiloartrites</strong></div><span class=\"dca-arrow\" aria-hidden=\"true\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></span></a></li></ul>",
+      "_title": "Leia também (links internos)"
+     },
+     "elements": [],
+     "widgetType": "html"
+    },
+    {
+     "id": "c37698c",
+     "elType": "container",
+     "settings": {
+      "content_width": "full",
+      "flex_direction": "row",
+      "flex_direction_tablet": "column",
+      "flex_direction_mobile": "column",
+      "flex_gap": {
+       "unit": "px",
+       "size": 28,
+       "column": "28",
+       "row": "28",
+       "isLinked": true
+      },
+      "flex_justify_content": "space-between",
+      "flex_align_items": "center",
+      "padding": {
+       "unit": "px",
+       "top": "0",
+       "right": "0",
+       "bottom": "0",
+       "left": "0",
+       "isLinked": true
+      }
+     },
+     "elements": [
+      {
+       "id": "e99531b",
+       "elType": "widget",
+       "settings": {
+        "html": "<div class=\"dca-reviewed\"><span class=\"dca-reviewed__mark\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" focusable=\"false\"><circle cx=\"12\" cy=\"9\" r=\"5.5\"/><path d=\"m8.6 13.4-1.6 7.1 5-2.6 5 2.6-1.6-7.1\"/></svg></span><span><strong>Revisado em 26/10/2026 pela Dra. Célia Alcântara</strong>Médica Reumatologista · CRM 8280 · RQE 4354</span></div>",
+        "_css_classes": "dca-reveal"
+       },
+       "elements": [],
+       "widgetType": "html"
+      },
+      {
+       "id": "ffeb624",
+       "elType": "widget",
+       "settings": {
+        "html": "<p class=\"dca-disclaimer\">Este conteúdo é informativo e não substitui a consulta médica. Procure o aconselhamento de um profissional capacitado.</p>"
+       },
+       "elements": [],
+       "widgetType": "html"
+      }
+     ],
+     "isInner": false
+    },
+    {
+     "id": "7e6a954",
+     "elType": "widget",
+     "settings": {
+      "html": "<script type=\"application/ld+json\">{\"@context\": \"https://schema.org\", \"@graph\": [{\"@type\": \"MedicalWebPage\", \"@id\": \"https://www.draceliaalcantara.com.br/fibromialgia/#pagina\", \"url\": \"https://www.draceliaalcantara.com.br/fibromialgia/\", \"name\": \"Fibromialgia em Fortaleza | Sintomas, diagnóstico e tratamento | Dra. Célia Alcântara\", \"description\": \"Dor pelo corpo, cansaço e sono ruim podem ser fibromialgia. Entenda os sintomas, o diagnóstico e o tratamento com reumatologista em Fortaleza ou online.\", \"inLanguage\": \"pt-BR\", \"lastReviewed\": \"2026-10-26\", \"specialty\": \"Rheumatologic\", \"audience\": {\"@type\": \"MedicalAudience\", \"audienceType\": \"Patient\"}, \"reviewedBy\": {\"@id\": \"https://www.draceliaalcantara.com.br/#dra-celia\"}, \"author\": {\"@id\": \"https://www.draceliaalcantara.com.br/#dra-celia\"}, \"about\": {\"@type\": \"MedicalCondition\", \"name\": \"Fibromialgia\", \"alternateName\": \"Síndrome de amplificação da dor\", \"signOrSymptom\": [{\"@type\": \"MedicalSymptom\", \"name\": \"Dor generalizada\"}, {\"@type\": \"MedicalSymptom\", \"name\": \"Fadiga crônica\"}, {\"@type\": \"MedicalSymptom\", \"name\": \"Distúrbios do sono\"}, {\"@type\": \"MedicalSymptom\", \"name\": \"Dificuldade de concentração\"}], \"possibleTreatment\": [{\"@type\": \"MedicalTherapy\", \"name\": \"Tratamento multidisciplinar\"}, {\"@type\": \"MedicalTherapy\", \"name\": \"Atividade física supervisionada\"}, {\"@type\": \"MedicalTherapy\", \"name\": \"Terapia cognitivo-comportamental\"}]}, \"breadcrumb\": {\"@id\": \"https://www.draceliaalcantara.com.br/fibromialgia/#breadcrumb\"}}, {\"@type\": \"BreadcrumbList\", \"@id\": \"https://www.draceliaalcantara.com.br/fibromialgia/#breadcrumb\", \"itemListElement\": [{\"@type\": \"ListItem\", \"position\": 1, \"name\": \"Início\", \"item\": \"https://www.draceliaalcantara.com.br/\"}, {\"@type\": \"ListItem\", \"position\": 2, \"name\": \"Especialidades\", \"item\": \"https://www.draceliaalcantara.com.br/#especialidades\"}, {\"@type\": \"ListItem\", \"position\": 3, \"name\": \"Fibromialgia\", \"item\": \"https://www.draceliaalcantara.com.br/fibromialgia/\"}]}, {\"@type\": \"Person\", \"@id\": \"https://www.draceliaalcantara.com.br/#dra-celia\", \"name\": \"Dra. Célia Alcântara\", \"jobTitle\": \"Médica Reumatologista\", \"description\": \"Médica reumatologista em Fortaleza, CRM 8280, RQE 4354, com mais de 15 anos de experiência clínica.\", \"url\": \"https://www.draceliaalcantara.com.br/#sobre\", \"alumniOf\": [{\"@type\": \"CollegeOrUniversity\", \"name\": \"Universidade Federal do Ceará\"}, {\"@type\": \"EducationalOrganization\", \"name\": \"Escola de Saúde Pública do Ceará\"}], \"hasCredential\": [{\"@type\": \"EducationalOccupationalCredential\", \"credentialCategory\": \"Registro profissional\", \"name\": \"CRM-CE 8280\"}, {\"@type\": \"EducationalOccupationalCredential\", \"credentialCategory\": \"Registro de Qualificação de Especialista\", \"name\": \"RQE 4354 · Reumatologia\"}, {\"@type\": \"EducationalOccupationalCredential\", \"credentialCategory\": \"Título de especialista\", \"name\": \"Título de Reumatologista pela Sociedade Brasileira de Reumatologia\"}, {\"@type\": \"EducationalOccupationalCredential\", \"credentialCategory\": \"degree\", \"name\": \"Mestrado em Ciências Médicas\"}], \"knowsAbout\": [\"Reumatologia\", \"Artrite psoriásica\", \"Espondiloartrites\", \"Espondilite anquilosante\", \"Fibromialgia\", \"Osteoporose\", \"Terapia imunobiológica\", \"Artrite reumatoide\", \"Artrite idiopática juvenil\"], \"worksFor\": {\"@type\": \"Physician\", \"name\": \"Dra. Célia Alcântara · Reumatologista em Fortaleza\", \"url\": \"https://www.draceliaalcantara.com.br/\"}, \"sameAs\": [\"https://www.instagram.com/\"]}, {\"@type\": \"FAQPage\", \"mainEntity\": [{\"@type\": \"Question\", \"name\": \"A fibromialgia tem cura?\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"Ainda não, mas tem tratamento e controle. O tratamento multidisciplinar combina medicamentos e medidas sem remédio, como atividade física supervisionada e acompanhamento psicológico.\"}}, {\"@type\": \"Question\", \"name\": \"Existe exame para diagnosticar fibromialgia?\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"Não existe exame de laboratório específico. O diagnóstico é clínico e segue os critérios do Colégio Americano de Reumatologia (ACR). Alguns exames podem ser pedidos para descartar doenças parecidas, como artrite reumatoide, lúpus e hipotireoidismo.\"}}, {\"@type\": \"Question\", \"name\": \"O que é “fibro fog”?\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"É a dificuldade de concentração associada à fibromialgia, que afeta a memória e a clareza mental.\"}}, {\"@type\": \"Question\", \"name\": \"Quem é mais afetado pela fibromialgia?\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"Atinge principalmente mulheres entre 30 e 50 anos, mas pode ocorrer em qualquer idade e em qualquer gênero.\"}}]}]}</script>",
+      "_title": "SEO · dados estruturados (JSON-LD)"
+     },
+     "elements": [],
+     "widgetType": "html"
+    }
+   ],
+   "isInner": false
+  }
+ ],
+ "page_settings": {
+  "template": "elementor_header_footer",
+  "hide_title": "yes"
+ },
+ "version": "0.4",
+ "title": "Fibromialgia · Dra. Célia",
+ "type": "page"
+}

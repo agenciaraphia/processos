@@ -1,0 +1,2769 @@
+{
+ "content": [
+  {
+   "id": "48151a7",
+   "elType": "container",
+   "settings": {
+    "content_width": "boxed",
+    "flex_direction": "column",
+    "boxed_width": {
+     "unit": "px",
+     "size": 1240,
+     "sizes": []
+    },
+    "flex_gap": {
+     "unit": "px",
+     "size": 56,
+     "column": "56",
+     "row": "56",
+     "isLinked": true
+    },
+    "flex_gap_mobile": {
+     "unit": "px",
+     "size": 36,
+     "column": "36",
+     "row": "36",
+     "isLinked": true
+    },
+    "padding": {
+     "unit": "px",
+     "top": "56",
+     "right": "28",
+     "bottom": "120",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_tablet": {
+     "unit": "px",
+     "top": "56",
+     "right": "28",
+     "bottom": "120",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_mobile": {
+     "unit": "px",
+     "top": "32",
+     "right": "20",
+     "bottom": "80",
+     "left": "20",
+     "isLinked": false
+    },
+    "html_tag": "section",
+    "_element_id": "conteudo",
+    "css_classes": "dca-sec dca-clip",
+    "_title": "Topo · H1"
+   },
+   "elements": [
+    {
+     "id": "65e683a",
+     "elType": "container",
+     "settings": {
+      "content_width": "full",
+      "flex_direction": "row",
+      "flex_direction_tablet": "column",
+      "flex_direction_mobile": "column",
+      "flex_gap": {
+       "unit": "px",
+       "size": 72,
+       "column": "72",
+       "row": "72",
+       "isLinked": true
+      },
+      "flex_gap_mobile": {
+       "unit": "px",
+       "size": 56,
+       "column": "56",
+       "row": "56",
+       "isLinked": true
+      },
+      "flex_justify_content": "space-between",
+      "flex_align_items": "center",
+      "padding": {
+       "unit": "px",
+       "top": "0",
+       "right": "0",
+       "bottom": "0",
+       "left": "0",
+       "isLinked": true
+      }
+     },
+     "elements": [
+      {
+       "id": "b0714e2",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "width": {
+         "unit": "%",
+         "size": 54,
+         "sizes": []
+        },
+        "width_tablet": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "width_mobile": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "flex_gap": {
+         "unit": "px",
+         "size": 30,
+         "column": "30",
+         "row": "30",
+         "isLinked": true
+        },
+        "flex_justify_content": "center",
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        }
+       },
+       "elements": [
+        {
+         "id": "5c3c8f3",
+         "elType": "widget",
+         "settings": {
+          "title": "Médica <em>Reumatologista</em> em Fortaleza",
+          "header_size": "h1",
+          "_css_classes": "dca-display dca-load"
+         },
+         "elements": [],
+         "widgetType": "heading"
+        },
+        {
+         "id": "58534f7",
+         "elType": "widget",
+         "settings": {
+          "editor": "<p>Meu foco é cuidar de você de forma integral e humanizada, para devolver qualidade de vida.</p>",
+          "_css_classes": "dca-lead dca-load"
+         },
+         "elements": [],
+         "widgetType": "text-editor"
+        },
+        {
+         "id": "04d2dc8",
+         "elType": "container",
+         "settings": {
+          "content_width": "full",
+          "flex_direction": "row",
+          "flex_gap": {
+           "unit": "px",
+           "size": 28,
+           "column": "28",
+           "row": "14",
+           "isLinked": false
+          },
+          "flex_align_items": "center",
+          "flex_wrap": "wrap",
+          "padding": {
+           "unit": "px",
+           "top": "0",
+           "right": "0",
+           "bottom": "0",
+           "left": "0",
+           "isLinked": true
+          },
+          "css_classes": "dca-load"
+         },
+         "elements": [
+          {
+           "id": "01f8c42",
+           "elType": "widget",
+           "settings": {
+            "text": "Agendar consulta (WhatsApp)",
+            "link": {
+             "url": "https://wa.me/5585992449528?text=Ol%C3%A1%21%20Vim%20pelo%20site%20%28p%C3%A1gina%20Home%29%20e%20gostaria%20de%20agendar%20uma%20consulta%20com%20a%20Dra.%20C%C3%A9lia%20Alc%C3%A2ntara.",
+             "is_external": "on",
+             "nofollow": "",
+             "custom_attributes": ""
+            },
+            "selected_icon": {
+             "value": "fab fa-whatsapp",
+             "library": "fa-brands"
+            },
+            "icon_align": "left",
+            "icon_indent": {
+             "unit": "px",
+             "size": 10,
+             "sizes": []
+            },
+            "_css_classes": "dca-btn"
+           },
+           "elements": [],
+           "widgetType": "button"
+          },
+          {
+           "id": "5360e0d",
+           "elType": "widget",
+           "settings": {
+            "html": "<a class=\"dca-link\" href=\"#sobre\">Conheça a Dra. Célia <svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></a>"
+           },
+           "elements": [],
+           "widgetType": "html"
+          }
+         ],
+         "isInner": false
+        },
+        {
+         "id": "80364b4",
+         "elType": "widget",
+         "settings": {
+          "html": "<div class=\"dca-credential\"><span><b>CRM</b> 8280</span><span class=\"dca-dot\"></span><span><b>RQE</b> 4354</span><span class=\"dca-dot\"></span><span>Presencial em Fortaleza e telemedicina</span></div>",
+          "_css_classes": "dca-load"
+         },
+         "elements": [],
+         "widgetType": "html"
+        }
+       ],
+       "isInner": false
+      },
+      {
+       "id": "5ad3e7c",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "width": {
+         "unit": "%",
+         "size": 40,
+         "sizes": []
+        },
+        "width_tablet": {
+         "unit": "%",
+         "size": 70,
+         "sizes": []
+        },
+        "width_mobile": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "flex_gap": {
+         "unit": "px",
+         "size": 24,
+         "column": "24",
+         "row": "24",
+         "isLinked": true
+        },
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        },
+        "css_classes": "dca-hero-media"
+       },
+       "elements": [
+        {
+         "id": "a3d8a65",
+         "elType": "widget",
+         "settings": {
+          "image_size": "full",
+          "_css_classes": "dca-arch dca-img-reveal",
+          "_title": "FOTO · alt: Dra. Célia Alcântara, médica reumatologista em Fortaleza, em seu consultório"
+         },
+         "elements": [],
+         "widgetType": "image"
+        },
+        {
+         "id": "6bf6811",
+         "elType": "widget",
+         "settings": {
+          "html": "<div class=\"dca-float-card\"><span class=\"dca-float-card__icon\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" focusable=\"false\"><circle cx=\"12\" cy=\"9\" r=\"5.5\"/><path d=\"m8.6 13.4-1.6 7.1 5-2.6 5 2.6-1.6-7.1\"/></svg></span><span><strong>Título de Reumatologista</strong>Sociedade Brasileira de Reumatologia</span></div>",
+          "_css_classes": "dca-float dca-reveal"
+         },
+         "elements": [],
+         "widgetType": "html"
+        }
+       ],
+       "isInner": false
+      }
+     ],
+     "isInner": false
+    }
+   ],
+   "isInner": false
+  },
+  {
+   "id": "9040be5",
+   "elType": "container",
+   "settings": {
+    "content_width": "boxed",
+    "flex_direction": "column",
+    "boxed_width": {
+     "unit": "px",
+     "size": 1240,
+     "sizes": []
+    },
+    "flex_gap": {
+     "unit": "px",
+     "size": 56,
+     "column": "56",
+     "row": "56",
+     "isLinked": true
+    },
+    "flex_gap_mobile": {
+     "unit": "px",
+     "size": 36,
+     "column": "36",
+     "row": "36",
+     "isLinked": true
+    },
+    "padding": {
+     "unit": "px",
+     "top": "88",
+     "right": "28",
+     "bottom": "88",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_tablet": {
+     "unit": "px",
+     "top": "88",
+     "right": "28",
+     "bottom": "88",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_mobile": {
+     "unit": "px",
+     "top": "64",
+     "right": "20",
+     "bottom": "64",
+     "left": "20",
+     "isLinked": false
+    },
+    "background_background": "classic",
+    "background_color": "#1F3363",
+    "html_tag": "section",
+    "css_classes": "dca-sec dca-dark",
+    "_title": "Faixa de atendimento"
+   },
+   "elements": [
+    {
+     "id": "e7431df",
+     "elType": "container",
+     "settings": {
+      "content_width": "full",
+      "flex_direction": "row",
+      "flex_direction_tablet": "column",
+      "flex_direction_mobile": "column",
+      "flex_gap": {
+       "unit": "px",
+       "size": 56,
+       "column": "56",
+       "row": "56",
+       "isLinked": true
+      },
+      "flex_justify_content": "space-between",
+      "flex_align_items": "center",
+      "padding": {
+       "unit": "px",
+       "top": "0",
+       "right": "0",
+       "bottom": "0",
+       "left": "0",
+       "isLinked": true
+      }
+     },
+     "elements": [
+      {
+       "id": "258dfe6",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "width": {
+         "unit": "%",
+         "size": 40,
+         "sizes": []
+        },
+        "width_tablet": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "width_mobile": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "flex_gap": {
+         "unit": "px",
+         "size": 24,
+         "column": "24",
+         "row": "24",
+         "isLinked": true
+        },
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        }
+       },
+       "elements": [
+        {
+         "id": "a6cf65b",
+         "elType": "widget",
+         "settings": {
+          "title": "Atendimentos presenciais em Fortaleza e por telemedicina para todo o Brasil.",
+          "header_size": "h2",
+          "_css_classes": "dca-h2 dca-h2--sm dca-reveal"
+         },
+         "elements": [],
+         "widgetType": "heading"
+        }
+       ],
+       "isInner": false
+      },
+      {
+       "id": "dcabf3a",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "width": {
+         "unit": "%",
+         "size": 56,
+         "sizes": []
+        },
+        "width_tablet": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "width_mobile": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "flex_gap": {
+         "unit": "px",
+         "size": 32,
+         "column": "32",
+         "row": "32",
+         "isLinked": true
+        },
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        }
+       },
+       "elements": [
+        {
+         "id": "bf923b2",
+         "elType": "widget",
+         "settings": {
+          "html": "<ul class=\"dca-band-facts dca-stagger\"><li class=\"dca-reveal\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z\"/><circle cx=\"12\" cy=\"10\" r=\"2.3\"/></svg><span>Presencial<small>Cidade dos Funcionários, Fortaleza</small></span></li><li class=\"dca-reveal\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" focusable=\"false\"><rect x=\"3\" y=\"6.5\" width=\"12.5\" height=\"11\" rx=\"2.5\"/><path d=\"M15.5 10.5 21 7.5v9l-5.5-3\"/></svg><span>Telemedicina<small>Para todo o Brasil</small></span></li><li class=\"dca-reveal\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" focusable=\"false\"><circle cx=\"12\" cy=\"12\" r=\"8.5\"/><path d=\"M12 7.5V12l3 2\"/></svg><span>Segunda a sexta<small>[Horários a confirmar]</small></span></li></ul>"
+         },
+         "elements": [],
+         "widgetType": "html"
+        },
+        {
+         "id": "9741568",
+         "elType": "widget",
+         "settings": {
+          "text": "Agendar agora",
+          "link": {
+           "url": "https://wa.me/5585992449528?text=Ol%C3%A1%21%20Vim%20pelo%20site%20%28p%C3%A1gina%20Home%20%C2%B7%20atendimento%29%20e%20gostaria%20de%20agendar%20uma%20consulta%20com%20a%20Dra.%20C%C3%A9lia%20Alc%C3%A2ntara.",
+           "is_external": "on",
+           "nofollow": "",
+           "custom_attributes": ""
+          },
+          "selected_icon": {
+           "value": "fab fa-whatsapp",
+           "library": "fa-brands"
+          },
+          "icon_align": "left",
+          "icon_indent": {
+           "unit": "px",
+           "size": 10,
+           "sizes": []
+          },
+          "_css_classes": "dca-btn dca-btn--gold dca-reveal"
+         },
+         "elements": [],
+         "widgetType": "button"
+        }
+       ],
+       "isInner": false
+      }
+     ],
+     "isInner": false
+    }
+   ],
+   "isInner": false
+  },
+  {
+   "id": "ce95af6",
+   "elType": "container",
+   "settings": {
+    "content_width": "boxed",
+    "flex_direction": "column",
+    "boxed_width": {
+     "unit": "px",
+     "size": 1240,
+     "sizes": []
+    },
+    "flex_gap": {
+     "unit": "px",
+     "size": 56,
+     "column": "56",
+     "row": "56",
+     "isLinked": true
+    },
+    "flex_gap_mobile": {
+     "unit": "px",
+     "size": 36,
+     "column": "36",
+     "row": "36",
+     "isLinked": true
+    },
+    "padding": {
+     "unit": "px",
+     "top": "128",
+     "right": "28",
+     "bottom": "128",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_tablet": {
+     "unit": "px",
+     "top": "104",
+     "right": "28",
+     "bottom": "104",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_mobile": {
+     "unit": "px",
+     "top": "80",
+     "right": "20",
+     "bottom": "80",
+     "left": "20",
+     "isLinked": false
+    },
+    "html_tag": "section",
+    "css_classes": "dca-sec",
+    "_title": "O que é a reumatologia"
+   },
+   "elements": [
+    {
+     "id": "2dbd482",
+     "elType": "container",
+     "settings": {
+      "content_width": "full",
+      "flex_direction": "row",
+      "flex_direction_tablet": "column",
+      "flex_direction_mobile": "column",
+      "flex_gap": {
+       "unit": "px",
+       "size": 64,
+       "column": "64",
+       "row": "64",
+       "isLinked": true
+      },
+      "flex_justify_content": "space-between",
+      "padding": {
+       "unit": "px",
+       "top": "0",
+       "right": "0",
+       "bottom": "0",
+       "left": "0",
+       "isLinked": true
+      }
+     },
+     "elements": [
+      {
+       "id": "5b2bf90",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "width": {
+         "unit": "%",
+         "size": 38,
+         "sizes": []
+        },
+        "width_tablet": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "width_mobile": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "flex_gap": {
+         "unit": "px",
+         "size": 28,
+         "column": "28",
+         "row": "28",
+         "isLinked": true
+        },
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        }
+       },
+       "elements": [
+        {
+         "id": "bb56027",
+         "elType": "widget",
+         "settings": {
+          "html": "<div class=\"dca-joint \" aria-hidden=\"true\"><span class=\"dca-joint__line\"></span><span class=\"dca-joint__node\"></span><span class=\"dca-joint__line\"></span></div>",
+          "_css_classes": "dca-reveal"
+         },
+         "elements": [],
+         "widgetType": "html"
+        },
+        {
+         "id": "fce4c02",
+         "elType": "widget",
+         "settings": {
+          "title": "O que é a <em>reumatologia?</em>",
+          "header_size": "h2",
+          "_css_classes": "dca-h2 dca-reveal"
+         },
+         "elements": [],
+         "widgetType": "heading"
+        }
+       ],
+       "isInner": false
+      },
+      {
+       "id": "966565c",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "width": {
+         "unit": "%",
+         "size": 54,
+         "sizes": []
+        },
+        "width_tablet": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "width_mobile": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "flex_gap": {
+         "unit": "px",
+         "size": 36,
+         "column": "36",
+         "row": "36",
+         "isLinked": true
+        },
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        }
+       },
+       "elements": [
+        {
+         "id": "81bb705",
+         "elType": "widget",
+         "settings": {
+          "editor": "<p>Reumatologia é a área da medicina que cuida das doenças que afetam articulações, ossos, músculos, tendões e ligamentos.</p><p>Algumas dessas doenças vão além do sistema musculoesquelético e podem atingir o corpo todo, incluindo os órgãos. Elas são chamadas de <strong>doenças reumáticas ou reumatológicas</strong>.</p><p>Por isso, o reumatologista cuida de muito mais do que as “juntas”. Fadiga, mal-estar, febre e perda de peso também podem ser sinais de uma doença reumática e merecem investigação.</p>",
+          "_css_classes": "dca-prose dca-reveal"
+         },
+         "elements": [],
+         "widgetType": "text-editor"
+        },
+        {
+         "id": "aaf5a28",
+         "elType": "widget",
+         "settings": {
+          "html": "<ul class=\"dca-structures dca-stagger\" aria-label=\"Estruturas cuidadas pela reumatologia\"><li class=\"dca-reveal\">articulações</li><li class=\"dca-reveal\">ossos</li><li class=\"dca-reveal\">músculos</li><li class=\"dca-reveal\">tendões</li><li class=\"dca-reveal\">ligamentos</li></ul>"
+         },
+         "elements": [],
+         "widgetType": "html"
+        }
+       ],
+       "isInner": false
+      }
+     ],
+     "isInner": false
+    }
+   ],
+   "isInner": false
+  },
+  {
+   "id": "69da4bd",
+   "elType": "container",
+   "settings": {
+    "content_width": "boxed",
+    "flex_direction": "column",
+    "boxed_width": {
+     "unit": "px",
+     "size": 1240,
+     "sizes": []
+    },
+    "flex_gap": {
+     "unit": "px",
+     "size": 56,
+     "column": "56",
+     "row": "56",
+     "isLinked": true
+    },
+    "flex_gap_mobile": {
+     "unit": "px",
+     "size": 36,
+     "column": "36",
+     "row": "36",
+     "isLinked": true
+    },
+    "padding": {
+     "unit": "px",
+     "top": "128",
+     "right": "28",
+     "bottom": "128",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_tablet": {
+     "unit": "px",
+     "top": "104",
+     "right": "28",
+     "bottom": "104",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_mobile": {
+     "unit": "px",
+     "top": "80",
+     "right": "20",
+     "bottom": "80",
+     "left": "20",
+     "isLinked": false
+    },
+    "background_background": "classic",
+    "background_color": "#F7F4EF",
+    "html_tag": "section",
+    "css_classes": "dca-sec",
+    "_title": "Destaque · dores nas articulações"
+   },
+   "elements": [
+    {
+     "id": "b183d86",
+     "elType": "container",
+     "settings": {
+      "content_width": "full",
+      "flex_direction": "row",
+      "flex_direction_tablet": "column",
+      "flex_direction_mobile": "column",
+      "flex_gap": {
+       "unit": "px",
+       "size": 72,
+       "column": "72",
+       "row": "72",
+       "isLinked": true
+      },
+      "flex_justify_content": "space-between",
+      "flex_align_items": "center",
+      "padding": {
+       "unit": "px",
+       "top": "0",
+       "right": "0",
+       "bottom": "0",
+       "left": "0",
+       "isLinked": true
+      }
+     },
+     "elements": [
+      {
+       "id": "103f3c5",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "width": {
+         "unit": "%",
+         "size": 42,
+         "sizes": []
+        },
+        "width_tablet": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "width_mobile": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "flex_gap": {
+         "unit": "px",
+         "size": 24,
+         "column": "24",
+         "row": "24",
+         "isLinked": true
+        },
+        "flex_justify_content": "center",
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        }
+       },
+       "elements": [
+        {
+         "id": "95f2667",
+         "elType": "widget",
+         "settings": {
+          "image_size": "full",
+          "_css_classes": "dca-circle dca-img-reveal",
+          "_title": "FOTO · alt: Retrato da Dra. Célia Alcântara sorrindo, reumatologista em Fortaleza"
+         },
+         "elements": [],
+         "widgetType": "image"
+        }
+       ],
+       "isInner": false
+      },
+      {
+       "id": "4ab6c26",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "width": {
+         "unit": "%",
+         "size": 50,
+         "sizes": []
+        },
+        "width_tablet": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "width_mobile": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "flex_gap": {
+         "unit": "px",
+         "size": 28,
+         "column": "28",
+         "row": "28",
+         "isLinked": true
+        },
+        "flex_justify_content": "center",
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        }
+       },
+       "elements": [
+        {
+         "id": "cda8730",
+         "elType": "widget",
+         "settings": {
+          "title": "Sofre com dores nas <em>articulações?</em>",
+          "header_size": "h2",
+          "_css_classes": "dca-h2 dca-reveal"
+         },
+         "elements": [],
+         "widgetType": "heading"
+        },
+        {
+         "id": "fee92ce",
+         "elType": "widget",
+         "settings": {
+          "editor": "<p>Doenças autoimunes causam inflamação em várias articulações e podem atingir crianças, jovens, adultos e idosos. Quanto mais cedo o diagnóstico, melhor o controle.</p>",
+          "_css_classes": "dca-lead dca-reveal"
+         },
+         "elements": [],
+         "widgetType": "text-editor"
+        },
+        {
+         "id": "6a1a806",
+         "elType": "widget",
+         "settings": {
+          "text": "Agende sua consulta com a Dra. Célia Alcântara",
+          "link": {
+           "url": "https://wa.me/5585992449528?text=Ol%C3%A1%21%20Vim%20pelo%20site%20%28p%C3%A1gina%20Home%20%C2%B7%20dores%20nas%20articula%C3%A7%C3%B5es%29%20e%20gostaria%20de%20agendar%20uma%20consulta%20com%20a%20Dra.%20C%C3%A9lia%20Alc%C3%A2ntara.",
+           "is_external": "on",
+           "nofollow": "",
+           "custom_attributes": ""
+          },
+          "selected_icon": {
+           "value": "fab fa-whatsapp",
+           "library": "fa-brands"
+          },
+          "icon_align": "left",
+          "icon_indent": {
+           "unit": "px",
+           "size": 10,
+           "sizes": []
+          },
+          "_css_classes": "dca-btn dca-reveal"
+         },
+         "elements": [],
+         "widgetType": "button"
+        }
+       ],
+       "isInner": false
+      }
+     ],
+     "isInner": false
+    }
+   ],
+   "isInner": false
+  },
+  {
+   "id": "be2b5b6",
+   "elType": "container",
+   "settings": {
+    "content_width": "boxed",
+    "flex_direction": "column",
+    "boxed_width": {
+     "unit": "px",
+     "size": 1240,
+     "sizes": []
+    },
+    "flex_gap": {
+     "unit": "px",
+     "size": 56,
+     "column": "56",
+     "row": "56",
+     "isLinked": true
+    },
+    "flex_gap_mobile": {
+     "unit": "px",
+     "size": 36,
+     "column": "36",
+     "row": "36",
+     "isLinked": true
+    },
+    "padding": {
+     "unit": "px",
+     "top": "128",
+     "right": "28",
+     "bottom": "128",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_tablet": {
+     "unit": "px",
+     "top": "104",
+     "right": "28",
+     "bottom": "104",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_mobile": {
+     "unit": "px",
+     "top": "80",
+     "right": "20",
+     "bottom": "80",
+     "left": "20",
+     "isLinked": false
+    },
+    "html_tag": "section",
+    "_element_id": "especialidades",
+    "css_classes": "dca-sec",
+    "_title": "Especialidades"
+   },
+   "elements": [
+    {
+     "id": "fbfaee4",
+     "elType": "container",
+     "settings": {
+      "content_width": "full",
+      "flex_direction": "row",
+      "flex_direction_tablet": "column",
+      "flex_direction_mobile": "column",
+      "flex_gap": {
+       "unit": "px",
+       "size": 40,
+       "column": "40",
+       "row": "40",
+       "isLinked": true
+      },
+      "flex_justify_content": "space-between",
+      "flex_align_items": "flex-end",
+      "padding": {
+       "unit": "px",
+       "top": "0",
+       "right": "0",
+       "bottom": "0",
+       "left": "0",
+       "isLinked": true
+      }
+     },
+     "elements": [
+      {
+       "id": "64e7c14",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "width": {
+         "unit": "%",
+         "size": 40,
+         "sizes": []
+        },
+        "width_tablet": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "width_mobile": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "flex_gap": {
+         "unit": "px",
+         "size": 24,
+         "column": "24",
+         "row": "24",
+         "isLinked": true
+        },
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        }
+       },
+       "elements": [
+        {
+         "id": "4df1304",
+         "elType": "widget",
+         "settings": {
+          "title": "Especialidades",
+          "header_size": "h2",
+          "_css_classes": "dca-h2 dca-reveal"
+         },
+         "elements": [],
+         "widgetType": "heading"
+        }
+       ],
+       "isInner": false
+      },
+      {
+       "id": "e9eafe9",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "width": {
+         "unit": "%",
+         "size": 46,
+         "sizes": []
+        },
+        "width_tablet": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "width_mobile": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "flex_gap": {
+         "unit": "px",
+         "size": 24,
+         "column": "24",
+         "row": "24",
+         "isLinked": true
+        },
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        }
+       },
+       "elements": [
+        {
+         "id": "b965559",
+         "elType": "widget",
+         "settings": {
+          "editor": "<p>Viver com uma doença autoimune pode ser desafiador, com altos e baixos que são únicos em cada pessoa. Nosso objetivo é apoiar você em cada passo dessa jornada.</p>",
+          "_css_classes": "dca-lead dca-reveal"
+         },
+         "elements": [],
+         "widgetType": "text-editor"
+        }
+       ],
+       "isInner": false
+      }
+     ],
+     "isInner": false
+    },
+    {
+     "id": "2442dc1",
+     "elType": "widget",
+     "settings": {
+      "html": "<ul class=\"dca-index dca-stagger\"><li class=\"dca-reveal\"><a href=\"/artrite-psoriasica/\"><h3>Artrite psoriásica</h3><p>Inflamação nas articulações que costuma estar ligada à psoríase.</p><span class=\"dca-arrow\" aria-hidden=\"true\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></span></a></li><li class=\"dca-reveal\"><a href=\"/espondiloartrites/\"><h3>Espondiloartrites</h3><p>Doenças inflamatórias crônicas que atingem principalmente a coluna e a pelve.</p><span class=\"dca-arrow\" aria-hidden=\"true\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></span></a></li><li class=\"dca-reveal\"><a href=\"/espondilite-anquilosante/\"><h3>Espondilite anquilosante</h3><p>Inflamação crônica da coluna que pode limitar os movimentos quando não é tratada.</p><span class=\"dca-arrow\" aria-hidden=\"true\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></span></a></li><li class=\"dca-reveal\"><a href=\"/fibromialgia/\"><h3>Fibromialgia</h3><p>Dor difusa, cansaço e alterações do sono, com tratamento e controle.</p><span class=\"dca-arrow\" aria-hidden=\"true\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></span></a></li><li class=\"dca-reveal\"><a href=\"/osteoporose/\"><h3>Osteoporose</h3><p>A doença silenciosa que deixa os ossos frágeis, e como manter uma vida ativa.</p><span class=\"dca-arrow\" aria-hidden=\"true\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></span></a></li><li class=\"dca-reveal\"><a href=\"/terapia-imunobiologica/\"><h3>Terapia imunobiológica</h3><p>Um avanço no tratamento de doenças autoimunes e inflamatórias.</p><span class=\"dca-arrow\" aria-hidden=\"true\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></span></a></li></ul>",
+      "_title": "Lista de especialidades (links)"
+     },
+     "elements": [],
+     "widgetType": "html"
+    }
+   ],
+   "isInner": false
+  },
+  {
+   "id": "fba4bb6",
+   "elType": "container",
+   "settings": {
+    "content_width": "boxed",
+    "flex_direction": "column",
+    "boxed_width": {
+     "unit": "px",
+     "size": 1240,
+     "sizes": []
+    },
+    "flex_gap": {
+     "unit": "px",
+     "size": 56,
+     "column": "56",
+     "row": "56",
+     "isLinked": true
+    },
+    "flex_gap_mobile": {
+     "unit": "px",
+     "size": 36,
+     "column": "36",
+     "row": "36",
+     "isLinked": true
+    },
+    "padding": {
+     "unit": "px",
+     "top": "128",
+     "right": "28",
+     "bottom": "128",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_tablet": {
+     "unit": "px",
+     "top": "104",
+     "right": "28",
+     "bottom": "104",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_mobile": {
+     "unit": "px",
+     "top": "80",
+     "right": "20",
+     "bottom": "80",
+     "left": "20",
+     "isLinked": false
+    },
+    "html_tag": "section",
+    "css_classes": "dca-sec",
+    "_title": "Como vou ajudar você"
+   },
+   "elements": [
+    {
+     "id": "fffa300",
+     "elType": "container",
+     "settings": {
+      "content_width": "full",
+      "flex_direction": "column",
+      "flex_gap": {
+       "unit": "px",
+       "size": 28,
+       "column": "28",
+       "row": "28",
+       "isLinked": true
+      },
+      "flex_align_items": "center",
+      "padding": {
+       "unit": "px",
+       "top": "0",
+       "right": "0",
+       "bottom": "0",
+       "left": "0",
+       "isLinked": true
+      }
+     },
+     "elements": [
+      {
+       "id": "485ea98",
+       "elType": "widget",
+       "settings": {
+        "html": "<div class=\"dca-joint dca-joint--center\" aria-hidden=\"true\"><span class=\"dca-joint__line\"></span><span class=\"dca-joint__node\"></span><span class=\"dca-joint__line\"></span></div>",
+        "_css_classes": "dca-reveal"
+       },
+       "elements": [],
+       "widgetType": "html"
+      },
+      {
+       "id": "ad6f2ed",
+       "elType": "widget",
+       "settings": {
+        "title": "Como vou <em>ajudar você?</em>",
+        "header_size": "h2",
+        "align": "center",
+        "_css_classes": "dca-h2 dca-center dca-reveal"
+       },
+       "elements": [],
+       "widgetType": "heading"
+      }
+     ],
+     "isInner": false
+    },
+    {
+     "id": "e4e6169",
+     "elType": "widget",
+     "settings": {
+      "html": "<ul class=\"dca-steps dca-stagger\"><li class=\"dca-reveal\"><div class=\"dca-flip\" tabindex=\"0\" role=\"button\" aria-pressed=\"false\" aria-label=\"Passo 1: Entre em contato e seja acolhido. Toque para ler\"><div class=\"dca-flip__inner\"><div class=\"dca-flip__face dca-flip__front\"><span class=\"dca-flip__num\" aria-hidden=\"true\">1</span><div><h3>Entre em contato e seja acolhido</h3><span class=\"dca-flip__hint\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M20 11a8 8 0 1 0-2.3 5.7\"/><path d=\"M20 5v6h-6\"/></svg>Passe o mouse ou toque</span></div></div><div class=\"dca-flip__face dca-flip__back\"><h3>Entre em contato e seja acolhido</h3><p>Criamos um ambiente acolhedor desde o primeiro contato, para que você se sinta bem recebido e tenha confiança e tranquilidade.</p></div></div></div></li><li class=\"dca-reveal\"><div class=\"dca-flip\" tabindex=\"0\" role=\"button\" aria-pressed=\"false\" aria-label=\"Passo 2: Agende no formato que cabe na sua rotina. Toque para ler\"><div class=\"dca-flip__inner\"><div class=\"dca-flip__face dca-flip__front\"><span class=\"dca-flip__num\" aria-hidden=\"true\">2</span><div><h3>Agende no formato que cabe na sua rotina</h3><span class=\"dca-flip__hint\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M20 11a8 8 0 1 0-2.3 5.7\"/><path d=\"M20 5v6h-6\"/></svg>Passe o mouse ou toque</span></div></div><div class=\"dca-flip__face dca-flip__back\"><h3>Agende no formato que cabe na sua rotina</h3><p>O atendimento pode ser online ou presencial. Você escolhe o que fica mais prático e acessível para você.</p></div></div></div></li><li class=\"dca-reveal\"><div class=\"dca-flip\" tabindex=\"0\" role=\"button\" aria-pressed=\"false\" aria-label=\"Passo 3: O que esperar da consulta. Toque para ler\"><div class=\"dca-flip__inner\"><div class=\"dca-flip__face dca-flip__front\"><span class=\"dca-flip__num\" aria-hidden=\"true\">3</span><div><h3>O que esperar da consulta</h3><span class=\"dca-flip__hint\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M20 11a8 8 0 1 0-2.3 5.7\"/><path d=\"M20 5v6h-6\"/></svg>Passe o mouse ou toque</span></div></div><div class=\"dca-flip__face dca-flip__back\"><h3>O que esperar da consulta</h3><p>Um atendimento personalizado, atento às necessidades de cada paciente, com tempo para ouvir você e entender a sua história.</p></div></div></div></li><li class=\"dca-reveal\"><div class=\"dca-flip\" tabindex=\"0\" role=\"button\" aria-pressed=\"false\" aria-label=\"Passo 4: Tenha um cuidado integral. Toque para ler\"><div class=\"dca-flip__inner\"><div class=\"dca-flip__face dca-flip__front\"><span class=\"dca-flip__num\" aria-hidden=\"true\">4</span><div><h3>Tenha um cuidado integral</h3><span class=\"dca-flip__hint\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M20 11a8 8 0 1 0-2.3 5.7\"/><path d=\"M20 5v6h-6\"/></svg>Passe o mouse ou toque</span></div></div><div class=\"dca-flip__face dca-flip__back\"><h3>Tenha um cuidado integral</h3><p>Contamos com uma equipe multidisciplinar de nutricionista, fisioterapeuta, educador físico e médico da dor, todos comprometidos com o seu bem-estar e com os melhores resultados para a sua saúde.</p></div></div></div></li></ul>",
+      "_title": "Cartões que viram (4 passos)"
+     },
+     "elements": [],
+     "widgetType": "html"
+    }
+   ],
+   "isInner": false
+  },
+  {
+   "id": "3b6eb70",
+   "elType": "container",
+   "settings": {
+    "content_width": "boxed",
+    "flex_direction": "column",
+    "boxed_width": {
+     "unit": "px",
+     "size": 1240,
+     "sizes": []
+    },
+    "flex_gap": {
+     "unit": "px",
+     "size": 56,
+     "column": "56",
+     "row": "56",
+     "isLinked": true
+    },
+    "flex_gap_mobile": {
+     "unit": "px",
+     "size": 36,
+     "column": "36",
+     "row": "36",
+     "isLinked": true
+    },
+    "padding": {
+     "unit": "px",
+     "top": "0",
+     "right": "28",
+     "bottom": "128",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_tablet": {
+     "unit": "px",
+     "top": "0",
+     "right": "28",
+     "bottom": "128",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_mobile": {
+     "unit": "px",
+     "top": "0",
+     "right": "16",
+     "bottom": "80",
+     "left": "16",
+     "isLinked": false
+    },
+    "html_tag": "section",
+    "css_classes": "dca-sec",
+    "_title": "Convênio"
+   },
+   "elements": [
+    {
+     "id": "b0b7740",
+     "elType": "container",
+     "settings": {
+      "content_width": "full",
+      "flex_direction": "column",
+      "flex_gap": {
+       "unit": "px",
+       "size": 20,
+       "column": "20",
+       "row": "20",
+       "isLinked": true
+      },
+      "padding": {
+       "unit": "px",
+       "top": "80",
+       "right": "72",
+       "bottom": "80",
+       "left": "72",
+       "isLinked": false
+      },
+      "padding_tablet": {
+       "unit": "px",
+       "top": "64",
+       "right": "40",
+       "bottom": "64",
+       "left": "40",
+       "isLinked": false
+      },
+      "padding_mobile": {
+       "unit": "px",
+       "top": "48",
+       "right": "24",
+       "bottom": "48",
+       "left": "24",
+       "isLinked": false
+      },
+      "background_background": "classic",
+      "background_color": "#F7F4EF",
+      "css_classes": "dca-panel"
+     },
+     "elements": [
+      {
+       "id": "424dd5e",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "row",
+        "flex_direction_tablet": "column",
+        "flex_direction_mobile": "column",
+        "flex_gap": {
+         "unit": "px",
+         "size": 56,
+         "column": "56",
+         "row": "56",
+         "isLinked": true
+        },
+        "flex_justify_content": "space-between",
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        }
+       },
+       "elements": [
+        {
+         "id": "ff0e7e1",
+         "elType": "container",
+         "settings": {
+          "content_width": "full",
+          "flex_direction": "column",
+          "width": {
+           "unit": "%",
+           "size": 36,
+           "sizes": []
+          },
+          "width_tablet": {
+           "unit": "%",
+           "size": 100,
+           "sizes": []
+          },
+          "width_mobile": {
+           "unit": "%",
+           "size": 100,
+           "sizes": []
+          },
+          "flex_gap": {
+           "unit": "px",
+           "size": 28,
+           "column": "28",
+           "row": "28",
+           "isLinked": true
+          },
+          "padding": {
+           "unit": "px",
+           "top": "0",
+           "right": "0",
+           "bottom": "0",
+           "left": "0",
+           "isLinked": true
+          }
+         },
+         "elements": [
+          {
+           "id": "165fd4a",
+           "elType": "widget",
+           "settings": {
+            "html": "<span class=\"dca-shield\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M12 3 5 5.8v5.4c0 4.4 3 8.2 7 9.8 4-1.6 7-5.4 7-9.8V5.8L12 3z\"/><path d=\"m9 12 2.2 2.2L15.5 10\"/></svg></span>",
+            "_css_classes": "dca-reveal"
+           },
+           "elements": [],
+           "widgetType": "html"
+          },
+          {
+           "id": "b37ed10",
+           "elType": "widget",
+           "settings": {
+            "title": "Aceitamos algum <em>convênio?</em>",
+            "header_size": "h2",
+            "_css_classes": "dca-h2 dca-reveal"
+           },
+           "elements": [],
+           "widgetType": "heading"
+          }
+         ],
+         "isInner": false
+        },
+        {
+         "id": "1b78047",
+         "elType": "container",
+         "settings": {
+          "content_width": "full",
+          "flex_direction": "column",
+          "width": {
+           "unit": "%",
+           "size": 58,
+           "sizes": []
+          },
+          "width_tablet": {
+           "unit": "%",
+           "size": 100,
+           "sizes": []
+          },
+          "width_mobile": {
+           "unit": "%",
+           "size": 100,
+           "sizes": []
+          },
+          "flex_gap": {
+           "unit": "px",
+           "size": 36,
+           "column": "36",
+           "row": "36",
+           "isLinked": true
+          },
+          "padding": {
+           "unit": "px",
+           "top": "0",
+           "right": "0",
+           "bottom": "0",
+           "left": "0",
+           "isLinked": true
+          }
+         },
+         "elements": [
+          {
+           "id": "b0f8f25",
+           "elType": "widget",
+           "settings": {
+            "editor": "<p>Para oferecer um atendimento de qualidade, com calma e atenção, a Dra. Célia Alcântara realiza consultas <strong>exclusivamente no formato particular</strong>.</p><p>A consulta dura cerca de 60 minutos e o retorno, cerca de 40 minutos, variando conforme o caso. Além do tempo de consulta, a Dra. analisa o questionário pré-consulta e elabora um plano de tratamento personalizado depois do atendimento.</p><p>Esse modelo, mais detalhado, não cabe no tempo padrão dos planos de saúde, que costuma ser de 15 minutos. Mesmo assim, se você tem plano de saúde, pode ter direito a reembolso. Emitimos a nota fiscal para que você solicite o reembolso diretamente ao seu convênio.</p>",
+            "_css_classes": "dca-prose dca-reveal"
+           },
+           "elements": [],
+           "widgetType": "text-editor"
+          },
+          {
+           "id": "9d707eb",
+           "elType": "widget",
+           "settings": {
+            "html": "<dl class=\"dca-facts dca-stagger\"><div class=\"dca-reveal\"><dt>Consulta</dt><dd>cerca de 60 minutos</dd></div><div class=\"dca-reveal\"><dt>Retorno</dt><dd>cerca de 40 minutos</dd></div><div class=\"dca-reveal\"><dt>Reembolso</dt><dd>nota fiscal emitida</dd></div></dl>"
+           },
+           "elements": [],
+           "widgetType": "html"
+          }
+         ],
+         "isInner": false
+        }
+       ],
+       "isInner": false
+      }
+     ],
+     "isInner": false
+    }
+   ],
+   "isInner": false
+  },
+  {
+   "id": "9c58738",
+   "elType": "container",
+   "settings": {
+    "content_width": "boxed",
+    "flex_direction": "column",
+    "boxed_width": {
+     "unit": "px",
+     "size": 1240,
+     "sizes": []
+    },
+    "flex_gap": {
+     "unit": "px",
+     "size": 56,
+     "column": "56",
+     "row": "56",
+     "isLinked": true
+    },
+    "flex_gap_mobile": {
+     "unit": "px",
+     "size": 36,
+     "column": "36",
+     "row": "36",
+     "isLinked": true
+    },
+    "padding": {
+     "unit": "px",
+     "top": "128",
+     "right": "28",
+     "bottom": "128",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_tablet": {
+     "unit": "px",
+     "top": "104",
+     "right": "28",
+     "bottom": "104",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_mobile": {
+     "unit": "px",
+     "top": "80",
+     "right": "20",
+     "bottom": "80",
+     "left": "20",
+     "isLinked": false
+    },
+    "background_background": "classic",
+    "background_color": "#1F3363",
+    "html_tag": "section",
+    "_element_id": "sobre",
+    "css_classes": "dca-sec dca-dark",
+    "_title": "Sobre a Dra. Célia"
+   },
+   "elements": [
+    {
+     "id": "d5b51c2",
+     "elType": "container",
+     "settings": {
+      "content_width": "full",
+      "flex_direction": "row",
+      "flex_direction_tablet": "column",
+      "flex_direction_mobile": "column",
+      "flex_gap": {
+       "unit": "px",
+       "size": 80,
+       "column": "80",
+       "row": "80",
+       "isLinked": true
+      },
+      "flex_justify_content": "space-between",
+      "flex_align_items": "flex-start",
+      "padding": {
+       "unit": "px",
+       "top": "0",
+       "right": "0",
+       "bottom": "0",
+       "left": "0",
+       "isLinked": true
+      }
+     },
+     "elements": [
+      {
+       "id": "2c1cf8f",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "width": {
+         "unit": "%",
+         "size": 40,
+         "sizes": []
+        },
+        "width_tablet": {
+         "unit": "%",
+         "size": 70,
+         "sizes": []
+        },
+        "width_mobile": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "flex_gap": {
+         "unit": "px",
+         "size": 24,
+         "column": "24",
+         "row": "24",
+         "isLinked": true
+        },
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        },
+        "css_classes": "dca-sticky"
+       },
+       "elements": [
+        {
+         "id": "51c38ec",
+         "elType": "widget",
+         "settings": {
+          "image_size": "full",
+          "_css_classes": "dca-arch dca-img-reveal",
+          "_title": "FOTO · alt: Dra. Célia Alcântara, reumatologista, CRM 8280, RQE 4354"
+         },
+         "elements": [],
+         "widgetType": "image"
+        }
+       ],
+       "isInner": false
+      },
+      {
+       "id": "139dca4",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "width": {
+         "unit": "%",
+         "size": 54,
+         "sizes": []
+        },
+        "width_tablet": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "width_mobile": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "flex_gap": {
+         "unit": "px",
+         "size": 28,
+         "column": "28",
+         "row": "28",
+         "isLinked": true
+        },
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        }
+       },
+       "elements": [
+        {
+         "id": "56f75ba",
+         "elType": "widget",
+         "settings": {
+          "title": "Sobre a Dra. <em>Célia Alcântara</em>",
+          "header_size": "h2",
+          "_css_classes": "dca-h2 dca-reveal"
+         },
+         "elements": [],
+         "widgetType": "heading"
+        },
+        {
+         "id": "34dfbe2",
+         "elType": "widget",
+         "settings": {
+          "html": "<p class=\"dca-credline\">Médica Reumatologista | CRM 8280 | RQE 4354</p>",
+          "_css_classes": "dca-reveal"
+         },
+         "elements": [],
+         "widgetType": "html"
+        },
+        {
+         "id": "79f2bd5",
+         "elType": "widget",
+         "settings": {
+          "html": "<ul class=\"dca-seals dca-stagger\"><li class=\"dca-reveal\">Título de Reumatologista pela <b>Sociedade Brasileira de Reumatologia</b></li><li class=\"dca-reveal\"><b>Mais de 15 anos</b> de experiência clínica</li><li class=\"dca-reveal\"><b>Mais de 4.500</b> pacientes atendidos</li><li class=\"dca-reveal\"><b>Mestre</b> em Ciências Médicas</li></ul>"
+         },
+         "elements": [],
+         "widgetType": "html"
+        },
+        {
+         "id": "a8aaa45",
+         "elType": "widget",
+         "settings": {
+          "editor": "<p>Olá, seja bem-vindo(a)! Meu compromisso é oferecer um atendimento humanizado e acolhedor, que promova bem-estar e qualidade de vida aos meus pacientes.</p><p>Há mais de 15 anos escolhi a reumatologia como forma de cumprir minha missão de vida, que é acolher e ajudar quem enfrenta desafios crônicos. Ao longo dessa trajetória, percebi que meu propósito vai além de tratar doenças. Ele é melhorar a vida das pessoas, um dia de cada vez.</p><p>Me formei em Medicina pela Universidade Federal do Ceará (UFC) em 2001, fiz residência em Clínica Médica pela Escola de Saúde Pública do Ceará (2007) e me especializei em Reumatologia pela UFC (2009). Em 2013, defendi o mestrado em Ciências Médicas, com foco em artrite idiopática juvenil.</p><p>Desde o início da carreira, me interessei por entender como as emoções influenciam a saúde. Por isso, em 2021 concluí a pós-graduação em Experiência do Paciente e, em 2023, a formação em PNL (Programação Neurolinguística), ferramentas que uso para ajudar meus pacientes a recuperar a saúde física, a confiança e a esperança.</p><p>Sou grata por praticar uma medicina que controla sintomas e também promove saúde, confiança e uma vida melhor para cada paciente.</p>",
+          "_css_classes": "dca-prose dca-reveal"
+         },
+         "elements": [],
+         "widgetType": "text-editor"
+        },
+        {
+         "id": "91bd89e",
+         "elType": "widget",
+         "settings": {
+          "html": "<p class=\"dca-signature\" aria-hidden=\"true\">Célia Alcântara</p>"
+         },
+         "elements": [],
+         "widgetType": "html"
+        },
+        {
+         "id": "6efb2f8",
+         "elType": "widget",
+         "settings": {
+          "text": "Agendar consulta",
+          "link": {
+           "url": "https://wa.me/5585992449528?text=Ol%C3%A1%21%20Vim%20pelo%20site%20%28p%C3%A1gina%20Home%20%C2%B7%20sobre%29%20e%20gostaria%20de%20agendar%20uma%20consulta%20com%20a%20Dra.%20C%C3%A9lia%20Alc%C3%A2ntara.",
+           "is_external": "on",
+           "nofollow": "",
+           "custom_attributes": ""
+          },
+          "selected_icon": {
+           "value": "fab fa-whatsapp",
+           "library": "fa-brands"
+          },
+          "icon_align": "left",
+          "icon_indent": {
+           "unit": "px",
+           "size": 10,
+           "sizes": []
+          },
+          "_css_classes": "dca-btn dca-btn--gold dca-reveal"
+         },
+         "elements": [],
+         "widgetType": "button"
+        }
+       ],
+       "isInner": false
+      }
+     ],
+     "isInner": false
+    },
+    {
+     "id": "e68e349",
+     "elType": "container",
+     "settings": {
+      "content_width": "full",
+      "flex_direction": "row",
+      "flex_direction_tablet": "column",
+      "flex_direction_mobile": "column",
+      "flex_gap": {
+       "unit": "px",
+       "size": 56,
+       "column": "56",
+       "row": "56",
+       "isLinked": true
+      },
+      "flex_justify_content": "space-between",
+      "padding": {
+       "unit": "px",
+       "top": "0",
+       "right": "0",
+       "bottom": "0",
+       "left": "0",
+       "isLinked": true
+      },
+      "margin": {
+       "unit": "px",
+       "top": "48",
+       "right": "0",
+       "bottom": "0",
+       "left": "0",
+       "isLinked": false
+      }
+     },
+     "elements": [
+      {
+       "id": "ed1e936",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "width": {
+         "unit": "%",
+         "size": 30,
+         "sizes": []
+        },
+        "width_tablet": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "width_mobile": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "flex_gap": {
+         "unit": "px",
+         "size": 24,
+         "column": "24",
+         "row": "24",
+         "isLinked": true
+        },
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        }
+       },
+       "elements": [
+        {
+         "id": "c3d1db7",
+         "elType": "widget",
+         "settings": {
+          "html": "<div class=\"dca-joint \" aria-hidden=\"true\"><span class=\"dca-joint__line\"></span><span class=\"dca-joint__node\"></span><span class=\"dca-joint__line\"></span></div>",
+          "_css_classes": "dca-reveal"
+         },
+         "elements": [],
+         "widgetType": "html"
+        },
+        {
+         "id": "afc52b4",
+         "elType": "widget",
+         "settings": {
+          "title": "Formação",
+          "header_size": "h3",
+          "_css_classes": "dca-h2 dca-h2--sm dca-reveal"
+         },
+         "elements": [],
+         "widgetType": "heading"
+        },
+        {
+         "id": "3730797",
+         "elType": "widget",
+         "settings": {
+          "editor": "<p>Uma trajetória que une ciência, gestão do cuidado e a experiência de quem está do outro lado da consulta.</p>",
+          "_css_classes": "dca-lead dca-reveal"
+         },
+         "elements": [],
+         "widgetType": "text-editor"
+        }
+       ],
+       "isInner": false
+      },
+      {
+       "id": "ba07766",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "width": {
+         "unit": "%",
+         "size": 64,
+         "sizes": []
+        },
+        "width_tablet": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "width_mobile": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "flex_gap": {
+         "unit": "px",
+         "size": 24,
+         "column": "24",
+         "row": "24",
+         "isLinked": true
+        },
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        }
+       },
+       "elements": [
+        {
+         "id": "907cf31",
+         "elType": "widget",
+         "settings": {
+          "html": "<ol class=\"dca-timeline\"><li><span class=\"dca-tl-tag\">2001</span><h4>Medicina</h4><p>Universidade Federal do Ceará (UFC)</p></li><li><span class=\"dca-tl-tag\">2007</span><h4>Residência em Clínica Médica</h4><p>Escola de Saúde Pública do Ceará</p></li><li><span class=\"dca-tl-tag\">2009</span><h4>Residência em Reumatologia</h4><p>Universidade Federal do Ceará (UFC)</p></li><li><span class=\"dca-tl-tag\">2013</span><h4>Mestrado em Ciências Médicas</h4><p>Com ênfase em artrite idiopática juvenil</p></li><li><span class=\"dca-tl-tag\">Gestão</span><h4>MBA em Gestão da Qualidade e Acreditação Hospitalar</h4></li><li><span class=\"dca-tl-tag\">Gestão</span><h4>MBA em Gestão Empresarial</h4></li><li><span class=\"dca-tl-tag\">2021</span><h4>Pós-graduação lato sensu em Experiência do Paciente</h4></li><li><span class=\"dca-tl-tag\">2023</span><h4>Practitioner e Coach em PNL</h4><p>The Society of Neuro-Linguistic Programming</p></li></ol>",
+          "_title": "Linha do tempo da formação"
+         },
+         "elements": [],
+         "widgetType": "html"
+        }
+       ],
+       "isInner": false
+      }
+     ],
+     "isInner": false
+    }
+   ],
+   "isInner": false
+  },
+  {
+   "id": "9bb0c94",
+   "elType": "container",
+   "settings": {
+    "content_width": "boxed",
+    "flex_direction": "column",
+    "boxed_width": {
+     "unit": "px",
+     "size": 1240,
+     "sizes": []
+    },
+    "flex_gap": {
+     "unit": "px",
+     "size": 56,
+     "column": "56",
+     "row": "56",
+     "isLinked": true
+    },
+    "flex_gap_mobile": {
+     "unit": "px",
+     "size": 36,
+     "column": "36",
+     "row": "36",
+     "isLinked": true
+    },
+    "padding": {
+     "unit": "px",
+     "top": "120",
+     "right": "28",
+     "bottom": "120",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_tablet": {
+     "unit": "px",
+     "top": "120",
+     "right": "28",
+     "bottom": "120",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_mobile": {
+     "unit": "px",
+     "top": "80",
+     "right": "20",
+     "bottom": "80",
+     "left": "20",
+     "isLinked": false
+    },
+    "background_background": "classic",
+    "background_color": "#F7F4EF",
+    "html_tag": "section",
+    "css_classes": "dca-sec",
+    "_title": "Depoimentos"
+   },
+   "elements": [
+    {
+     "id": "65683ab",
+     "elType": "container",
+     "settings": {
+      "content_width": "full",
+      "flex_direction": "column",
+      "flex_gap": {
+       "unit": "px",
+       "size": 16,
+       "column": "16",
+       "row": "16",
+       "isLinked": true
+      },
+      "padding": {
+       "unit": "px",
+       "top": "0",
+       "right": "0",
+       "bottom": "0",
+       "left": "0",
+       "isLinked": true
+      }
+     },
+     "elements": [
+      {
+       "id": "8faa91b",
+       "elType": "widget",
+       "settings": {
+        "title": "Depoimentos",
+        "header_size": "h2",
+        "_css_classes": "dca-h2 dca-reveal"
+       },
+       "elements": [],
+       "widgetType": "heading"
+      },
+      {
+       "id": "6814bb9",
+       "elType": "widget",
+       "settings": {
+        "html": "<p class=\"dca-placeholder-note\">Espaço para 3 a 5 depoimentos de pacientes, com nome e inicial do sobrenome.</p>",
+        "_css_classes": "dca-reveal"
+       },
+       "elements": [],
+       "widgetType": "html"
+      }
+     ],
+     "isInner": false
+    },
+    {
+     "id": "447d9e5",
+     "elType": "widget",
+     "settings": {
+      "html": "<ul class=\"dca-quotes dca-stagger\"><li class=\"dca-reveal\"><figure class=\"dca-quote\"><svg viewBox=\"0 0 36 26\" fill=\"currentColor\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M3 24V14.5C3 7.6 6.6 3.2 13 2l1 2.6c-3.6 1-5.6 3.6-5.9 7.4H13V24H3zm19 0V14.5C22 7.6 25.6 3.2 32 2l1 2.6c-3.6 1-5.6 3.6-5.9 7.4H32V24H22z\"/></svg><blockquote>[Depoimento do(a) paciente 1, com autorização por escrito. Aguardando material da cliente.]</blockquote><figcaption>[Nome e inicial do sobrenome]<span>[Paciente desde / cidade]</span></figcaption></figure></li><li class=\"dca-reveal\"><figure class=\"dca-quote\"><svg viewBox=\"0 0 36 26\" fill=\"currentColor\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M3 24V14.5C3 7.6 6.6 3.2 13 2l1 2.6c-3.6 1-5.6 3.6-5.9 7.4H13V24H3zm19 0V14.5C22 7.6 25.6 3.2 32 2l1 2.6c-3.6 1-5.6 3.6-5.9 7.4H32V24H22z\"/></svg><blockquote>[Depoimento do(a) paciente 2, com autorização por escrito. Aguardando material da cliente.]</blockquote><figcaption>[Nome e inicial do sobrenome]<span>[Paciente desde / cidade]</span></figcaption></figure></li><li class=\"dca-reveal\"><figure class=\"dca-quote\"><svg viewBox=\"0 0 36 26\" fill=\"currentColor\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M3 24V14.5C3 7.6 6.6 3.2 13 2l1 2.6c-3.6 1-5.6 3.6-5.9 7.4H13V24H3zm19 0V14.5C22 7.6 25.6 3.2 32 2l1 2.6c-3.6 1-5.6 3.6-5.9 7.4H32V24H22z\"/></svg><blockquote>[Depoimento do(a) paciente 3, com autorização por escrito. Aguardando material da cliente.]</blockquote><figcaption>[Nome e inicial do sobrenome]<span>[Paciente desde / cidade]</span></figcaption></figure></li></ul>",
+      "_title": "Depoimentos (substituir textos)"
+     },
+     "elements": [],
+     "widgetType": "html"
+    }
+   ],
+   "isInner": false
+  },
+  {
+   "id": "c658951",
+   "elType": "container",
+   "settings": {
+    "content_width": "boxed",
+    "flex_direction": "column",
+    "boxed_width": {
+     "unit": "px",
+     "size": 1240,
+     "sizes": []
+    },
+    "flex_gap": {
+     "unit": "px",
+     "size": 56,
+     "column": "56",
+     "row": "56",
+     "isLinked": true
+    },
+    "flex_gap_mobile": {
+     "unit": "px",
+     "size": 36,
+     "column": "36",
+     "row": "36",
+     "isLinked": true
+    },
+    "padding": {
+     "unit": "px",
+     "top": "104",
+     "right": "28",
+     "bottom": "40",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_tablet": {
+     "unit": "px",
+     "top": "104",
+     "right": "28",
+     "bottom": "40",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_mobile": {
+     "unit": "px",
+     "top": "72",
+     "right": "20",
+     "bottom": "24",
+     "left": "20",
+     "isLinked": false
+    },
+    "html_tag": "section",
+    "css_classes": "dca-sec",
+    "_title": "Na mídia"
+   },
+   "elements": [
+    {
+     "id": "fbff683",
+     "elType": "container",
+     "settings": {
+      "content_width": "full",
+      "flex_direction": "row",
+      "flex_direction_tablet": "column",
+      "flex_direction_mobile": "column",
+      "flex_gap": {
+       "unit": "px",
+       "size": 40,
+       "column": "40",
+       "row": "40",
+       "isLinked": true
+      },
+      "flex_justify_content": "space-between",
+      "flex_align_items": "center",
+      "padding": {
+       "unit": "px",
+       "top": "0",
+       "right": "0",
+       "bottom": "0",
+       "left": "0",
+       "isLinked": true
+      }
+     },
+     "elements": [
+      {
+       "id": "e72756a",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "width": {
+         "unit": "%",
+         "size": 30,
+         "sizes": []
+        },
+        "width_tablet": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "width_mobile": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "flex_gap": {
+         "unit": "px",
+         "size": 24,
+         "column": "24",
+         "row": "24",
+         "isLinked": true
+        },
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        }
+       },
+       "elements": [
+        {
+         "id": "9a65a66",
+         "elType": "widget",
+         "settings": {
+          "title": "Na mídia",
+          "header_size": "h2",
+          "_css_classes": "dca-h2 dca-h2--sm dca-reveal"
+         },
+         "elements": [],
+         "widgetType": "heading"
+        }
+       ],
+       "isInner": false
+      },
+      {
+       "id": "d9c213e",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "width": {
+         "unit": "%",
+         "size": 66,
+         "sizes": []
+        },
+        "width_tablet": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "width_mobile": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "flex_gap": {
+         "unit": "px",
+         "size": 24,
+         "column": "24",
+         "row": "24",
+         "isLinked": true
+        },
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        }
+       },
+       "elements": [
+        {
+         "id": "ce8462d",
+         "elType": "widget",
+         "settings": {
+          "html": "<ul class=\"dca-press dca-stagger\"><li class=\"dca-reveal\">[Logo do veículo + link da matéria]</li><li class=\"dca-reveal\">[Logo do veículo + link da matéria]</li><li class=\"dca-reveal\">[Logo do veículo + link da matéria]</li><li class=\"dca-reveal\">[Logo do veículo + link da matéria]</li></ul>",
+          "_title": "Logos e links de matérias"
+         },
+         "elements": [],
+         "widgetType": "html"
+        }
+       ],
+       "isInner": false
+      }
+     ],
+     "isInner": false
+    }
+   ],
+   "isInner": false
+  },
+  {
+   "id": "784db8e",
+   "elType": "container",
+   "settings": {
+    "content_width": "boxed",
+    "flex_direction": "column",
+    "boxed_width": {
+     "unit": "px",
+     "size": 1240,
+     "sizes": []
+    },
+    "flex_gap": {
+     "unit": "px",
+     "size": 56,
+     "column": "56",
+     "row": "56",
+     "isLinked": true
+    },
+    "flex_gap_mobile": {
+     "unit": "px",
+     "size": 36,
+     "column": "36",
+     "row": "36",
+     "isLinked": true
+    },
+    "padding": {
+     "unit": "px",
+     "top": "80",
+     "right": "28",
+     "bottom": "128",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_tablet": {
+     "unit": "px",
+     "top": "80",
+     "right": "28",
+     "bottom": "128",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_mobile": {
+     "unit": "px",
+     "top": "80",
+     "right": "20",
+     "bottom": "80",
+     "left": "20",
+     "isLinked": false
+    },
+    "html_tag": "section",
+    "css_classes": "dca-sec",
+    "_title": "Siga-nos + blog"
+   },
+   "elements": [
+    {
+     "id": "d065545",
+     "elType": "container",
+     "settings": {
+      "content_width": "full",
+      "flex_direction": "row",
+      "flex_direction_tablet": "column",
+      "flex_direction_mobile": "column",
+      "flex_gap": {
+       "unit": "px",
+       "size": 32,
+       "column": "32",
+       "row": "32",
+       "isLinked": true
+      },
+      "flex_justify_content": "space-between",
+      "flex_align_items": "flex-end",
+      "padding": {
+       "unit": "px",
+       "top": "0",
+       "right": "0",
+       "bottom": "0",
+       "left": "0",
+       "isLinked": true
+      }
+     },
+     "elements": [
+      {
+       "id": "36fe100",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "width": {
+         "unit": "%",
+         "size": 50,
+         "sizes": []
+        },
+        "width_tablet": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "width_mobile": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "flex_gap": {
+         "unit": "px",
+         "size": 20,
+         "column": "20",
+         "row": "20",
+         "isLinked": true
+        },
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        }
+       },
+       "elements": [
+        {
+         "id": "5d51af0",
+         "elType": "widget",
+         "settings": {
+          "title": "Acompanhe a <em>Dra. Célia</em>",
+          "header_size": "h2",
+          "_css_classes": "dca-h2 dca-reveal"
+         },
+         "elements": [],
+         "widgetType": "heading"
+        },
+        {
+         "id": "d5cc13a",
+         "elType": "widget",
+         "settings": {
+          "editor": "<p>Acompanhe a Dra. Célia no Instagram e leia os artigos mais recentes do blog.</p>",
+          "_css_classes": "dca-lead dca-reveal"
+         },
+         "elements": [],
+         "widgetType": "text-editor"
+        }
+       ],
+       "isInner": false
+      },
+      {
+       "id": "2458307",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "row",
+        "width": {
+         "unit": "%",
+         "size": 40,
+         "sizes": []
+        },
+        "width_tablet": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "width_mobile": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "flex_gap": {
+         "unit": "px",
+         "size": 14,
+         "column": "14",
+         "row": "14",
+         "isLinked": true
+        },
+        "flex_justify_content": "flex-end",
+        "flex_justify_content_mobile": "flex-start",
+        "flex_align_items": "center",
+        "flex_wrap": "wrap",
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        },
+        "css_classes": "dca-reveal"
+       },
+       "elements": [
+        {
+         "id": "007e6a6",
+         "elType": "widget",
+         "settings": {
+          "text": "Instagram",
+          "link": {
+           "url": "https://www.instagram.com/",
+           "is_external": "on",
+           "nofollow": "",
+           "custom_attributes": ""
+          },
+          "selected_icon": {
+           "value": "fab fa-instagram",
+           "library": "fa-brands"
+          },
+          "icon_align": "left",
+          "icon_indent": {
+           "unit": "px",
+           "size": 10,
+           "sizes": []
+          },
+          "_css_classes": "dca-btn dca-btn--ghost"
+         },
+         "elements": [],
+         "widgetType": "button"
+        },
+        {
+         "id": "4c306c9",
+         "elType": "widget",
+         "settings": {
+          "text": "Blog",
+          "link": {
+           "url": "/blog/",
+           "is_external": "",
+           "nofollow": "",
+           "custom_attributes": ""
+          },
+          "_css_classes": "dca-btn"
+         },
+         "elements": [],
+         "widgetType": "button"
+        }
+       ],
+       "isInner": false
+      }
+     ],
+     "isInner": false
+    },
+    {
+     "id": "4af32e7",
+     "elType": "widget",
+     "settings": {
+      "_skin": "classic",
+      "posts_post_type": "post",
+      "classic_columns": "3",
+      "classic_columns_tablet": "2",
+      "classic_columns_mobile": "1",
+      "classic_posts_per_page": 3,
+      "classic_thumbnail": "top",
+      "classic_item_ratio": {
+       "unit": "px",
+       "size": 0.75,
+       "sizes": []
+      },
+      "classic_title_tag": "h3",
+      "classic_excerpt_length": 18,
+      "classic_meta_data": [
+       "date"
+      ],
+      "classic_read_more_text": "Ler artigo",
+      "classic_column_gap": {
+       "unit": "px",
+       "size": 32,
+       "sizes": []
+      },
+      "classic_row_gap": {
+       "unit": "px",
+       "size": 48,
+       "sizes": []
+      },
+      "_css_classes": "dca-posts dca-reveal",
+      "_title": "Últimos artigos do blog"
+     },
+     "elements": [],
+     "widgetType": "posts"
+    }
+   ],
+   "isInner": false
+  },
+  {
+   "id": "db0efb1",
+   "elType": "container",
+   "settings": {
+    "content_width": "boxed",
+    "flex_direction": "column",
+    "boxed_width": {
+     "unit": "px",
+     "size": 1240,
+     "sizes": []
+    },
+    "flex_gap": {
+     "unit": "px",
+     "size": 56,
+     "column": "56",
+     "row": "56",
+     "isLinked": true
+    },
+    "flex_gap_mobile": {
+     "unit": "px",
+     "size": 36,
+     "column": "36",
+     "row": "36",
+     "isLinked": true
+    },
+    "padding": {
+     "unit": "px",
+     "top": "120",
+     "right": "28",
+     "bottom": "128",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_tablet": {
+     "unit": "px",
+     "top": "120",
+     "right": "28",
+     "bottom": "128",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_mobile": {
+     "unit": "px",
+     "top": "80",
+     "right": "20",
+     "bottom": "80",
+     "left": "20",
+     "isLinked": false
+    },
+    "html_tag": "section",
+    "css_classes": "dca-sec",
+    "_title": "Perguntas frequentes",
+    "background_background": "classic",
+    "background_color": "#F7F4EF"
+   },
+   "elements": [
+    {
+     "id": "fb2bfbb",
+     "elType": "container",
+     "settings": {
+      "content_width": "full",
+      "flex_direction": "row",
+      "flex_direction_tablet": "column",
+      "flex_direction_mobile": "column",
+      "flex_gap": {
+       "unit": "px",
+       "size": 56,
+       "column": "56",
+       "row": "56",
+       "isLinked": true
+      },
+      "flex_justify_content": "space-between",
+      "padding": {
+       "unit": "px",
+       "top": "0",
+       "right": "0",
+       "bottom": "0",
+       "left": "0",
+       "isLinked": true
+      }
+     },
+     "elements": [
+      {
+       "id": "af7e0c6",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "width": {
+         "unit": "%",
+         "size": 34,
+         "sizes": []
+        },
+        "width_tablet": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "width_mobile": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "flex_gap": {
+         "unit": "px",
+         "size": 24,
+         "column": "24",
+         "row": "24",
+         "isLinked": true
+        },
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        }
+       },
+       "elements": [
+        {
+         "id": "5297cae",
+         "elType": "widget",
+         "settings": {
+          "title": "Perguntas <em>frequentes</em>",
+          "header_size": "h2",
+          "_css_classes": "dca-h2 dca-reveal"
+         },
+         "elements": [],
+         "widgetType": "heading"
+        },
+        {
+         "id": "672e75b",
+         "elType": "widget",
+         "settings": {
+          "editor": "<p>Ainda ficou alguma dúvida? Fale com a nossa equipe pelo WhatsApp.</p>",
+          "_css_classes": "dca-lead dca-reveal"
+         },
+         "elements": [],
+         "widgetType": "text-editor"
+        },
+        {
+         "id": "9e841e2",
+         "elType": "widget",
+         "settings": {
+          "text": "Falar pelo WhatsApp",
+          "link": {
+           "url": "https://wa.me/5585992449528?text=Ol%C3%A1%21%20Vim%20pelo%20site%20%28p%C3%A1gina%20Home%20%C2%B7%20d%C3%BAvidas%29%20e%20gostaria%20de%20agendar%20uma%20consulta%20com%20a%20Dra.%20C%C3%A9lia%20Alc%C3%A2ntara.",
+           "is_external": "on",
+           "nofollow": "",
+           "custom_attributes": ""
+          },
+          "selected_icon": {
+           "value": "fab fa-whatsapp",
+           "library": "fa-brands"
+          },
+          "icon_align": "left",
+          "icon_indent": {
+           "unit": "px",
+           "size": 10,
+           "sizes": []
+          },
+          "_css_classes": "dca-btn dca-btn--ghost dca-reveal"
+         },
+         "elements": [],
+         "widgetType": "button"
+        }
+       ],
+       "isInner": false
+      },
+      {
+       "id": "a85fd96",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "width": {
+         "unit": "%",
+         "size": 60,
+         "sizes": []
+        },
+        "width_tablet": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "width_mobile": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "flex_gap": {
+         "unit": "px",
+         "size": 24,
+         "column": "24",
+         "row": "24",
+         "isLinked": true
+        },
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        }
+       },
+       "elements": [
+        {
+         "id": "a1be791",
+         "elType": "widget",
+         "settings": {
+          "html": "<div class=\"dca-faq\"><details class=\"dca-reveal\"><summary><h3>Onde a Dra. Célia Alcântara atende?</h3><span class=\"dca-faq__icon\" aria-hidden=\"true\"></span></summary><div class=\"dca-faq__a\"><p>Os atendimentos presenciais são em Fortaleza, na Rua General Castelo Branco, 130, Cidade dos Funcionários. A Dra. Célia também atende por telemedicina para todo o Brasil.</p></div></details><details class=\"dca-reveal\"><summary><h3>A consulta é por convênio?</h3><span class=\"dca-faq__icon\" aria-hidden=\"true\"></span></summary><div class=\"dca-faq__a\"><p>Não. As consultas são exclusivamente particulares. Se você tem plano de saúde, pode ter direito a reembolso: emitimos a nota fiscal para que você solicite o reembolso diretamente ao seu convênio.</p></div></details><details class=\"dca-reveal\"><summary><h3>Quanto tempo dura a consulta com a reumatologista?</h3><span class=\"dca-faq__icon\" aria-hidden=\"true\"></span></summary><div class=\"dca-faq__a\"><p>A consulta dura cerca de 60 minutos e o retorno, cerca de 40 minutos, variando conforme o caso. Antes, a Dra. analisa o questionário pré-consulta e, depois, elabora um plano de tratamento personalizado.</p></div></details><details class=\"dca-reveal\"><summary><h3>O que o reumatologista trata?</h3><span class=\"dca-faq__icon\" aria-hidden=\"true\"></span></summary><div class=\"dca-faq__a\"><p>O reumatologista cuida das doenças que afetam articulações, ossos, músculos, tendões e ligamentos, como artrite psoriásica, espondiloartrites, espondilite anquilosante, fibromialgia e osteoporose. Fadiga, mal-estar, febre e perda de peso também podem ser sinais de doença reumática.</p></div></details><details class=\"dca-reveal\"><summary><h3>Como agendar uma consulta?</h3><span class=\"dca-faq__icon\" aria-hidden=\"true\"></span></summary><div class=\"dca-faq__a\"><p>O agendamento é feito pelo WhatsApp (85) 99244-9528. Você escolhe entre atendimento presencial em Fortaleza ou por telemedicina.</p></div></details></div>",
+          "_title": "Perguntas frequentes"
+         },
+         "elements": [],
+         "widgetType": "html"
+        }
+       ],
+       "isInner": false
+      }
+     ],
+     "isInner": false
+    },
+    {
+     "id": "6ce0564",
+     "elType": "widget",
+     "settings": {
+      "html": "<script type=\"application/ld+json\">{\"@context\": \"https://schema.org\", \"@graph\": [{\"@type\": \"WebSite\", \"@id\": \"https://www.draceliaalcantara.com.br/#site\", \"url\": \"https://www.draceliaalcantara.com.br/\", \"name\": \"Dra. Célia Alcântara · Reumatologista\", \"inLanguage\": \"pt-BR\"}, {\"@type\": [\"Physician\", \"MedicalBusiness\"], \"@id\": \"https://www.draceliaalcantara.com.br/#consultorio\", \"name\": \"Dra. Célia Alcântara · Reumatologista em Fortaleza\", \"url\": \"https://www.draceliaalcantara.com.br/\", \"telephone\": \"+55-85-99244-9528\", \"medicalSpecialty\": \"Rheumatologic\", \"priceRange\": \"Consulta particular\", \"paymentAccepted\": \"Particular (nota fiscal para reembolso)\", \"isAcceptingNewPatients\": true, \"availableService\": [{\"@type\": \"MedicalProcedure\", \"name\": \"Consulta presencial em reumatologia\"}, {\"@type\": \"MedicalProcedure\", \"name\": \"Teleconsulta em reumatologia (telemedicina)\"}], \"address\": {\"@type\": \"PostalAddress\", \"streetAddress\": \"Rua General Castelo Branco, 130\", \"addressLocality\": \"Fortaleza\", \"addressRegion\": \"CE\", \"postalCode\": \"60822-040\", \"addressCountry\": \"BR\"}, \"areaServed\": [{\"@type\": \"City\", \"name\": \"Fortaleza\"}, {\"@type\": \"Country\", \"name\": \"Brasil\"}], \"hasMap\": \"https://www.google.com/maps/search/?api=1&query=Rua%20General%20Castelo%20Branco%2C%20130%2C%20Cidade%20dos%20Funcion%C3%A1rios%2C%20Fortaleza%20-%20CE%2C%2060822-040\", \"founder\": {\"@id\": \"https://www.draceliaalcantara.com.br/#dra-celia\"}, \"sameAs\": [\"https://www.instagram.com/\"]}, {\"@type\": \"Person\", \"@id\": \"https://www.draceliaalcantara.com.br/#dra-celia\", \"name\": \"Dra. Célia Alcântara\", \"jobTitle\": \"Médica Reumatologista\", \"description\": \"Médica reumatologista em Fortaleza, CRM 8280, RQE 4354, com mais de 15 anos de experiência clínica.\", \"url\": \"https://www.draceliaalcantara.com.br/#sobre\", \"alumniOf\": [{\"@type\": \"CollegeOrUniversity\", \"name\": \"Universidade Federal do Ceará\"}, {\"@type\": \"EducationalOrganization\", \"name\": \"Escola de Saúde Pública do Ceará\"}], \"hasCredential\": [{\"@type\": \"EducationalOccupationalCredential\", \"credentialCategory\": \"Registro profissional\", \"name\": \"CRM-CE 8280\"}, {\"@type\": \"EducationalOccupationalCredential\", \"credentialCategory\": \"Registro de Qualificação de Especialista\", \"name\": \"RQE 4354 · Reumatologia\"}, {\"@type\": \"EducationalOccupationalCredential\", \"credentialCategory\": \"Título de especialista\", \"name\": \"Título de Reumatologista pela Sociedade Brasileira de Reumatologia\"}, {\"@type\": \"EducationalOccupationalCredential\", \"credentialCategory\": \"degree\", \"name\": \"Mestrado em Ciências Médicas\"}], \"knowsAbout\": [\"Reumatologia\", \"Artrite psoriásica\", \"Espondiloartrites\", \"Espondilite anquilosante\", \"Fibromialgia\", \"Osteoporose\", \"Terapia imunobiológica\", \"Artrite reumatoide\", \"Artrite idiopática juvenil\"], \"worksFor\": {\"@id\": \"https://www.draceliaalcantara.com.br/#consultorio\"}, \"sameAs\": [\"https://www.instagram.com/\"]}, {\"@type\": \"MedicalWebPage\", \"@id\": \"https://www.draceliaalcantara.com.br/#pagina\", \"url\": \"https://www.draceliaalcantara.com.br/\", \"name\": \"Dra. Célia Alcântara | Médica Reumatologista em Fortaleza\", \"about\": {\"@id\": \"https://www.draceliaalcantara.com.br/#consultorio\"}, \"specialty\": \"Rheumatologic\", \"inLanguage\": \"pt-BR\", \"lastReviewed\": \"2026-10-26\", \"reviewedBy\": {\"@id\": \"https://www.draceliaalcantara.com.br/#dra-celia\"}}, {\"@type\": \"FAQPage\", \"mainEntity\": [{\"@type\": \"Question\", \"name\": \"Onde a Dra. Célia Alcântara atende?\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"Os atendimentos presenciais são em Fortaleza, na Rua General Castelo Branco, 130, Cidade dos Funcionários. A Dra. Célia também atende por telemedicina para todo o Brasil.\"}}, {\"@type\": \"Question\", \"name\": \"A consulta é por convênio?\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"Não. As consultas são exclusivamente particulares. Se você tem plano de saúde, pode ter direito a reembolso: emitimos a nota fiscal para que você solicite o reembolso diretamente ao seu convênio.\"}}, {\"@type\": \"Question\", \"name\": \"Quanto tempo dura a consulta com a reumatologista?\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"A consulta dura cerca de 60 minutos e o retorno, cerca de 40 minutos, variando conforme o caso. Antes, a Dra. analisa o questionário pré-consulta e, depois, elabora um plano de tratamento personalizado.\"}}, {\"@type\": \"Question\", \"name\": \"O que o reumatologista trata?\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"O reumatologista cuida das doenças que afetam articulações, ossos, músculos, tendões e ligamentos, como artrite psoriásica, espondiloartrites, espondilite anquilosante, fibromialgia e osteoporose. Fadiga, mal-estar, febre e perda de peso também podem ser sinais de doença reumática.\"}}, {\"@type\": \"Question\", \"name\": \"Como agendar uma consulta?\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"O agendamento é feito pelo WhatsApp (85) 99244-9528. Você escolhe entre atendimento presencial em Fortaleza ou por telemedicina.\"}}]}]}</script>",
+      "_title": "SEO · dados estruturados (JSON-LD)"
+     },
+     "elements": [],
+     "widgetType": "html"
+    }
+   ],
+   "isInner": false
+  }
+ ],
+ "page_settings": {
+  "template": "elementor_header_footer",
+  "hide_title": "yes"
+ },
+ "version": "0.4",
+ "title": "Home · Dra. Célia",
+ "type": "page"
+}

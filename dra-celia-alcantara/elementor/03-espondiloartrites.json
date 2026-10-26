@@ -1,0 +1,1173 @@
+{
+ "content": [
+  {
+   "id": "33cbd50",
+   "elType": "container",
+   "settings": {
+    "content_width": "boxed",
+    "flex_direction": "column",
+    "boxed_width": {
+     "unit": "px",
+     "size": 1240,
+     "sizes": []
+    },
+    "flex_gap": {
+     "unit": "px",
+     "size": 56,
+     "column": "56",
+     "row": "56",
+     "isLinked": true
+    },
+    "flex_gap_mobile": {
+     "unit": "px",
+     "size": 36,
+     "column": "36",
+     "row": "36",
+     "isLinked": true
+    },
+    "padding": {
+     "unit": "px",
+     "top": "40",
+     "right": "28",
+     "bottom": "112",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_tablet": {
+     "unit": "px",
+     "top": "40",
+     "right": "28",
+     "bottom": "112",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_mobile": {
+     "unit": "px",
+     "top": "24",
+     "right": "20",
+     "bottom": "80",
+     "left": "20",
+     "isLinked": false
+    },
+    "html_tag": "section",
+    "_element_id": "conteudo",
+    "css_classes": "dca-sec dca-clip",
+    "_title": "Topo · H1"
+   },
+   "elements": [
+    {
+     "id": "35b4f6c",
+     "elType": "container",
+     "settings": {
+      "content_width": "full",
+      "flex_direction": "row",
+      "flex_direction_tablet": "column",
+      "flex_direction_mobile": "column",
+      "flex_gap": {
+       "unit": "px",
+       "size": 72,
+       "column": "72",
+       "row": "72",
+       "isLinked": true
+      },
+      "flex_gap_mobile": {
+       "unit": "px",
+       "size": 56,
+       "column": "56",
+       "row": "56",
+       "isLinked": true
+      },
+      "flex_justify_content": "space-between",
+      "flex_align_items": "center",
+      "padding": {
+       "unit": "px",
+       "top": "0",
+       "right": "0",
+       "bottom": "0",
+       "left": "0",
+       "isLinked": true
+      }
+     },
+     "elements": [
+      {
+       "id": "7c4ba29",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "width": {
+         "unit": "%",
+         "size": 54,
+         "sizes": []
+        },
+        "width_tablet": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "width_mobile": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "flex_gap": {
+         "unit": "px",
+         "size": 28,
+         "column": "28",
+         "row": "28",
+         "isLinked": true
+        },
+        "flex_justify_content": "center",
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        }
+       },
+       "elements": [
+        {
+         "id": "07bebad",
+         "elType": "widget",
+         "settings": {
+          "html": "<nav class=\"dca-crumbs\" aria-label=\"Você está em\"><ol><li><a href=\"/\">Início</a></li><li><a href=\"/#especialidades\">Especialidades</a></li><li><span aria-current=\"page\">Espondiloartrites</span></li></ol></nav>",
+          "_css_classes": "dca-load"
+         },
+         "elements": [],
+         "widgetType": "html"
+        },
+        {
+         "id": "33e7845",
+         "elType": "widget",
+         "settings": {
+          "title": "Espondiloartrites<span class=\"dca-h1-tail\"><span class=\"dca-sr\">: </span>sintomas, diagnóstico e tratamento em Fortaleza</span>",
+          "header_size": "h1",
+          "_css_classes": "dca-display dca-display--md dca-load"
+         },
+         "elements": [],
+         "widgetType": "heading"
+        },
+        {
+         "id": "3c1964b",
+         "elType": "widget",
+         "settings": {
+          "editor": "<p>Grupo de doenças inflamatórias crônicas que atinge principalmente a coluna e a pelve.</p>",
+          "_css_classes": "dca-lead dca-load"
+         },
+         "elements": [],
+         "widgetType": "text-editor"
+        },
+        {
+         "id": "489e62d",
+         "elType": "container",
+         "settings": {
+          "content_width": "full",
+          "flex_direction": "row",
+          "flex_gap": {
+           "unit": "px",
+           "size": 28,
+           "column": "28",
+           "row": "14",
+           "isLinked": false
+          },
+          "flex_align_items": "center",
+          "flex_wrap": "wrap",
+          "padding": {
+           "unit": "px",
+           "top": "0",
+           "right": "0",
+           "bottom": "0",
+           "left": "0",
+           "isLinked": true
+          },
+          "css_classes": "dca-load"
+         },
+         "elements": [
+          {
+           "id": "b7de189",
+           "elType": "widget",
+           "settings": {
+            "text": "Agendar pelo WhatsApp",
+            "link": {
+             "url": "https://wa.me/5585992449528?text=Ol%C3%A1%21%20Vim%20pelo%20site%20%28p%C3%A1gina%20Espondiloartrites%29%20e%20gostaria%20de%20agendar%20uma%20consulta%20com%20a%20Dra.%20C%C3%A9lia%20Alc%C3%A2ntara.",
+             "is_external": "on",
+             "nofollow": "",
+             "custom_attributes": ""
+            },
+            "selected_icon": {
+             "value": "fab fa-whatsapp",
+             "library": "fa-brands"
+            },
+            "icon_align": "left",
+            "icon_indent": {
+             "unit": "px",
+             "size": 10,
+             "sizes": []
+            },
+            "_css_classes": "dca-btn"
+           },
+           "elements": [],
+           "widgetType": "button"
+          },
+          {
+           "id": "6c09f56",
+           "elType": "widget",
+           "settings": {
+            "html": "<a class=\"dca-link\" href=\"#o-que-sao\">Ler o guia completo <svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></a>"
+           },
+           "elements": [],
+           "widgetType": "html"
+          }
+         ],
+         "isInner": false
+        },
+        {
+         "id": "14d1199",
+         "elType": "widget",
+         "settings": {
+          "html": "<div class=\"dca-reviewed\"><span class=\"dca-reviewed__mark\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" focusable=\"false\"><circle cx=\"12\" cy=\"9\" r=\"5.5\"/><path d=\"m8.6 13.4-1.6 7.1 5-2.6 5 2.6-1.6-7.1\"/></svg></span><span><strong>Conteúdo revisado pela Dra. Célia Alcântara</strong>Médica Reumatologista · CRM 8280 · RQE 4354</span></div>",
+          "_css_classes": "dca-load"
+         },
+         "elements": [],
+         "widgetType": "html"
+        }
+       ],
+       "isInner": false
+      },
+      {
+       "id": "9dc9843",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "width": {
+         "unit": "%",
+         "size": 38,
+         "sizes": []
+        },
+        "width_tablet": {
+         "unit": "%",
+         "size": 70,
+         "sizes": []
+        },
+        "width_mobile": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "flex_gap": {
+         "unit": "px",
+         "size": 24,
+         "column": "24",
+         "row": "24",
+         "isLinked": true
+        },
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        },
+        "css_classes": "dca-hero-media"
+       },
+       "elements": [
+        {
+         "id": "ee85413",
+         "elType": "widget",
+         "settings": {
+          "image_size": "full",
+          "_css_classes": "dca-rounded dca-rounded--tall dca-img-reveal",
+          "_title": "FOTO · alt: Pessoa com dor na região lombar e na pelve, sintoma de espondiloartrite"
+         },
+         "elements": [],
+         "widgetType": "image"
+        },
+        {
+         "id": "c699f40",
+         "elType": "widget",
+         "settings": {
+          "html": "<div class=\"dca-float-card\"><span class=\"dca-float-card__icon\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" focusable=\"false\"><rect x=\"3\" y=\"6.5\" width=\"12.5\" height=\"11\" rx=\"2.5\"/><path d=\"M15.5 10.5 21 7.5v9l-5.5-3\"/></svg></span><span><strong>Presencial ou on-line</strong>Fortaleza e telemedicina para todo o Brasil</span></div>",
+          "_css_classes": "dca-float dca-reveal"
+         },
+         "elements": [],
+         "widgetType": "html"
+        }
+       ],
+       "isInner": false
+      }
+     ],
+     "isInner": false
+    }
+   ],
+   "isInner": false
+  },
+  {
+   "id": "ef6566b",
+   "elType": "container",
+   "settings": {
+    "content_width": "boxed",
+    "flex_direction": "column",
+    "boxed_width": {
+     "unit": "px",
+     "size": 1240,
+     "sizes": []
+    },
+    "flex_gap": {
+     "unit": "px",
+     "size": 56,
+     "column": "56",
+     "row": "56",
+     "isLinked": true
+    },
+    "flex_gap_mobile": {
+     "unit": "px",
+     "size": 36,
+     "column": "36",
+     "row": "36",
+     "isLinked": true
+    },
+    "padding": {
+     "unit": "px",
+     "top": "24",
+     "right": "28",
+     "bottom": "120",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_tablet": {
+     "unit": "px",
+     "top": "24",
+     "right": "28",
+     "bottom": "120",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_mobile": {
+     "unit": "px",
+     "top": "8",
+     "right": "20",
+     "bottom": "72",
+     "left": "20",
+     "isLinked": false
+    },
+    "html_tag": "section",
+    "css_classes": "dca-sec",
+    "_title": "Conteúdo"
+   },
+   "elements": [
+    {
+     "id": "e65e0de",
+     "elType": "container",
+     "settings": {
+      "content_width": "full",
+      "flex_direction": "row",
+      "flex_direction_tablet": "column",
+      "flex_direction_mobile": "column",
+      "flex_gap": {
+       "unit": "px",
+       "size": 64,
+       "column": "64",
+       "row": "64",
+       "isLinked": true
+      },
+      "flex_justify_content": "space-between",
+      "flex_align_items": "stretch",
+      "padding": {
+       "unit": "px",
+       "top": "0",
+       "right": "0",
+       "bottom": "0",
+       "left": "0",
+       "isLinked": true
+      }
+     },
+     "elements": [
+      {
+       "id": "8bc931b",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "width": {
+         "unit": "%",
+         "size": 24,
+         "sizes": []
+        },
+        "width_tablet": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "width_mobile": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "flex_gap": {
+         "unit": "px",
+         "size": 24,
+         "column": "24",
+         "row": "24",
+         "isLinked": true
+        },
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        },
+        "css_classes": "dca-toc-col"
+       },
+       "elements": [
+        {
+         "id": "97c8296",
+         "elType": "widget",
+         "settings": {
+          "html": "<nav class=\"dca-toc\" aria-label=\"Nesta página\"><p>Nesta página</p><ol><li><a href=\"#o-que-sao\">O que são</a></li><li><a href=\"#causas\">Causas</a></li><li><a href=\"#sintomas\">Principais sintomas</a></li><li><a href=\"#diagnostico\">Diagnóstico</a></li><li><a href=\"#tratamento\">Como tratar</a></li><li><a href=\"#qualidade-de-vida\">Qualidade de vida</a></li><li><a href=\"#quando-procurar\">Quando procurar</a></li><li><a href=\"#duvidas\">Dúvidas frequentes</a></li></ol></nav>",
+          "_title": "Sumário lateral"
+         },
+         "elements": [],
+         "widgetType": "html"
+        }
+       ],
+       "isInner": false
+      },
+      {
+       "id": "37e3ada",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "width": {
+         "unit": "%",
+         "size": 68,
+         "sizes": []
+        },
+        "width_tablet": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "width_mobile": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "flex_gap": {
+         "unit": "px",
+         "size": 22,
+         "column": "22",
+         "row": "22",
+         "isLinked": true
+        },
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        },
+        "css_classes": "dca-article-col"
+       },
+       "elements": [
+        {
+         "id": "818f755",
+         "elType": "widget",
+         "settings": {
+          "title": "O que são as espondiloartrites?",
+          "header_size": "h2",
+          "_css_classes": "dca-h2 dca-h2--sm dca-reveal",
+          "_element_id": "o-que-sao"
+         },
+         "elements": [],
+         "widgetType": "heading"
+        },
+        {
+         "id": "2f06290",
+         "elType": "widget",
+         "settings": {
+          "editor": "<p>As espondiloartrites são um grupo de doenças inflamatórias crônicas que afetam principalmente as articulações da coluna vertebral e da pelve. Também podem atingir articulações periféricas e outras partes do corpo, como as ênteses, que são os pontos onde os tendões se inserem nos ossos.</p><p>Essas condições podem vir acompanhadas de manifestações em órgãos como olhos, intestino e pele. Por isso, o diagnóstico e o tratamento adequados são fundamentais para evitar complicações.</p><p>Fazem parte desse grupo a <a href=\"/espondilite-anquilosante/\">espondilite anquilosante</a> e a <a href=\"/artrite-psoriasica/\">artrite psoriásica</a>, entre outras.</p>",
+          "_css_classes": "dca-prose dca-reveal"
+         },
+         "elements": [],
+         "widgetType": "text-editor"
+        },
+        {
+         "id": "61cafa5",
+         "elType": "widget",
+         "settings": {
+          "title": "O que causa as espondiloartrites?",
+          "header_size": "h2",
+          "_css_classes": "dca-h2 dca-h2--sm dca-reveal",
+          "_element_id": "causas"
+         },
+         "elements": [],
+         "widgetType": "heading"
+        },
+        {
+         "id": "3a5c7a4",
+         "elType": "widget",
+         "settings": {
+          "editor": "<p>A causa exata ainda não é totalmente conhecida. Acredita-se que fatores genéticos e ambientais atuem em conjunto. O marcador genético HLA-B27 aparece com frequência nessas doenças e aumenta a predisposição em pessoas geneticamente suscetíveis. Infecções bacterianas também podem funcionar como gatilho em algumas formas, como a artrite reativa.</p>",
+          "_css_classes": "dca-prose dca-reveal"
+         },
+         "elements": [],
+         "widgetType": "text-editor"
+        },
+        {
+         "id": "5be42ba",
+         "elType": "widget",
+         "settings": {
+          "title": "Principais sintomas",
+          "header_size": "h2",
+          "_css_classes": "dca-h2 dca-h2--sm dca-reveal",
+          "_element_id": "sintomas"
+         },
+         "elements": [],
+         "widgetType": "heading"
+        },
+        {
+         "id": "991a9ca",
+         "elType": "widget",
+         "settings": {
+          "editor": "<p>Os sintomas variam conforme o subtipo, mas geralmente incluem os itens abaixo.</p><ul><li><strong>Dor e rigidez nas costas.</strong> Principalmente na região lombar e sacroilíaca, com piora pela manhã ou depois de períodos parado e melhora com o movimento.</li><li><strong>Inflamação em articulações periféricas.</strong> Como joelhos, tornozelos e quadris.</li><li><strong>Entesite.</strong> Inflamação nos pontos de inserção dos tendões, como no calcanhar.</li><li><strong>Dactilite.</strong> Inchaço de dedos das mãos ou dos pés, que ficam com aparência de “dedo em salsicha”.</li><li><strong>Manifestações fora das articulações.</strong> Uveíte (inflamação nos olhos), lesões de pele como as da psoríase e sintomas intestinais ligados a doenças inflamatórias do intestino.</li></ul>",
+          "_css_classes": "dca-prose dca-reveal"
+         },
+         "elements": [],
+         "widgetType": "text-editor"
+        },
+        {
+         "id": "5d52229",
+         "elType": "widget",
+         "settings": {
+          "title": "Como é feito o diagnóstico?",
+          "header_size": "h2",
+          "_css_classes": "dca-h2 dca-h2--sm dca-reveal",
+          "_element_id": "diagnostico"
+         },
+         "elements": [],
+         "widgetType": "heading"
+        },
+        {
+         "id": "f641232",
+         "elType": "widget",
+         "settings": {
+          "editor": "<p>O diagnóstico combina análise dos sintomas, histórico médico e exame físico com exames complementares.</p><ul><li><strong>Radiografia e ressonância magnética,</strong> para avaliar lesões e inflamação nas articulações.</li><li><strong>Exames de laboratório,</strong> para detectar marcadores genéticos como o HLA-B27 e excluir outras doenças, como artrite reumatoide e gota.</li></ul><p>É essencial que o diagnóstico seja feito por um reumatologista, médico especialista em doenças inflamatórias das articulações.</p>",
+          "_css_classes": "dca-prose dca-reveal"
+         },
+         "elements": [],
+         "widgetType": "text-editor"
+        },
+        {
+         "id": "c1c9c73",
+         "elType": "widget",
+         "settings": {
+          "title": "Como tratar?",
+          "header_size": "h2",
+          "_css_classes": "dca-h2 dca-h2--sm dca-reveal",
+          "_element_id": "tratamento"
+         },
+         "elements": [],
+         "widgetType": "heading"
+        },
+        {
+         "id": "420b270",
+         "elType": "widget",
+         "settings": {
+          "editor": "<p>O tratamento busca controlar a inflamação, reduzir a dor, melhorar a mobilidade e evitar danos às articulações. Inclui:</p><ul><li><strong>Anti-inflamatórios não esteroides (AINEs),</strong> para aliviar dor e inflamação.</li><li><strong>Medicamentos modificadores do curso da doença (DMARDs),</strong> usados nas inflamações das articulações periféricas.</li><li><strong>Terapias biológicas (imunobiológicos),</strong> indicadas para casos mais graves ou que não respondem a outros tratamentos. Veja a página sobre <a href=\"/terapia-imunobiologica/\">terapia imunobiológica</a>.</li><li><strong>Fisioterapia e exercícios físicos,</strong> fundamentais para preservar a mobilidade da coluna e fortalecer a musculatura.</li></ul>",
+          "_css_classes": "dca-prose dca-reveal"
+         },
+         "elements": [],
+         "widgetType": "text-editor"
+        },
+        {
+         "id": "8ef943a",
+         "elType": "widget",
+         "settings": {
+          "title": "Cuidados e qualidade de vida",
+          "header_size": "h2",
+          "_css_classes": "dca-h2 dca-h2--sm dca-reveal",
+          "_element_id": "qualidade-de-vida"
+         },
+         "elements": [],
+         "widgetType": "heading"
+        },
+        {
+         "id": "2d0430b",
+         "elType": "widget",
+         "settings": {
+          "editor": "<p>O acompanhamento contínuo com o reumatologista permite ajustar o tratamento sempre que necessário. Alimentação equilibrada, abandono do cigarro e exercícios regulares ajudam a controlar os sintomas e a melhorar o dia a dia.</p><p>Para quem mora em Fortaleza, a clínica conta com equipe multiprofissional formada por nutricionistas, fisioterapeutas, educador físico, médico da dor e nutrólogo. Juntos, oferecem um cuidado integrado e completo, pensado para apoiar você em cada etapa da sua jornada de saúde.</p>",
+          "_css_classes": "dca-prose dca-reveal"
+         },
+         "elements": [],
+         "widgetType": "text-editor"
+        }
+       ],
+       "isInner": false
+      }
+     ],
+     "isInner": false
+    }
+   ],
+   "isInner": false
+  },
+  {
+   "id": "aa7dfbb",
+   "elType": "container",
+   "settings": {
+    "content_width": "boxed",
+    "flex_direction": "column",
+    "boxed_width": {
+     "unit": "px",
+     "size": 1240,
+     "sizes": []
+    },
+    "flex_gap": {
+     "unit": "px",
+     "size": 56,
+     "column": "56",
+     "row": "56",
+     "isLinked": true
+    },
+    "flex_gap_mobile": {
+     "unit": "px",
+     "size": 36,
+     "column": "36",
+     "row": "36",
+     "isLinked": true
+    },
+    "padding": {
+     "unit": "px",
+     "top": "112",
+     "right": "28",
+     "bottom": "112",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_tablet": {
+     "unit": "px",
+     "top": "112",
+     "right": "28",
+     "bottom": "112",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_mobile": {
+     "unit": "px",
+     "top": "80",
+     "right": "20",
+     "bottom": "80",
+     "left": "20",
+     "isLinked": false
+    },
+    "background_background": "classic",
+    "background_color": "#F7F4EF",
+    "html_tag": "section",
+    "css_classes": "dca-sec",
+    "_title": "Quando procurar"
+   },
+   "elements": [
+    {
+     "id": "084137f",
+     "elType": "container",
+     "settings": {
+      "content_width": "full",
+      "flex_direction": "row",
+      "flex_direction_tablet": "column",
+      "flex_direction_mobile": "column",
+      "flex_gap": {
+       "unit": "px",
+       "size": 56,
+       "column": "56",
+       "row": "56",
+       "isLinked": true
+      },
+      "flex_justify_content": "space-between",
+      "padding": {
+       "unit": "px",
+       "top": "0",
+       "right": "0",
+       "bottom": "0",
+       "left": "0",
+       "isLinked": true
+      }
+     },
+     "elements": [
+      {
+       "id": "f18088d",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "width": {
+         "unit": "%",
+         "size": 42,
+         "sizes": []
+        },
+        "width_tablet": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "width_mobile": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "flex_gap": {
+         "unit": "px",
+         "size": 28,
+         "column": "28",
+         "row": "28",
+         "isLinked": true
+        },
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        }
+       },
+       "elements": [
+        {
+         "id": "3400185",
+         "elType": "widget",
+         "settings": {
+          "html": "<div class=\"dca-joint \" aria-hidden=\"true\"><span class=\"dca-joint__line\"></span><span class=\"dca-joint__node\"></span><span class=\"dca-joint__line\"></span></div>",
+          "_css_classes": "dca-reveal"
+         },
+         "elements": [],
+         "widgetType": "html"
+        },
+        {
+         "id": "ed55cdf",
+         "elType": "widget",
+         "settings": {
+          "title": "Quando procurar um <em>reumatologista?</em>",
+          "header_size": "h2",
+          "_css_classes": "dca-h2 dca-reveal",
+          "_element_id": "quando-procurar"
+         },
+         "elements": [],
+         "widgetType": "heading"
+        }
+       ],
+       "isInner": false
+      },
+      {
+       "id": "17450de",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "width": {
+         "unit": "%",
+         "size": 50,
+         "sizes": []
+        },
+        "width_tablet": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "width_mobile": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "flex_gap": {
+         "unit": "px",
+         "size": 32,
+         "column": "32",
+         "row": "32",
+         "isLinked": true
+        },
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        }
+       },
+       "elements": [
+        {
+         "id": "2ef805f",
+         "elType": "widget",
+         "settings": {
+          "editor": "<p>Se você tem dor lombar persistente, rigidez ao acordar ou histórico familiar de espondiloartrites, agende uma consulta para uma avaliação detalhada e as orientações adequadas.</p><p><strong>Agende sua consulta com a Dra. Célia Alcântara.</strong> Atendimento presencial em Fortaleza e por telemedicina.</p>",
+          "_css_classes": "dca-prose dca-reveal"
+         },
+         "elements": [],
+         "widgetType": "text-editor"
+        },
+        {
+         "id": "319b618",
+         "elType": "widget",
+         "settings": {
+          "text": "Agendar pelo WhatsApp",
+          "link": {
+           "url": "https://wa.me/5585992449528?text=Ol%C3%A1%21%20Vim%20pelo%20site%20%28p%C3%A1gina%20Espondiloartrites%29%20e%20gostaria%20de%20agendar%20uma%20consulta%20com%20a%20Dra.%20C%C3%A9lia%20Alc%C3%A2ntara.",
+           "is_external": "on",
+           "nofollow": "",
+           "custom_attributes": ""
+          },
+          "selected_icon": {
+           "value": "fab fa-whatsapp",
+           "library": "fa-brands"
+          },
+          "icon_align": "left",
+          "icon_indent": {
+           "unit": "px",
+           "size": 10,
+           "sizes": []
+          },
+          "_css_classes": "dca-btn dca-btn--gold dca-reveal"
+         },
+         "elements": [],
+         "widgetType": "button"
+        }
+       ],
+       "isInner": false
+      }
+     ],
+     "isInner": false
+    }
+   ],
+   "isInner": false
+  },
+  {
+   "id": "f222dec",
+   "elType": "container",
+   "settings": {
+    "content_width": "boxed",
+    "flex_direction": "column",
+    "boxed_width": {
+     "unit": "px",
+     "size": 1240,
+     "sizes": []
+    },
+    "flex_gap": {
+     "unit": "px",
+     "size": 56,
+     "column": "56",
+     "row": "56",
+     "isLinked": true
+    },
+    "flex_gap_mobile": {
+     "unit": "px",
+     "size": 36,
+     "column": "36",
+     "row": "36",
+     "isLinked": true
+    },
+    "padding": {
+     "unit": "px",
+     "top": "120",
+     "right": "28",
+     "bottom": "96",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_tablet": {
+     "unit": "px",
+     "top": "120",
+     "right": "28",
+     "bottom": "96",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_mobile": {
+     "unit": "px",
+     "top": "80",
+     "right": "20",
+     "bottom": "80",
+     "left": "20",
+     "isLinked": false
+    },
+    "html_tag": "section",
+    "css_classes": "dca-sec",
+    "_title": "Perguntas frequentes"
+   },
+   "elements": [
+    {
+     "id": "a653046",
+     "elType": "container",
+     "settings": {
+      "content_width": "full",
+      "flex_direction": "row",
+      "flex_direction_tablet": "column",
+      "flex_direction_mobile": "column",
+      "flex_gap": {
+       "unit": "px",
+       "size": 56,
+       "column": "56",
+       "row": "56",
+       "isLinked": true
+      },
+      "flex_justify_content": "space-between",
+      "padding": {
+       "unit": "px",
+       "top": "0",
+       "right": "0",
+       "bottom": "0",
+       "left": "0",
+       "isLinked": true
+      }
+     },
+     "elements": [
+      {
+       "id": "13bfe20",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "width": {
+         "unit": "%",
+         "size": 34,
+         "sizes": []
+        },
+        "width_tablet": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "width_mobile": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "flex_gap": {
+         "unit": "px",
+         "size": 24,
+         "column": "24",
+         "row": "24",
+         "isLinked": true
+        },
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        }
+       },
+       "elements": [
+        {
+         "id": "6a5e3d6",
+         "elType": "widget",
+         "settings": {
+          "title": "Dúvidas sobre <em>espondiloartrites</em>",
+          "header_size": "h2",
+          "_css_classes": "dca-h2 dca-reveal",
+          "_element_id": "duvidas"
+         },
+         "elements": [],
+         "widgetType": "heading"
+        }
+       ],
+       "isInner": false
+      },
+      {
+       "id": "1f42bf0",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "width": {
+         "unit": "%",
+         "size": 60,
+         "sizes": []
+        },
+        "width_tablet": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "width_mobile": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "flex_gap": {
+         "unit": "px",
+         "size": 24,
+         "column": "24",
+         "row": "24",
+         "isLinked": true
+        },
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        }
+       },
+       "elements": [
+        {
+         "id": "cae6ac8",
+         "elType": "widget",
+         "settings": {
+          "html": "<div class=\"dca-faq\"><details class=\"dca-reveal\"><summary><h3>Quais doenças fazem parte das espondiloartrites?</h3><span class=\"dca-faq__icon\" aria-hidden=\"true\"></span></summary><div class=\"dca-faq__a\"><p>Fazem parte desse grupo a espondilite anquilosante e a artrite psoriásica, entre outras, como a artrite reativa.</p></div></details><details class=\"dca-reveal\"><summary><h3>O que é o HLA-B27?</h3><span class=\"dca-faq__icon\" aria-hidden=\"true\"></span></summary><div class=\"dca-faq__a\"><p>É um marcador genético que aparece com frequência nas espondiloartrites e aumenta a predisposição em pessoas geneticamente suscetíveis. A pesquisa do HLA-B27 é um dos exames que ajudam no diagnóstico.</p></div></details><details class=\"dca-reveal\"><summary><h3>Dor nas costas que piora pela manhã pode ser espondiloartrite?</h3><span class=\"dca-faq__icon\" aria-hidden=\"true\"></span></summary><div class=\"dca-faq__a\"><p>Pode ser um sinal. Na espondiloartrite, a dor e a rigidez nas costas costumam piorar pela manhã ou depois de períodos parado e melhorar com o movimento. Nesses casos, procure um reumatologista.</p></div></details><details class=\"dca-reveal\"><summary><h3>Como é o tratamento das espondiloartrites?</h3><span class=\"dca-faq__icon\" aria-hidden=\"true\"></span></summary><div class=\"dca-faq__a\"><p>Inclui anti-inflamatórios não esteroides, medicamentos modificadores do curso da doença, terapias biológicas nos casos indicados, além de fisioterapia e exercícios para preservar a mobilidade da coluna.</p></div></details></div>",
+          "_title": "Perguntas frequentes"
+         },
+         "elements": [],
+         "widgetType": "html"
+        }
+       ],
+       "isInner": false
+      }
+     ],
+     "isInner": false
+    }
+   ],
+   "isInner": false
+  },
+  {
+   "id": "946ac8b",
+   "elType": "container",
+   "settings": {
+    "content_width": "boxed",
+    "flex_direction": "column",
+    "boxed_width": {
+     "unit": "px",
+     "size": 1240,
+     "sizes": []
+    },
+    "flex_gap": {
+     "unit": "px",
+     "size": 48,
+     "column": "48",
+     "row": "48",
+     "isLinked": true
+    },
+    "flex_gap_mobile": {
+     "unit": "px",
+     "size": 36,
+     "column": "36",
+     "row": "36",
+     "isLinked": true
+    },
+    "padding": {
+     "unit": "px",
+     "top": "0",
+     "right": "28",
+     "bottom": "128",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_tablet": {
+     "unit": "px",
+     "top": "0",
+     "right": "28",
+     "bottom": "128",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_mobile": {
+     "unit": "px",
+     "top": "0",
+     "right": "20",
+     "bottom": "80",
+     "left": "20",
+     "isLinked": false
+    },
+    "html_tag": "section",
+    "css_classes": "dca-sec",
+    "_title": "Leia também + aviso"
+   },
+   "elements": [
+    {
+     "id": "2ef878a",
+     "elType": "widget",
+     "settings": {
+      "html": "<ul class=\"dca-related dca-stagger\"><li class=\"dca-reveal\"><a href=\"/espondilite-anquilosante/\"><div><span>Leia também</span><strong>Espondilite anquilosante</strong></div><span class=\"dca-arrow\" aria-hidden=\"true\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></span></a></li><li class=\"dca-reveal\"><a href=\"/artrite-psoriasica/\"><div><span>Leia também</span><strong>Artrite psoriásica</strong></div><span class=\"dca-arrow\" aria-hidden=\"true\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></span></a></li></ul>",
+      "_title": "Leia também (links internos)"
+     },
+     "elements": [],
+     "widgetType": "html"
+    },
+    {
+     "id": "5e49a24",
+     "elType": "container",
+     "settings": {
+      "content_width": "full",
+      "flex_direction": "row",
+      "flex_direction_tablet": "column",
+      "flex_direction_mobile": "column",
+      "flex_gap": {
+       "unit": "px",
+       "size": 28,
+       "column": "28",
+       "row": "28",
+       "isLinked": true
+      },
+      "flex_justify_content": "space-between",
+      "flex_align_items": "center",
+      "padding": {
+       "unit": "px",
+       "top": "0",
+       "right": "0",
+       "bottom": "0",
+       "left": "0",
+       "isLinked": true
+      }
+     },
+     "elements": [
+      {
+       "id": "8c466f7",
+       "elType": "widget",
+       "settings": {
+        "html": "<div class=\"dca-reviewed\"><span class=\"dca-reviewed__mark\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" focusable=\"false\"><circle cx=\"12\" cy=\"9\" r=\"5.5\"/><path d=\"m8.6 13.4-1.6 7.1 5-2.6 5 2.6-1.6-7.1\"/></svg></span><span><strong>Revisado em 26/10/2026 pela Dra. Célia Alcântara</strong>Médica Reumatologista · CRM 8280 · RQE 4354</span></div>",
+        "_css_classes": "dca-reveal"
+       },
+       "elements": [],
+       "widgetType": "html"
+      },
+      {
+       "id": "ecf52ec",
+       "elType": "widget",
+       "settings": {
+        "html": "<p class=\"dca-disclaimer\">Este conteúdo é informativo e não substitui a consulta médica. Procure o aconselhamento de um profissional capacitado.</p>"
+       },
+       "elements": [],
+       "widgetType": "html"
+      }
+     ],
+     "isInner": false
+    },
+    {
+     "id": "395f660",
+     "elType": "widget",
+     "settings": {
+      "html": "<script type=\"application/ld+json\">{\"@context\": \"https://schema.org\", \"@graph\": [{\"@type\": \"MedicalWebPage\", \"@id\": \"https://www.draceliaalcantara.com.br/espondiloartrites/#pagina\", \"url\": \"https://www.draceliaalcantara.com.br/espondiloartrites/\", \"name\": \"Espondiloartrites em Fortaleza | Sintomas, diagnóstico e tratamento | Dra. Célia Alcântara\", \"description\": \"Saiba o que são as espondiloartrites, quais sintomas ficar atento, como é o diagnóstico e o tratamento. Atendimento com reumatologista em Fortaleza e online.\", \"inLanguage\": \"pt-BR\", \"lastReviewed\": \"2026-10-26\", \"specialty\": \"Rheumatologic\", \"audience\": {\"@type\": \"MedicalAudience\", \"audienceType\": \"Patient\"}, \"reviewedBy\": {\"@id\": \"https://www.draceliaalcantara.com.br/#dra-celia\"}, \"author\": {\"@id\": \"https://www.draceliaalcantara.com.br/#dra-celia\"}, \"about\": {\"@type\": \"MedicalCondition\", \"name\": \"Espondiloartrites\", \"alternateName\": \"Espondiloartropatias\", \"signOrSymptom\": [{\"@type\": \"MedicalSymptom\", \"name\": \"Dor e rigidez nas costas\"}, {\"@type\": \"MedicalSymptom\", \"name\": \"Entesite\"}, {\"@type\": \"MedicalSymptom\", \"name\": \"Dactilite\"}, {\"@type\": \"MedicalSymptom\", \"name\": \"Uveíte\"}], \"possibleTreatment\": [{\"@type\": \"MedicalTherapy\", \"name\": \"AINEs\"}, {\"@type\": \"MedicalTherapy\", \"name\": \"DMARDs\"}, {\"@type\": \"MedicalTherapy\", \"name\": \"Imunobiológicos\"}, {\"@type\": \"MedicalTherapy\", \"name\": \"Fisioterapia\"}]}, \"breadcrumb\": {\"@id\": \"https://www.draceliaalcantara.com.br/espondiloartrites/#breadcrumb\"}}, {\"@type\": \"BreadcrumbList\", \"@id\": \"https://www.draceliaalcantara.com.br/espondiloartrites/#breadcrumb\", \"itemListElement\": [{\"@type\": \"ListItem\", \"position\": 1, \"name\": \"Início\", \"item\": \"https://www.draceliaalcantara.com.br/\"}, {\"@type\": \"ListItem\", \"position\": 2, \"name\": \"Especialidades\", \"item\": \"https://www.draceliaalcantara.com.br/#especialidades\"}, {\"@type\": \"ListItem\", \"position\": 3, \"name\": \"Espondiloartrites\", \"item\": \"https://www.draceliaalcantara.com.br/espondiloartrites/\"}]}, {\"@type\": \"Person\", \"@id\": \"https://www.draceliaalcantara.com.br/#dra-celia\", \"name\": \"Dra. Célia Alcântara\", \"jobTitle\": \"Médica Reumatologista\", \"description\": \"Médica reumatologista em Fortaleza, CRM 8280, RQE 4354, com mais de 15 anos de experiência clínica.\", \"url\": \"https://www.draceliaalcantara.com.br/#sobre\", \"alumniOf\": [{\"@type\": \"CollegeOrUniversity\", \"name\": \"Universidade Federal do Ceará\"}, {\"@type\": \"EducationalOrganization\", \"name\": \"Escola de Saúde Pública do Ceará\"}], \"hasCredential\": [{\"@type\": \"EducationalOccupationalCredential\", \"credentialCategory\": \"Registro profissional\", \"name\": \"CRM-CE 8280\"}, {\"@type\": \"EducationalOccupationalCredential\", \"credentialCategory\": \"Registro de Qualificação de Especialista\", \"name\": \"RQE 4354 · Reumatologia\"}, {\"@type\": \"EducationalOccupationalCredential\", \"credentialCategory\": \"Título de especialista\", \"name\": \"Título de Reumatologista pela Sociedade Brasileira de Reumatologia\"}, {\"@type\": \"EducationalOccupationalCredential\", \"credentialCategory\": \"degree\", \"name\": \"Mestrado em Ciências Médicas\"}], \"knowsAbout\": [\"Reumatologia\", \"Artrite psoriásica\", \"Espondiloartrites\", \"Espondilite anquilosante\", \"Fibromialgia\", \"Osteoporose\", \"Terapia imunobiológica\", \"Artrite reumatoide\", \"Artrite idiopática juvenil\"], \"worksFor\": {\"@type\": \"Physician\", \"name\": \"Dra. Célia Alcântara · Reumatologista em Fortaleza\", \"url\": \"https://www.draceliaalcantara.com.br/\"}, \"sameAs\": [\"https://www.instagram.com/\"]}, {\"@type\": \"FAQPage\", \"mainEntity\": [{\"@type\": \"Question\", \"name\": \"Quais doenças fazem parte das espondiloartrites?\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"Fazem parte desse grupo a espondilite anquilosante e a artrite psoriásica, entre outras, como a artrite reativa.\"}}, {\"@type\": \"Question\", \"name\": \"O que é o HLA-B27?\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"É um marcador genético que aparece com frequência nas espondiloartrites e aumenta a predisposição em pessoas geneticamente suscetíveis. A pesquisa do HLA-B27 é um dos exames que ajudam no diagnóstico.\"}}, {\"@type\": \"Question\", \"name\": \"Dor nas costas que piora pela manhã pode ser espondiloartrite?\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"Pode ser um sinal. Na espondiloartrite, a dor e a rigidez nas costas costumam piorar pela manhã ou depois de períodos parado e melhorar com o movimento. Nesses casos, procure um reumatologista.\"}}, {\"@type\": \"Question\", \"name\": \"Como é o tratamento das espondiloartrites?\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"Inclui anti-inflamatórios não esteroides, medicamentos modificadores do curso da doença, terapias biológicas nos casos indicados, além de fisioterapia e exercícios para preservar a mobilidade da coluna.\"}}]}]}</script>",
+      "_title": "SEO · dados estruturados (JSON-LD)"
+     },
+     "elements": [],
+     "widgetType": "html"
+    }
+   ],
+   "isInner": false
+  }
+ ],
+ "page_settings": {
+  "template": "elementor_header_footer",
+  "hide_title": "yes"
+ },
+ "version": "0.4",
+ "title": "Espondiloartrites · Dra. Célia",
+ "type": "page"
+}

@@ -1,0 +1,1151 @@
+{
+ "content": [
+  {
+   "id": "4d309a4",
+   "elType": "container",
+   "settings": {
+    "content_width": "boxed",
+    "flex_direction": "column",
+    "boxed_width": {
+     "unit": "px",
+     "size": 1240,
+     "sizes": []
+    },
+    "flex_gap": {
+     "unit": "px",
+     "size": 56,
+     "column": "56",
+     "row": "56",
+     "isLinked": true
+    },
+    "flex_gap_mobile": {
+     "unit": "px",
+     "size": 36,
+     "column": "36",
+     "row": "36",
+     "isLinked": true
+    },
+    "padding": {
+     "unit": "px",
+     "top": "40",
+     "right": "28",
+     "bottom": "112",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_tablet": {
+     "unit": "px",
+     "top": "40",
+     "right": "28",
+     "bottom": "112",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_mobile": {
+     "unit": "px",
+     "top": "24",
+     "right": "20",
+     "bottom": "80",
+     "left": "20",
+     "isLinked": false
+    },
+    "html_tag": "section",
+    "_element_id": "conteudo",
+    "css_classes": "dca-sec dca-clip",
+    "_title": "Topo · H1"
+   },
+   "elements": [
+    {
+     "id": "0793878",
+     "elType": "container",
+     "settings": {
+      "content_width": "full",
+      "flex_direction": "row",
+      "flex_direction_tablet": "column",
+      "flex_direction_mobile": "column",
+      "flex_gap": {
+       "unit": "px",
+       "size": 72,
+       "column": "72",
+       "row": "72",
+       "isLinked": true
+      },
+      "flex_gap_mobile": {
+       "unit": "px",
+       "size": 56,
+       "column": "56",
+       "row": "56",
+       "isLinked": true
+      },
+      "flex_justify_content": "space-between",
+      "flex_align_items": "center",
+      "padding": {
+       "unit": "px",
+       "top": "0",
+       "right": "0",
+       "bottom": "0",
+       "left": "0",
+       "isLinked": true
+      }
+     },
+     "elements": [
+      {
+       "id": "2424cfb",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "width": {
+         "unit": "%",
+         "size": 54,
+         "sizes": []
+        },
+        "width_tablet": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "width_mobile": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "flex_gap": {
+         "unit": "px",
+         "size": 28,
+         "column": "28",
+         "row": "28",
+         "isLinked": true
+        },
+        "flex_justify_content": "center",
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        }
+       },
+       "elements": [
+        {
+         "id": "6731709",
+         "elType": "widget",
+         "settings": {
+          "html": "<nav class=\"dca-crumbs\" aria-label=\"Você está em\"><ol><li><a href=\"/\">Início</a></li><li><a href=\"/#especialidades\">Especialidades</a></li><li><span aria-current=\"page\">Osteoporose</span></li></ol></nav>",
+          "_css_classes": "dca-load"
+         },
+         "elements": [],
+         "widgetType": "html"
+        },
+        {
+         "id": "8edb152",
+         "elType": "widget",
+         "settings": {
+          "title": "Osteoporose<span class=\"dca-h1-tail\"><span class=\"dca-sr\">: </span>sintomas, prevenção e tratamento em Fortaleza</span>",
+          "header_size": "h1",
+          "_css_classes": "dca-display dca-display--md dca-load"
+         },
+         "elements": [],
+         "widgetType": "heading"
+        },
+        {
+         "id": "f28ce0a",
+         "elType": "widget",
+         "settings": {
+          "editor": "<p>A doença silenciosa que deixa os ossos frágeis. Com diagnóstico e tratamento, é possível manter uma vida ativa.</p>",
+          "_css_classes": "dca-lead dca-load"
+         },
+         "elements": [],
+         "widgetType": "text-editor"
+        },
+        {
+         "id": "dbb7480",
+         "elType": "container",
+         "settings": {
+          "content_width": "full",
+          "flex_direction": "row",
+          "flex_gap": {
+           "unit": "px",
+           "size": 28,
+           "column": "28",
+           "row": "14",
+           "isLinked": false
+          },
+          "flex_align_items": "center",
+          "flex_wrap": "wrap",
+          "padding": {
+           "unit": "px",
+           "top": "0",
+           "right": "0",
+           "bottom": "0",
+           "left": "0",
+           "isLinked": true
+          },
+          "css_classes": "dca-load"
+         },
+         "elements": [
+          {
+           "id": "e8ebcab",
+           "elType": "widget",
+           "settings": {
+            "text": "Agendar pelo WhatsApp",
+            "link": {
+             "url": "https://wa.me/5585992449528?text=Ol%C3%A1%21%20Vim%20pelo%20site%20%28p%C3%A1gina%20Osteoporose%29%20e%20gostaria%20de%20agendar%20uma%20consulta%20com%20a%20Dra.%20C%C3%A9lia%20Alc%C3%A2ntara.",
+             "is_external": "on",
+             "nofollow": "",
+             "custom_attributes": ""
+            },
+            "selected_icon": {
+             "value": "fab fa-whatsapp",
+             "library": "fa-brands"
+            },
+            "icon_align": "left",
+            "icon_indent": {
+             "unit": "px",
+             "size": 10,
+             "sizes": []
+            },
+            "_css_classes": "dca-btn"
+           },
+           "elements": [],
+           "widgetType": "button"
+          },
+          {
+           "id": "362ebe6",
+           "elType": "widget",
+           "settings": {
+            "html": "<a class=\"dca-link\" href=\"#o-que-e\">Ler o guia completo <svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></a>"
+           },
+           "elements": [],
+           "widgetType": "html"
+          }
+         ],
+         "isInner": false
+        },
+        {
+         "id": "fea2318",
+         "elType": "widget",
+         "settings": {
+          "html": "<div class=\"dca-reviewed\"><span class=\"dca-reviewed__mark\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" focusable=\"false\"><circle cx=\"12\" cy=\"9\" r=\"5.5\"/><path d=\"m8.6 13.4-1.6 7.1 5-2.6 5 2.6-1.6-7.1\"/></svg></span><span><strong>Conteúdo revisado pela Dra. Célia Alcântara</strong>Médica Reumatologista · CRM 8280 · RQE 4354</span></div>",
+          "_css_classes": "dca-load"
+         },
+         "elements": [],
+         "widgetType": "html"
+        }
+       ],
+       "isInner": false
+      },
+      {
+       "id": "b128628",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "width": {
+         "unit": "%",
+         "size": 38,
+         "sizes": []
+        },
+        "width_tablet": {
+         "unit": "%",
+         "size": 70,
+         "sizes": []
+        },
+        "width_mobile": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "flex_gap": {
+         "unit": "px",
+         "size": 24,
+         "column": "24",
+         "row": "24",
+         "isLinked": true
+        },
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        },
+        "css_classes": "dca-hero-media"
+       },
+       "elements": [
+        {
+         "id": "03d36ed",
+         "elType": "widget",
+         "settings": {
+          "image_size": "full",
+          "_css_classes": "dca-rounded dca-rounded--tall dca-img-reveal",
+          "_title": "FOTO · alt: Mulher madura caminhando ao ar livre, vida ativa com osteoporose controlada"
+         },
+         "elements": [],
+         "widgetType": "image"
+        },
+        {
+         "id": "6e37a98",
+         "elType": "widget",
+         "settings": {
+          "html": "<div class=\"dca-float-card\"><span class=\"dca-float-card__icon\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" focusable=\"false\"><rect x=\"3\" y=\"6.5\" width=\"12.5\" height=\"11\" rx=\"2.5\"/><path d=\"M15.5 10.5 21 7.5v9l-5.5-3\"/></svg></span><span><strong>Presencial ou on-line</strong>Fortaleza e telemedicina para todo o Brasil</span></div>",
+          "_css_classes": "dca-float dca-reveal"
+         },
+         "elements": [],
+         "widgetType": "html"
+        }
+       ],
+       "isInner": false
+      }
+     ],
+     "isInner": false
+    }
+   ],
+   "isInner": false
+  },
+  {
+   "id": "bb8110a",
+   "elType": "container",
+   "settings": {
+    "content_width": "boxed",
+    "flex_direction": "column",
+    "boxed_width": {
+     "unit": "px",
+     "size": 1240,
+     "sizes": []
+    },
+    "flex_gap": {
+     "unit": "px",
+     "size": 56,
+     "column": "56",
+     "row": "56",
+     "isLinked": true
+    },
+    "flex_gap_mobile": {
+     "unit": "px",
+     "size": 36,
+     "column": "36",
+     "row": "36",
+     "isLinked": true
+    },
+    "padding": {
+     "unit": "px",
+     "top": "24",
+     "right": "28",
+     "bottom": "120",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_tablet": {
+     "unit": "px",
+     "top": "24",
+     "right": "28",
+     "bottom": "120",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_mobile": {
+     "unit": "px",
+     "top": "8",
+     "right": "20",
+     "bottom": "72",
+     "left": "20",
+     "isLinked": false
+    },
+    "html_tag": "section",
+    "css_classes": "dca-sec",
+    "_title": "Conteúdo"
+   },
+   "elements": [
+    {
+     "id": "30a4df7",
+     "elType": "container",
+     "settings": {
+      "content_width": "full",
+      "flex_direction": "row",
+      "flex_direction_tablet": "column",
+      "flex_direction_mobile": "column",
+      "flex_gap": {
+       "unit": "px",
+       "size": 64,
+       "column": "64",
+       "row": "64",
+       "isLinked": true
+      },
+      "flex_justify_content": "space-between",
+      "flex_align_items": "stretch",
+      "padding": {
+       "unit": "px",
+       "top": "0",
+       "right": "0",
+       "bottom": "0",
+       "left": "0",
+       "isLinked": true
+      }
+     },
+     "elements": [
+      {
+       "id": "c9bddbb",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "width": {
+         "unit": "%",
+         "size": 24,
+         "sizes": []
+        },
+        "width_tablet": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "width_mobile": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "flex_gap": {
+         "unit": "px",
+         "size": 24,
+         "column": "24",
+         "row": "24",
+         "isLinked": true
+        },
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        },
+        "css_classes": "dca-toc-col"
+       },
+       "elements": [
+        {
+         "id": "74c59f9",
+         "elType": "widget",
+         "settings": {
+          "html": "<nav class=\"dca-toc\" aria-label=\"Nesta página\"><p>Nesta página</p><ol><li><a href=\"#o-que-e\">O que é</a></li><li><a href=\"#fatores-de-risco\">Causas e fatores de risco</a></li><li><a href=\"#sintomas\">Sintomas</a></li><li><a href=\"#tratamento\">Tratamento</a></li><li><a href=\"#prevencao-de-quedas\">Prevenção de quedas</a></li><li><a href=\"#quando-procurar\">Quando procurar</a></li><li><a href=\"#duvidas\">Dúvidas frequentes</a></li></ol></nav>",
+          "_title": "Sumário lateral"
+         },
+         "elements": [],
+         "widgetType": "html"
+        }
+       ],
+       "isInner": false
+      },
+      {
+       "id": "7fe55bc",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "width": {
+         "unit": "%",
+         "size": 68,
+         "sizes": []
+        },
+        "width_tablet": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "width_mobile": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "flex_gap": {
+         "unit": "px",
+         "size": 22,
+         "column": "22",
+         "row": "22",
+         "isLinked": true
+        },
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        },
+        "css_classes": "dca-article-col"
+       },
+       "elements": [
+        {
+         "id": "828b4c7",
+         "elType": "widget",
+         "settings": {
+          "title": "O que é a osteoporose?",
+          "header_size": "h2",
+          "_css_classes": "dca-h2 dca-h2--sm dca-reveal",
+          "_element_id": "o-que-e"
+         },
+         "elements": [],
+         "widgetType": "heading"
+        },
+        {
+         "id": "09a846d",
+         "elType": "widget",
+         "settings": {
+          "editor": "<p>A osteoporose é uma doença metabólica que reduz a densidade dos ossos e deteriora a sua microarquitetura. Com isso, os ossos ficam mais frágeis e mais sujeitos a fraturas. É uma condição comum e silenciosa, principalmente em mulheres após a menopausa, mas também pode atingir homens e pessoas mais jovens com fatores de risco específicos.</p><p>Os ossos mais afetados são os da coluna, do quadril e dos punhos. As fraturas de vértebras e de fêmur são as mais graves, porque podem comprometer a mobilidade e a qualidade de vida.</p>",
+          "_css_classes": "dca-prose dca-reveal"
+         },
+         "elements": [],
+         "widgetType": "text-editor"
+        },
+        {
+         "id": "e463c1b",
+         "elType": "widget",
+         "settings": {
+          "title": "Principais causas e fatores de risco",
+          "header_size": "h2",
+          "_css_classes": "dca-h2 dca-h2--sm dca-reveal",
+          "_element_id": "fatores-de-risco"
+         },
+         "elements": [],
+         "widgetType": "heading"
+        },
+        {
+         "id": "4f70e69",
+         "elType": "widget",
+         "settings": {
+          "editor": "<ul><li>Predisposição genética</li><li>Alterações hormonais</li><li>Idade avançada</li><li>Sedentarismo</li><li>Alimentação pobre em cálcio e vitamina D</li><li>Tabagismo e consumo excessivo de álcool</li></ul>",
+          "_css_classes": "dca-prose dca-reveal"
+         },
+         "elements": [],
+         "widgetType": "text-editor"
+        },
+        {
+         "id": "042943a",
+         "elType": "widget",
+         "settings": {
+          "title": "Quais são os sintomas?",
+          "header_size": "h2",
+          "_css_classes": "dca-h2 dca-h2--sm dca-reveal",
+          "_element_id": "sintomas"
+         },
+         "elements": [],
+         "widgetType": "heading"
+        },
+        {
+         "id": "04e6a75",
+         "elType": "widget",
+         "settings": {
+          "editor": "<p>Na maioria dos casos a osteoporose não dá sintomas até a primeira fratura, e por isso é chamada de “doença silenciosa”. Alguns sinais, porém, podem indicar fragilidade óssea.</p><ul><li><strong>Dor nas costas,</strong> causada por fraturas ou colapso de vértebras</li><li><strong>Perda de altura</strong> ao longo do tempo</li><li><strong>Postura encurvada,</strong> chamada de cifose</li><li><strong>Fraturas</strong> após quedas leves ou traumas mínimos</li></ul><p>Esses sinais surgem de forma gradual e muitas vezes passam despercebidos até a doença estar avançada.</p>",
+          "_css_classes": "dca-prose dca-reveal"
+         },
+         "elements": [],
+         "widgetType": "text-editor"
+        },
+        {
+         "id": "e6f9b57",
+         "elType": "widget",
+         "settings": {
+          "title": "Como funciona o tratamento?",
+          "header_size": "h2",
+          "_css_classes": "dca-h2 dca-h2--sm dca-reveal",
+          "_element_id": "tratamento"
+         },
+         "elements": [],
+         "widgetType": "heading"
+        },
+        {
+         "id": "f79579c",
+         "elType": "widget",
+         "settings": {
+          "editor": "<p>A osteoporose ainda não tem cura, mas pode ser controlada. O tratamento busca reduzir a perda óssea, aumentar a densidade mineral dos ossos e prevenir fraturas. Além dos medicamentos, que o médico indica caso a caso, alguns cuidados fazem parte do tratamento.</p><ul><li><strong>Alimentação rica em cálcio e vitamina D.</strong> Leite, queijos, iogurtes, peixes e vegetais verdes.</li><li><strong>Exposição ao sol,</strong> que ajuda o corpo a produzir vitamina D, essencial para a saúde dos ossos.</li><li><strong>Atividade física regular.</strong> Exercícios de impacto moderado, como caminhada e musculação, fortalecem os ossos e melhoram o equilíbrio, o que reduz o risco de quedas.</li></ul>",
+          "_css_classes": "dca-prose dca-reveal"
+         },
+         "elements": [],
+         "widgetType": "text-editor"
+        },
+        {
+         "id": "abb1102",
+         "elType": "widget",
+         "settings": {
+          "title": "Prevenção de quedas",
+          "header_size": "h2",
+          "_css_classes": "dca-h2 dca-h2--sm dca-reveal",
+          "_element_id": "prevencao-de-quedas"
+         },
+         "elements": [],
+         "widgetType": "heading"
+        },
+        {
+         "id": "d6b8298",
+         "elType": "widget",
+         "settings": {
+          "editor": "<p>Como as fraturas são a principal complicação da osteoporose, evitar quedas é essencial. Ambientes seguros, calçados adequados e adaptações em casa, como barras de apoio, ajudam a evitar acidentes.</p><p>Viver com osteoporose pode ser desafiador. Com diagnóstico precoce e tratamento adequado, é possível levar uma vida ativa e saudável, com alimentação equilibrada, atividade física e acompanhamento médico.</p>",
+          "_css_classes": "dca-prose dca-reveal"
+         },
+         "elements": [],
+         "widgetType": "text-editor"
+        }
+       ],
+       "isInner": false
+      }
+     ],
+     "isInner": false
+    }
+   ],
+   "isInner": false
+  },
+  {
+   "id": "58f2228",
+   "elType": "container",
+   "settings": {
+    "content_width": "boxed",
+    "flex_direction": "column",
+    "boxed_width": {
+     "unit": "px",
+     "size": 1240,
+     "sizes": []
+    },
+    "flex_gap": {
+     "unit": "px",
+     "size": 56,
+     "column": "56",
+     "row": "56",
+     "isLinked": true
+    },
+    "flex_gap_mobile": {
+     "unit": "px",
+     "size": 36,
+     "column": "36",
+     "row": "36",
+     "isLinked": true
+    },
+    "padding": {
+     "unit": "px",
+     "top": "112",
+     "right": "28",
+     "bottom": "112",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_tablet": {
+     "unit": "px",
+     "top": "112",
+     "right": "28",
+     "bottom": "112",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_mobile": {
+     "unit": "px",
+     "top": "80",
+     "right": "20",
+     "bottom": "80",
+     "left": "20",
+     "isLinked": false
+    },
+    "background_background": "classic",
+    "background_color": "#F7F4EF",
+    "html_tag": "section",
+    "css_classes": "dca-sec",
+    "_title": "Quando procurar"
+   },
+   "elements": [
+    {
+     "id": "bf578dd",
+     "elType": "container",
+     "settings": {
+      "content_width": "full",
+      "flex_direction": "row",
+      "flex_direction_tablet": "column",
+      "flex_direction_mobile": "column",
+      "flex_gap": {
+       "unit": "px",
+       "size": 56,
+       "column": "56",
+       "row": "56",
+       "isLinked": true
+      },
+      "flex_justify_content": "space-between",
+      "padding": {
+       "unit": "px",
+       "top": "0",
+       "right": "0",
+       "bottom": "0",
+       "left": "0",
+       "isLinked": true
+      }
+     },
+     "elements": [
+      {
+       "id": "de163e5",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "width": {
+         "unit": "%",
+         "size": 42,
+         "sizes": []
+        },
+        "width_tablet": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "width_mobile": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "flex_gap": {
+         "unit": "px",
+         "size": 28,
+         "column": "28",
+         "row": "28",
+         "isLinked": true
+        },
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        }
+       },
+       "elements": [
+        {
+         "id": "4784d9e",
+         "elType": "widget",
+         "settings": {
+          "html": "<div class=\"dca-joint \" aria-hidden=\"true\"><span class=\"dca-joint__line\"></span><span class=\"dca-joint__node\"></span><span class=\"dca-joint__line\"></span></div>",
+          "_css_classes": "dca-reveal"
+         },
+         "elements": [],
+         "widgetType": "html"
+        },
+        {
+         "id": "2db3e4e",
+         "elType": "widget",
+         "settings": {
+          "title": "Quando procurar <em>ajuda especializada?</em>",
+          "header_size": "h2",
+          "_css_classes": "dca-h2 dca-reveal",
+          "_element_id": "quando-procurar"
+         },
+         "elements": [],
+         "widgetType": "heading"
+        }
+       ],
+       "isInner": false
+      },
+      {
+       "id": "7fc0a8e",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "width": {
+         "unit": "%",
+         "size": 50,
+         "sizes": []
+        },
+        "width_tablet": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "width_mobile": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "flex_gap": {
+         "unit": "px",
+         "size": 32,
+         "column": "32",
+         "row": "32",
+         "isLinked": true
+        },
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        }
+       },
+       "elements": [
+        {
+         "id": "589830f",
+         "elType": "widget",
+         "settings": {
+          "editor": "<p>Se você tem fatores de risco para osteoporose, dor nas costas ou fraturas frequentes, procure um reumatologista ou outro médico especializado. O acompanhamento regular previne complicações graves e ajuda a manter a saúde dos ossos em dia.</p><p><strong>Agende sua consulta com a Dra. Célia Alcântara</strong> e conte com uma abordagem personalizada para o diagnóstico e o tratamento da osteoporose. Estamos aqui para cuidar de você.</p>",
+          "_css_classes": "dca-prose dca-reveal"
+         },
+         "elements": [],
+         "widgetType": "text-editor"
+        },
+        {
+         "id": "717e2d2",
+         "elType": "widget",
+         "settings": {
+          "text": "Agendar pelo WhatsApp",
+          "link": {
+           "url": "https://wa.me/5585992449528?text=Ol%C3%A1%21%20Vim%20pelo%20site%20%28p%C3%A1gina%20Osteoporose%29%20e%20gostaria%20de%20agendar%20uma%20consulta%20com%20a%20Dra.%20C%C3%A9lia%20Alc%C3%A2ntara.",
+           "is_external": "on",
+           "nofollow": "",
+           "custom_attributes": ""
+          },
+          "selected_icon": {
+           "value": "fab fa-whatsapp",
+           "library": "fa-brands"
+          },
+          "icon_align": "left",
+          "icon_indent": {
+           "unit": "px",
+           "size": 10,
+           "sizes": []
+          },
+          "_css_classes": "dca-btn dca-btn--gold dca-reveal"
+         },
+         "elements": [],
+         "widgetType": "button"
+        }
+       ],
+       "isInner": false
+      }
+     ],
+     "isInner": false
+    }
+   ],
+   "isInner": false
+  },
+  {
+   "id": "319d83e",
+   "elType": "container",
+   "settings": {
+    "content_width": "boxed",
+    "flex_direction": "column",
+    "boxed_width": {
+     "unit": "px",
+     "size": 1240,
+     "sizes": []
+    },
+    "flex_gap": {
+     "unit": "px",
+     "size": 56,
+     "column": "56",
+     "row": "56",
+     "isLinked": true
+    },
+    "flex_gap_mobile": {
+     "unit": "px",
+     "size": 36,
+     "column": "36",
+     "row": "36",
+     "isLinked": true
+    },
+    "padding": {
+     "unit": "px",
+     "top": "120",
+     "right": "28",
+     "bottom": "96",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_tablet": {
+     "unit": "px",
+     "top": "120",
+     "right": "28",
+     "bottom": "96",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_mobile": {
+     "unit": "px",
+     "top": "80",
+     "right": "20",
+     "bottom": "80",
+     "left": "20",
+     "isLinked": false
+    },
+    "html_tag": "section",
+    "css_classes": "dca-sec",
+    "_title": "Perguntas frequentes"
+   },
+   "elements": [
+    {
+     "id": "4050086",
+     "elType": "container",
+     "settings": {
+      "content_width": "full",
+      "flex_direction": "row",
+      "flex_direction_tablet": "column",
+      "flex_direction_mobile": "column",
+      "flex_gap": {
+       "unit": "px",
+       "size": 56,
+       "column": "56",
+       "row": "56",
+       "isLinked": true
+      },
+      "flex_justify_content": "space-between",
+      "padding": {
+       "unit": "px",
+       "top": "0",
+       "right": "0",
+       "bottom": "0",
+       "left": "0",
+       "isLinked": true
+      }
+     },
+     "elements": [
+      {
+       "id": "f24b9f1",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "width": {
+         "unit": "%",
+         "size": 34,
+         "sizes": []
+        },
+        "width_tablet": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "width_mobile": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "flex_gap": {
+         "unit": "px",
+         "size": 24,
+         "column": "24",
+         "row": "24",
+         "isLinked": true
+        },
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        }
+       },
+       "elements": [
+        {
+         "id": "c787789",
+         "elType": "widget",
+         "settings": {
+          "title": "Dúvidas sobre <em>osteoporose</em>",
+          "header_size": "h2",
+          "_css_classes": "dca-h2 dca-reveal",
+          "_element_id": "duvidas"
+         },
+         "elements": [],
+         "widgetType": "heading"
+        }
+       ],
+       "isInner": false
+      },
+      {
+       "id": "afaab4f",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "width": {
+         "unit": "%",
+         "size": 60,
+         "sizes": []
+        },
+        "width_tablet": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "width_mobile": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "flex_gap": {
+         "unit": "px",
+         "size": 24,
+         "column": "24",
+         "row": "24",
+         "isLinked": true
+        },
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        }
+       },
+       "elements": [
+        {
+         "id": "93d105e",
+         "elType": "widget",
+         "settings": {
+          "html": "<div class=\"dca-faq\"><details class=\"dca-reveal\"><summary><h3>Por que a osteoporose é chamada de doença silenciosa?</h3><span class=\"dca-faq__icon\" aria-hidden=\"true\"></span></summary><div class=\"dca-faq__a\"><p>Porque, na maioria dos casos, ela não dá sintomas até a primeira fratura. Sinais como dor nas costas, perda de altura e postura encurvada surgem de forma gradual e muitas vezes passam despercebidos.</p></div></details><details class=\"dca-reveal\"><summary><h3>Quem tem mais risco de ter osteoporose?</h3><span class=\"dca-faq__icon\" aria-hidden=\"true\"></span></summary><div class=\"dca-faq__a\"><p>É mais comum em mulheres após a menopausa. Também aumentam o risco: predisposição genética, alterações hormonais, idade avançada, sedentarismo, alimentação pobre em cálcio e vitamina D, tabagismo e consumo excessivo de álcool.</p></div></details><details class=\"dca-reveal\"><summary><h3>A osteoporose tem cura?</h3><span class=\"dca-faq__icon\" aria-hidden=\"true\"></span></summary><div class=\"dca-faq__a\"><p>Ainda não, mas pode ser controlada. O tratamento busca reduzir a perda óssea, aumentar a densidade mineral dos ossos e prevenir fraturas.</p></div></details><details class=\"dca-reveal\"><summary><h3>Como prevenir quedas com osteoporose?</h3><span class=\"dca-faq__icon\" aria-hidden=\"true\"></span></summary><div class=\"dca-faq__a\"><p>Ambientes seguros, calçados adequados e adaptações em casa, como barras de apoio, ajudam a evitar acidentes. Exercícios que melhoram o equilíbrio também reduzem o risco de quedas.</p></div></details></div>",
+          "_title": "Perguntas frequentes"
+         },
+         "elements": [],
+         "widgetType": "html"
+        }
+       ],
+       "isInner": false
+      }
+     ],
+     "isInner": false
+    }
+   ],
+   "isInner": false
+  },
+  {
+   "id": "e390b7c",
+   "elType": "container",
+   "settings": {
+    "content_width": "boxed",
+    "flex_direction": "column",
+    "boxed_width": {
+     "unit": "px",
+     "size": 1240,
+     "sizes": []
+    },
+    "flex_gap": {
+     "unit": "px",
+     "size": 48,
+     "column": "48",
+     "row": "48",
+     "isLinked": true
+    },
+    "flex_gap_mobile": {
+     "unit": "px",
+     "size": 36,
+     "column": "36",
+     "row": "36",
+     "isLinked": true
+    },
+    "padding": {
+     "unit": "px",
+     "top": "0",
+     "right": "28",
+     "bottom": "128",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_tablet": {
+     "unit": "px",
+     "top": "0",
+     "right": "28",
+     "bottom": "128",
+     "left": "28",
+     "isLinked": false
+    },
+    "padding_mobile": {
+     "unit": "px",
+     "top": "0",
+     "right": "20",
+     "bottom": "80",
+     "left": "20",
+     "isLinked": false
+    },
+    "html_tag": "section",
+    "css_classes": "dca-sec",
+    "_title": "Leia também + aviso"
+   },
+   "elements": [
+    {
+     "id": "19aee36",
+     "elType": "widget",
+     "settings": {
+      "html": "<ul class=\"dca-related dca-stagger\"><li class=\"dca-reveal\"><a href=\"/fibromialgia/\"><div><span>Leia também</span><strong>Fibromialgia</strong></div><span class=\"dca-arrow\" aria-hidden=\"true\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></span></a></li><li class=\"dca-reveal\"><a href=\"/terapia-imunobiologica/\"><div><span>Leia também</span><strong>Terapia imunobiológica</strong></div><span class=\"dca-arrow\" aria-hidden=\"true\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></span></a></li></ul>",
+      "_title": "Leia também (links internos)"
+     },
+     "elements": [],
+     "widgetType": "html"
+    },
+    {
+     "id": "d3b8812",
+     "elType": "container",
+     "settings": {
+      "content_width": "full",
+      "flex_direction": "row",
+      "flex_direction_tablet": "column",
+      "flex_direction_mobile": "column",
+      "flex_gap": {
+       "unit": "px",
+       "size": 28,
+       "column": "28",
+       "row": "28",
+       "isLinked": true
+      },
+      "flex_justify_content": "space-between",
+      "flex_align_items": "center",
+      "padding": {
+       "unit": "px",
+       "top": "0",
+       "right": "0",
+       "bottom": "0",
+       "left": "0",
+       "isLinked": true
+      }
+     },
+     "elements": [
+      {
+       "id": "57c3a8e",
+       "elType": "widget",
+       "settings": {
+        "html": "<div class=\"dca-reviewed\"><span class=\"dca-reviewed__mark\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" focusable=\"false\"><circle cx=\"12\" cy=\"9\" r=\"5.5\"/><path d=\"m8.6 13.4-1.6 7.1 5-2.6 5 2.6-1.6-7.1\"/></svg></span><span><strong>Revisado em 26/10/2026 pela Dra. Célia Alcântara</strong>Médica Reumatologista · CRM 8280 · RQE 4354</span></div>",
+        "_css_classes": "dca-reveal"
+       },
+       "elements": [],
+       "widgetType": "html"
+      },
+      {
+       "id": "e2499b6",
+       "elType": "widget",
+       "settings": {
+        "html": "<p class=\"dca-disclaimer\">Este conteúdo é informativo e não substitui a consulta médica. Procure o aconselhamento de um profissional capacitado.</p>"
+       },
+       "elements": [],
+       "widgetType": "html"
+      }
+     ],
+     "isInner": false
+    },
+    {
+     "id": "4adb3f1",
+     "elType": "widget",
+     "settings": {
+      "html": "<script type=\"application/ld+json\">{\"@context\": \"https://schema.org\", \"@graph\": [{\"@type\": \"MedicalWebPage\", \"@id\": \"https://www.draceliaalcantara.com.br/osteoporose/#pagina\", \"url\": \"https://www.draceliaalcantara.com.br/osteoporose/\", \"name\": \"Osteoporose em Fortaleza | Sintomas, prevenção e tratamento | Dra. Célia Alcântara\", \"description\": \"A osteoporose é silenciosa e aumenta o risco de fraturas. Saiba como identificar, prevenir e tratar com acompanhamento de reumatologista em Fortaleza.\", \"inLanguage\": \"pt-BR\", \"lastReviewed\": \"2026-10-26\", \"specialty\": \"Rheumatologic\", \"audience\": {\"@type\": \"MedicalAudience\", \"audienceType\": \"Patient\"}, \"reviewedBy\": {\"@id\": \"https://www.draceliaalcantara.com.br/#dra-celia\"}, \"author\": {\"@id\": \"https://www.draceliaalcantara.com.br/#dra-celia\"}, \"about\": {\"@type\": \"MedicalCondition\", \"name\": \"Osteoporose\", \"signOrSymptom\": [{\"@type\": \"MedicalSymptom\", \"name\": \"Dor nas costas\"}, {\"@type\": \"MedicalSymptom\", \"name\": \"Perda de altura\"}, {\"@type\": \"MedicalSymptom\", \"name\": \"Postura encurvada (cifose)\"}, {\"@type\": \"MedicalSymptom\", \"name\": \"Fraturas após traumas mínimos\"}], \"riskFactor\": [{\"@type\": \"MedicalRiskFactor\", \"name\": \"Predisposição genética\"}, {\"@type\": \"MedicalRiskFactor\", \"name\": \"Alterações hormonais\"}, {\"@type\": \"MedicalRiskFactor\", \"name\": \"Idade avançada\"}, {\"@type\": \"MedicalRiskFactor\", \"name\": \"Sedentarismo\"}, {\"@type\": \"MedicalRiskFactor\", \"name\": \"Tabagismo\"}]}, \"breadcrumb\": {\"@id\": \"https://www.draceliaalcantara.com.br/osteoporose/#breadcrumb\"}}, {\"@type\": \"BreadcrumbList\", \"@id\": \"https://www.draceliaalcantara.com.br/osteoporose/#breadcrumb\", \"itemListElement\": [{\"@type\": \"ListItem\", \"position\": 1, \"name\": \"Início\", \"item\": \"https://www.draceliaalcantara.com.br/\"}, {\"@type\": \"ListItem\", \"position\": 2, \"name\": \"Especialidades\", \"item\": \"https://www.draceliaalcantara.com.br/#especialidades\"}, {\"@type\": \"ListItem\", \"position\": 3, \"name\": \"Osteoporose\", \"item\": \"https://www.draceliaalcantara.com.br/osteoporose/\"}]}, {\"@type\": \"Person\", \"@id\": \"https://www.draceliaalcantara.com.br/#dra-celia\", \"name\": \"Dra. Célia Alcântara\", \"jobTitle\": \"Médica Reumatologista\", \"description\": \"Médica reumatologista em Fortaleza, CRM 8280, RQE 4354, com mais de 15 anos de experiência clínica.\", \"url\": \"https://www.draceliaalcantara.com.br/#sobre\", \"alumniOf\": [{\"@type\": \"CollegeOrUniversity\", \"name\": \"Universidade Federal do Ceará\"}, {\"@type\": \"EducationalOrganization\", \"name\": \"Escola de Saúde Pública do Ceará\"}], \"hasCredential\": [{\"@type\": \"EducationalOccupationalCredential\", \"credentialCategory\": \"Registro profissional\", \"name\": \"CRM-CE 8280\"}, {\"@type\": \"EducationalOccupationalCredential\", \"credentialCategory\": \"Registro de Qualificação de Especialista\", \"name\": \"RQE 4354 · Reumatologia\"}, {\"@type\": \"EducationalOccupationalCredential\", \"credentialCategory\": \"Título de especialista\", \"name\": \"Título de Reumatologista pela Sociedade Brasileira de Reumatologia\"}, {\"@type\": \"EducationalOccupationalCredential\", \"credentialCategory\": \"degree\", \"name\": \"Mestrado em Ciências Médicas\"}], \"knowsAbout\": [\"Reumatologia\", \"Artrite psoriásica\", \"Espondiloartrites\", \"Espondilite anquilosante\", \"Fibromialgia\", \"Osteoporose\", \"Terapia imunobiológica\", \"Artrite reumatoide\", \"Artrite idiopática juvenil\"], \"worksFor\": {\"@type\": \"Physician\", \"name\": \"Dra. Célia Alcântara · Reumatologista em Fortaleza\", \"url\": \"https://www.draceliaalcantara.com.br/\"}, \"sameAs\": [\"https://www.instagram.com/\"]}, {\"@type\": \"FAQPage\", \"mainEntity\": [{\"@type\": \"Question\", \"name\": \"Por que a osteoporose é chamada de doença silenciosa?\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"Porque, na maioria dos casos, ela não dá sintomas até a primeira fratura. Sinais como dor nas costas, perda de altura e postura encurvada surgem de forma gradual e muitas vezes passam despercebidos.\"}}, {\"@type\": \"Question\", \"name\": \"Quem tem mais risco de ter osteoporose?\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"É mais comum em mulheres após a menopausa. Também aumentam o risco: predisposição genética, alterações hormonais, idade avançada, sedentarismo, alimentação pobre em cálcio e vitamina D, tabagismo e consumo excessivo de álcool.\"}}, {\"@type\": \"Question\", \"name\": \"A osteoporose tem cura?\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"Ainda não, mas pode ser controlada. O tratamento busca reduzir a perda óssea, aumentar a densidade mineral dos ossos e prevenir fraturas.\"}}, {\"@type\": \"Question\", \"name\": \"Como prevenir quedas com osteoporose?\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"Ambientes seguros, calçados adequados e adaptações em casa, como barras de apoio, ajudam a evitar acidentes. Exercícios que melhoram o equilíbrio também reduzem o risco de quedas.\"}}]}]}</script>",
+      "_title": "SEO · dados estruturados (JSON-LD)"
+     },
+     "elements": [],
+     "widgetType": "html"
+    }
+   ],
+   "isInner": false
+  }
+ ],
+ "page_settings": {
+  "template": "elementor_header_footer",
+  "hide_title": "yes"
+ },
+ "version": "0.4",
+ "title": "Osteoporose · Dra. Célia",
+ "type": "page"
+}
