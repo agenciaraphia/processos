@@ -4,7 +4,7 @@ Tags: games, campaign, coupons, promotions, elementor
 Requires at least: 6.0
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 1.4.0
+Stable tag: 1.4.1
 License: GPLv2 or later
 
 Campanhas promocionais com roleta, raspadinha e caixa misteriosa, cadastro de participantes e controle de cupons.
@@ -26,6 +26,10 @@ As fontes são carregadas do Google Fonts (quando há conexão externa).
 
 == Aviso de teste ==
 Antes de usar com clientes reais, teste em ambiente de staging. A validação sintática não substitui testes funcionais em uma instalação real do WordPress, compatibilidade com o tema, segurança e concorrência de estoque.
+
+== Melhorias 1.4.1 ==
+- Corrigido: campanhas não eram salvas em sites cujas tabelas vieram de versões antigas do plugin. O esquema agora usa o formato que o WordPress (dbDelta) consegue atualizar, e o plugin adiciona sozinho as colunas que faltarem.
+- Se o banco de dados recusar uma gravação (campanha, edição ou prêmio), o painel mostra o erro em vez de voltar para a lista em silêncio.
 
 == Melhorias 1.4.0 ==
 - Novo visual do site: toldo de lanchonete com as cores da campanha, cadastro mais claro, máscara de WhatsApp e menu de jogos ilustrado.
