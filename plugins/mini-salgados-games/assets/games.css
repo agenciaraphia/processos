@@ -640,6 +640,30 @@
   user-select: all;
 }
 .msg-app .msg-coupon-uses { font-size: 13px; font-weight: 600; }
+.msg-app .msg-store-link,
+.msg-app .msg-store-link:hover,
+.msg-app .msg-store-link:focus,
+.msg-app .msg-store-link:visited {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: min(100%, 420px);
+  min-height: 56px;
+  margin: 16px auto 0;
+  padding: 12px 22px;
+  color: var(--msg-ink);
+  background: var(--msg-surface);
+  border: 2px solid var(--msg-ink);
+  border-radius: 999px;
+  box-shadow: 0 4px 0 var(--msg-ink);
+  font: 700 16px/1.2 var(--msg-font-body);
+  text-decoration: none;
+  transition: transform 140ms var(--msg-ease-out), box-shadow 140ms var(--msg-ease-out), background-color 160ms ease;
+}
+@media (hover: hover) and (pointer: fine) { .msg-app .msg-store-link:hover { background: var(--msg-s-soft); transform: translateY(-1px); box-shadow: 0 5px 0 var(--msg-ink); } }
+.msg-app .msg-store-link:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--msg-ink); }
+.msg-app .msg-store-link svg:last-child { opacity: .6; }
 .msg-app .msg-result-next { display: inline-flex; align-items: center; gap: 8px; margin: 18px auto 0; padding: 10px 16px; color: var(--msg-ink-2); background: #f6f4f2; border-radius: 14px; font-size: 14px; }
 .msg-app .msg-result-footnote { max-width: 46ch; margin: 18px auto 0; color: var(--msg-muted); font-size: 13px; }
 .msg-app .msg-result-card .msg-game-actions { margin-top: 24px; }

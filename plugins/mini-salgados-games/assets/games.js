@@ -29,6 +29,8 @@
     star: ['M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z'],
     copy: ['M9 9h11v11H9z', 'M5 15V4h11'],
     check: ['M5 12.5l4.5 4.5L19 7.5'],
+    pin: ['M12 21s-6.5-6.2-6.5-11.2a6.5 6.5 0 0 1 13 0C18.5 14.8 12 21 12 21z', 'M12 7.3a2.5 2.5 0 1 0 0 5a2.5 2.5 0 1 0 0-5'],
+    external: ['M14 5h5v5', 'M19 5l-8 8', 'M17 14v5H5V7h5'],
     soundOn: ['M4 9.5h3.5L12 5.5v13l-4.5-4H4z', 'M15.5 9a4 4 0 0 1 0 6', 'M18 6.5a7.5 7.5 0 0 1 0 11'],
     soundOff: ['M4 9.5h3.5L12 5.5v13l-4.5-4H4z', 'M16 9.5l5 5', 'M21 9.5l-5 5']
   };
@@ -489,6 +491,14 @@
         });
         couponWrap.appendChild(copy);
         resultCard.appendChild(couponWrap);
+      }
+      if (win && cfg.storeUrl) {
+        const store = make('a', 'msg-store-link');
+        store.href = cfg.storeUrl;
+        store.target = '_blank';
+        store.rel = 'noopener';
+        store.append(icon(ICONS.pin, 20, 2.2), document.createTextNode(cfg.storeLabel || 'Encontrar loja e pedir online'), icon(ICONS.external, 16, 2.2));
+        resultCard.appendChild(store);
       }
       if (!win && result.next_at) {
         const left = waitText(result.next_at);
