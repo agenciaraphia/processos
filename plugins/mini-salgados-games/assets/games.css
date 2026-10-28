@@ -241,6 +241,8 @@
 .msg-app .msg-action:active:not(:disabled) { transform: translateY(4px); box-shadow: 0 1px 0 var(--msg-p-deep), 0 4px 10px -6px var(--msg-primary); transition-duration: 80ms; }
 .msg-app .msg-action:disabled { opacity: .45; box-shadow: 0 5px 0 var(--msg-p-deep); }
 .msg-app .msg-action.is-loading { opacity: .85; }
+.msg-app .msg-action.is-final:disabled { opacity: 1; cursor: default; }
+.msg-app .msg-action.is-final.is-lose:disabled { color: var(--msg-ink); background: #efebe7; box-shadow: 0 5px 0 #d9d3cd; }
 .msg-app .msg-action.is-loading::before {
   content: '';
   width: 18px;
@@ -459,6 +461,9 @@
 .msg-app .msg-wheel-stage.is-spinning .msg-bulb { animation: msg-bulb 360ms steps(1) infinite; }
 .msg-app .msg-wheel-stage.is-spinning .msg-bulb:nth-of-type(even) { animation-delay: 180ms; }
 
+.msg-app .msg-wheel-stage.is-winding .msg-wheel { transform: rotate(-14deg); transition: transform 340ms var(--msg-ease-out); }
+.msg-app .msg-slice.is-landed { stroke: var(--msg-ink); stroke-width: 4; stroke-linejoin: round; animation: msg-landed 420ms ease-in-out 3 alternate; }
+
 /* Raspadinha */
 .msg-app .msg-scratch-stage {
   position: relative;
@@ -519,6 +524,9 @@
 .msg-app .msg-meter { width: min(100%, 300px); height: 8px; margin: 18px auto 0; overflow: hidden; background: #efecea; border-radius: 999px; }
 .msg-app .msg-meter span { display: block; width: 100%; height: 100%; background: var(--msg-primary); border-radius: inherit; transform: scaleX(0); transform-origin: left; transition: transform 160ms linear; }
 
+/* Raspadinha: estado sem prêmio por baixo da camada */
+.msg-app .msg-scratch-stage.is-lose .msg-scratch-under { color: var(--msg-ink); background: radial-gradient(circle at 50% 120%, rgba(255, 255, 255, .6), transparent 60%), #efebe7; }
+
 /* Caixa misteriosa */
 .msg-app .msg-box-stage { margin: 18px auto 0; text-align: center; }
 .msg-app .msg-box-illustration,
@@ -545,6 +553,30 @@
 .msg-app .msg-box-rays { transform-box: fill-box; transform-origin: center; opacity: 0; transform: scale(.6) rotate(-20deg); transition: opacity 400ms ease, transform 800ms var(--msg-ease-out); }
 .msg-app .msg-box-illustration.is-open .msg-box-rays { opacity: 1; transform: scale(1) rotate(0deg); }
 .msg-app .msg-box-illustration.is-open .msg-box-body { cursor: default; }
+.msg-app .msg-crack { stroke: rgba(31, 26, 23, .55); stroke-width: 3.5; stroke-dasharray: 90; stroke-dashoffset: 90; transition: stroke-dashoffset 260ms var(--msg-ease-out); }
+.msg-app .msg-box-illustration.has-crack-1 .msg-crack--1,
+.msg-app .msg-box-illustration.has-crack-2 .msg-crack--2,
+.msg-app .msg-box-illustration.has-crack-3 .msg-crack--3 { stroke-dashoffset: 0; }
+.msg-app .msg-box-illustration.is-lose .msg-box-rays { opacity: .35; filter: grayscale(1); }
+.msg-app .msg-box-reveal {
+  position: absolute;
+  left: 50%;
+  top: 22%;
+  max-width: 92%;
+  padding: 10px 18px;
+  color: var(--msg-ink);
+  background: var(--msg-surface);
+  border-radius: 16px;
+  box-shadow: 0 14px 30px -12px rgba(31, 26, 23, .45);
+  font-family: var(--msg-font-heading);
+  font-size: clamp(18px, 4.4vw, 24px);
+  font-weight: 700;
+  line-height: 1.1;
+  text-align: center;
+  transform: translate(-50%, 0);
+  animation: msg-reveal 520ms var(--msg-ease-out) 120ms backwards;
+}
+.msg-app .msg-box-illustration.is-lose .msg-box-reveal { color: var(--msg-ink-2); font-size: clamp(16px, 3.8vw, 20px); }
 .msg-app .msg-taps { display: flex; justify-content: center; gap: 8px; margin: 16px 0 0; }
 .msg-app .msg-taps i { width: 12px; height: 12px; background: #e7e3e0; border-radius: 50%; transition: background-color 200ms ease, transform 260ms var(--msg-ease-out); }
 .msg-app .msg-taps i.is-on { background: var(--msg-primary); transform: scale(1.25); }
@@ -607,10 +639,34 @@
   overflow-wrap: anywhere;
   user-select: all;
 }
+.msg-app .msg-coupon-uses { font-size: 13px; font-weight: 600; }
 .msg-app .msg-result-next { display: inline-flex; align-items: center; gap: 8px; margin: 18px auto 0; padding: 10px 16px; color: var(--msg-ink-2); background: #f6f4f2; border-radius: 14px; font-size: 14px; }
 .msg-app .msg-result-footnote { max-width: 46ch; margin: 18px auto 0; color: var(--msg-muted); font-size: 13px; }
 .msg-app .msg-result-card .msg-game-actions { margin-top: 24px; }
 .msg-app .msg-result-card .msg-action { width: min(100%, 360px); }
+
+/* Botão de som */
+.msg-app .msg-sound-toggle,
+.msg-app .msg-sound-toggle:hover,
+.msg-app .msg-sound-toggle:focus {
+  position: absolute;
+  z-index: 4;
+  top: 92px;
+  right: 18px;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  color: var(--msg-ink-2);
+  background: var(--msg-surface);
+  border: 1px solid var(--msg-line);
+  border-radius: 50%;
+  box-shadow: 0 4px 12px -6px rgba(31, 26, 23, .3);
+  transition: transform 120ms var(--msg-ease-out), color 160ms ease;
+}
+.msg-app .msg-sound-toggle[aria-pressed="true"] { color: var(--msg-muted); }
+.msg-app .msg-sound-toggle:active { transform: scale(.94); }
 
 /* Confete */
 .msg-app .msg-confetti { position: absolute; inset: 0; z-index: 5; overflow: hidden; pointer-events: none; }
@@ -640,6 +696,8 @@
 @keyframes msg-rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes msg-fade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 @keyframes msg-pop { from { opacity: 0; transform: scale(.96) translateY(8px); } to { opacity: 1; transform: none; } }
+@keyframes msg-landed { to { opacity: .72; } }
+@keyframes msg-reveal { from { opacity: 0; transform: translate(-50%, 18px) scale(.9); } to { opacity: 1; transform: translate(-50%, 0) scale(1); } }
 @keyframes msg-tick { from { transform: rotate(-9deg); } to { transform: rotate(5deg); } }
 @keyframes msg-bulb { 50% { fill: var(--msg-surface); } 0%, 100% { fill: var(--msg-secondary); } }
 @keyframes msg-shake {
@@ -664,6 +722,7 @@
       radial-gradient(circle 18px at 18px 0, #000 98%, transparent 100%) bottom left / 36px 18px repeat-x;
   }
   .msg-app .msg-heading { margin-bottom: 22px; }
+  .msg-app .msg-sound-toggle, .msg-app .msg-sound-toggle:hover, .msg-app .msg-sound-toggle:focus { top: 74px; right: 10px; width: 38px; height: 38px; }
   .msg-app .msg-panel { padding: 22px 16px; border-radius: 22px; }
   .msg-app .msg-game-list { grid-template-columns: 1fr; gap: 10px; }
   .msg-app .msg-game-card,

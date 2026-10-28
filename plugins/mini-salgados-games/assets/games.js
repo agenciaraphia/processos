@@ -3,6 +3,7 @@
 
   const SVG_NS = 'http://www.w3.org/2000/svg';
   const reducedMotion = () => !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  const wait = (ms) => new Promise((resolve) => window.setTimeout(resolve, ms));
   const one = (root, selector) => root.querySelector(selector);
   const make = (tag, className, text) => {
     const el = document.createElement(tag);
@@ -27,8 +28,79 @@
     clock: ['M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0-18', 'M12 7v5l3 2'],
     star: ['M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z'],
     copy: ['M9 9h11v11H9z', 'M5 15V4h11'],
-    check: ['M5 12.5l4.5 4.5L19 7.5']
+    check: ['M5 12.5l4.5 4.5L19 7.5'],
+    soundOn: ['M4 9.5h3.5L12 5.5v13l-4.5-4H4z', 'M15.5 9a4 4 0 0 1 0 6', 'M18 6.5a7.5 7.5 0 0 1 0 11'],
+    soundOff: ['M4 9.5h3.5L12 5.5v13l-4.5-4H4z', 'M16 9.5l5 5', 'M21 9.5l-5 5']
   };
+
+  /* ---------- Efeitos sonoros (sintetizados com Web Audio, sem arquivos) ---------- */
+  const Sound = (() => {
+    let ctx = null;
+    let noise = null;
+    let muted = false;
+    let lastTick = 0;
+    let lastScratch = 0;
+    try { muted = window.localStorage.getItem('msg_sound_muted') === '1'; } catch (e) { /* storage can be unavailable */ }
+    const audio = () => {
+      if (muted) return null;
+      const AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC) return null;
+      if (!ctx) { try { ctx = new AC(); } catch (e) { return null; } }
+      if (ctx.state === 'suspended') ctx.resume();
+      return ctx;
+    };
+    const noiseBuffer = (c) => {
+      if (noise) return noise;
+      noise = c.createBuffer(1, c.sampleRate, c.sampleRate);
+      const data = noise.getChannelData(0);
+      for (let i = 0; i < data.length; i += 1) data[i] = Math.random() * 2 - 1;
+      return noise;
+    };
+    const envelope = (c, node, t, peak, attack, release) => {
+      const gain = c.createGain();
+      gain.gain.setValueAtTime(0.0001, t);
+      gain.gain.exponentialRampToValueAtTime(peak, t + attack);
+      gain.gain.exponentialRampToValueAtTime(0.0001, t + attack + release);
+      node.connect(gain);
+      gain.connect(c.destination);
+    };
+    const tone = (freq, start, dur, type, peak, endFreq) => {
+      const c = audio(); if (!c) return;
+      const t = c.currentTime + start;
+      const osc = c.createOscillator();
+      osc.type = type;
+      osc.frequency.setValueAtTime(freq, t);
+      if (endFreq) osc.frequency.exponentialRampToValueAtTime(endFreq, t + dur);
+      envelope(c, osc, t, peak, 0.006, dur);
+      osc.start(t); osc.stop(t + dur + 0.05);
+    };
+    const hiss = (start, dur, filterType, freq, q, peak, endFreq) => {
+      const c = audio(); if (!c) return;
+      const t = c.currentTime + start;
+      const src = c.createBufferSource();
+      src.buffer = noiseBuffer(c);
+      const filter = c.createBiquadFilter();
+      filter.type = filterType;
+      filter.frequency.setValueAtTime(freq, t);
+      if (endFreq) filter.frequency.exponentialRampToValueAtTime(endFreq, t + dur);
+      filter.Q.value = q;
+      src.connect(filter);
+      envelope(c, filter, t, peak, 0.004, dur);
+      src.start(t, Math.random() * 0.5); src.stop(t + dur + 0.05);
+    };
+    return {
+      isMuted: () => muted,
+      setMuted(value) { muted = value; try { window.localStorage.setItem('msg_sound_muted', value ? '1' : '0'); } catch (e) { /* ignore */ } },
+      unlock() { audio(); },
+      tick() { const now = performance.now(); if (now - lastTick < 26) return; lastTick = now; tone(1400 + Math.random() * 400, 0, 0.03, 'square', 0.045); hiss(0, 0.025, 'highpass', 3500, 0.7, 0.06); },
+      whoosh() { hiss(0, 0.4, 'bandpass', 350, 1.1, 0.14, 2600); },
+      scratch(speed) { const now = performance.now(); if (now - lastScratch < 40) return; lastScratch = now; hiss(0, 0.07, 'bandpass', 2400 + Math.random() * 2200, 0.8, Math.min(0.2, 0.05 + speed / 300)); },
+      crack(level) { hiss(0, 0.1, 'bandpass', 800 + level * 260, 1.3, 0.34); tone(150 - level * 15, 0, 0.14, 'sine', 0.24, 65); },
+      burst() { hiss(0, 0.5, 'lowpass', 6000, 0.5, 0.36, 280); tone(120, 0, 0.3, 'sine', 0.32, 40); [1318.5, 1760, 2093].forEach((f, i) => tone(f, 0.14 + i * 0.07, 0.3, 'sine', 0.06)); },
+      win() { [523.25, 659.25, 783.99, 1046.5].forEach((f, i) => tone(f, i * 0.09, 0.22, 'triangle', 0.17)); [1046.5, 1318.5, 1568].forEach((f) => tone(f, 0.4, 0.7, 'triangle', 0.075)); },
+      lose() { tone(392, 0, 0.24, 'sine', 0.12); tone(293.66, 0.2, 0.45, 'sine', 0.11, 261.6); }
+    };
+  })();
 
   // Uma fatia de pizza (setor) do círculo, centrada no ângulo `mid` (graus, 0 = topo, sentido horário).
   const slicePath = (r, mid, span) => {
@@ -42,7 +114,7 @@
   const SLICE_TEXT = ['msg-t-op', 'msg-t-ink', 'msg-t-os', 'msg-t-ink'];
 
   function drawWheelFace(group, r, labels) {
-    for (let i = 0; i < 8; i += 1) svg('path', { d: slicePath(r, i * 45, 45), class: SLICE_FILL[i % 4] }, group);
+    for (let i = 0; i < 8; i += 1) svg('path', { d: slicePath(r, i * 45, 45), class: `msg-slice ${SLICE_FILL[i % 4]}`, 'data-slot': i }, group);
     for (let i = 0; i < 8; i += 1) {
       const a = (i * 45 + 22.5 - 90) * Math.PI / 180;
       svg('line', { x1: 0, y1: 0, x2: (r * Math.cos(a)).toFixed(2), y2: (r * Math.sin(a)).toFixed(2), class: 'msg-s-line', 'stroke-width': r > 60 ? 1.5 : 1 }, group);
@@ -130,6 +202,24 @@
     svg('circle', { cx: 23, cy: 21, r: 8, class: 'msg-f-s' }, s);
     return s;
   }
+  // Toca um clique cada vez que uma divisória passa pelo ponteiro, lendo o ângulo real da animação.
+  function trackTicks(wheel, duration, onTick) {
+    let last = 0; let total = 0; let slot = 0;
+    const end = performance.now() + duration + 200;
+    const frame = (now) => {
+      const m = /matrix\(([^,]+),\s*([^,]+)/.exec(getComputedStyle(wheel).transform || '');
+      if (m) {
+        const angle = Math.atan2(parseFloat(m[2]), parseFloat(m[1])) * 180 / Math.PI;
+        let delta = angle - last;
+        if (delta < -180) delta += 360; else if (delta > 180) delta -= 360;
+        total += delta; last = angle;
+        const current = Math.floor((total + 22.5) / 45);
+        if (current !== slot) { slot = current; onTick(); }
+      }
+      if (now < end) window.requestAnimationFrame(frame);
+    };
+    window.requestAnimationFrame(frame);
+  }
 
   function giftBox() {
     const s = svg('svg', { viewBox: '0 -40 240 270', 'aria-hidden': 'true' });
@@ -142,6 +232,10 @@
     svg('rect', { x: 40, y: 104, width: 160, height: 14, class: 'msg-f-pd' }, body);
     svg('rect', { x: 106, y: 104, width: 28, height: 106, class: 'msg-f-s' }, body);
     svg('rect', { x: 106, y: 104, width: 28, height: 14, class: 'msg-f-sd' }, body);
+    const cracks = svg('g', { class: 'msg-box-cracks', fill: 'none', 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, body);
+    svg('path', { d: 'M62 118 L74 140 L66 156 L80 178', class: 'msg-crack msg-crack--1' }, cracks);
+    svg('path', { d: 'M184 124 L170 146 L182 164 L166 192 M170 146 L158 150', class: 'msg-crack msg-crack--2' }, cracks);
+    svg('path', { d: 'M96 206 L102 184 L92 170 L100 150 M102 184 L114 180 M146 206 L140 186 L150 172', class: 'msg-crack msg-crack--3' }, cracks);
     const lid = svg('g', { class: 'msg-box-lid' }, body);
     svg('rect', { x: 30, y: 78, width: 180, height: 34, rx: 9, class: 'msg-f-p' }, lid);
     svg('rect', { x: 104, y: 78, width: 32, height: 34, class: 'msg-f-s' }, lid);
@@ -190,10 +284,13 @@
     let session = 0;
     let menuTimer = 0;
     const storageKey = `msg_${slug}_profile`;
+    const soundOn = cfg.sound !== false;
+    const sfx = (name, ...args) => { if (soundOn) Sound[name](...args); };
+    const winSlots = (Array.isArray(cfg.roletaWinSlots) ? cfg.roletaWinSlots : []).map(Number).filter((n) => n >= 0 && n < 8);
     const GAME_COPY = {
-      roleta: { overline: 'Gire e torça', ready: 'Gire e veja onde o ponteiro para.', intro: 'Toque no botão para girar. O resultado é confirmado pelo sistema da campanha assim que a roleta parar.' },
-      raspadinha: { overline: 'Raspe e descubra', ready: 'Raspe o cartão para revelar.', intro: 'Passe o dedo ou o mouse sobre o cartão prateado até liberar o resultado.' },
-      caixa: { overline: 'Toque e abra', ready: 'Toque 4 vezes para abrir.', intro: 'Toque na caixa quatro vezes para abrir a tampa e descobrir o que tem dentro.' }
+      roleta: { overline: 'Gire e torça', ready: 'Gire e veja onde o ponteiro para.', intro: 'Toque no botão para girar. Se o ponteiro parar num espaço premiado, o cupom aparece na hora.' },
+      raspadinha: { overline: 'Raspe e descubra', ready: 'Raspe o cartão para revelar.', intro: 'Passe o dedo ou o mouse sobre o cartão prateado. O resultado aparece por baixo.' },
+      caixa: { overline: 'Toque e abra', ready: 'Toque 4 vezes para abrir.', intro: 'Toque na caixa quatro vezes até ela estourar e mostrar o que tem dentro.' }
     };
 
     const say = (message, tone) => feedback.forEach((node) => { node.textContent = message || ''; node.dataset.tone = tone || 'info'; });
@@ -225,11 +322,25 @@
     }
     function button(text, className = 'msg-action') { const el = make('button', className, text); el.type = 'button'; return el; }
 
+    if (soundOn) {
+      const toggle = button('', 'msg-sound-toggle');
+      const paint = () => {
+        const muted = Sound.isMuted();
+        toggle.replaceChildren(icon(muted ? ICONS.soundOff : ICONS.soundOn, 20, 2));
+        toggle.setAttribute('aria-pressed', muted ? 'true' : 'false');
+        toggle.setAttribute('aria-label', muted ? 'Ligar os sons' : 'Desligar os sons');
+        toggle.title = muted ? 'Ligar os sons' : 'Desligar os sons';
+      };
+      toggle.addEventListener('click', () => { Sound.setMuted(!Sound.isMuted()); paint(); if (!Sound.isMuted()) Sound.tick(); });
+      paint();
+      app.appendChild(toggle);
+    }
+
     function updateCountdowns() {
       let expired = false;
       list.querySelectorAll('[data-next-at]').forEach((node) => {
-        const wait = waitText(node.dataset.nextAt);
-        if (wait) node.textContent = `Libera em ${wait}.`;
+        const left = waitText(node.dataset.nextAt);
+        if (left) node.textContent = `Libera em ${left}.`;
         else expired = true;
       });
       if (expired) { window.clearInterval(menuTimer); refreshAndShowMenu(); }
@@ -257,8 +368,8 @@
           card.disabled = true;
           card.classList.add('is-locked');
           if (state.won) card.classList.add('is-won');
-          const wait = state.next_at ? waitText(state.next_at) : null;
-          details.textContent = wait ? `Libera em ${wait}.` : 'Disponível mais tarde.';
+          const left = state.next_at ? waitText(state.next_at) : null;
+          details.textContent = left ? `Libera em ${left}.` : 'Disponível mais tarde.';
           if (state.next_at) { details.dataset.nextAt = state.next_at; card.title = `Disponível em ${absoluteDate(state.next_at)}`; }
           copy.appendChild(make('span', 'msg-game-tag msg-game-tag--wait', 'Em espera'));
         } else if (state.won) {
@@ -342,7 +453,7 @@
       window.setTimeout(() => layer.remove(), 3000);
     }
 
-    function renderResult(result, game) {
+    function renderResult(result) {
       session += 1;
       area.replaceChildren();
       const win = result.result === 'win';
@@ -359,6 +470,8 @@
         const couponWrap = make('div', 'msg-coupon-wrap');
         couponWrap.appendChild(make('span', 'msg-coupon-label', 'Seu código de resgate'));
         couponWrap.appendChild(make('code', 'msg-coupon', result.coupon));
+        const uses = parseInt(result.redeem_limit, 10);
+        if (uses > 0) couponWrap.appendChild(make('span', 'msg-coupon-uses', uses === 1 ? 'Válido para 1 uso.' : `Pode ser usado até ${uses} vezes.`));
         const copy = button('', 'msg-secondary');
         const setCopy = (paths, text) => { copy.replaceChildren(icon(paths, 18, 2.4), document.createTextNode(text)); };
         setCopy(ICONS.copy, 'Copiar código');
@@ -378,11 +491,11 @@
         resultCard.appendChild(couponWrap);
       }
       if (!win && result.next_at) {
-        const wait = waitText(result.next_at);
-        if (wait) {
+        const left = waitText(result.next_at);
+        if (left) {
           const next = make('p', 'msg-result-next');
           next.appendChild(icon(ICONS.clock, 18, 2));
-          next.appendChild(document.createTextNode(`Nova jogada neste jogo em ${wait} (${absoluteDate(result.next_at)}).`));
+          next.appendChild(document.createTextNode(`Nova jogada neste jogo em ${left} (${absoluteDate(result.next_at)}).`));
           resultCard.appendChild(next);
         }
       }
@@ -418,43 +531,34 @@
       }
     }
 
-    async function playNow(game, visual, action, ready) {
-      if (!ready() || busy) return;
-      busy = true;
-      back.hidden = true;
-      action.disabled = true;
-      action.classList.add('is-loading');
-      action.textContent = 'Registrando resultado…';
-      visual.classList.add('is-playing');
-      try {
-        const result = await api('play', { campaign: slug, game, token });
-        visual.classList.remove('is-playing');
-        visual.classList.add(result.result === 'win' ? 'is-win' : 'is-lose');
-        renderResult(result, game);
-      } catch (error) {
-        visual.classList.remove('is-playing');
-        busy = false;
-        back.hidden = false;
-        action.disabled = false;
-        action.classList.remove('is-loading');
-        action.textContent = 'Tentar novamente';
-        say(error.message, 'error');
-      }
-    }
-
     function openGame(game) {
       if (!games[game] || !games[game].available) return;
+      sfx('unlock');
       busy = false;
       session += 1;
       const mySession = session;
       window.clearInterval(menuTimer);
       const state = games[game];
-      const description = (GAME_COPY[game] || GAME_COPY.roleta).intro;
-      const head = addGameIntro(state.label, description, game);
+      const head = addGameIntro(state.label, (GAME_COPY[game] || GAME_COPY.roleta).intro, game);
 
-      let visual;
-      let action;
-      let ready = false;
+      // A jogada é registrada uma única vez, no momento em que a pessoa se compromete
+      // (girar, primeira raspada ou primeiro toque). O servidor decide o resultado.
+      let pending = null;
+      const commit = () => {
+        if (!pending) {
+          back.hidden = true;
+          say('');
+          pending = api('play', { campaign: slug, game, token }).catch((error) => {
+            pending = null;
+            if (mySession === session) { back.hidden = false; say(error.message, 'error'); }
+            throw error;
+          });
+        }
+        return pending;
+      };
+      const showResultSoon = (result, delay) => window.setTimeout(() => { if (mySession === session) renderResult(result); }, delay);
+      const celebrate = (result) => sfx(result.result === 'win' ? 'win' : 'lose');
+
       if (game === 'roleta') {
         const stage = make('div', 'msg-wheel-stage');
         stage.appendChild(wheelPointer());
@@ -463,43 +567,63 @@
         const wheel = bigWheel(labels);
         stage.appendChild(wheel);
         area.appendChild(stage);
-        visual = wheel;
-        ready = true;
-        action = button('Girar a roleta', 'msg-action msg-game-cta');
+        const action = button('Girar a roleta', 'msg-action msg-game-cta');
         action.addEventListener('click', async () => {
           if (busy) return;
-          busy = true; action.disabled = true; action.textContent = 'Boa sorte!'; back.hidden = true;
+          busy = true; action.disabled = true; action.textContent = 'Girando…';
+          sfx('unlock'); sfx('whoosh');
+          stage.classList.add('is-winding');
+          let result;
+          try { [result] = await Promise.all([commit(), wait(340)]); }
+          catch (e) { stage.classList.remove('is-winding'); busy = false; action.disabled = false; action.textContent = 'Tentar novamente'; return; }
+          if (mySession !== session) return;
+          stage.classList.remove('is-winding');
+          // Para num espaço coerente com o resultado oficial: premiado se ganhou, sem prêmio se não ganhou.
+          const win = result.result === 'win';
+          const all = [0, 1, 2, 3, 4, 5, 6, 7];
+          const pool = all.filter((i) => (win ? winSlots.includes(i) : !winSlots.includes(i)));
+          const choices = pool.length ? pool : all;
+          const slot = choices[Math.floor(Math.random() * choices.length)];
           const quick = reducedMotion();
           const duration = quick ? 900 : 4600;
-          // Para no centro de um dos espaços. A animação é só apresentação; o servidor decide o resultado real.
-          const slot = Math.floor(Math.random() * 8);
-          const rotation = (quick ? 360 : 360 * 6) + (360 - slot * 45) % 360 + (Math.random() * 16 - 8);
+          const rotation = (quick ? 360 : 360 * 6) + (360 - slot * 45) % 360 + (Math.random() * 20 - 10);
           stage.classList.add('is-spinning');
           wheel.style.transform = `rotate(${rotation}deg)`;
+          trackTicks(wheel, duration, () => sfx('tick'));
           window.setTimeout(() => { if (mySession === session) stage.classList.add('is-slowing'); }, duration * 0.55);
-          window.setTimeout(async () => {
+          window.setTimeout(() => {
             stage.classList.remove('is-spinning', 'is-slowing');
             if (mySession !== session) return;
-            busy = false;
-            await playNow(game, wheel, action, () => ready);
+            const landed = wheel.querySelector(`.msg-slice[data-slot="${slot}"]`);
+            if (landed) landed.classList.add('is-landed');
+            stage.classList.add(win ? 'is-win' : 'is-lose');
+            action.textContent = win ? 'Você ganhou!' : 'Não foi dessa vez';
+            action.classList.add('is-final', win ? 'is-win' : 'is-lose');
+            celebrate(result);
+            showResultSoon(result, 1300);
           }, duration + 150);
         });
+        area.appendChild(action);
       } else if (game === 'raspadinha') {
         const stage = make('div', 'msg-scratch-stage');
         const under = make('div', 'msg-scratch-under');
-        under.appendChild(make('span', 'msg-scratch-kicker', cfg.name || 'Mini Salgados'));
-        under.appendChild(make('strong', '', 'Sua surpresa está aqui'));
-        under.appendChild(make('small', '', 'Toque no botão para ver o resultado'));
+        const kicker = make('span', 'msg-scratch-kicker', cfg.name || 'Mini Salgados');
+        const big = make('strong', '', 'Raspe para descobrir');
+        const small = make('small', '', 'Seu resultado está escondido aqui');
+        under.append(kicker, big, small);
         const canvas = document.createElement('canvas');
         canvas.className = 'msg-scratch-cover'; canvas.width = 600; canvas.height = 320;
         canvas.setAttribute('aria-label', 'Cartão prateado para raspar'); canvas.setAttribute('role', 'img');
         stage.appendChild(under); stage.appendChild(canvas); area.appendChild(stage);
-        visual = stage;
         const meter = make('div', 'msg-meter'); const meterFill = make('span'); meter.appendChild(meterFill);
         meter.setAttribute('aria-hidden', 'true');
         area.appendChild(meter);
+        const hint = make('p', 'msg-stage-hint', 'Raspe a superfície até a barra encher.');
+        hint.setAttribute('aria-live', 'polite');
+        area.appendChild(hint);
         const ctx = canvas.getContext('2d', { willReadFrequently: true });
         let drawing = false; let last = null; let scratchedDistance = 0;
+        let result = null; let enough = false; let revealed = false;
         const paintCover = () => {
           ctx.globalCompositeOperation = 'source-over';
           const gradient = ctx.createLinearGradient(0, 0, 600, 320);
@@ -521,6 +645,26 @@
           Promise.all([document.fonts.load(`700 50px "${cfg.headingFontFamily || 'Fredoka One'}"`), document.fonts.load(`600 19px "${cfg.fontFamily || 'Montserrat'}"`)])
             .then(() => { if (scratchedDistance === 0) paintCover(); }).catch(() => {});
         }
+        const reveal = () => {
+          if (!enough || !result || revealed || mySession !== session) return;
+          revealed = true;
+          canvas.classList.add('is-revealed');
+          meterFill.style.transform = 'scaleX(1)';
+          hint.textContent = result.result === 'win' ? 'Você ganhou! Preparando seu cupom…' : 'Não foi dessa vez.';
+          celebrate(result);
+          showResultSoon(result, 1700);
+        };
+        const startPlay = () => {
+          commit().then((r) => {
+            result = r;
+            const win = r.result === 'win';
+            stage.classList.add(win ? 'is-win' : 'is-lose');
+            kicker.textContent = win ? 'Você ganhou!' : (cfg.name || 'Resultado');
+            big.textContent = win ? (r.prize || 'Prêmio surpresa') : 'Não foi dessa vez';
+            small.textContent = win ? 'Seu código aparece em seguida' : 'Tente de novo depois do intervalo';
+            reveal();
+          }).catch(() => { if (enough) hint.textContent = 'Não conseguimos conferir o resultado. Raspe de novo para tentar.'; });
+        };
         const scratchPoint = (event) => {
           const rect = canvas.getBoundingClientRect();
           return { x: (event.clientX - rect.left) * canvas.width / rect.width, y: (event.clientY - rect.top) * canvas.height / rect.height };
@@ -529,44 +673,75 @@
           if (!last) { last = point; return; }
           const distance = Math.hypot(point.x - last.x, point.y - last.y);
           scratchedDistance += distance;
+          if (distance > 2) sfx('scratch', distance);
           ctx.beginPath(); ctx.moveTo(last.x, last.y); ctx.lineTo(point.x, point.y); ctx.lineWidth = 48; ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.stroke();
           last = point;
           meterFill.style.transform = `scaleX(${Math.min(1, scratchedDistance / 2800)})`;
-          if (scratchedDistance >= 2800 && !ready) {
-            ready = true; canvas.classList.add('is-revealed');
-            action.disabled = false; action.textContent = 'Revelar meu resultado';
-            const hint = one(area, '.msg-stage-hint'); if (hint) hint.textContent = 'Cartão raspado! Agora descubra seu resultado.';
+          if (scratchedDistance >= 2800 && !enough) {
+            enough = true;
+            if (!result) hint.textContent = 'Conferindo seu resultado…';
+            reveal();
           }
         };
-        canvas.addEventListener('pointerdown', (event) => { drawing = true; last = scratchPoint(event); canvas.setPointerCapture?.(event.pointerId); strokeTo(last); event.preventDefault(); });
+        canvas.addEventListener('pointerdown', (event) => {
+          if (revealed) return;
+          sfx('unlock');
+          if (!pending) startPlay();
+          drawing = true; last = scratchPoint(event); canvas.setPointerCapture?.(event.pointerId); strokeTo(last); event.preventDefault();
+        });
         canvas.addEventListener('pointermove', (event) => { if (!drawing) return; strokeTo(scratchPoint(event)); event.preventDefault(); });
         const endStroke = () => { drawing = false; last = null; };
         canvas.addEventListener('pointerup', endStroke); canvas.addEventListener('pointercancel', endStroke); canvas.addEventListener('pointerleave', endStroke);
-        const hint = make('p', 'msg-stage-hint', 'Raspe a superfície até a barra encher.'); area.appendChild(hint);
-        action = button('Continue raspando…', 'msg-action msg-game-cta'); action.disabled = true;
-        action.addEventListener('click', () => playNow(game, visual, action, () => ready));
       } else {
         const stage = make('div', 'msg-box-stage');
         const box = make('button', 'msg-box-illustration', ''); box.type = 'button'; box.setAttribute('aria-label', 'Toque para abrir a caixa');
         box.appendChild(giftBox());
+        const surprise = make('span', 'msg-box-reveal'); surprise.hidden = true;
+        box.appendChild(surprise);
         const dots = make('div', 'msg-taps'); dots.setAttribute('aria-hidden', 'true');
         for (let i = 0; i < 4; i += 1) dots.appendChild(make('i'));
         const progress = make('p', 'msg-stage-hint', 'Toque 4 vezes para abrir a caixa.');
         progress.setAttribute('aria-live', 'polite');
         stage.appendChild(box); stage.appendChild(dots); stage.appendChild(progress); area.appendChild(stage);
-        visual = box; let taps = 0;
-        const tapBox = () => {
-          if (ready || busy) return;
-          taps += 1; box.classList.remove('is-tapped'); void box.offsetWidth; box.classList.add('is-tapped');
-          dots.children[taps - 1]?.classList.add('is-on');
-          progress.textContent = taps >= 4 ? 'Caixa aberta! Descubra o resultado.' : `Mais ${4 - taps} toque${4 - taps === 1 ? '' : 's'} para abrir.`;
-          if (taps >= 4) { ready = true; box.classList.add('is-open'); box.setAttribute('aria-label', 'Caixa aberta'); action.disabled = false; action.textContent = 'Descobrir meu resultado'; }
+        let taps = 0; let result = null; let opened = false;
+        const paintTaps = () => {
+          Array.from(dots.children).forEach((dot, i) => dot.classList.toggle('is-on', i < taps));
+          for (let n = 1; n <= 3; n += 1) box.classList.toggle(`has-crack-${n}`, taps >= n);
         };
-        box.addEventListener('click', tapBox);
-        action = button('Toque na caixa para abrir', 'msg-action msg-game-cta'); action.disabled = true;
-        action.addEventListener('click', () => playNow(game, visual, action, () => ready));
+        const open = () => {
+          if (taps < 4 || !result || opened || mySession !== session) return;
+          opened = true;
+          const win = result.result === 'win';
+          sfx('burst');
+          box.classList.add('is-open', win ? 'is-win' : 'is-lose');
+          box.setAttribute('aria-label', 'Caixa aberta');
+          surprise.textContent = win ? (result.prize || 'Você ganhou!') : 'Não foi dessa vez';
+          surprise.hidden = false;
+          progress.textContent = win ? 'Você ganhou! Preparando seu cupom…' : 'A caixa estava vazia desta vez.';
+          window.setTimeout(() => { if (mySession === session) celebrate(result); }, 420);
+          showResultSoon(result, 2100);
+        };
+        box.addEventListener('click', () => {
+          if (opened || taps >= 4) return;
+          sfx('unlock');
+          taps += 1;
+          box.classList.remove('is-tapped'); void box.offsetWidth; box.classList.add('is-tapped');
+          paintTaps();
+          if (taps === 1) {
+            commit().then((r) => { result = r; open(); }).catch(() => {
+              taps = 0; paintTaps();
+              progress.textContent = 'Não conseguimos registrar sua jogada. Toque na caixa para tentar de novo.';
+            });
+          }
+          if (taps < 4) {
+            sfx('crack', taps);
+            progress.textContent = `Mais ${4 - taps} toque${4 - taps === 1 ? '' : 's'} para estourar.`;
+          } else {
+            progress.textContent = result ? '' : 'Abrindo…';
+            open();
+          }
+        });
       }
-      area.appendChild(action);
       say('');
       bringIntoView(menu);
       focusQuietly(one(head, '.msg-play-title'));
@@ -585,6 +760,7 @@
     back.addEventListener('click', () => { busy = false; showMenu(); bringIntoView(menu); });
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
+      sfx('unlock');
       const submit = form.querySelector('button[type="submit"]');
       const fd = new FormData(form);
       submit.disabled = true; submit.classList.add('is-loading'); submit.textContent = 'Preparando seus jogos…'; say('');

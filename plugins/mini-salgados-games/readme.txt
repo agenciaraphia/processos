@@ -4,7 +4,7 @@ Tags: games, campaign, coupons, promotions, elementor
 Requires at least: 6.0
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 1.4.1
+Stable tag: 1.5.0
 License: GPLv2 or later
 
 Campanhas promocionais com roleta, raspadinha e caixa misteriosa, cadastro de participantes e controle de cupons.
@@ -26,6 +26,13 @@ As fontes são carregadas do Google Fonts (quando há conexão externa).
 
 == Aviso de teste ==
 Antes de usar com clientes reais, teste em ambiente de staging. A validação sintática não substitui testes funcionais em uma instalação real do WordPress, compatibilidade com o tema, segurança e concorrência de estoque.
+
+== Melhorias 1.5.0 ==
+- Roleta: marque no painel quais espaços dão cupom (um ou vários). O sorteio é feito antes do giro e a roleta para num espaço premiado quando a pessoa ganha, e num espaço sem prêmio quando não ganha.
+- Resultado automático: a roleta mostra o prêmio ao parar, a raspadinha revela o prêmio por baixo da camada e a caixa trinca a cada toque e estoura mostrando o prêmio. Não há mais botão de revelar.
+- Efeitos sonoros gerados no navegador (sem arquivos): roleta girando, raspadinha, caixa trincando e estourando, vitória e derrota. Botão para o visitante silenciar e opção por campanha no painel.
+- Cupom compartilhado: "Quantidade disponível" (quantas vezes o código pode ser sorteado) e o novo "Limite de resgates por pessoa", mostrado na tela do prêmio.
+- Novas campanhas já vêm com textos e espaços premiados de exemplo na roleta.
 
 == Melhorias 1.4.1 ==
 - Corrigido: campanhas não eram salvas em sites cujas tabelas vieram de versões antigas do plugin. O esquema agora usa o formato que o WordPress (dbDelta) consegue atualizar, e o plugin adiciona sozinho as colunas que faltarem.
