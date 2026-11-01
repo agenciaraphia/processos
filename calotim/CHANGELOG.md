@@ -1,5 +1,31 @@
 # Histórico de versões
 
+## 0.8 (1º de novembro de 2026)
+
+### Novo visual
+- Interface refeita sobre o guia de identidade: creme de fundo, superfícies brancas, verde para ação, laranja para pendências, Plus Jakarta Sans nos títulos e valores, Inter no texto e números tabulares.
+- Nenhum emoji ou glifo no lugar de ícone: ícones Lucide embutidos em SVG (licença ISC, veja `LICENSE-lucide.txt`).
+- Avatares viraram 16 personagens ilustrados em SVG. Quem tinha emoji salvo vê o personagem equivalente; o valor salvo não é apagado.
+- Divisão como **central de comando**: abas Itens, Taxas, Pessoas e Acerto e um **painel de cálculo ao vivo** com a barra de divisão por pessoa. No celular, o painel vira um resumo fixo acima da navegação inferior.
+- Valores animados (contadores) e barra de divisão que se redistribui a cada lançamento; o item novo ou editado pisca na lista.
+- Painel inicial com a ilustração animada do "motor de divisão" e o resumo em uma frase.
+- Busca de divisões e de amigos, contagem de divisões por amigo.
+- Paleta de comandos com **Ctrl + K** (ou **Cmd + K**): ações, navegação e divisões em um só lugar.
+- Navegação inferior no celular com botão central contextual (nova divisão, adicionar item ou cadastrar amigo). Janelas sobem de baixo como folhas.
+- Tipo da divisão, "Quem consumiu?" e modelos de taxa em cartões e chips clicáveis. Em "Por unidade", um contador mostra quantas unidades já foram distribuídas.
+- Confirmações em janela própria (no lugar do `confirm()` do navegador) e aviso com barra de tempo para o **Desfazer**, que pausa ao passar o mouse.
+- Indicador de salvamento na barra lateral ("Salvo neste navegador" ou aviso de falha).
+
+### Mudou
+- Exportar extrato imprime na própria página, sem abrir janela pop-up.
+- Movimento reduzido respeitado (animações desligadas quando o sistema pede).
+
+### Segurança
+- Content-Security-Policy no `index.html` (somente scripts do próprio site, sem scripts inline) e `_headers` com cabeçalhos para a hospedagem.
+- Link compartilhado: tamanho máximo e alfabeto validados antes de decodificar; nomes guardados em `Map`.
+- Backup: arquivos acima de 5 MB são recusados antes da leitura.
+- Avatares só aceitam a lista fixa de personagens; nenhum valor salvo entra no SVG.
+
 ## 0.7 (1º de novembro de 2026)
 
 ### Simplificado

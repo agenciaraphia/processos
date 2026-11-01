@@ -1,6 +1,6 @@
 {
   "name": "calotim",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "private": true,
   "description": "Calotim - Dividir ficou fácil",
   "scripts": { "test": "node --test tests/core.test.js" }

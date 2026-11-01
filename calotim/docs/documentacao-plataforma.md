@@ -483,6 +483,7 @@ O MVP 0.7 é uma aplicação web independente, construída com:
 - HTML, CSS e JavaScript sem dependências de execução.
 - `js/core.js`, módulo de cálculo puro (sem acesso à tela), em centavos inteiros. É compartilhado entre o navegador e os testes.
 - `js/app.js`, a interface.
+- `js/avatars.js`, os personagens dos avatares em SVG (a partir da 0.8, no lugar dos emojis).
 - `localStorage` para persistência local (chave `calotim_mvp_v2`). A chave antiga (`calotim_mvp_v1`) é lida e convertida, e nunca apagada.
 - Testes automatizados (`npm test`, usa apenas o Node.js) cobrindo rateio, taxas, descontos, pagamentos antecipados, acertos, migração e importação, incluindo um teste com milhares de cenários aleatórios.
 - `supabase/schema.sql`, estrutura para o Supabase alinhada ao MVP 0.7. A parte B2C inclui as políticas de acesso (RLS) por dono da conta, e o isolamento entre usuários foi verificado em um Postgres de teste. A parte B2B ainda não tem políticas.
