@@ -1,5 +1,17 @@
 # Histórico de versões
 
+## 0.9 (1º de novembro de 2026)
+
+### Visual Fintech Modern (só aparência; regras, cálculos e fluxos não mudaram)
+- Paleta: verde Calotim como cor escura principal, **lima** de destaque e laranja só para pendências. Fundo cinza-claro frio no lugar do creme.
+- Painel inicial em bloco escuro com a palavra em marca-texto lima, botão em pílula com seta em círculo e a ilustração do "motor de divisão" em verde e lima.
+- Painel ao vivo com topo em "cartão de saldo" escuro e total grande; no celular vira uma barra escura acima da navegação.
+- Botões, buscas, abas e etiquetas em pílula; abas como controle segmentado com indicador deslizante.
+- Cards com cantos de 24 a 28px, ícones dentro de círculos, seta em círculo nos cartões de divisão.
+- Campos preenchidos com anel de foco lima; total do item e pagamento antecipado em destaque escuro.
+- Navegação inferior flutuante no celular, com botão central lima.
+- Logotipo com a fatia em lima.
+
 ## 0.8 (1º de novembro de 2026)
 
 ### Novo visual

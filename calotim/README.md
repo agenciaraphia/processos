@@ -1,4 +1,4 @@
-# Calotim, MVP 0.8
+# Calotim, MVP 0.9
 
 Dividir ficou fácil. Organiza contas e divide despesas entre pessoas. O Calotim calcula e organiza, e não movimenta dinheiro: nenhum Pix, cartão ou cobrança passa por ele.
 

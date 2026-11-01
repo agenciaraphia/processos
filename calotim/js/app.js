@@ -1,4 +1,4 @@
-/* Calotim 0.8 - interface. Regras de cálculo ficam em js/core.js (valores em centavos). */
+/* Calotim 0.9 - interface. Regras de cálculo ficam em js/core.js (valores em centavos). */
 const C = window.CalotimCore;
 const A = window.CalotimAvatars;
 const STORAGE_KEY = 'calotim_mvp_v2';
@@ -843,13 +843,25 @@ function applyTab(tab, focus = false) {
   moveTabInk();
   if (focus) document.getElementById('tab-' + tab).focus();
 }
+// Indicador em pílula das abas: largura nova na hora e transição só com transform (FLIP).
+let tabInkState = null;
 function moveTabInk() {
   const tabs = document.getElementById('detail-tabs');
   const active = tabs.querySelector('[aria-selected="true"]');
   const ink = tabs.querySelector('.tab-ink');
   if (!active || !ink || !active.offsetWidth) return;
-  ink.style.setProperty('--ink-x', active.offsetLeft + 'px');
-  ink.style.setProperty('--ink-w', String(active.offsetWidth));
+  const x = active.offsetLeft;
+  const width = active.offsetWidth;
+  ink.style.width = width + 'px';
+  const previous = tabInkState;
+  tabInkState = { x, width };
+  if (previous && !reduceMotion.matches && (previous.x !== x || previous.width !== width)) {
+    ink.style.transition = 'none';
+    ink.style.transform = `translateX(${previous.x}px) scaleX(${previous.width / width})`;
+    void ink.offsetWidth;
+    ink.style.transition = '';
+  }
+  ink.style.transform = `translateX(${x}px)`;
 }
 function openAccount(accountId) {
   currentAccountId = accountId;
@@ -900,7 +912,7 @@ function divisionCard(account) {
   const values = C.calc(account);
   const info = kindInfo(account.kind);
   const pending = values.unpaidTotal > 0 ? `<span class="status pending">${icon('clock')}Falta ${money(values.unpaidTotal)}</span>` : (values.total > 0 ? `<span class="status paid">${icon('check')}Sem pendência</span>` : '');
-  return `<button type="button" class="division-card" data-open="${escapeHtml(account.id)}"><span class="card-top">${kindTile(account.kind)}<span class="tag tag-neutral">${escapeHtml(info.label)}</span></span><span><span class="row-title">${escapeHtml(account.name)}</span><span class="row-meta">${divisionMeta(account)}</span></span><span class="division-split">${splitBarHtml(account, values, 'card-' + account.id)}<span class="split-caption">${avatarStack(account)}${pending}</span></span><span class="card-foot"><span><small>Total</small><span class="row-total">${countMarkup(values.total, 'card-total-' + account.id)}</span></span>${icon('arrow-right', 'chev')}</span></button>`;
+  return `<button type="button" class="division-card" data-open="${escapeHtml(account.id)}"><span class="card-top">${kindTile(account.kind)}<span class="card-kind">${escapeHtml(info.label)}</span><span class="card-arrow" aria-hidden="true">${icon('arrow-up-right')}</span></span><span><span class="row-title">${escapeHtml(account.name)}</span><span class="row-meta">${divisionMeta(account)}</span></span><span class="division-split">${splitBarHtml(account, values, 'card-' + account.id)}<span class="split-caption">${avatarStack(account)}${pending}</span></span><span class="card-foot"><span><small>Total</small><span class="row-total">${countMarkup(values.total, 'card-total-' + account.id)}</span></span></span></button>`;
 }
 function renderRecentAccounts() {
   const element = document.getElementById('recent-accounts');
@@ -981,7 +993,7 @@ function renderAll() {
 }
 
 /* ---------- extrato ---------- */
-const LOGO_SVG = '<svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#245A43"/><circle cx="16" cy="16" r="8.5" fill="none" stroke="#fff" stroke-width="3"/><path d="M16 16V6a10 10 0 0 1 10 10z" fill="#F28B42"/></svg>';
+const LOGO_SVG = '<svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#245A43"/><circle cx="16" cy="16" r="8.5" fill="none" stroke="#fff" stroke-width="3"/><path d="M16 16V6a10 10 0 0 1 10 10z" fill="#C9F25C"/></svg>';
 function statementMarkup(account, nameFor, options = {}) {
   const values = C.calc(account);
   const { lines } = C.buildLines(account);
