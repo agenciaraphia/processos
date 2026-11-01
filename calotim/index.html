@@ -120,7 +120,7 @@
             <span class="command-trigger-text">Buscar ou executar</span>
             <kbd class="kbd" id="command-kbd"><span>Ctrl</span><span>K</span></kbd>
           </button>
-          <button class="button primary" id="new-account-top" type="button"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg><span>Nova divisão</span></button>
+          <button class="button secondary" id="new-account-top" type="button"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg><span>Nova divisão</span></button>
         </div>
       </header>
 
@@ -134,8 +134,9 @@
               <button class="button secondary" type="button" id="hero-add-person"><svg class="icon" aria-hidden="true"><use href="#i-user-plus"/></svg>Cadastrar amigo</button>
             </div>
           </div>
-          <div class="engine" aria-hidden="true">
-            <svg class="engine-svg" viewBox="0 0 420 240">
+          <div class="engine">
+            <button type="button" class="engine-open" id="engine-open" tabindex="-1" aria-hidden="true">
+            <svg class="engine-svg" id="engine-svg" viewBox="0 0 420 240" aria-hidden="true" focusable="false">
               <defs><clipPath id="engine-clip"><circle cx="20" cy="20" r="20"/></clipPath></defs>
               <path class="engine-receipt" d="M16 50A10 10 0 0 1 26 40H124A10 10 0 0 1 134 50V196l-7.375 6l-7.375-6l-7.375 6l-7.375-6l-7.375 6l-7.375-6l-7.375 6l-7.375-6l-7.375 6l-7.375-6l-7.375 6l-7.375-6l-7.375 6l-7.375-6l-7.375 6l-7.375-6Z"/>
               <rect class="engine-line" x="30" y="60" width="54" height="6" rx="3"/><rect class="engine-line" x="102" y="60" width="20" height="6" rx="3"/>
@@ -143,24 +144,17 @@
               <rect class="engine-line" x="30" y="96" width="62" height="6" rx="3"/><rect class="engine-line" x="102" y="96" width="20" height="6" rx="3"/>
               <rect class="engine-line" x="30" y="114" width="34" height="6" rx="3"/><rect class="engine-line" x="102" y="114" width="20" height="6" rx="3"/>
               <path class="engine-perf" d="M30 138H122"/>
-              <text class="engine-label" x="30" y="160">Total</text>
-              <text class="engine-total" x="30" y="182">R$ 240,00</text>
+              <text class="engine-label" id="engine-label" x="30" y="160">Total</text>
+              <text class="engine-total" id="engine-total" x="30" y="182">R$ 0,00</text>
               <path class="engine-wire" d="M134 120H174"/>
-              <g class="engine-branch" data-branch="0"><path class="engine-wire" d="M218 120C262 120 272 40 316 40"/><svg x="318" y="23" width="34" height="34" viewBox="0 0 40 40"><g clip-path="url(#engine-clip)" data-engine-avatar="festa"></g></svg><text class="engine-amount" x="360" y="44">R$ 72,00</text></g>
-              <g class="engine-branch" data-branch="1"><path class="engine-wire" d="M218 120C262 120 272 93 316 93"/><svg x="318" y="76" width="34" height="34" viewBox="0 0 40 40"><g clip-path="url(#engine-clip)" data-engine-avatar="raposa"></g></svg><text class="engine-amount" x="360" y="97">R$ 48,00</text></g>
-              <g class="engine-branch" data-branch="2"><path class="engine-wire" d="M218 120C262 120 272 146 316 146"/><svg x="318" y="129" width="34" height="34" viewBox="0 0 40 40"><g clip-path="url(#engine-clip)" data-engine-avatar="oculos"></g></svg><text class="engine-amount" x="360" y="150">R$ 66,00</text></g>
-              <g class="engine-branch" data-branch="3"><path class="engine-wire" d="M218 120C262 120 272 199 316 199"/><svg x="318" y="182" width="34" height="34" viewBox="0 0 40 40"><g clip-path="url(#engine-clip)" data-engine-avatar="coala"></g></svg><text class="engine-amount" x="360" y="203">R$ 54,00</text></g>
-              <g class="engine-pulses">
-                <circle r="3.5"><animateMotion dur="2.6s" begin="0s" repeatCount="indefinite" path="M134 120H218C262 120 272 40 316 40"/></circle>
-                <circle r="3.5"><animateMotion dur="2.6s" begin="-0.65s" repeatCount="indefinite" path="M134 120H218C262 120 272 93 316 93"/></circle>
-                <circle r="3.5"><animateMotion dur="2.6s" begin="-1.3s" repeatCount="indefinite" path="M134 120H218C262 120 272 146 316 146"/></circle>
-                <circle r="3.5"><animateMotion dur="2.6s" begin="-1.95s" repeatCount="indefinite" path="M134 120H218C262 120 272 199 316 199"/></circle>
-              </g>
+              <g id="engine-dynamic"></g>
               <circle class="engine-ring" cx="196" cy="120" r="22"/>
               <circle class="engine-hub" cx="196" cy="120" r="22"/>
               <circle cx="196" cy="120" r="9" fill="none" stroke="#fff" stroke-width="3"/>
               <path class="engine-slice" d="M197.2 118.8V109a10 10 0 0 1 9.8 9.8z" fill="#F28B42"/>
             </svg>
+            </button>
+            <p class="engine-caption" id="engine-caption"></p>
           </div>
         </div>
         <div class="section-head">
@@ -263,29 +257,32 @@
       </section>
 
       <section id="view-settings" class="view" aria-labelledby="page-title">
-        <div class="settings-grid">
-          <article class="panel settings-panel">
-            <span class="panel-icon" aria-hidden="true"><svg class="icon"><use href="#i-shield-check"/></svg></span>
-            <h2 class="panel-title">Onde ficam seus dados</h2>
-            <p>Esta versão salva tudo no navegador deste aparelho. Ainda não há login nem sincronização. A conexão com o banco online vem na próxima etapa.</p>
+        <div class="settings-list">
+          <div class="settings-row">
+            <div class="settings-text">
+              <h2 class="panel-title">Onde ficam seus dados</h2>
+              <p>Esta versão salva tudo no navegador deste aparelho. Ainda não há login nem sincronização. A conexão com o banco online vem na próxima etapa.</p>
+            </div>
             <div class="notice"><svg class="icon" aria-hidden="true"><use href="#i-info"/></svg><p>Não coloque dados bancários ou informações sensíveis. Exporte um backup de vez em quando enquanto usamos o armazenamento local.</p></div>
-          </article>
-          <article class="panel settings-panel">
-            <span class="panel-icon" aria-hidden="true"><svg class="icon"><use href="#i-hard-drive-download"/></svg></span>
-            <h2 class="panel-title">Backup</h2>
-            <p>Guarde um arquivo com suas divisões e amigos, ou traga de volta um backup salvo antes.</p>
+          </div>
+          <div class="settings-row">
+            <div class="settings-text">
+              <h2 class="panel-title">Backup</h2>
+              <p>Guarde um arquivo com suas divisões e amigos, ou traga de volta um backup salvo antes.</p>
+            </div>
             <div class="settings-actions">
               <button class="button secondary" id="export-backup" type="button"><svg class="icon" aria-hidden="true"><use href="#i-download"/></svg>Exportar backup</button>
               <button class="button secondary" id="import-backup" type="button"><svg class="icon" aria-hidden="true"><use href="#i-upload"/></svg>Importar backup</button>
               <input type="file" id="import-backup-file" accept="application/json,.json" hidden>
             </div>
-          </article>
-          <article class="panel settings-panel danger-zone">
-            <span class="panel-icon" aria-hidden="true"><svg class="icon"><use href="#i-trash-2"/></svg></span>
-            <h2 class="panel-title">Apagar dados deste navegador</h2>
-            <p>Remove todas as divisões e amigos salvos aqui. Não dá para desfazer.</p>
+          </div>
+          <div class="settings-row danger-zone">
+            <div class="settings-text">
+              <h2 class="panel-title">Apagar dados deste navegador</h2>
+              <p>Remove todas as divisões e amigos salvos aqui. Não dá para desfazer.</p>
+            </div>
             <div class="settings-actions"><button class="button danger-solid" id="clear-data" type="button"><svg class="icon" aria-hidden="true"><use href="#i-trash-2"/></svg>Apagar tudo</button></div>
-          </article>
+          </div>
         </div>
       </section>
     </main>

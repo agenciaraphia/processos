@@ -246,3 +246,16 @@ test('fuzz: partes somam o item, saldos zeram e acertos quitam tudo', () => {
     assert.ok(Number.isInteger(r.total));
   }
 });
+
+test('dados importados não alteram o protótipo de Object (link compartilhado e backup)', () => {
+  const hostile = JSON.parse('{"people":[{"id":"__proto__","name":"x"}],"accounts":[{"id":"a1","name":"A","people":[{"personId":"p1","weight":1},{"personId":"__proto__","weight":1}],"items":[{"id":"i1","name":"I","quantity":1,"unitPriceCents":100,"amountCents":100,"mode":"quantity","consumption":{"__proto__":{"polluted":1},"p1":1},"weights":{"constructor":2}}],"fees":[{"id":"f1","title":"T","mode":"percent","value":10,"participants":["__proto__","p1"]}],"memberPayments":[{"personId":"p1","amountCents":1,"allocations":{"__proto__":{"maximumSignificantDigits":1},"i1":{"__proto__":5,"p1":1}}}]}]}');
+  const state = C.normalizeState(hostile);
+  assert.equal(({}).maximumSignificantDigits, undefined);
+  assert.equal(({}).polluted, undefined);
+  assert.equal(state.people.length, 0);
+  assert.deepEqual(state.accounts[0].people.map(entry => entry.personId), ['p1']);
+  assert.deepEqual(state.accounts[0].fees[0].participants, ['p1']);
+  assert.equal(C.formatMoney(12345), C.formatMoney(12345.0));
+  assert.match(C.formatMoney(12345), /123,45/);
+});
+

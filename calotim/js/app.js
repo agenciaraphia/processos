@@ -171,6 +171,7 @@ function showView(name) {
   document.getElementById('page-title').textContent = TITLES[name] || 'Calotim';
   document.body.classList.toggle('readonly', name === 'share');
   document.body.classList.toggle('on-detail', name === 'detail');
+  document.getElementById('new-account-top').hidden = ['dashboard', 'accounts', 'share'].includes(name);
   updateFab();
   moveNavPill();
   if (previous !== name) {
@@ -413,7 +414,7 @@ function renderPicker(initial = false) {
   const search = normalizeSearch(picker.search);
   const shown = available.filter(item => !search || normalizeSearch(item.name).includes(search));
   const picked = picker.selected.filter(item => item.existing).length;
-  document.getElementById('friend-summary').textContent = available.length ? `Escolher entre os amigos cadastrados (${picked} de ${available.length})` : 'Você ainda não tem amigos cadastrados';
+  document.getElementById('friend-summary').textContent = available.length ? `Escolher entre os amigos cadastrados (${picked} de ${available.length})` : picker.selected.length ? 'Os amigos novos ficam salvos na sua agenda' : 'Você ainda não tem amigos cadastrados';
   document.getElementById('friend-search').hidden = available.length <= 6;
   document.getElementById('friend-options').innerHTML = shown.length
     ? shown.map(item => `<label class="check-option friend-option"><input type="checkbox" data-picker-friend="${escapeHtml(item.id)}" ${picker.selected.some(sel => sel.personId === item.id) ? 'checked' : ''}>${avatarHtml(item)}<span>${escapeHtml(item.name)}</span>${coupleTag(item.weight)}</label>`).join('')
@@ -716,6 +717,13 @@ function feeSummaryText(fee) {
 function menuHtml(entries) {
   return `<details class="menu"><summary aria-label="Mais ações">${icon('ellipsis')}</summary><div class="menu-list">${entries.map(entry => entry.sep ? '<span class="menu-sep" aria-hidden="true"></span>' : `<button type="button" class="menu-item${entry.danger ? ' danger-text' : ''}" ${entry.attr}>${icon(entry.icon)}${entry.label}</button>`).join('')}</div></details>`;
 }
+function consumersStack(account, ids, max = 3) {
+  const list = [...new Set(ids)].filter(Boolean);
+  if (!list.length) return `<span class="line-tile" aria-hidden="true">${icon('receipt')}</span>`;
+  const shown = list.slice(0, list.length > max ? max - 1 : max).map(personId => avatarHtml(memberView(account, personId)));
+  const more = list.length > max ? `<span class="avatar-more">+${list.length - (max - 1)}</span>` : '';
+  return `<span class="line-avatars" aria-hidden="true">${shown.join('')}${more}</span>`;
+}
 function rowClass(lineId) { return lineId === flashLineId ? ' is-new' : ''; }
 
 function renderItemsPanel(account) {
@@ -726,10 +734,11 @@ function renderItemsPanel(account) {
   filter.innerHTML = '<option value="">Todas as categorias</option>' + usedCategories.map(category => `<option value="${escapeHtml(category)}" ${category === categoryFilter ? 'selected' : ''}>${escapeHtml(category)}</option>`).join('');
   const visibleItems = account.items.filter(item => !categoryFilter || item.category === categoryFilter);
   document.getElementById('expense-list').innerHTML = visibleItems.length ? visibleItems.map(item => {
-    const count = new Set(item.mode === 'quantity' ? Object.keys(item.consumption) : item.consumers).size;
-    const pill = item.category ? `<span class="tag tag-neutral">${escapeHtml(item.category)}</span>` : '';
+    const consumerIds = item.mode === 'quantity' ? Object.keys(item.consumption) : item.consumers;
+    const count = new Set(consumerIds).size;
+    const pill = item.category ? `<span class="tag tag-neutral">${icon(CATEGORY_ICONS[item.category] || 'tag')}${escapeHtml(item.category)}</span>` : '';
     const key = escapeHtml(item.id);
-    return `<div class="line-row${rowClass(item.id)}"><span class="line-tile" aria-hidden="true">${icon(CATEGORY_ICONS[item.category] || 'receipt')}</span><div class="line-main"><strong>${escapeHtml(item.name)} ${pill}</strong><span class="line-sub"><span class="num">${escapeHtml(C.formatQuantity(item.quantity))} × ${money(item.unitPriceCents)}</span><span>${plural(count, 'pessoa', 'pessoas')}</span>${lineStatus(account, item.id, item.payerId)}</span></div><span class="line-value">${money(item.amountCents)}</span>${menuHtml([
+    return `<div class="line-row${rowClass(item.id)}">${consumersStack(account, consumerIds)}<div class="line-main"><strong>${escapeHtml(item.name)} ${pill}</strong><span class="line-sub"><span class="num">${escapeHtml(C.formatQuantity(item.quantity))} × ${money(item.unitPriceCents)}</span><span>${plural(count, 'pessoa', 'pessoas')}</span>${lineStatus(account, item.id, item.payerId)}</span></div><span class="line-value">${money(item.amountCents)}</span>${menuHtml([
       { label: 'Editar', icon: 'pencil', attr: `data-edit-item="${key}"` }, { label: 'Duplicar', icon: 'copy', attr: `data-duplicate-item="${key}"` }, { sep: true }, { label: 'Excluir', icon: 'trash-2', attr: `data-delete-item="${key}"`, danger: true }])}</div>`;
   }).join('') : account.items.length
     ? emptyState({ art: 'list-filter', title: 'Nenhum item nesta categoria', text: 'Escolha outra categoria no filtro.', compact: true })
@@ -756,8 +765,11 @@ function renderPeoplePanel(account, values) {
       if (person(entry.personId)) actions.push({ label: 'Editar amigo', icon: 'pencil', attr: `data-edit-person="${key}"` });
       actions.push({ sep: true }, { label: 'Remover da divisão', icon: 'user-minus', attr: `data-remove-account-person="${key}"`, danger: true });
     }
-    const sub = pending > 0 ? `<span class="pending-text">${icon('clock')}Falta pagar ${money(pending)}</span>` : `<span>${archived ? 'Não participa de novos itens' : 'Sem pendência no local'}</span>`;
-    return `<div class="line-row person-line${archived ? ' archived' : ''}">${avatarHtml(view)}<div class="line-main"><strong>${escapeHtml(view.name)}${coupleTag(entry.weight)}</strong><span class="line-sub">${sub}</span></div><span class="line-value">${money(values.shareTotals[entry.personId] || 0)}<small>itens e taxas</small></span>${menuHtml(actions)}</div>`;
+    const itemsPart = values.itemShares[entry.personId] || 0;
+    const feesPart = values.feeShares[entry.personId] || 0;
+    const breakdown = `<span class="num">${money(itemsPart)} em itens${feesPart ? ` ${feesPart < 0 ? '−' : '+'} ${money(Math.abs(feesPart))} ${feesPart < 0 ? 'de desconto' : 'de taxas'}` : ''}</span>`;
+    const sub = `${pending > 0 ? `<span class="pending-text">${icon('clock')}Falta pagar ${money(pending)}</span>` : `<span>${archived ? 'Não participa de novos itens' : 'Sem pendência no local'}</span>`}${breakdown}`;
+    return `<div class="line-row person-line${archived ? ' archived' : ''}">${avatarHtml(view)}<div class="line-main"><strong>${escapeHtml(view.name)}${coupleTag(entry.weight)}</strong><span class="line-sub">${sub}</span></div><span class="line-value">${money(values.shareTotals[entry.personId] || 0)}</span>${menuHtml(actions)}</div>`;
   };
   const activeMembers = account.people.filter(entry => !entry.removed);
   const removedMembers = account.people.filter(entry => entry.removed);
@@ -767,7 +779,7 @@ function renderSettlePanel(account, values) {
   const unpaidOf = personId => Math.max(0, values.unpaidShares[personId] || 0);
   const unpaidRows = account.people.map(entry => ({ personId: entry.personId, amount: unpaidOf(entry.personId) })).filter(item => item.amount > 0);
   const unpaidMarkup = values.unpaidTotal > 0
-    ? `<div class="settle-block"><h3 class="settle-title">${icon('store')}Pendente com o estabelecimento</h3><p class="settle-copy">Esses valores ainda não foram pagos. Selecionar os produtos não significa que a comanda esteja quitada.</p><div class="line-list">${unpaidRows.map(item => `<div class="line-row person-line">${avatarHtml(memberView(account, item.personId))}<div class="line-main"><strong>${escapeHtml(lookupName(item.personId, account))}</strong><span class="line-sub">Itens e taxas pendentes</span></div><span class="line-value">${money(item.amount)}</span><span></span></div>`).join('')}</div></div>`
+    ? `<div class="settle-block"><h3 class="settle-title">${icon('store')}Pendente com o estabelecimento</h3><p class="settle-copy">Esses valores ainda não foram pagos. Selecionar os produtos não significa que a comanda esteja quitada.</p><div class="line-list">${unpaidRows.map(item => `<div class="line-row person-line">${avatarHtml(memberView(account, item.personId))}<div class="line-main"><strong>${escapeHtml(lookupName(item.personId, account))}</strong><span class="line-sub">de uma parte de ${money(values.shareTotals[item.personId] || 0)}</span></div><span class="line-value">${money(item.amount)}</span><span></span></div>`).join('')}</div></div>`
     : `<div class="settle-block">${emptyState({ art: 'circle-check', title: 'Nada pendente com o estabelecimento', text: account.items.length ? 'Todos os lançamentos estão marcados como pagos.' : 'Os valores aparecem aqui assim que você lançar itens.', compact: true })}</div>`;
   const transfers = C.suggestSettlements(values.balances);
   const transferMarkup = `<div class="settle-block"><h3 class="settle-title">${icon('arrow-right-left')}Acerto entre participantes</h3>${transfers.length
@@ -850,12 +862,13 @@ function openAccount(accountId) {
   document.getElementById('detail-kind-icon').className = `kind-tile kind-tile-lg ${info.css}`;
   document.getElementById('detail-kind-icon').innerHTML = icon(info.icon);
   const created = account.createdAt ? new Date(account.createdAt) : null;
+  const values = C.calc(account);
   document.getElementById('detail-subtitle').innerHTML = [
+    `<span>${icon('receipt')}Total ${money(values.total)}</span>`,
     `<span>${escapeHtml(info.label)}</span>`,
     account.place ? `<span>${icon('map-pin')}${escapeHtml(account.place)}</span>` : '',
     created && !Number.isNaN(created.getTime()) ? `<span>${icon('calendar-days')}${escapeHtml(created.toLocaleDateString('pt-BR'))}</span>` : ''
   ].join('');
-  const values = C.calc(account);
   const { lines } = C.buildLines(account);
   const lineTotals = new Map(lines.map(line => [line.id, line.total]));
   renderItemsPanel(account);
@@ -913,6 +926,39 @@ function renderPeople() {
     return `<div class="person-card">${avatarHtml(participant, 'avatar-lg')}<div class="person-card-main"><strong>${escapeHtml(participant.name)}</strong><span class="row-meta">${participant.weight > 1 ? `<span class="tag tag-couple">${icon('heart')}Casal</span>` : '<span class="tag tag-neutral">Individual</span>'}<span>${participant.weight > 1 ? 'Conta como 2 · ' : ''}${divisions ? `Em ${plural(divisions, 'divisão', 'divisões')}` : 'Fora das divisões'}</span></span></div>${menuHtml([{ label: 'Editar', icon: 'pencil', attr: `data-edit-person="${key}"` }, { sep: true }, { label: 'Excluir cadastro', icon: 'trash-2', attr: `data-delete-person="${key}"`, danger: true }])}</div>`;
   }).join('') : emptyState({ art: 'search', title: 'Nenhum amigo encontrado', text: 'Confira o nome digitado.', compact: true });
 }
+// Ilustração do painel inicial: mostra a divisão mais recente com valores; sem divisões, um exemplo rotulado.
+const ENGINE_SAMPLE = [['festa', 7200], ['raposa', 4800], ['oculos', 6600], ['coala', 5400]];
+function renderEngine() {
+  const button = document.getElementById('engine-open');
+  const caption = document.getElementById('engine-caption');
+  const latest = state.accounts.find(account => splitParts(account, C.calc(account)).length);
+  let total, parts, extra = 0;
+  if (latest) {
+    const values = C.calc(latest);
+    const ranked = splitParts(latest, values).sort((a, b) => b[1] - a[1]);
+    extra = Math.max(0, ranked.length - 4);
+    parts = ranked.slice(0, 4).map(([personId, amount]) => ({ avatar: memberView(latest, personId).avatar, amount }));
+    total = values.total;
+    button.dataset.open = latest.id;
+    button.removeAttribute('tabindex'); button.removeAttribute('aria-hidden');
+    button.setAttribute('aria-label', `Abrir a divisão ${latest.name}`);
+    caption.innerHTML = `${icon('receipt-text')}<span>Mais recente: <strong>${escapeHtml(latest.name)}</strong>${extra ? ` · +${plural(extra, 'pessoa', 'pessoas')}` : ''}</span>`;
+  } else {
+    parts = ENGINE_SAMPLE.map(([avatar, amount]) => ({ avatar, amount }));
+    total = parts.reduce((sum, item) => sum + item.amount, 0);
+    delete button.dataset.open;
+    button.setAttribute('tabindex', '-1'); button.setAttribute('aria-hidden', 'true'); button.removeAttribute('aria-label');
+    caption.innerHTML = '<span class="engine-sample">Exemplo</span><span>Assim o Calotim divide uma conta</span>';
+  }
+  const count = parts.length;
+  const ys = parts.map((_, index) => Math.round(120 + (index - (count - 1) / 2) * 53));
+  const branch = y => `M218 120C262 120 272 ${y} 316 ${y}`;
+  document.getElementById('engine-dynamic').innerHTML = parts.map((part, index) => `<g class="engine-branch"><path class="engine-wire" d="${branch(ys[index])}"/><svg x="318" y="${ys[index] - 17}" width="34" height="34" viewBox="0 0 40 40"><g clip-path="url(#engine-clip)">${A.art(part.avatar)}</g></svg><text class="engine-amount" x="360" y="${ys[index] + 4}">${money(part.amount)}</text></g>`).join('')
+    + `<g class="engine-pulses">${ys.map((y, index) => `<circle r="3.5"><animateMotion dur="2.6s" begin="${(-index * 2.6 / count).toFixed(2)}s" repeatCount="indefinite" path="M134 120H${branch(y).slice(1)}"/></circle>`).join('')}</g>`;
+  document.getElementById('engine-label').textContent = latest ? 'Total' : 'Total do exemplo';
+  animateNumber(document.getElementById('engine-total'), total, 'engine-total', money);
+  if (reduceMotion.matches) document.getElementById('engine-svg').pauseAnimations?.();
+}
 function renderDashboard() {
   const total = state.accounts.reduce((sum, account) => sum + C.calc(account).total, 0);
   const summary = document.getElementById('hero-summary');
@@ -923,6 +969,7 @@ function renderDashboard() {
     summary.innerHTML = `<strong class="hl">${countMarkup(total, 'dash-total')}</strong> organizados em <strong>${countMarkup(accounts, 'dash-accounts', 'int')}</strong> ${accounts === 1 ? 'divisão' : 'divisões'}, com <strong>${countMarkup(people, 'dash-people', 'int')}</strong> ${people === 1 ? 'amigo' : 'amigos'} na sua agenda.`;
   }
   renderRecentAccounts();
+  renderEngine();
 }
 function renderAll() {
   renderDashboard(); renderAllAccounts(); renderPeople();
@@ -1033,6 +1080,7 @@ function renderSharedStatement(payload) {
   sharedAccount = account;
   sharedNameLookup = nameFor;
   document.getElementById('shared-statement-content').innerHTML = statementMarkup(account, nameFor);
+  document.getElementById('shared-export-statement').hidden = false;
   showView('share');
 }
 function handleSharedLink() {
@@ -1040,6 +1088,8 @@ function handleSharedLink() {
   if (!match) return false;
   try { renderSharedStatement(decodeSharePayload(match[1])); return true; }
   catch {
+    sharedAccount = null;
+    document.getElementById('shared-export-statement').hidden = true;
     document.getElementById('shared-statement-content').innerHTML = emptyState({ art: 'link', tone: 'orange', title: 'Não foi possível abrir este extrato', text: 'O link pode estar incompleto ou inválido. Peça um novo link para quem enviou.' });
     showView('share'); return true;
   }
@@ -1305,13 +1355,12 @@ toastElement.addEventListener('mouseenter', pauseToast);
 toastElement.addEventListener('mouseleave', resumeToast);
 document.addEventListener('visibilitychange', () => { if (document.hidden) pauseToast(); else resumeToast(); });
 window.addEventListener('resize', () => { moveNavPill(); moveTabInk(); });
+window.addEventListener('hashchange', () => { if (!handleSharedLink() && currentView === 'share') location.reload(); });
 compactLayout.addEventListener?.('change', () => { setLiveOpen(false); moveNavPill(); moveTabInk(); });
 if (document.fonts?.ready) document.fonts.ready.then(() => { moveNavPill(); moveTabInk(); });
 
 /* ---------- início ---------- */
 (function initChrome() {
-  document.querySelectorAll('[data-engine-avatar]').forEach(group => { group.innerHTML = A.art(group.dataset.engineAvatar); });
-  if (reduceMotion.matches) document.querySelector('.engine-svg')?.pauseAnimations?.();
   if (/Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent)) {
     document.getElementById('command-kbd').innerHTML = `<span>${icon('command')}</span><span>K</span>`;
   }

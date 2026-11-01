@@ -342,6 +342,9 @@
 
   /* ---------- normalização e migração (v1 em reais para v2 em centavos) ---------- */
   const text = (value, fallback = '') => (typeof value === 'string' ? value : fallback);
+  // Ids viram chaves de objetos nos cálculos. Estas chaves alterariam o protótipo e são recusadas.
+  const UNSAFE_KEYS = new Set(['__proto__', 'constructor', 'prototype']);
+  const safeKey = value => typeof value === 'string' && !UNSAFE_KEYS.has(value);
   const positive = (value, fallback = 1) => (Number(value) > 0 ? Number(value) : fallback);
   // Peso de uma pessoa na divisão. Só existem duas opções: pessoa sozinha (1) ou casal (2).
   // Dados antigos com outras cotas (meia cota, 3 cotas...) são aproximados para o valor mais próximo.
@@ -353,18 +356,18 @@
     const unitPriceCents = raw.unitPriceCents !== undefined ? Math.round(Number(raw.unitPriceCents) || 0) : legacyCents(raw.unitPrice);
     const amountCents = raw.amountCents !== undefined ? Math.round(Number(raw.amountCents) || 0) : legacyCents(raw.amount);
     const mode = MODES.includes(raw.mode) ? raw.mode : 'selected';
-    let consumers = Array.isArray(raw.consumers) ? raw.consumers.filter(value => typeof value === 'string') : [];
+    let consumers = Array.isArray(raw.consumers) ? raw.consumers.filter(safeKey) : [];
     if (mode === 'manual' && !consumers.length) consumers = activeMembers(account).map(entry => entry.personId);
     const consumption = {};
-    Object.entries(raw.consumption && typeof raw.consumption === 'object' ? raw.consumption : {}).forEach(([personId, value]) => { if (Number(value) > 0) consumption[personId] = Number(value); });
+    Object.entries(raw.consumption && typeof raw.consumption === 'object' ? raw.consumption : {}).forEach(([personId, value]) => { if (safeKey(personId) && Number(value) > 0) consumption[personId] = Number(value); });
     const weights = {};
-    if (raw.weights && typeof raw.weights === 'object') Object.entries(raw.weights).forEach(([personId, value]) => { if (Number(value) > 0) weights[personId] = Number(value); });
+    if (raw.weights && typeof raw.weights === 'object') Object.entries(raw.weights).forEach(([personId, value]) => { if (safeKey(personId) && Number(value) > 0) weights[personId] = Number(value); });
     if (mode === 'weighted') consumers.forEach(personId => {
       if (!(weights[personId] > 0)) weights[personId] = weightOf({}, account.people.find(entry => entry.personId === personId), personId);
     });
     return {
       id: text(raw.id) || newId(), name: text(raw.name, 'Item'), category: CATEGORIES.includes(raw.category) ? raw.category : '',
-      quantity, unitPriceCents, amountCents, payerId: typeof raw.payerId === 'string' && raw.payerId ? raw.payerId : null,
+      quantity, unitPriceCents, amountCents, payerId: safeKey(raw.payerId) && raw.payerId ? raw.payerId : null,
       mode, consumers, consumption, weights, createdAt: text(raw.createdAt, new Date().toISOString())
     };
   }
@@ -372,19 +375,20 @@
     if (!raw || typeof raw !== 'object') return null;
     const fee = {
       id: text(raw.id) || newId(), title: text(raw.title, 'Taxa'), kind: raw.kind === 'discount' ? 'discount' : 'fee',
-      mode: raw.mode === 'fixed' ? 'fixed' : 'percent', participants: Array.isArray(raw.participants) ? raw.participants.filter(value => typeof value === 'string') : [],
-      payerId: typeof raw.payerId === 'string' && raw.payerId ? raw.payerId : null, createdAt: text(raw.createdAt, new Date().toISOString())
+      mode: raw.mode === 'fixed' ? 'fixed' : 'percent', participants: Array.isArray(raw.participants) ? raw.participants.filter(safeKey) : [],
+      payerId: safeKey(raw.payerId) && raw.payerId ? raw.payerId : null, createdAt: text(raw.createdAt, new Date().toISOString())
     };
     if (fee.mode === 'percent') fee.value = Math.min(100, positive(raw.value, 0)); else fee.amountCents = Math.max(0, Math.round(Number(raw.amountCents) || 0));
     return fee;
   }
   function normalizePayment(raw) {
-    if (!raw || typeof raw !== 'object' || typeof raw.personId !== 'string') return null;
+    if (!raw || typeof raw !== 'object' || !safeKey(raw.personId)) return null;
     const legacy = raw.amountCents === undefined;
     const allocations = {};
     Object.entries(raw.allocations && typeof raw.allocations === 'object' ? raw.allocations : {}).forEach(([lineId, byPerson]) => {
-      if (!byPerson || typeof byPerson !== 'object') return;
+      if (!safeKey(lineId) || !byPerson || typeof byPerson !== 'object') return;
       Object.entries(byPerson).forEach(([personId, value]) => {
+        if (!safeKey(personId)) return;
         const cents = legacy ? legacyCents(value) : Math.round(Number(value) || 0);
         if (cents > 0) { allocations[lineId] = allocations[lineId] || {}; allocations[lineId][personId] = cents; }
       });
@@ -399,7 +403,7 @@
       createdAt: text(raw.createdAt, new Date().toISOString()), people: [], items: [], fees: [], memberPayments: []
     };
     (Array.isArray(raw.people) ? raw.people : []).forEach(entry => {
-      if (!entry || typeof entry.personId !== 'string') return;
+      if (!entry || !safeKey(entry.personId)) return;
       const clean = { personId: entry.personId, weight: coupleWeight(entry.weight) };
       if (entry.removed) { clean.removed = true; clean.removedAt = text(entry.removedAt); }
       if (entry.displayName) clean.displayName = text(entry.displayName);
@@ -415,7 +419,7 @@
     const source = raw && typeof raw === 'object' ? raw : {};
     const state = { version: STATE_VERSION, people: [], accounts: [] };
     (Array.isArray(source.people) ? source.people : []).forEach(person => {
-      if (!person || typeof person.id !== 'string' || typeof person.name !== 'string') return;
+      if (!person || !safeKey(person.id) || typeof person.name !== 'string') return;
       state.people.push({ id: person.id, name: person.name, avatar: text(person.avatar, 'sorriso') || 'sorriso', weight: coupleWeight(person.weight), createdAt: text(person.createdAt, new Date().toISOString()) });
     });
     state.accounts = (Array.isArray(source.accounts) ? source.accounts : []).map(normalizeAccount).filter(Boolean);
