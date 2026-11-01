@@ -99,7 +99,7 @@ a { color: var(--green); text-underline-offset: 3px; }
 .kbd > span { display: inline-flex; align-items: center; padding: 4px 7px; border-radius: 8px; background: var(--surface-2); border: 1px solid var(--line); color: var(--muted); }
 .kbd > span .icon { width: 11px; height: 11px; }
 kbd.kbd .icon { width: 12px; height: 12px; }
-.hl-mark { background: var(--lime); color: var(--lime-ink); padding: 0 .16em; border-radius: 10px; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.hl-mark { background: var(--lime); color: var(--lime-ink); padding: 0 .1em; margin-left: .1em; border-radius: 10px; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
 
 /* ===================== Shell ===================== */
 .app-shell { min-height: 100vh; min-height: 100dvh; display: flex; }
@@ -245,7 +245,7 @@ kbd.kbd .icon { width: 12px; height: 12px; }
   font: 800 170px/1 var(--font-display); letter-spacing: -0.07em; color: rgba(201, 242, 92, .05); white-space: nowrap;
 }
 .hero-copy { position: relative; max-width: 540px; }
-.hero-title { font-size: 44px; font-weight: 800; line-height: 1.06; letter-spacing: -0.045em; color: var(--on-dark); }
+.hero-title { font-size: 44px; font-weight: 800; line-height: 1.16; letter-spacing: -0.045em; color: var(--on-dark); }
 .hero-summary { margin-top: 16px; font-size: 16px; line-height: 1.6; color: var(--on-dark-2); max-width: 46ch; }
 .hero-summary strong { color: var(--on-dark); font-weight: 700; font-variant-numeric: tabular-nums; }
 .hero-summary .hl { color: var(--lime); }
