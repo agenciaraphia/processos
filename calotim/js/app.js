@@ -779,7 +779,7 @@ function renderSettlePanel(account, values) {
   const unpaidOf = personId => Math.max(0, values.unpaidShares[personId] || 0);
   const unpaidRows = account.people.map(entry => ({ personId: entry.personId, amount: unpaidOf(entry.personId) })).filter(item => item.amount > 0);
   const unpaidMarkup = values.unpaidTotal > 0
-    ? `<div class="settle-block"><h3 class="settle-title">${icon('store')}Pendente com o estabelecimento</h3><p class="settle-copy">Esses valores ainda não foram pagos. Selecionar os produtos não significa que a comanda esteja quitada.</p><div class="line-list">${unpaidRows.map(item => `<div class="line-row person-line">${avatarHtml(memberView(account, item.personId))}<div class="line-main"><strong>${escapeHtml(lookupName(item.personId, account))}</strong><span class="line-sub">de uma parte de ${money(values.shareTotals[item.personId] || 0)}</span></div><span class="line-value">${money(item.amount)}</span><span></span></div>`).join('')}</div></div>`
+    ? `<div class="settle-block"><h3 class="settle-title">${icon('store')}Pendente com o estabelecimento</h3><p class="settle-copy">Esses valores ainda não foram pagos. Selecionar os produtos não significa que a comanda esteja quitada.</p><div class="line-list">${unpaidRows.map(item => `<div class="line-row person-line">${avatarHtml(memberView(account, item.personId))}<div class="line-main"><strong>${escapeHtml(lookupName(item.personId, account))}</strong><span class="line-sub">Parte total: ${money(values.shareTotals[item.personId] || 0)}</span></div><span class="line-value">${money(item.amount)}</span><span></span></div>`).join('')}</div></div>`
     : `<div class="settle-block">${emptyState({ art: 'circle-check', title: 'Nada pendente com o estabelecimento', text: account.items.length ? 'Todos os lançamentos estão marcados como pagos.' : 'Os valores aparecem aqui assim que você lançar itens.', compact: true })}</div>`;
   const transfers = C.suggestSettlements(values.balances);
   const transferMarkup = `<div class="settle-block"><h3 class="settle-title">${icon('arrow-right-left')}Acerto entre participantes</h3>${transfers.length
@@ -944,7 +944,9 @@ function renderEngine() {
     button.setAttribute('aria-label', `Abrir a divisão ${latest.name}`);
     caption.innerHTML = `${icon('receipt-text')}<span>Mais recente: <strong>${escapeHtml(latest.name)}</strong>${extra ? ` · +${plural(extra, 'pessoa', 'pessoas')}` : ''}</span>`;
   } else {
-    parts = ENGINE_SAMPLE.map(([avatar, amount]) => ({ avatar, amount }));
+    const used = new Set(state.people.map(item => A.resolve(item.avatar)));
+    const free = A.list.map(item => item.key).filter(key => !used.has(key));
+    parts = ENGINE_SAMPLE.map(([avatar, amount], index) => ({ avatar: used.has(avatar) ? (free[index] || avatar) : avatar, amount }));
     total = parts.reduce((sum, item) => sum + item.amount, 0);
     delete button.dataset.open;
     button.setAttribute('tabindex', '-1'); button.setAttribute('aria-hidden', 'true'); button.removeAttribute('aria-label');
