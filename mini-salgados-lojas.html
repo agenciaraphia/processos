@@ -209,11 +209,11 @@ button { font: inherit; color: inherit; background: none; border: 0; }
   box-shadow: 0 16px 28px -18px rgba(92, 0, 11, .55);
   overflow: hidden;
 }
-.band-track { display: flex; width: max-content; animation: marquee 46s linear infinite; }
+.band-track { display: flex; width: max-content; animation: marquee 50s linear infinite; }
 .band-group { display: flex; align-items: center; gap: 24px; padding-right: 24px; }
 .band-item { font: 400 clamp(1.2rem, .9rem + 1.6vw, 2.1rem)/1 var(--font-display); color: var(--brasa); text-transform: uppercase; white-space: nowrap; }
 .band-ico { width: clamp(34px, 3.4vw, 50px); height: auto; filter: drop-shadow(0 4px 4px rgba(92, 0, 11, .25)); }
-.band-spark { width: clamp(18px, 1.8vw, 26px); height: auto; color: var(--red); }
+.band-brand { color: var(--red); text-shadow: .035em .035em 0 var(--brasa), -.035em .035em 0 var(--brasa), .035em -.035em 0 var(--brasa), -.035em -.035em 0 var(--brasa); }
 
 /* =========================================================
    LOJAS
@@ -742,18 +742,16 @@ button { font: inherit; color: inherit; background: none; border: 0; }
   <div class="band">
     <div class="band-track">
       <div class="band-group">
-        <span class="band-item">Mini coxinha</span><svg class="band-ico" viewBox="0 0 200 230"><use href="#s-coxinha"/></svg>
-        <span class="band-item">Mini bolinha de queijo</span><svg class="band-ico" viewBox="0 0 170 170"><use href="#s-bolinha"/></svg>
-        <span class="band-item">Mini travesseirinho</span><svg class="band-ico" viewBox="0 0 200 170"><use href="#s-trav"/></svg>
-        <span class="band-item">Mini churros</span><svg class="band-ico" viewBox="0 0 180 210"><use href="#s-churros"/></svg>
-        <span class="band-item">Os melhores salgadinhos do mundo</span><svg class="band-spark" viewBox="0 0 24 24"><use href="#s-spark"/></svg>
+        <span class="band-item">Os melhores salgadinhos do mundo, perto de você</span><svg class="band-ico" viewBox="0 0 200 230"><use href="#s-coxinha"/></svg>
+        <span class="band-item band-brand">Mini Salgados</span><svg class="band-ico" viewBox="0 0 170 170"><use href="#s-bolinha"/></svg>
+        <span class="band-item">Os melhores salgadinhos do mundo, perto de você</span><svg class="band-ico" viewBox="0 0 200 170"><use href="#s-trav"/></svg>
+        <span class="band-item band-brand">Mini Salgados</span><svg class="band-ico" viewBox="0 0 180 210"><use href="#s-churros"/></svg>
       </div>
       <div class="band-group">
-        <span class="band-item">Mini coxinha</span><svg class="band-ico" viewBox="0 0 200 230"><use href="#s-coxinha"/></svg>
-        <span class="band-item">Mini bolinha de queijo</span><svg class="band-ico" viewBox="0 0 170 170"><use href="#s-bolinha"/></svg>
-        <span class="band-item">Mini travesseirinho</span><svg class="band-ico" viewBox="0 0 200 170"><use href="#s-trav"/></svg>
-        <span class="band-item">Mini churros</span><svg class="band-ico" viewBox="0 0 180 210"><use href="#s-churros"/></svg>
-        <span class="band-item">Os melhores salgadinhos do mundo</span><svg class="band-spark" viewBox="0 0 24 24"><use href="#s-spark"/></svg>
+        <span class="band-item">Os melhores salgadinhos do mundo, perto de você</span><svg class="band-ico" viewBox="0 0 200 230"><use href="#s-coxinha"/></svg>
+        <span class="band-item band-brand">Mini Salgados</span><svg class="band-ico" viewBox="0 0 170 170"><use href="#s-bolinha"/></svg>
+        <span class="band-item">Os melhores salgadinhos do mundo, perto de você</span><svg class="band-ico" viewBox="0 0 200 170"><use href="#s-trav"/></svg>
+        <span class="band-item band-brand">Mini Salgados</span><svg class="band-ico" viewBox="0 0 180 210"><use href="#s-churros"/></svg>
       </div>
     </div>
   </div>
@@ -878,21 +876,21 @@ button { font: inherit; color: inherit; background: none; border: 0; }
      fab: true marca a unidade como Fábrica.
      ========================================================== */
   var stores = [
-    { name: "São Cristóvão", address: "Av. Castelo de Castro, 692 – São Cristóvão, Fortaleza – CE", phone: "5585989265921", maps: "https://maps.app.goo.gl/AGnzB5z7WhzXiAEx6", cardapio: "https://app.cardapioweb.com/mini_salgados_loja", lat: null, lng: null, fab: false },
-    { name: "Curió", address: "Rua Nelson Coelho, 253 – Curió, Fortaleza – CE", phone: "5585982184973", maps: "https://maps.app.goo.gl/M97ZfKxUVHHHA3XMA", cardapio: "https://app.cardapioweb.com/mini_salgados_curio", lat: null, lng: null, fab: false },
-    { name: "Tancredo", address: "Rua Castro de Alencar, 1231 – Tancredo Neves, Fortaleza – CE", phone: "5585981361490", maps: "https://maps.app.goo.gl/jAxDPrgaQrRH3kj96", cardapio: "https://app.cardapioweb.com/mini_salgados_tancredo", lat: null, lng: null, fab: false },
-    { name: "José Walter", address: "Av. João Araújo Lima, 1230 – José Walter, Fortaleza – CE", phone: "5585989882906", maps: "https://maps.app.goo.gl/eahWkHyeAVzY9KZt6", cardapio: "https://app.cardapioweb.com/mini_salgados__jose_walter", lat: null, lng: null, fab: false },
-    { name: "Parque Santana", address: "Rua Um, 1364 – Mondubim, Fortaleza – CE", phone: "5585996736293", maps: "https://maps.app.goo.gl/TA8h8gvWre3mFojC8", cardapio: "https://app.cardapioweb.com/mini_salgados_parque_santana", lat: null, lng: null, fab: false },
-    { name: "Vicente Pinzon", address: "Av. Dolor Barreira, 197 – Vicente Pinzon, Fortaleza – CE", phone: "5585989620577", maps: "https://maps.app.goo.gl/5DeVcBoH3FAyBhwV7", cardapio: "https://app.cardapioweb.com/mini_salgados_vp", lat: null, lng: null, fab: false },
-    { name: "Bom Jardim", address: "Rua Maria Júlia, 840 – Bom Jardim, Fortaleza – CE", phone: "5585985634807", maps: "https://maps.app.goo.gl/FpwBvHAzTYAhKQzQ6", cardapio: "https://app.cardapioweb.com/mini_salgados__bom_jardim", lat: null, lng: null, fab: false },
-    { name: "Parque Dom Pedro", address: "Av. I, 686 – Parque Dom Pedro, Fortaleza – CE", phone: "5585992139017", maps: "https://maps.app.goo.gl/JJWqd5BtN8v3hcU1A", cardapio: "https://app.cardapioweb.com/minisalgados_pqdompedro", lat: null, lng: null, fab: false },
-    { name: "Conjunto Ceará", address: "Av. Ministro Albuquerque Lima, 393 – Conj. Ceará, Fortaleza – CE", phone: "5585999668748", maps: "https://maps.app.goo.gl/iybnr7SdKQsvSiUy9", cardapio: "https://app.cardapioweb.com/mini_salgados__conjunto_ceara2", lat: null, lng: null, fab: false },
-    { name: "Jereissati", address: "Av. XVII – Sen. Carlos Jereissati, Pacatuba – CE", phone: "5585997064655", maps: "https://maps.app.goo.gl/JREyfDZNuNaEucPv8", cardapio: "https://app.cardapioweb.com/mini_salgados_jereissati", lat: null, lng: null, fab: false },
-    { name: "Pajuçara", address: "Rua Raimundo José da Silva, 1160 – Jardim Paraíso, Maracanaú – CE", phone: "5585982151599", maps: "https://maps.app.goo.gl/o6zXAZEDKyRZ5PTA8", cardapio: "https://app.cardapioweb.com/mini_salgados__pajucara", lat: null, lng: null, fab: false },
-    { name: "Pirambu", address: "Av. Dr. Theberge, 699 – Cristo Redentor, Fortaleza – CE", phone: "5585984461607", maps: "https://maps.google.com/?q=Av.+Dr.+Theberge,+699+Cristo+Redentor+Fortaleza", cardapio: "https://app.cardapioweb.com/mini_salgados_pirambu", lat: null, lng: null, fab: false },
-    { name: "Sapiranga", address: "Av. Conselheiro Gomes de Freitas, 4402B – Sapiranga-Coité, Fortaleza – CE", phone: "5585988195063", maps: "https://maps.google.com/?q=Av.+Conselheiro+Gomes+de+Freitas,+4402B+Sapiranga+Fortaleza", cardapio: "https://app.cardapioweb.com/mini_salgados_sapiranga", lat: null, lng: null, fab: false },
-    { name: "Jurema", address: "Av. Dom Almeida Lustosa, 3877A – Mal. Rondon, Caucaia – CE", phone: "5585984697972", maps: "https://maps.google.com/?q=Av.+Dom+Almeida+Lustosa,+3877A+Caucaia+CE", cardapio: "https://app.cardapioweb.com/mini_salgados_jurema", lat: null, lng: null, fab: false },
-    { name: "Serrinha", address: "Rua VI, Conj. 8 de Setembro, 205 – Serrinha, Fortaleza – CE", phone: "5585988398703", maps: "https://maps.google.com/?q=Rua+VI+Conj+8+de+Setembro+205+Serrinha+Fortaleza+CE", cardapio: "https://menu.cardapioweb.com/mini_salgados_serrinha", lat: null, lng: null, fab: false }
+    { name: "São Cristóvão", address: "Av. Castelo de Castro, 692 – São Cristóvão, Fortaleza – CE", phone: "5585989265921", maps: "https://maps.app.goo.gl/AGnzB5z7WhzXiAEx6", cardapio: "https://app.cardapioweb.com/mini_salgados_loja", lat: -3.835536, lng: -38.521746, fab: false },
+    { name: "Curió", address: "Rua Nelson Coelho, 253 – Curió, Fortaleza – CE", phone: "5585982184973", maps: "https://maps.app.goo.gl/M97ZfKxUVHHHA3XMA", cardapio: "https://app.cardapioweb.com/mini_salgados_curio", lat: -3.827562, lng: -38.463909, fab: false },
+    { name: "Tancredo", address: "Rua Castro de Alencar, 1231 – Tancredo Neves, Fortaleza – CE", phone: "5585981361490", maps: "https://maps.app.goo.gl/jAxDPrgaQrRH3kj96", cardapio: "https://app.cardapioweb.com/mini_salgados_tancredo", lat: -3.782180, lng: -38.505255, fab: false },
+    { name: "José Walter", address: "Av. João Araújo Lima, 1230 – José Walter, Fortaleza – CE", phone: "5585989882906", maps: "https://maps.app.goo.gl/eahWkHyeAVzY9KZt6", cardapio: "https://app.cardapioweb.com/mini_salgados__jose_walter", lat: -3.830750, lng: -38.558247, fab: false },
+    { name: "Parque Santana", address: "Rua Um, 1364 – Mondubim, Fortaleza – CE", phone: "5585996736293", maps: "https://maps.app.goo.gl/TA8h8gvWre3mFojC8", cardapio: "https://app.cardapioweb.com/mini_salgados_parque_santana", lat: -3.815761, lng: -38.579962, fab: false },
+    { name: "Vicente Pinzon", address: "Av. Dolor Barreira, 197 – Vicente Pinzon, Fortaleza – CE", phone: "5585989620577", maps: "https://maps.app.goo.gl/5DeVcBoH3FAyBhwV7", cardapio: "https://app.cardapioweb.com/mini_salgados_vp", lat: -3.726371, lng: -38.473836, fab: false },
+    { name: "Bom Jardim", address: "Rua Maria Júlia, 840 – Bom Jardim, Fortaleza – CE", phone: "5585985634807", maps: "https://maps.app.goo.gl/FpwBvHAzTYAhKQzQ6", cardapio: "https://app.cardapioweb.com/mini_salgados__bom_jardim", lat: -3.793160, lng: -38.600203, fab: false },
+    { name: "Parque Dom Pedro", address: "Av. I, 686 – Parque Dom Pedro, Fortaleza – CE", phone: "5585992139017", maps: "https://maps.app.goo.gl/JJWqd5BtN8v3hcU1A", cardapio: "https://app.cardapioweb.com/minisalgados_pqdompedro", lat: -3.905510, lng: -38.510488, fab: false },
+    { name: "Conjunto Ceará", address: "Av. Ministro Albuquerque Lima, 393 – Conj. Ceará, Fortaleza – CE", phone: "5585999668748", maps: "https://maps.app.goo.gl/iybnr7SdKQsvSiUy9", cardapio: "https://app.cardapioweb.com/mini_salgados__conjunto_ceara2", lat: -3.768764, lng: -38.607686, fab: false },
+    { name: "Jereissati", address: "Av. XVII – Sen. Carlos Jereissati, Pacatuba – CE", phone: "5585997064655", maps: "https://maps.app.goo.gl/JREyfDZNuNaEucPv8", cardapio: "https://app.cardapioweb.com/mini_salgados_jereissati", lat: -3.890616, lng: -38.616454, fab: false },
+    { name: "Pajuçara", address: "Rua Raimundo José da Silva, 1160 – Jardim Paraíso, Maracanaú – CE", phone: "5585982151599", maps: "https://maps.app.goo.gl/7cnVaB7PSxTkunYq6", cardapio: "https://app.cardapioweb.com/mini_salgados__pajucara", lat: -3.856442, lng: -38.579436, fab: false },
+    { name: "Pirambu", address: "Av. Dr. Theberge, 699 – Cristo Redentor, Fortaleza – CE", phone: "5585984461607", maps: "https://maps.google.com/?q=Av.+Dr.+Theberge,+699+Cristo+Redentor+Fortaleza", cardapio: "https://app.cardapioweb.com/mini_salgados_pirambu", lat: -3.709710, lng: -38.563198, fab: false },
+    { name: "Sapiranga", address: "Av. Conselheiro Gomes de Freitas, 4402B – Sapiranga-Coité, Fortaleza – CE", phone: "5585988195063", maps: "https://maps.google.com/?q=Av.+Conselheiro+Gomes+de+Freitas,+4402B+Sapiranga+Fortaleza", cardapio: "https://app.cardapioweb.com/mini_salgados_sapiranga", lat: -3.794816, lng: -38.467588, fab: false },
+    { name: "Jurema", address: "Av. Dom Almeida Lustosa, 3877A – Mal. Rondon, Caucaia – CE", phone: "5585984697972", maps: "https://maps.google.com/?q=Av.+Dom+Almeida+Lustosa,+3877A+Caucaia+CE", cardapio: "https://app.cardapioweb.com/mini_salgados_jurema", lat: -3.773587, lng: -38.626939, fab: false },
+    { name: "Serrinha", address: "Rua VI, Conj. 8 de Setembro, 205 – Serrinha, Fortaleza – CE", phone: "5585988398703", maps: "https://maps.google.com/?q=Rua+VI+Conj+8+de+Setembro+205+Serrinha+Fortaleza+CE", cardapio: "https://menu.cardapioweb.com/mini_salgados_serrinha", lat: -3.795315, lng: -38.538458, fab: false }
   ];
 
   /* ---------- utilidades ---------- */
