@@ -312,48 +312,7 @@ button { font: inherit; color: inherit; background: none; border: 0; }
   animation: fadeUp 320ms var(--ease-out) both;
 }
 .geo-msg .ico { color: var(--red); margin-top: 2px; }
-.geo-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
-.btn-sm { min-height: 40px; padding: 0 16px; font-size: .88rem; }
-.btn:disabled { opacity: .45; cursor: not-allowed; transform: none; }
-.finder-copy .link-btn { margin: 0; padding: 0; font-size: inherit; }
 
-/* ---- Mapa: marcar onde você está ---- */
-html:has(.map-dialog[open]) { overflow: hidden; }
-.map-dialog {
-  border: 0; padding: 0; margin: auto; color: var(--ink); background: #fff;
-  width: min(780px, 100% - 32px); max-width: none; max-height: calc(100dvh - 32px);
-  border-radius: 24px; overflow: hidden;
-  box-shadow: 0 30px 70px -24px rgba(60, 0, 0, .6);
-}
-.map-dialog[open] { display: flex; flex-direction: column; animation: dialogIn 380ms var(--ease-out) both; }
-.map-dialog::backdrop { background: rgba(43, 10, 8, .55); }
-.map-dialog[open]::backdrop { animation: fadeIn 260ms ease both; }
-.map-head { display: flex; gap: 16px; align-items: flex-start; justify-content: space-between; padding: 20px 20px 14px; }
-.map-head h2 { font: 400 1.5rem/1.05 var(--font-display); color: var(--red); text-transform: uppercase; }
-.map-head p { color: var(--ink-2); font-size: .92rem; margin-top: 6px; max-width: 46ch; }
-.map-close { flex: none; width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; background: var(--yellow-tint); color: var(--brasa); cursor: pointer; transition: transform 160ms var(--ease-out); }
-.map-close:active { transform: scale(.92); }
-.map-box { position: relative; flex: 1; min-height: 0; border-block: 1.5px solid var(--line); }
-.map { height: min(58vh, 520px); background: #f4ede6; }
-.map-status { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; padding: 24px; color: var(--ink-2); font-weight: 600; background: #f4ede6; }
-.map-foot { display: flex; justify-content: flex-end; padding: 14px 20px 20px; }
-@media (max-width: 640px) {
-  .map-dialog { width: 100%; max-height: 94dvh; margin: auto 0 0; border-radius: 24px 24px 0 0; }
-  .map-dialog[open] { animation-name: sheetIn; animation-duration: 420ms; }
-  .map { height: 56vh; }
-  .map-foot .btn { width: 100%; }
-}
-.leaflet-container { font-family: var(--font-body); }
-.leaflet-tooltip { font: 600 .82rem/1.2 var(--font-body); color: var(--ink); border-radius: 10px; border: 0; box-shadow: 0 6px 16px -6px rgba(60, 0, 0, .45); }
-.pin-store span { display: block; width: 22px; height: 22px; border-radius: 50%; background: var(--red); border: 3px solid #fff; box-shadow: 0 3px 8px rgba(92, 0, 11, .45); }
-.pin-you-dot {
-  position: absolute; left: 1px; top: 0; width: 28px; height: 28px;
-  background: var(--yellow); border: 3px solid var(--brasa); border-radius: 50% 50% 50% 0;
-  rotate: -45deg; box-shadow: -2px 4px 8px rgba(92, 0, 11, .35);
-  animation: pinDrop 460ms var(--ease-spring) both;
-}
-.pin-you-dot::after { content: ''; position: absolute; inset: 7px; border-radius: 50%; background: var(--brasa); }
-.pin-you-label { position: absolute; left: 50%; top: -26px; translate: -50% 0; background: var(--brasa); color: #fff; font: 700 .7rem/1 var(--font-body); letter-spacing: .06em; text-transform: uppercase; padding: 5px 9px; border-radius: 999px; white-space: nowrap; }
 
 .results-meta { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 8px; padding: 22px 0 16px; color: var(--ink-2); font-weight: 600; }
 .count-num { display: inline-block; font: 400 1.6rem/1 var(--font-display); color: var(--red); font-variant-numeric: tabular-nums; }
@@ -501,9 +460,6 @@ html:has(.map-dialog[open]) { overflow: hidden; }
   60% { box-shadow: 0 0 0 16px rgba(253, 195, 57, 0), var(--shadow-card-hover); }
   100% { box-shadow: 0 0 0 4px rgba(253, 195, 57, .6), var(--shadow-card-hover); }
 }
-@keyframes dialogIn { from { opacity: 0; transform: translateY(24px) scale(.97); } to { opacity: 1; transform: none; } }
-@keyframes sheetIn { from { transform: translateY(100%); } to { transform: none; } }
-@keyframes pinDrop { from { opacity: 0; transform: translateY(-18px); } to { opacity: 1; transform: none; } }
 @keyframes beat { 0%, 100% { transform: scale(1); } 15% { transform: scale(1.22); } 30% { transform: scale(1); } 45% { transform: scale(1.14); } 60% { transform: scale(1); } }
 
 /* Animações ambientes pausam fora da tela */
@@ -520,7 +476,6 @@ html:has(.map-dialog[open]) { overflow: hidden; }
   .count-num.tick { animation: fadeIn 200ms ease; }
   .store-card, .store-awning { transition: box-shadow 200ms ease; }
   .chips-hl { transition: none; }
-  .map-dialog[open], .map-dialog[open]::backdrop, .pin-you-dot { animation: fadeIn 200ms ease both; }
 }
 </style>
 </head>
@@ -808,7 +763,7 @@ html:has(.map-dialog[open]) { overflow: hidden; }
   <div class="wrap finder-head">
     <div class="finder-copy">
       <h2 class="h2">Escolha sua loja</h2>
-      <p>Busque pelo bairro ou pela cidade, toque em <b>Perto de mim</b> ou <button class="link-btn" type="button" id="finder-map">marque no mapa</button> onde você está para ver a loja mais próxima.</p>
+      <p>Busque pelo bairro ou pela cidade, ou toque em <b>Perto de mim</b> para ver a loja mais próxima.</p>
     </div>
     <div class="finder-coxito" id="finder-coxito" aria-hidden="true">
       <svg class="coxito" viewBox="-16 -12 272 334" style="--blink:2.6s">
@@ -842,19 +797,10 @@ html:has(.map-dialog[open]) { overflow: hidden; }
   </div>
 
   <div class="wrap">
-    <div class="geo-msg" id="geo-msg" role="status" hidden>
-      <svg class="ico" aria-hidden="true"><use href="#i-locate"/></svg>
-      <div>
-        <p id="geo-text"></p>
-        <div class="geo-actions">
-          <button class="btn btn-yellow btn-sm" type="button" id="geo-retry">Tentar de novo</button>
-          <button class="btn btn-line btn-sm" type="button" id="geo-map"><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg>Marcar no mapa</button>
-        </div>
-      </div>
-    </div>
+    <p class="geo-msg" id="geo-msg" role="status" hidden><svg class="ico" aria-hidden="true"><use href="#i-locate"/></svg><span id="geo-text"></span></p>
     <p class="results-meta" aria-live="polite">
       <span class="count-num" id="count-num">15</span><span id="count-label">lojas</span>
-      <span class="sort-note" id="sort-note" hidden><span id="sort-text">· da mais perto para a mais longe</span> <button class="link-btn" type="button" id="sort-map">Ajustar no mapa</button> <button class="link-btn" type="button" id="sort-reset">Ordem normal</button></span>
+      <span class="sort-note" id="sort-note" hidden><span id="sort-text">· da mais perto para a mais longe</span> <button class="link-btn" type="button" id="sort-reset">Ordem normal</button></span>
     </p>
     <div class="grid-wrap">
       <div class="grid" id="grid"></div>
@@ -870,22 +816,6 @@ html:has(.map-dialog[open]) { overflow: hidden; }
       <button class="btn btn-yellow" type="button" id="empty-reset">Ver todas as lojas</button>
     </div>
   </div>
-  <dialog class="map-dialog" id="map-dialog" aria-labelledby="map-title">
-    <div class="map-head">
-      <div>
-        <h2 id="map-title">Marque onde você está</h2>
-        <p>Toque no mapa perto de onde você está (dá para arrastar o marcador). Os pontos vermelhos são as lojas.</p>
-      </div>
-      <button class="map-close" type="button" id="map-close" aria-label="Fechar mapa"><svg class="ico" aria-hidden="true"><use href="#i-x"/></svg></button>
-    </div>
-    <div class="map-box">
-      <div class="map" id="map"></div>
-      <p class="map-status" id="map-status">Carregando mapa…</p>
-    </div>
-    <div class="map-foot">
-      <button class="btn btn-red" type="button" id="map-confirm" disabled><svg class="ico" aria-hidden="true"><use href="#i-locate"/></svg>Ver lojas mais perto daqui</button>
-    </div>
-  </dialog>
 </main>
 
 <!-- ===== Chamada final ===== -->
@@ -1196,17 +1126,15 @@ html:has(.map-dialog[open]) { overflow: hidden; }
 
   /* ==========================================================
      PERTO DE MIM — localização do navegador (com 2ª tentativa).
-     Se o aparelho não informar, o cliente marca o ponto no mapa.
+     Se o aparelho não informar, avisa e sugere buscar pelo bairro.
      ========================================================== */
   var nearBtn = $('#near-btn');
   var nearLabel = $('#near-label');
   var heroNear = $('#hero-near');
   var geoMsg = $('#geo-msg');
   var geoText = $('#geo-text');
-  var geoRetry = $('#geo-retry');
   var sortNote = $('#sort-note');
   var sortText = $('#sort-text');
-  var sortMap = $('#sort-map');
   var finderCoxito = $('#finder-coxito');
   var bar = $('#finder-bar');
   var geo = { busy: false, active: false, source: null };
@@ -1214,7 +1142,6 @@ html:has(.map-dialog[open]) { overflow: hidden; }
   function showGeo(text, opts) {
     opts = opts || {};
     geoText.textContent = text;
-    geoRetry.hidden = !opts.retry;
     geoMsg.hidden = false;
     if (opts.scroll === false) return;
     var r = geoMsg.getBoundingClientRect();
@@ -1241,11 +1168,7 @@ html:has(.map-dialog[open]) { overflow: hidden; }
     nearLabel.textContent = on ? (text || 'Localizando…') : 'Perto de mim';
   }
 
-  var GEO_ERRORS = {
-    1: 'Você bloqueou a localização para este site. Para liberar, toque no cadeado ao lado do endereço do site e permita “Localização”. Ou marque no mapa onde você está.',
-    2: 'Seu aparelho não informou a localização. Confira se a localização (GPS) está ligada. No computador, ative os Serviços de Localização para o navegador. Ou marque no mapa onde você está.',
-    3: 'A localização demorou demais para responder. Tente de novo ou marque no mapa onde você está.'
-  };
+  var NO_GEO = 'Não foi possível acessar sua localização. Você pode pesquisar pelo bairro ou pela cidade.';
 
   // 1ª tentativa: rápida (Wi-Fi/rede). 2ª: GPS de alta precisão, aceitando posição recente guardada.
   function getPosition(onSlow) {
@@ -1266,20 +1189,17 @@ html:has(.map-dialog[open]) { overflow: hidden; }
     if (geo.active && fromHero) { scrollToNearest(); return; }
     hideGeo();
     if (!stores.some(hasCoords)) { showGeo('A localização das lojas ainda não foi cadastrada. Por enquanto, busque pelo bairro ou pela cidade.'); return; }
-    if (!('geolocation' in navigator) || window.isSecureContext === false) {
-      showGeo('Este navegador não deixa usar a localização aqui. Marque no mapa onde você está ou busque pelo bairro.');
-      return;
-    }
+    if (!('geolocation' in navigator) || window.isSecureContext === false) { showGeo(NO_GEO); return; }
     setBusy(true);
     getPosition(function () {
       setBusy(true, 'Procurando…');
-      showGeo('Ainda procurando sua localização… Se demorar, confira se a localização do aparelho está ligada, ou marque no mapa.', { scroll: false });
+      showGeo('Ainda procurando sua localização… Se preferir, pesquise pelo bairro ou pela cidade.', { scroll: false });
     }).then(function (p) {
       setBusy(false); hideGeo();
       applyNear(p.coords.latitude, p.coords.longitude, 'gps', p.coords.accuracy);
-    }, function (err) {
+    }, function () {
       setBusy(false);
-      showGeo(GEO_ERRORS[err && err.code] || GEO_ERRORS[2], { retry: true });
+      showGeo(NO_GEO);
     });
   }
 
@@ -1308,10 +1228,7 @@ html:has(.map-dialog[open]) { overflow: hidden; }
 
     geo.active = true; geo.source = source;
     nearBtn.setAttribute('aria-pressed', 'true');
-    sortText.textContent = source === 'map' ? '· distância a partir do ponto marcado no mapa'
-      : rough ? '· distâncias aproximadas (localização com pouca precisão)'
-      : '· da mais perto para a mais longe';
-    sortMap.textContent = source === 'map' ? 'Mudar ponto no mapa' : 'Ajustar no mapa';
+    sortText.textContent = rough ? '· distâncias aproximadas (localização com pouca precisão)' : '· da mais perto para a mais longe';
     sortNote.hidden = false;
     finderCoxito.classList.remove('hop'); void finderCoxito.offsetWidth; finderCoxito.classList.add('hop');
     scrollToNearest();
@@ -1344,90 +1261,7 @@ html:has(.map-dialog[open]) { overflow: hidden; }
     $('#lojas').scrollIntoView({ behavior: scrollBehavior(), block: 'start' });
     locate(true);
   });
-  geoRetry.addEventListener('click', function () { hideGeo(); locate(false); });
   $('#sort-reset').addEventListener('click', clearNear);
-
-  /* ---------- Mapa (Leaflet + OpenStreetMap, carregado só quando abre) ---------- */
-  var LEAFLET = {
-    css: 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css', cssSri: 'sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=',
-    js: 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js', jsSri: 'sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo='
-  };
-  var leafletLoading = null;
-  function loadLeaflet() {
-    if (window.L && window.L.map) return Promise.resolve(window.L);
-    if (leafletLoading) return leafletLoading;
-    leafletLoading = new Promise(function (resolve, reject) {
-      var link = document.createElement('link');
-      link.rel = 'stylesheet'; link.href = LEAFLET.css; link.integrity = LEAFLET.cssSri; link.crossOrigin = '';
-      document.head.appendChild(link);
-      var sc = document.createElement('script');
-      sc.src = LEAFLET.js; sc.integrity = LEAFLET.jsSri; sc.crossOrigin = '';
-      sc.onload = function () { resolve(window.L); };
-      sc.onerror = function () { leafletLoading = null; reject(new Error('leaflet')); };
-      document.head.appendChild(sc);
-    });
-    return leafletLoading;
-  }
-
-  var dialog = $('#map-dialog');
-  var mapStatus = $('#map-status');
-  var mapConfirm = $('#map-confirm');
-  var map = null, youMarker = null, picked = null;
-
-  function setPick(L, latlng) {
-    picked = latlng;
-    if (!youMarker) {
-      var youIcon = L.divIcon({ className: 'pin-you', html: '<span class="pin-you-dot"></span><span class="pin-you-label">Você</span>', iconSize: [30, 34], iconAnchor: [15, 34] });
-      youMarker = L.marker(latlng, { icon: youIcon, draggable: true, keyboard: false, zIndexOffset: 1000 }).addTo(map);
-      youMarker.on('dragend', function () { picked = youMarker.getLatLng(); });
-    } else {
-      youMarker.setLatLng(latlng);
-    }
-    mapConfirm.disabled = false;
-  }
-
-  function openMap() {
-    if (!stores.some(hasCoords)) { showGeo('A localização das lojas ainda não foi cadastrada. Por enquanto, busque pelo bairro ou pela cidade.'); return; }
-    if (dialog.showModal) dialog.showModal(); else dialog.setAttribute('open', '');
-    mapStatus.textContent = 'Carregando mapa…';
-    mapStatus.hidden = !!map;
-    loadLeaflet().then(function (L) {
-      var pts = stores.filter(hasCoords).map(function (st) { return [st.lat, st.lng]; });
-      if (!map) {
-        map = L.map('map', { zoomControl: true });
-        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-          maxZoom: 19, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>'
-        }).addTo(map);
-        var storeIcon = L.divIcon({ className: 'pin-store', html: '<span></span>', iconSize: [22, 22], iconAnchor: [11, 11] });
-        stores.filter(hasCoords).forEach(function (st) {
-          L.marker([st.lat, st.lng], { icon: storeIcon, keyboard: false, title: st.name }).addTo(map)
-            .bindTooltip(st.name, { direction: 'top', offset: [0, -12] });
-        });
-        map.on('click', function (e) { setPick(L, e.latlng); });
-      }
-      mapStatus.hidden = true;
-      setTimeout(function () {
-        map.invalidateSize();
-        if (picked) map.setView(picked, Math.max(map.getZoom() || 0, 14));
-        else map.fitBounds(L.latLngBounds(pts), { padding: [28, 28] });
-      }, 60);
-    }, function () {
-      mapStatus.hidden = false;
-      mapStatus.textContent = 'Não foi possível carregar o mapa agora. Confira sua internet ou busque pelo bairro.';
-    });
-  }
-  function closeMap() { if (dialog.close) dialog.close(); else dialog.removeAttribute('open'); }
-
-  mapConfirm.addEventListener('click', function () {
-    if (!picked) return;
-    closeMap();
-    applyNear(picked.lat, picked.lng, 'map');
-  });
-  $('#map-close').addEventListener('click', closeMap);
-  dialog.addEventListener('click', function (e) { if (e.target === dialog) closeMap(); });
-  $('#geo-map').addEventListener('click', openMap);
-  $('#finder-map').addEventListener('click', openMap);
-  sortMap.addEventListener('click', openMap);
 
   /* ---------- barra de busca fixa: sombra quando gruda no topo ---------- */
   if ('IntersectionObserver' in window) {
