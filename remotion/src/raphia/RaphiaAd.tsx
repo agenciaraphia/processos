@@ -60,7 +60,7 @@ export const RaphiaAd: React.FC<RaphiaAdProps> = ({ narracao, whatsapp, duracoes
         <TransitionSeries.Transition presentation={depthZoom()} timing={linearTiming({ durationInFrames: T })} />
         <TransitionSeries.Sequence name="Cena 04 — Oferta" durationInFrames={frames[3] + T}>
           <Scene4Offer />
-          {narracao ? <Audio src={staticFile(VOICEOVER_FILES[3])} from={half + 50} /> : null}
+          {narracao ? <Audio src={staticFile(VOICEOVER_FILES[3])} from={half + 24} /> : null}
         </TransitionSeries.Sequence>
         <TransitionSeries.Transition presentation={depthZoom()} timing={linearTiming({ durationInFrames: T })} />
         <TransitionSeries.Sequence name="Cena 05 — CTA" durationInFrames={frames[4] + half}>

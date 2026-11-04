@@ -8,7 +8,7 @@ const FPS = 30;
 // Atraso (em segundos) entre o início de cada cena e o início da locução.
 // Igual aos valores de `from` em RaphiaAd.tsx (descontando a meia transição),
 // mais uma folga no final.
-const LEAD = [8 / FPS, 4 / FPS, 4 / FPS, 50 / FPS, 4 / FPS];
+const LEAD = [8 / FPS, 4 / FPS, 4 / FPS, 24 / FPS, 4 / FPS];
 const TAIL = 0.6;
 
 const getAudioDuration = async (src: string) => {

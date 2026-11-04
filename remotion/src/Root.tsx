@@ -21,7 +21,7 @@ export const RemotionRoot: React.FC = () => {
           height={1920}
           calculateMetadata={calculateRaphiaMetadata}
           defaultProps={{
-            narracao: false,
+            narracao: true,
             whatsapp: "",
             duracoes: [6, 11, 17, 10, 11],
           }}
