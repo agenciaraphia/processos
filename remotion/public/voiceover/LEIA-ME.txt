@@ -1,0 +1,2 @@
+Coloque aqui a narração de cada cena: cena-01.mp3, cena-02.mp3, cena-03.mp3, cena-04.mp3 e cena-05.mp3.
+Gere com: ELEVENLABS_API_KEY=sua_chave node --experimental-strip-types scripts/gerar-narracao.ts

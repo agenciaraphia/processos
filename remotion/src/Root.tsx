@@ -2,13 +2,32 @@ import { Composition, Folder } from "remotion";
 import { HelloWorld } from "./HelloWorld";
 import { Logo } from "./HelloWorld/Logo";
 import { Title } from "./HelloWorld/Title";
+import { calculateRaphiaMetadata } from "./raphia/calculateMetadata";
+import { RaphiaAd } from "./raphia/RaphiaAd";
 
 // Each <Composition> is an entry in the sidebar!
 
 export const RemotionRoot: React.FC = () => {
   return (
     <>
-      <Folder name="Elements">
+      <Folder name="Raphia">
+        {/* Anúncio vertical 9:16 — Site profissional por R$ 399,00 */}
+        <Composition
+          id="RaphiaSite399"
+          component={RaphiaAd}
+          durationInFrames={1650}
+          fps={30}
+          width={1080}
+          height={1920}
+          calculateMetadata={calculateRaphiaMetadata}
+          defaultProps={{
+            narracao: false,
+            whatsapp: "",
+            duracoes: [6, 11, 17, 10, 11],
+          }}
+        />
+      </Folder>
+      <Folder name="Exemplo-Remotion">
         <Composition
           id="Logo"
           component={Logo}
@@ -33,24 +52,19 @@ export const RemotionRoot: React.FC = () => {
             titleColor: "#000000",
           }}
         />
+        <Composition
+          id="HelloWorld"
+          component={HelloWorld}
+          durationInFrames={150}
+          fps={30}
+          width={1920}
+          height={1080}
+          defaultProps={{
+            titleText: "Welcome to Remotion",
+            titleColor: "#000000",
+          }}
+        />
       </Folder>
-      <Composition
-        // You can take the "id" to render a video:
-        // bunx remotion render HelloWorld
-        id="HelloWorld"
-        component={HelloWorld}
-        durationInFrames={150}
-        fps={30}
-        width={1920}
-        height={1080}
-        // You can override these props for each render:
-        // https://www.remotion.dev/docs/parametrized-rendering
-        defaultProps={{
-          titleText: "Welcome to Remotion",
-          titleColor: "#000000",
-        }}
-      />
-
     </>
   );
 };
