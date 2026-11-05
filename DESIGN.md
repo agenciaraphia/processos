@@ -4,15 +4,15 @@ Recorded from the built page `cobertura-eventos/index.html`. Describes what exis
 
 ## World
 
-"Álbum vivo": a light linen-beige page where real event photos behave like printed copies being leafed through. Raphia purple and balloon pink do not sit as accents only; each owns a full band of the page (purple for what is included, lilac for the process, pink for the closing offer). The rest is beige so the photos carry the color.
+"Álbum vivo": a white page (#fdfdfd) where real event photos behave like printed copies being leafed through. Raphia purple and balloon pink do not sit as accents only; each owns a full band of the page (purple for what is included, lilac for the process, pink for the closing offer). The rest is white so the photos carry the color.
 
 ## Color
 
 | Token | Hex | Role |
 |---|---|---|
-| `--linho` | #f3ece3 | Page ground, header |
-| `--linho-2` | #e8ddd0 | Footer, image placeholders |
-| `--papel` | #fcf8f3 | Photo print borders, light buttons, tags |
+| `--linho` | #fdfdfd | Page ground, header (white; the user replaced the beige) |
+| `--linho-2` | #f1edf5 | Footer, image placeholders, hover fills |
+| `--papel` | #ffffff | Photo print borders, light buttons, tags |
 | `--roxo` | #600298 | Brand purple: primary buttons, "incluso" band, corporate tile |
 | `--roxo-escuro` | #46016f | Button hover |
 | `--rosa` | #ff40aa | Brand pink: button icon disc, seal, confraternização tile, final band |
@@ -22,7 +22,7 @@ Recorded from the built page `cobertura-eventos/index.html`. Describes what exis
 | `--tinta` | #2b1e33 | Text (plum-black, never pure black) |
 | `--tinta-2` | #5d4e66 | Secondary text on light grounds |
 
-Single light theme by choice. Text on pink is always `--tinta`; text on purple is `--papel` or `--lilas-texto`.
+Single light theme by choice. Text on pink is always `--tinta`; text on purple is `--papel` or `--lilas-texto`. No beige anywhere.
 
 ## Type
 
@@ -38,7 +38,7 @@ Single light theme by choice. Text on pink is always `--tinta`; text on purple i
 - **Primary button**: purple pill, label + 2.6rem pink disc with the WhatsApp glyph. Light variant on pink bands (`.btn--claro`), outline variant (`.btn--borda`). Press = scale(0.97).
 - **Link with arrow** (`.link-seta`): underlined, arrow follows the last word.
 - **Color tile** (`.campo`): full-color block for event types without photos yet.
-- **Seal**: rotating ring text "Black Friday • eventos até fevereiro • Raphia" around "15% de desconto"; pink disc on beige, purple disc on pink.
+- **Seal**: rotating ring text "Black Friday • eventos até fevereiro • Raphia" around "15% de desconto"; pink disc on white, purple disc on pink.
 - **Filter pills**: outline pills, selected = `--tinta` fill.
 - **Lightbox**: native `<dialog>`, dark plum backdrop, arrows, swipe, Esc.
 

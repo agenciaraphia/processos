@@ -11,17 +11,17 @@
 <meta property="og:description" content="Os melhores momentos do seu evento, registrados em fotos e vídeos que emocionam. 15% de desconto para eventos até fevereiro.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="fotos/casamentos/casamento-09.webp">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%23600298'/%3E%3Ccircle cx='22.5' cy='22.5' r='3.5' fill='%23ff40aa'/%3E%3Cpath d='M10 24V14.5c0-2.5 2-4.5 4.5-4.5H19' stroke='%23fcf8f3' stroke-width='3.4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%23600298'/%3E%3Ccircle cx='22.5' cy='22.5' r='3.5' fill='%23ff40aa'/%3E%3Cpath d='M10 24V14.5c0-2.5 2-4.5 4.5-4.5H19' stroke='%23ffffff' stroke-width='3.4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Instrument+Serif:ital@1&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="fotos/batizados/batizado-03.webp" fetchpriority="high">
 <style>
-/* Álbum vivo: fundo linho, faixas inteiras em roxo, lilás e rosa; fotos como cópias impressas que se folheiam. */
+/* Álbum vivo: fundo branco, faixas inteiras em roxo, lilás e rosa; fotos como cópias impressas que se folheiam. */
 :root {
-  --linho: #f3ece3;
-  --linho-2: #e8ddd0;
-  --papel: #fcf8f3;
+  --linho: #fdfdfd;
+  --linho-2: #f1edf5;
+  --papel: #ffffff;
   --roxo: #600298;
   --roxo-escuro: #46016f;
   --rosa: #ff40aa;
@@ -114,7 +114,7 @@ section[id] { scroll-margin-top: 4.5rem; }
   .btn:hover { background: var(--roxo-escuro); box-shadow: 0 16px 30px -12px rgb(96 2 152 / 0.65); }
   .btn:hover .btn-ico { transform: translateX(3px) rotate(-6deg); }
   .btn--claro:hover { background: #fff; }
-  .btn--borda:hover { background: var(--papel); }
+  .btn--borda:hover { background: var(--linho-2); }
 }
 .link-seta {
   display: inline; padding-block: 0.65rem; line-height: 1.5;
@@ -146,7 +146,6 @@ section[id] { scroll-margin-top: 4.5rem; }
 @media (min-width: 940px) { .nav { display: flex; } .topo .btn { margin-left: 0.75rem; } .topo .btn .longo { display: inline; } .topo .btn .curto { display: none; } }
 /* Um botão de reservar por vez: no celular fica o flutuante (perto do polegar), no computador o do cabeçalho. */
 @media (max-width: 939px) { .topo .btn { display: none; } }
-@media (min-width: 940px) { .flutuante { display: none; } }
 
 /* ---------- Topo da página (hero) ---------- */
 .hero { padding-block: clamp(2.25rem, 1.5rem + 3vw, 4.5rem) clamp(3rem, 2rem + 3vw, 5rem); overflow-x: clip; }
@@ -260,7 +259,7 @@ section[id] { scroll-margin-top: 4.5rem; }
 .campo--roxo { background: var(--roxo); color: var(--papel); }
 .campo--roxo p { color: var(--lilas-texto); }
 .campo--rosa .link-seta { text-decoration-color: rgb(43 30 51 / 0.5); }
-.campo--roxo .link-seta { text-decoration-color: rgb(252 248 243 / 0.5); }
+.campo--roxo .link-seta { text-decoration-color: rgb(255 255 255 / 0.5); }
 .campo-tipos { font-family: var(--f-acento); font-style: italic; font-size: clamp(1.25rem, 1.05rem + 0.8vw, 1.6rem); line-height: 1.25; }
 @media (min-width: 900px) {
   .cel { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(2.5rem, 1rem + 4vw, 5rem); }
@@ -277,8 +276,8 @@ section[id] { scroll-margin-top: 4.5rem; }
 .incluso { background: var(--roxo); color: var(--papel); overflow: hidden; }
 .incluso .secao-cabeca p { color: var(--lilas-texto); }
 .incluso-grid { display: grid; gap: clamp(3rem, 2rem + 4vw, 5rem); align-items: center; }
-.lista-check { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; border-top: 1px solid rgb(252 248 243 / 0.18); }
-.lista-check li { display: flex; gap: 1rem; align-items: flex-start; padding-block: 1rem; border-bottom: 1px solid rgb(252 248 243 / 0.18); font-size: 1.0625rem; }
+.lista-check { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; border-top: 1px solid rgb(255 255 255 / 0.18); }
+.lista-check li { display: flex; gap: 1rem; align-items: flex-start; padding-block: 1rem; border-bottom: 1px solid rgb(255 255 255 / 0.18); font-size: 1.0625rem; }
 .lista-check .marca-check { display: grid; place-items: center; flex: none; width: 1.75rem; height: 1.75rem; border-radius: 50%; background: var(--rosa); color: var(--tinta); margin-top: 0.05rem; }
 .lista-check .marca-check .ico { width: 1rem; height: 1rem; stroke-width: 2.6; }
 .lista-check small { display: block; color: var(--lilas-texto); font-size: 0.9375rem; }
@@ -289,7 +288,7 @@ section[id] { scroll-margin-top: 4.5rem; }
   position: absolute; left: 0; bottom: 0; width: 62%; aspect-ratio: 16 / 9; object-fit: cover;
   border: 0.45rem solid var(--papel); border-radius: 1.4rem; transform: rotate(-4deg);
 }
-.frase { margin-top: clamp(4rem, 3rem + 4vw, 6.5rem); padding-top: clamp(2.5rem, 2rem + 2vw, 3.5rem); border-top: 1px solid rgb(252 248 243 / 0.18); }
+.frase { margin-top: clamp(4rem, 3rem + 4vw, 6.5rem); padding-top: clamp(2.5rem, 2rem + 2vw, 3.5rem); border-top: 1px solid rgb(255 255 255 / 0.18); }
 .frase p { font: 700 clamp(1.9rem, 1.1rem + 3.3vw, 3.9rem)/1.05 var(--f-display); letter-spacing: -0.03em; max-width: 22ch; text-wrap: balance; }
 .frase .acento { color: var(--rosa); }
 @media (min-width: 900px) { .incluso-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
@@ -309,7 +308,7 @@ section[id] { scroll-margin-top: 4.5rem; }
 .filtro small { font: 600 0.75rem/1 var(--f-texto); font-variant-numeric: tabular-nums; color: var(--tinta-2); transition: color 200ms ease; }
 .filtro[aria-pressed="true"] { background: var(--tinta); color: var(--papel); box-shadow: none; }
 .filtro[aria-pressed="true"] small { color: var(--rosa-suave); }
-@media (hover: hover) and (pointer: fine) { .filtro:hover:not([aria-pressed="true"]) { background: var(--papel); } }
+@media (hover: hover) and (pointer: fine) { .filtro:hover:not([aria-pressed="true"]) { background: var(--linho-2); } }
 .legenda { margin: 1.25rem 0 2rem; font-family: var(--f-acento); font-style: italic; font-size: clamp(1.3rem, 1.1rem + 0.8vw, 1.7rem); color: var(--roxo); min-height: 1.4em; }
 
 .galeria { --cols: 2; --gap: 12px; display: grid; grid-template-columns: repeat(var(--cols), minmax(0, 1fr)); grid-auto-rows: 8px; gap: var(--gap); grid-auto-flow: dense; }
@@ -351,8 +350,8 @@ section[id] { scroll-margin-top: 4.5rem; }
 .lb-base { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0.9rem max(16px, env(safe-area-inset-right, 0px)) calc(0.9rem + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); }
 .lb-legenda { flex: 1; text-align: center; font-size: 0.9375rem; color: var(--lilas-texto); min-width: 0; }
 .lb-legenda strong { color: var(--papel); font-weight: 600; }
-.lightbox .redondo { background: rgb(252 248 243 / 0.1); color: var(--papel); box-shadow: inset 0 0 0 1.5px rgb(252 248 243 / 0.22); }
-@media (hover: hover) and (pointer: fine) { .lightbox .redondo:hover { background: rgb(252 248 243 / 0.2); } }
+.lightbox .redondo { background: rgb(255 255 255 / 0.1); color: var(--papel); box-shadow: inset 0 0 0 1.5px rgb(255 255 255 / 0.22); }
+@media (hover: hover) and (pointer: fine) { .lightbox .redondo:hover { background: rgb(255 255 255 / 0.2); } }
 
 /* Como funciona (faixa lilás) */
 .como { background: var(--lilas); }
@@ -390,7 +389,7 @@ section[id] { scroll-margin-top: 4.5rem; }
   font: 600 clamp(1.08rem, 1rem + 0.35vw, 1.25rem)/1.3 var(--f-display); letter-spacing: -0.01em;
 }
 .faq-lista summary::-webkit-details-marker { display: none; }
-.faq-mais { display: grid; place-items: center; flex: none; width: 2.25rem; height: 2.25rem; border-radius: 50%; background: var(--papel); color: var(--roxo); transition: transform 300ms var(--ease-out), background-color 200ms ease, color 200ms ease; }
+.faq-mais { display: grid; place-items: center; flex: none; width: 2.25rem; height: 2.25rem; border-radius: 50%; background: var(--lilas); color: var(--roxo); transition: transform 300ms var(--ease-out), background-color 200ms ease, color 200ms ease; }
 .faq-lista details[open] .faq-mais { transform: rotate(45deg); background: var(--roxo); color: var(--papel); }
 .faq-lista details p { padding-bottom: 1.5rem; color: var(--tinta-2); max-width: 60ch; }
 .faq-lista details::details-content { block-size: 0; overflow: hidden; transition: block-size 320ms var(--ease-out), content-visibility 320ms allow-discrete; }
@@ -434,6 +433,7 @@ section[id] { scroll-margin-top: 4.5rem; }
 }
 .flutuante .btn-ico { width: 2.55rem; height: 2.55rem; }
 .flutuante.visivel { transform: none; }
+@media (min-width: 940px) { .flutuante { display: none; } }
 .flutuante:active { transform: scale(0.97); }
 
 /* Revelação das fotos ao rolar (só onde o navegador suporta; o estado normal já é visível) */
@@ -481,7 +481,7 @@ section[id] { scroll-margin-top: 4.5rem; }
 
 <header class="topo" id="topo">
   <div class="wrap">
-    <a class="marca" href="#conteudo" aria-label="Raphia, voltar ao início"><svg aria-hidden="true"><use href="#logo"/></svg></a>
+    <a class="marca" href="#conteudo" aria-label="Raphia, voltar ao início"><svg viewBox="0 0 379.42 92.79" aria-hidden="true"><use href="#logo"/></svg></a>
     <nav class="nav" aria-label="Seções da página">
       <a href="#celebracoes">Celebrações</a>
       <a href="#portfolio">Portfólio</a>
@@ -704,8 +704,8 @@ section[id] { scroll-margin-top: 4.5rem; }
           <svg viewBox="0 0 200 200">
             <defs><path id="curva-b" d="M100,100 m-76,0 a76,76 0 1,1 152,0 a76,76 0 1,1 -152,0"/></defs>
             <circle class="selo-disco" cx="100" cy="100" r="98" fill="#600298"/>
-            <g class="selo-anel"><text fill="#fcf8f3"><textPath href="#curva-b" textLength="470" lengthAdjust="spacing">Black Friday • eventos até fevereiro • Raphia •</textPath></text></g>
-            <text class="selo-num" x="100" y="110" text-anchor="middle" fill="#fcf8f3">15%</text>
+            <g class="selo-anel"><text fill="#ffffff"><textPath href="#curva-b" textLength="470" lengthAdjust="spacing">Black Friday • eventos até fevereiro • Raphia •</textPath></text></g>
+            <text class="selo-num" x="100" y="110" text-anchor="middle" fill="#ffffff">15%</text>
             <text class="selo-sub" x="100" y="131" text-anchor="middle" fill="#ffd6ea">de desconto</text>
           </svg>
         </div>
@@ -717,7 +717,7 @@ section[id] { scroll-margin-top: 4.5rem; }
 <footer class="rodape">
   <div class="wrap">
     <div class="rodape-linha">
-      <a class="marca" href="#conteudo" aria-label="Raphia, voltar ao início"><svg aria-hidden="true"><use href="#logo"/></svg></a>
+      <a class="marca" href="#conteudo" aria-label="Raphia, voltar ao início"><svg viewBox="0 0 379.42 92.79" aria-hidden="true"><use href="#logo"/></svg></a>
       <ul class="rodape-contatos" id="contatos">
         <li><a data-wa="reservar" href="https://wa.me/5585997279505"><svg class="ico ico-cheio" aria-hidden="true"><use href="#i-wa"/></svg>(85) 99727-9505</a></li>
         <li id="contato-insta" hidden><a href="#" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-insta"/></svg><span></span></a></li>

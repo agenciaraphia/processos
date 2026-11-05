@@ -12,7 +12,7 @@ Scope: sales page for Raphia's event coverage. Mode: Persuade. Audience: familie
 ## Direction contract
 
 THESIS: A family album leafed through live; refuses the dark agency hero with stat strip.
-OWN-WORLD: linen beige ground, Raphia purple and balloon pink owning whole bands, lilac tulle field; Syne display, Instrument Serif italic for one emotional word, DM Sans text; rounded photo prints with soft offset shadows, purple pill buttons.
+OWN-WORLD: white #fdfdfd ground (beige rejected by the user), Raphia purple and balloon pink owning whole bands, lilac tulle field; Syne display, Instrument Serif italic for one emotional word, DM Sans text; rounded photo prints with soft offset shadows, purple pill buttons.
 STORY: see real celebrations, trust the eye, tap WhatsApp with the event already named.
 FIRST VIEWPORT: headline left, photo-print stack right that flips every few seconds and drags on touch, 15% seal on the stack, WhatsApp button under the subtitle.
 FORM: user-pinned plan, position 1; seed 88d89376 (not used).

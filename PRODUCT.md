@@ -35,7 +35,7 @@ Visitors come from Instagram ads on phones, often during the Black Friday campai
 ## Brand Commitments
 
 - Brand colors from the operational manual: pink #ff40aa, purple #600298, light #f0efed, dark #292b2d. Brand fonts: Syne (display) and DM Sans (text). Wordmark: raphia.ag SVG.
-- The user pinned this page's look: light and friendly, beige with purple and pink, animated portfolio photos.
+- The user pinned this page's look: light and friendly, white background (#fdfdfd, beige rejected) with purple and pink, animated portfolio photos.
 - Never show client names anywhere (copy, alt text, filenames, or names visible inside photos such as cake plaques or invitations).
 
 ## Evidence on Hand
