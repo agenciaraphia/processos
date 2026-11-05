@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cobertura de Eventos Raphia</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Cobertura profissional de fotos e vídeos para batizados, casamentos, aniversários, confraternizações e eventos corporativos em Fortaleza. 15% de desconto na Black Friday.">
+<meta name="theme-color" content="#600298">
+<meta property="og:title" content="Cobertura de eventos Raphia">
+<meta property="og:description" content="Os melhores momentos do seu evento, registrados em fotos e vídeos que emocionam. 15% de desconto para eventos até fevereiro.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="fotos/casamentos/casamento-09.webp">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%23600298'/%3E%3Ccircle cx='22.5' cy='22.5' r='3.5' fill='%23ff40aa'/%3E%3Cpath d='M10 24V14.5c0-2.5 2-4.5 4.5-4.5H19' stroke='%23fcf8f3' stroke-width='3.4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Instrument+Serif:ital@1&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="fotos/batizados/batizado-03.webp" fetchpriority="high">
+<style>
+/* Álbum vivo: fundo linho, faixas inteiras em roxo, lilás e rosa; fotos como cópias impressas que se folheiam. */
+:root {
+  --linho: #f3ece3;
+  --linho-2: #e8ddd0;
+  --papel: #fcf8f3;
+  --roxo: #600298;
+  --roxo-escuro: #46016f;
+  --rosa: #ff40aa;
+  --rosa-suave: #ffd6ea;
+  --lilas: #e7daf8;
+  --lilas-texto: #dccaf3;
+  --tinta: #2b1e33;
+  --tinta-2: #5d4e66;
+  --linha: rgb(43 30 51 / 0.14);
+
+  --f-display: "Syne", "Arial Black", "Helvetica Neue", sans-serif;
+  --f-texto: "DM Sans", "Helvetica Neue", Arial, sans-serif;
+  --f-acento: "Instrument Serif", Georgia, "Times New Roman", serif;
+
+  --t-hero: clamp(2.2rem, 1.25rem + 3.9vw, 3.9rem);
+  --t-h2: clamp(1.85rem, 1.15rem + 2.6vw, 3.1rem);
+  --t-h3: clamp(1.3rem, 1.05rem + 0.9vw, 1.7rem);
+  --t-lead: clamp(1.05rem, 0.98rem + 0.3vw, 1.2rem);
+  --t-small: 0.875rem;
+
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+
+  --raio: 1.5rem;
+  --secao: clamp(4.5rem, 3rem + 6vw, 8rem);
+  --sombra-foto: 0 1px 2px rgb(43 30 51 / 0.08), 0 22px 44px -20px rgb(43 30 51 / 0.42);
+
+  color-scheme: light;
+  interpolate-size: allow-keywords;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; overflow-x: clip; scrollbar-color: var(--roxo) var(--linho-2); }
+body {
+  margin: 0;
+  background: var(--linho);
+  color: var(--tinta);
+  font-family: var(--f-texto);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  overflow-x: clip;
+  caret-color: var(--roxo);
+  -webkit-font-smoothing: antialiased;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 60; background: var(--linho); }
+::selection { background: var(--rosa); color: var(--tinta); }
+img { max-width: 100%; height: auto; display: block; }
+a { color: inherit; text-underline-offset: 0.22em; text-decoration-thickness: 1.5px; }
+button { font: inherit; color: inherit; }
+h1, h2, h3 { font-family: var(--f-display); font-weight: 700; letter-spacing: -0.025em; line-height: 1.04; margin: 0; text-wrap: balance; }
+p { margin: 0; text-wrap: pretty; }
+:focus-visible { outline: 3px solid var(--roxo); outline-offset: 3px; border-radius: 6px; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.acento { font-family: var(--f-acento); font-style: italic; font-weight: 400; letter-spacing: 0; font-size: 1.12em; line-height: 0.9; }
+
+.wrap {
+  width: 100%;
+  max-width: 74rem;
+  margin-inline: auto;
+  padding-left: max(20px, env(safe-area-inset-left, 0px));
+  padding-right: max(20px, env(safe-area-inset-right, 0px));
+}
+section[id] { scroll-margin-top: 4.5rem; }
+
+.pular { position: absolute; left: 1rem; top: -4rem; z-index: 100; background: var(--tinta); color: var(--papel); padding: 0.6rem 1rem; border-radius: 999px; }
+.pular:focus { top: calc(1rem + env(safe-area-inset-top, 0px)); }
+
+/* ---------- Ícones ---------- */
+.ico { width: 1.25rem; height: 1.25rem; flex: none; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+.ico-cheio { fill: currentColor; stroke: none; }
+
+/* ---------- Botões ---------- */
+.btn {
+  display: inline-flex; align-items: center; gap: 0.9rem;
+  min-height: 3.5rem; padding: 0.45rem 0.45rem 0.45rem 1.6rem;
+  border: 0; border-radius: 999px;
+  background: var(--roxo); color: var(--papel);
+  font: 600 1rem/1.2 var(--f-texto); text-decoration: none; cursor: pointer;
+  box-shadow: 0 12px 26px -12px rgb(96 2 152 / 0.6);
+  transition: transform 160ms var(--ease-out), background-color 200ms ease, box-shadow 200ms ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.btn-ico { display: grid; place-items: center; width: 2.6rem; height: 2.6rem; border-radius: 50%; background: var(--rosa); color: var(--tinta); transition: transform 300ms var(--ease-out); }
+.btn-ico .ico { width: 1.3rem; height: 1.3rem; }
+.btn:active { transform: scale(0.97); }
+.btn--claro { background: var(--papel); color: var(--tinta); box-shadow: 0 12px 26px -14px rgb(43 30 51 / 0.45); }
+.btn--claro .btn-ico { background: var(--roxo); color: var(--papel); }
+.btn--borda { background: transparent; color: var(--tinta); box-shadow: inset 0 0 0 1.5px rgb(43 30 51 / 0.3); padding: 0.45rem 1.4rem; }
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover { background: var(--roxo-escuro); box-shadow: 0 16px 30px -12px rgb(96 2 152 / 0.65); }
+  .btn:hover .btn-ico { transform: translateX(3px) rotate(-6deg); }
+  .btn--claro:hover { background: #fff; }
+  .btn--borda:hover { background: var(--papel); }
+}
+.link-seta {
+  display: inline; padding-block: 0.65rem; line-height: 1.5;
+  font-weight: 600; text-decoration: underline; text-decoration-color: rgb(43 30 51 / 0.35);
+}
+.link-seta .ico { display: inline-block; width: 1.1rem; height: 1.1rem; margin-left: 0.4rem; vertical-align: -0.2em; transition: transform 250ms var(--ease-out); }
+@media (hover: hover) and (pointer: fine) { .link-seta:hover { text-decoration-color: currentColor; } .link-seta:hover .ico { transform: translateX(3px); } }
+
+/* ---------- Faixa da campanha e cabeçalho ---------- */
+.faixa { background: var(--roxo); color: var(--papel); font-size: var(--t-small); line-height: 1.4; text-align: center; }
+.faixa .wrap { padding-block: 0.65rem; }
+.faixa strong { color: var(--rosa-suave); font-weight: 600; }
+
+.topo {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 40;
+  background: var(--linho);
+  transition: box-shadow 250ms ease;
+}
+.topo.rolou { box-shadow: 0 1px 0 var(--linha), 0 10px 24px -18px rgb(43 30 51 / 0.35); }
+.topo .wrap { display: flex; align-items: center; gap: 1.5rem; min-height: 4.25rem; }
+.marca { display: inline-flex; color: var(--tinta); }
+.marca svg { width: 7.25rem; height: auto; }
+.nav { display: none; gap: 0.25rem; margin-left: auto; }
+.nav a { padding: 0.5rem 0.8rem; border-radius: 999px; text-decoration: none; font-weight: 500; font-size: 0.9375rem; color: var(--tinta-2); transition: color 200ms ease, background-color 200ms ease; }
+@media (hover: hover) and (pointer: fine) { .nav a:hover { color: var(--tinta); background: var(--linho-2); } }
+.topo .btn { margin-left: auto; min-height: 2.75rem; padding: 0.3rem 0.3rem 0.3rem 1.1rem; font-size: 0.9375rem; gap: 0.6rem; box-shadow: none; }
+.topo .btn .btn-ico { width: 2.15rem; height: 2.15rem; }
+.topo .btn .longo { display: none; }
+@media (min-width: 940px) { .nav { display: flex; } .topo .btn { margin-left: 0.75rem; } .topo .btn .longo { display: inline; } .topo .btn .curto { display: none; } }
+/* Um botão de reservar por vez: no celular fica o flutuante (perto do polegar), no computador o do cabeçalho. */
+@media (max-width: 939px) { .topo .btn { display: none; } }
+@media (min-width: 940px) { .flutuante { display: none; } }
+
+/* ---------- Topo da página (hero) ---------- */
+.hero { padding-block: clamp(2.25rem, 1.5rem + 3vw, 4.5rem) clamp(3rem, 2rem + 3vw, 5rem); overflow-x: clip; }
+.hero-grid { display: grid; gap: clamp(2.75rem, 2rem + 3vw, 4rem); align-items: center; }
+.hero-texto { display: grid; gap: 1.5rem; min-width: 0; }
+.hero h1 { font-size: var(--t-hero); max-width: 17ch; }
+.hero h1 .acento { color: var(--roxo); }
+.hero-sub { font-size: var(--t-lead); color: var(--tinta-2); max-width: 44ch; }
+.hero-acoes { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1.5rem; margin-top: 0.5rem; }
+.hero-fatos { display: flex; flex-wrap: wrap; gap: 0.35rem 1.25rem; padding: 0; margin: 0.25rem 0 0; list-style: none; font-size: var(--t-small); color: var(--tinta-2); }
+.hero-fatos li { display: inline-flex; align-items: center; gap: 0.4rem; }
+.hero-fatos .ico { width: 1rem; height: 1rem; color: var(--roxo); stroke-width: 2.4; }
+@media (max-width: 899px) {
+  .hero-grid { gap: 1.5rem; }
+  .hero-texto { display: contents; }
+  .hero h1 { order: 1; }
+  .album { order: 2; margin-block: 0.75rem 0.5rem; }
+  .hero-sub { order: 3; }
+  .hero-acoes { order: 4; margin-top: 0; }
+  .hero-fatos { order: 5; }
+  .pilha { width: min(82%, 21rem); }
+}
+@media (min-width: 900px) { .hero-grid { grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr); } }
+
+/* Pilha de fotos (assinatura) */
+.album { display: grid; justify-items: center; gap: 1.5rem; min-width: 0; }
+.pilha {
+  position: relative; width: min(100%, 25.5rem); aspect-ratio: 4 / 5;
+  touch-action: pan-y; user-select: none; -webkit-user-select: none;
+}
+.print {
+  position: absolute; inset: 0; margin: 0;
+  padding: 0.55rem; border-radius: 1.6rem; background: var(--papel);
+  box-shadow: var(--sombra-foto);
+  transition: transform 700ms var(--ease-out), opacity 450ms ease;
+  will-change: transform;
+  opacity: 0; transform: translate(0, 3%) rotate(0deg) scale(0.9); z-index: 1;
+}
+.print img { width: 100%; height: 100%; object-fit: cover; border-radius: 1.15rem; pointer-events: none; background: var(--linho-2); }
+.print[data-pos="0"] { opacity: 1; transform: none; z-index: 5; cursor: grab; }
+.print[data-pos="1"] { opacity: 1; transform: translate(6%, 2.5%) rotate(5deg) scale(0.965); z-index: 4; }
+.print[data-pos="2"] { opacity: 1; transform: translate(-6%, 3.5%) rotate(-5.5deg) scale(0.935); z-index: 3; }
+.print[data-pos="3"] { opacity: 1; transform: translate(1%, 4.5%) rotate(1.5deg) scale(0.9); z-index: 2; }
+.print[data-pos="fora"] { z-index: 6; opacity: 0; transform: translate(-118%, 6%) rotate(-15deg); }
+.print[data-pos="fora"][data-dir="dir"] { transform: translate(118%, 6%) rotate(15deg); }
+.print.arrastando { transition: none; cursor: grabbing; }
+.print-tag {
+  position: absolute; left: 1.35rem; bottom: 1.35rem;
+  background: var(--papel); color: var(--tinta);
+  font: 600 0.8125rem/1 var(--f-texto); padding: 0.5rem 0.8rem; border-radius: 999px;
+  box-shadow: 0 6px 14px -8px rgb(43 30 51 / 0.5);
+}
+.pilha-ctrl { display: flex; align-items: center; gap: 1rem; }
+.redondo {
+  display: grid; place-items: center; width: 2.9rem; height: 2.9rem; border-radius: 50%;
+  border: 0; background: var(--papel); color: var(--tinta); cursor: pointer;
+  box-shadow: inset 0 0 0 1.5px rgb(43 30 51 / 0.16);
+  transition: transform 160ms var(--ease-out), background-color 200ms ease;
+}
+.redondo:active { transform: scale(0.94); }
+@media (hover: hover) and (pointer: fine) { .redondo:hover { background: #fff; } }
+.contador { font: 600 0.9375rem/1 var(--f-display); font-variant-numeric: tabular-nums; min-width: 3.5rem; text-align: center; color: var(--tinta-2); }
+
+.selo { position: absolute; z-index: 8; width: clamp(6.25rem, 4.5rem + 5vw, 8.5rem); aspect-ratio: 1; top: -1.75rem; right: -0.75rem; filter: drop-shadow(0 10px 16px rgb(43 30 51 / 0.22)); pointer-events: none; }
+.selo svg { width: 100%; height: 100%; overflow: visible; }
+.selo-anel { transform-origin: 100px 100px; animation: girar 26s linear infinite; }
+.selo-anel text { font: 700 12.5px var(--f-display); letter-spacing: 0.06em; text-transform: uppercase; }
+.selo-num { font: 800 46px var(--f-display); letter-spacing: -0.04em; }
+.selo-sub { font: 600 12px var(--f-texto); }
+@keyframes girar { to { transform: rotate(360deg); } }
+@media (min-width: 900px) { .selo { right: -2.25rem; top: -2.25rem; } }
+
+/* ---------- Mural de fotos em movimento ---------- */
+.mural { padding-block: 0 var(--secao); display: grid; gap: 1rem; overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+          mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent); }
+.mural-linha { display: flex; width: max-content; animation: deslizar 90s linear infinite; }
+.mural-linha--volta { animation-direction: reverse; animation-duration: 105s; }
+.mural-linha img {
+  height: clamp(8.5rem, 5.5rem + 9vw, 14rem); width: auto; aspect-ratio: var(--ar);
+  object-fit: cover; border-radius: 1.1rem; margin-right: 1rem; background: var(--linho-2);
+}
+@media (hover: hover) and (pointer: fine) { .mural:hover .mural-linha { animation-play-state: paused; } }
+@keyframes deslizar { to { transform: translateX(-50%); } }
+
+/* ---------- Seções ---------- */
+.secao { padding-block: var(--secao); }
+.secao-cabeca { display: grid; gap: 1rem; margin-bottom: clamp(2.25rem, 1.5rem + 2.5vw, 3.75rem); max-width: 40rem; }
+.secao-cabeca h2 { font-size: var(--t-h2); }
+.secao-cabeca p { color: var(--tinta-2); font-size: var(--t-lead); max-width: 52ch; }
+
+/* Celebrações */
+.cel-lista { display: grid; gap: clamp(3rem, 2rem + 4vw, 5.5rem); }
+.cel { display: grid; gap: 1.5rem; align-items: center; }
+.cel-texto { display: grid; gap: 1rem; justify-items: start; max-width: 30rem; min-width: 0; }
+.cel h3 { font-size: clamp(1.8rem, 1.2rem + 2.2vw, 2.75rem); }
+.cel-texto p { color: var(--tinta-2); }
+.cel-midia { position: relative; min-width: 0; }
+.cel-midia img { width: 100%; height: 100%; object-fit: cover; border-radius: var(--raio); box-shadow: var(--sombra-foto); }
+.cel--casamentos .cel-midia img { aspect-ratio: 3 / 2; }
+.cel-par { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(0.75rem, 0.5rem + 1vw, 1.25rem); align-items: start; }
+.cel-par img { aspect-ratio: 2 / 3; }
+.cel-par img:last-child { margin-top: clamp(1.5rem, 1rem + 2vw, 3rem); }
+.cel-campos { display: grid; gap: clamp(1rem, 0.75rem + 1vw, 1.5rem); }
+.campo {
+  display: grid; gap: 1rem; align-content: start; justify-items: start;
+  padding: clamp(1.75rem, 1.25rem + 2vw, 3rem); border-radius: var(--raio); min-width: 0;
+}
+.campo h3 { font-size: clamp(1.8rem, 1.2rem + 2.2vw, 2.75rem); }
+.campo--rosa { background: var(--rosa); color: var(--tinta); }
+.campo--roxo { background: var(--roxo); color: var(--papel); }
+.campo--roxo p { color: var(--lilas-texto); }
+.campo--rosa .link-seta { text-decoration-color: rgb(43 30 51 / 0.5); }
+.campo--roxo .link-seta { text-decoration-color: rgb(252 248 243 / 0.5); }
+.campo-tipos { font-family: var(--f-acento); font-style: italic; font-size: clamp(1.25rem, 1.05rem + 0.8vw, 1.6rem); line-height: 1.25; }
+@media (min-width: 900px) {
+  .cel { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(2.5rem, 1rem + 4vw, 5rem); }
+  .cel--invertida { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
+  .cel--invertida .cel-midia { order: 2; }
+  .cel-campos { grid-template-columns: 1fr 1fr; }
+}
+@media (hover: hover) and (pointer: fine) {
+  .cel-midia img, .tile img { transition: transform 900ms var(--ease-out); }
+  .cel-midia:hover img { transform: scale(1.015) rotate(-0.4deg); }
+}
+
+/* Incluso (faixa roxa) */
+.incluso { background: var(--roxo); color: var(--papel); overflow: hidden; }
+.incluso .secao-cabeca p { color: var(--lilas-texto); }
+.incluso-grid { display: grid; gap: clamp(3rem, 2rem + 4vw, 5rem); align-items: center; }
+.lista-check { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; border-top: 1px solid rgb(252 248 243 / 0.18); }
+.lista-check li { display: flex; gap: 1rem; align-items: flex-start; padding-block: 1rem; border-bottom: 1px solid rgb(252 248 243 / 0.18); font-size: 1.0625rem; }
+.lista-check .marca-check { display: grid; place-items: center; flex: none; width: 1.75rem; height: 1.75rem; border-radius: 50%; background: var(--rosa); color: var(--tinta); margin-top: 0.05rem; }
+.lista-check .marca-check .ico { width: 1rem; height: 1rem; stroke-width: 2.6; }
+.lista-check small { display: block; color: var(--lilas-texto); font-size: 0.9375rem; }
+.incluso-fotos { position: relative; padding: 0 0 clamp(4rem, 3rem + 4vw, 6rem) clamp(2.5rem, 1rem + 5vw, 5rem); min-width: 0; }
+.incluso-fotos img { border-radius: var(--raio); box-shadow: 0 30px 60px -28px rgb(0 0 0 / 0.55); }
+.incluso-fotos .f-alta { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+.incluso-fotos .f-baixa {
+  position: absolute; left: 0; bottom: 0; width: 62%; aspect-ratio: 16 / 9; object-fit: cover;
+  border: 0.45rem solid var(--papel); border-radius: 1.4rem; transform: rotate(-4deg);
+}
+.frase { margin-top: clamp(4rem, 3rem + 4vw, 6.5rem); padding-top: clamp(2.5rem, 2rem + 2vw, 3.5rem); border-top: 1px solid rgb(252 248 243 / 0.18); }
+.frase p { font: 700 clamp(1.9rem, 1.1rem + 3.3vw, 3.9rem)/1.05 var(--f-display); letter-spacing: -0.03em; max-width: 22ch; text-wrap: balance; }
+.frase .acento { color: var(--rosa); }
+@media (min-width: 900px) { .incluso-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
+
+/* Portfólio */
+.filtros-rolagem { overflow-x: auto; margin-inline: calc(-1 * max(20px, env(safe-area-inset-left, 0px))); padding-inline: max(20px, env(safe-area-inset-left, 0px)); scrollbar-width: none; }
+.filtros-rolagem::-webkit-scrollbar { display: none; }
+.filtros { display: flex; gap: 0.5rem; width: max-content; padding-block: 0.25rem; }
+.filtro {
+  display: inline-flex; align-items: center; gap: 0.5rem; min-height: 2.75rem;
+  padding: 0.5rem 1.1rem; border-radius: 999px; border: 0; background: transparent; cursor: pointer;
+  box-shadow: inset 0 0 0 1.5px rgb(43 30 51 / 0.2);
+  font-weight: 500; font-size: 0.9375rem; white-space: nowrap;
+  transition: background-color 200ms ease, color 200ms ease, box-shadow 200ms ease, transform 160ms var(--ease-out);
+}
+.filtro:active { transform: scale(0.97); }
+.filtro small { font: 600 0.75rem/1 var(--f-texto); font-variant-numeric: tabular-nums; color: var(--tinta-2); transition: color 200ms ease; }
+.filtro[aria-pressed="true"] { background: var(--tinta); color: var(--papel); box-shadow: none; }
+.filtro[aria-pressed="true"] small { color: var(--rosa-suave); }
+@media (hover: hover) and (pointer: fine) { .filtro:hover:not([aria-pressed="true"]) { background: var(--papel); } }
+.legenda { margin: 1.25rem 0 2rem; font-family: var(--f-acento); font-style: italic; font-size: clamp(1.3rem, 1.1rem + 0.8vw, 1.7rem); color: var(--roxo); min-height: 1.4em; }
+
+.galeria { --cols: 2; --gap: 12px; display: grid; grid-template-columns: repeat(var(--cols), minmax(0, 1fr)); grid-auto-rows: 8px; gap: var(--gap); grid-auto-flow: dense; }
+@media (min-width: 640px) { .galeria { --cols: 3; --gap: 14px; } }
+@media (min-width: 1024px) { .galeria { --cols: 4; --gap: 16px; } }
+.tile {
+  position: relative; display: block; padding: 0; border: 0; margin: 0; overflow: hidden; cursor: zoom-in;
+  border-radius: 1.1rem; background: var(--linho-2); grid-row-end: span 30;
+}
+.tile--largo { grid-column: span 2; }
+.tile img, .tile video { width: 100%; height: 100%; object-fit: cover; }
+.tile-tag {
+  position: absolute; left: 0.75rem; bottom: 0.75rem;
+  background: var(--papel); color: var(--tinta); font: 600 0.75rem/1 var(--f-texto);
+  padding: 0.45rem 0.7rem; border-radius: 999px;
+  opacity: 0; transform: translateY(4px); transition: opacity 200ms ease, transform 250ms var(--ease-out);
+}
+.tile:focus-visible { outline-offset: 3px; }
+@media (hover: hover) and (pointer: fine) {
+  .tile:hover img { transform: scale(1.035); }
+  .tile:hover .tile-tag, .tile:focus-visible .tile-tag { opacity: 1; transform: none; }
+}
+.tile.entra { animation: entrar 380ms var(--ease-out) both; animation-delay: calc(var(--n, 0) * 35ms); }
+@keyframes entrar { from { opacity: 0; transform: translateY(10px) scale(0.985); } }
+.galeria-acoes { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 1rem 1.5rem; margin-top: clamp(2.25rem, 1.5rem + 2vw, 3.25rem); }
+
+/* Visualizador */
+.lightbox {
+  width: 100%; height: 100%; max-width: none; max-height: none; margin: 0; padding: 0; border: 0;
+  background: rgb(31 20 38 / 0.94); color: var(--papel);
+}
+.lightbox[open] { display: grid; grid-template-rows: auto minmax(0, 1fr) auto; animation: abrir 260ms var(--ease-out); }
+.lightbox::backdrop { background: transparent; }
+@keyframes abrir { from { opacity: 0; transform: scale(0.985); } }
+.lb-topo { display: flex; align-items: center; justify-content: space-between; padding: calc(0.75rem + env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) 0.75rem max(16px, env(safe-area-inset-left, 0px)); }
+.lb-contador { font: 600 0.9375rem/1 var(--f-display); font-variant-numeric: tabular-nums; color: var(--lilas-texto); }
+.lb-palco { display: grid; place-items: center; min-height: 0; padding-inline: max(16px, env(safe-area-inset-left, 0px)); touch-action: pan-y; }
+.lb-palco img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; border-radius: 0.9rem; user-select: none; -webkit-user-drag: none; }
+.lb-base { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0.9rem max(16px, env(safe-area-inset-right, 0px)) calc(0.9rem + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); }
+.lb-legenda { flex: 1; text-align: center; font-size: 0.9375rem; color: var(--lilas-texto); min-width: 0; }
+.lb-legenda strong { color: var(--papel); font-weight: 600; }
+.lightbox .redondo { background: rgb(252 248 243 / 0.1); color: var(--papel); box-shadow: inset 0 0 0 1.5px rgb(252 248 243 / 0.22); }
+@media (hover: hover) and (pointer: fine) { .lightbox .redondo:hover { background: rgb(252 248 243 / 0.2); } }
+
+/* Como funciona (faixa lilás) */
+.como { background: var(--lilas); }
+.passos { list-style: none; margin: 0; padding: 0; display: grid; gap: 2.25rem; position: relative; counter-reset: passo; }
+.passo { position: relative; display: grid; grid-template-columns: 3.25rem minmax(0, 1fr); gap: 0 1.25rem; align-content: start; }
+.passo-num {
+  grid-row: span 2; display: grid; place-items: center; width: 3.25rem; height: 3.25rem; border-radius: 50%;
+  background: var(--papel); color: var(--roxo); font: 800 1.25rem/1 var(--f-display);
+  box-shadow: inset 0 0 0 2px var(--roxo); position: relative; z-index: 1;
+}
+.passo h3 { font-size: 1.3rem; align-self: end; padding-top: 0.2rem; }
+.passo p { color: var(--tinta-2); margin-top: 0.4rem; }
+.trilho { position: absolute; left: calc(1.625rem - 1px); top: 1.5rem; bottom: 3.5rem; width: 2px; background: rgb(96 2 152 / 0.18); }
+.trilho span { position: absolute; inset: 0; background: var(--roxo); transform-origin: top; }
+@media (min-width: 960px) {
+  .passos { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 1.75rem; }
+  .passo { grid-template-columns: 1fr; gap: 0; }
+  .passo-num { grid-row: auto; margin-bottom: 1.5rem; }
+  .passo h3 { align-self: start; }
+  .trilho { left: 1.625rem; right: calc((100% - 4 * 1.75rem) / 5 - 1.625rem); top: calc(1.625rem - 1px); bottom: auto; width: auto; height: 2px; }
+  .trilho span { transform-origin: left; }
+}
+.como-acao { margin-top: clamp(2.75rem, 2rem + 2vw, 3.75rem); }
+
+/* Perguntas frequentes */
+.faq-grid { display: grid; gap: 2.5rem; }
+.faq-lado { display: grid; gap: 1.5rem; align-content: start; justify-items: start; }
+.faq-lado h2 { font-size: var(--t-h2); }
+.faq-lado p { color: var(--tinta-2); max-width: 34ch; }
+.faq-lista { border-top: 1px solid var(--linha); min-width: 0; }
+.faq-lista details { border-bottom: 1px solid var(--linha); }
+.faq-lista summary {
+  display: flex; align-items: center; justify-content: space-between; gap: 1.25rem;
+  padding-block: 1.35rem; cursor: pointer; list-style: none;
+  font: 600 clamp(1.08rem, 1rem + 0.35vw, 1.25rem)/1.3 var(--f-display); letter-spacing: -0.01em;
+}
+.faq-lista summary::-webkit-details-marker { display: none; }
+.faq-mais { display: grid; place-items: center; flex: none; width: 2.25rem; height: 2.25rem; border-radius: 50%; background: var(--papel); color: var(--roxo); transition: transform 300ms var(--ease-out), background-color 200ms ease, color 200ms ease; }
+.faq-lista details[open] .faq-mais { transform: rotate(45deg); background: var(--roxo); color: var(--papel); }
+.faq-lista details p { padding-bottom: 1.5rem; color: var(--tinta-2); max-width: 60ch; }
+.faq-lista details::details-content { block-size: 0; overflow: hidden; transition: block-size 320ms var(--ease-out), content-visibility 320ms allow-discrete; }
+.faq-lista details[open]::details-content { block-size: auto; }
+@media (min-width: 900px) { .faq-grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 4rem; } .faq-lado { position: sticky; top: 6.5rem; } }
+
+/* Chamada final (faixa rosa) */
+.final { background: var(--rosa); color: var(--tinta); overflow: hidden; }
+.final-grid { display: grid; gap: clamp(3rem, 2rem + 4vw, 4.5rem); align-items: center; }
+.final-texto { display: grid; gap: 1.5rem; justify-items: start; min-width: 0; }
+.final h2 { font-size: var(--t-h2); max-width: 18ch; }
+.final h2 .acento { color: var(--roxo); }
+.final-texto p { font-size: var(--t-lead); max-width: 46ch; }
+.leque { position: relative; height: clamp(19rem, 15rem + 14vw, 27rem); min-width: 0; }
+.leque figure { position: absolute; top: 50%; left: 50%; margin: 0; width: 46%; aspect-ratio: 3 / 4; padding: 0.45rem; border-radius: 1.3rem; background: var(--papel); box-shadow: 0 24px 40px -22px rgb(43 30 51 / 0.6); }
+.leque img { width: 100%; height: 100%; object-fit: cover; border-radius: 0.95rem; }
+.leque figure:nth-child(1) { transform: translate(-118%, -48%) rotate(-9deg); }
+.leque figure:nth-child(2) { transform: translate(-50%, -54%) rotate(1.5deg); z-index: 2; }
+.leque figure:nth-child(3) { transform: translate(18%, -46%) rotate(10deg); }
+.leque .selo { top: 0; right: 4%; }
+.selo--roxo .selo-disco { fill: var(--roxo); }
+@media (min-width: 900px) { .final-grid { grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); } .leque figure { width: 40%; } }
+
+/* Rodapé */
+.rodape { background: var(--linho-2); padding-block: 3rem calc(3rem + env(safe-area-inset-bottom, 0px)); font-size: 0.9375rem; color: var(--tinta-2); }
+.rodape .wrap { display: grid; gap: 1.75rem; }
+.rodape-linha { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.25rem 2rem; }
+.rodape .marca svg { width: 8rem; }
+.rodape-contatos { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; list-style: none; margin: 0; padding: 0; }
+.rodape-contatos a { display: inline-flex; align-items: center; gap: 0.5rem; min-height: 2.75rem; font-weight: 600; color: var(--tinta); text-decoration: none; }
+@media (hover: hover) and (pointer: fine) { .rodape-contatos a:hover { color: var(--roxo); text-decoration: underline; } }
+
+/* Botão flutuante */
+.flutuante {
+  position: fixed; z-index: 45;
+  right: max(16px, env(safe-area-inset-right, 0px)); bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+  display: inline-flex; align-items: center; gap: 0.6rem; min-height: 3.4rem; padding: 0.4rem 1.2rem 0.4rem 0.45rem;
+  border-radius: 999px; background: var(--roxo); color: var(--papel); text-decoration: none; font-weight: 600; font-size: 0.9375rem;
+  box-shadow: 0 16px 32px -14px rgb(96 2 152 / 0.75);
+  transform: translateY(calc(100% + 2rem)); transition: transform 450ms var(--ease-out);
+}
+.flutuante .btn-ico { width: 2.55rem; height: 2.55rem; }
+.flutuante.visivel { transform: none; }
+.flutuante:active { transform: scale(0.97); }
+
+/* Revelação das fotos ao rolar (só onde o navegador suporta; o estado normal já é visível) */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .revela { animation: revelar linear both; animation-timeline: view(); animation-range: entry 0% entry 75%; }
+    .trilho span { animation: tracar linear both; animation-timeline: view(); animation-range: entry 40% cover 55%; }
+  }
+}
+@keyframes revelar { from { clip-path: inset(14% 0 0 0 round var(--raio)); transform: translateY(28px); } to { clip-path: inset(0 0 0 0 round var(--raio)); transform: none; } }
+@keyframes tracar { from { transform: scale(0, 0); } }
+@media (min-width: 960px) { @keyframes tracar { from { transform: scaleX(0); } } }
+@media (max-width: 959px) { @keyframes tracar { from { transform: scaleY(0); } } }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .mural-linha, .selo-anel { animation: none; }
+  .print, .flutuante, .tile.entra, .lightbox[open] { transition-duration: 1ms; animation: none; }
+  .faq-lista details::details-content { transition: none; }
+}
+</style>
+</head>
+<body>
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="logo" viewBox="0 0 379.42 92.79"><path fill="currentColor" d="M29.5,18.3l-13.89,.06C7.04,18.4,.11,24.64,.03,32.33l-.03,28.81c0,3.89,3.15,7.05,7.05,7.05s7.05-3.15,7.05-7.05v-24.66c0-1.96,1.36-3.6,3.19-4.03l12.15-.05c3.95-.02,7.25-3.27,7.15-7.22-.09-3.83-3.23-6.89-7.08-6.88Z"/><path fill="currentColor" d="M89.7,21.39c-1.39-1.87-3.61-3.09-6.12-3.09h0c-4.2,0-7.61,3.41-7.61,7.61v27.51h8.42c2.34-4.57,2.85-8.82,2.99-10.96h.02c.16-3.48,1.57-6.64,3.79-9.04v-7.51c0-1.69-.55-3.25-1.49-4.52Z"/><path fill="currentColor" d="M126.52,43.87c.27-13.51-10.83-25.08-24.34-25.33-2.73-.05-5.37,.34-7.84,1.1-3.39,1.05-5.99,2.66-7.82,4.06-.03,.02-.06,.05-.07,.05-.8,.62-2.85,2.3-4.89,5.06-.89,1.2-2.31,3.17-3.36,6.04-.68,1.87-.83,3.13-1.12,4.7-.31,1.7-1.32,7.24-2.93,10.35-2.05,3.95-7.06,7.82-12.73,7.77-7.14-.06-14.32-6.04-14.32-14.32s6.41-14.32,14.32-14.32c1.39,0,2.73,.2,4,.57,2.14,.62,4.28-1.03,4.28-3.26v-3.89c0-1.57-1.09-2.92-2.61-3.27-2.26-.53-4.65-.75-7.1-.61-13.2,.75-23.55,11.88-23.39,25.1,.18,14.49,13.05,24.3,24.83,24.52,12.1,.23,19.82-9.72,20.58-10.74,4.41-5.88,5.19-12.04,5.37-14.76h.02c.36-7.73,6.84-13.86,14.7-13.64,7.44,.21,13.55,6.2,13.9,13.63,.38,8.21-6.17,14.99-14.3,14.99h1.12v10.49c13.03-.58,23.44-11.19,23.71-24.29Z"/><path fill="currentColor" d="M101.7,57.67s0,0,0,0c0,0,0,0,0,0h-14.09v27.51c0,4.2,3.41,7.61,7.61,7.61h0c4.2,0,7.61-3.41,7.61-7.61v-27.51h-1.12Z"/><path fill="currentColor" d="M179.58,62.48c0,.77-.15,1.51-.45,2.19-.3,.69-.71,1.29-1.24,1.8-.53,.51-1.14,.91-1.82,1.19-.69,.28-1.43,.42-2.24,.42s-1.51-.14-2.19-.42c-.69-.28-1.29-.68-1.82-1.19-.53-.51-.94-1.11-1.24-1.8-.3-.69-.45-1.42-.45-2.19v-19.83c0-.12,.02-.24,.05-.34-.04-1.76-.35-3.4-.95-4.91-.6-1.51-1.42-2.83-2.46-3.96-1.04-1.13-2.28-2.02-3.72-2.67-1.44-.65-3.05-.98-4.81-.98s-3.47,.31-5.02,.92c-1.55,.62-2.89,1.48-4.01,2.59-1.13,1.11-2.02,2.43-2.67,3.96-.65,1.53-.98,3.21-.98,5.04v20.07c0,.77-.15,1.51-.45,2.22-.3,.7-.7,1.31-1.21,1.82s-1.11,.92-1.8,1.21c-.69,.3-1.43,.45-2.24,.45s-1.57-.15-2.27-.45c-.7-.3-1.31-.7-1.82-1.21-.51-.51-.92-1.12-1.21-1.82-.3-.7-.45-1.44-.45-2.22V5.81c0-.81,.15-1.57,.45-2.27,.3-.7,.71-1.32,1.24-1.85s1.14-.94,1.85-1.24c.7-.3,1.44-.45,2.22-.45s1.56,.15,2.24,.45c.69,.3,1.28,.71,1.8,1.24,.51,.53,.92,1.14,1.21,1.85,.3,.7,.45,1.46,.45,2.27V23.03c1.83-1.48,3.81-2.63,5.94-3.46,2.13-.83,4.37-1.24,6.73-1.24,3.34,0,6.44,.64,9.3,1.93,2.85,1.29,5.32,3.03,7.39,5.23,2.08,2.2,3.71,4.78,4.89,7.74,1.18,2.96,1.77,6.11,1.77,9.45v19.81Z"/><path fill="currentColor" d="M185.15,8.23c0-.87,.16-1.68,.49-2.44,.33-.76,.77-1.42,1.33-1.98,.55-.55,1.21-1,1.98-1.33,.76-.33,1.56-.49,2.39-.49s1.63,.16,2.39,.49c.76,.33,1.43,.77,2,1.33,.57,.55,1.02,1.21,1.35,1.98,.33,.76,.49,1.58,.49,2.44s-.16,1.62-.49,2.37c-.33,.75-.78,1.4-1.35,1.95-.57,.55-1.24,1-2,1.33-.76,.33-1.56,.49-2.39,.49s-1.63-.16-2.39-.49c-.76-.33-1.42-.77-1.98-1.33-.55-.55-1-1.2-1.33-1.95-.33-.75-.49-1.53-.49-2.37Zm12.19,54.06c0,.79-.15,1.53-.45,2.25-.3,.71-.71,1.33-1.23,1.85s-1.12,.93-1.82,1.23c-.7,.3-1.45,.45-2.28,.45s-1.53-.15-2.25-.45c-.71-.3-1.34-.71-1.87-1.23-.54-.52-.96-1.13-1.26-1.85-.3-.71-.45-1.46-.45-2.25V24.07c0-.78,.16-1.53,.48-2.22,.32-.7,.75-1.31,1.28-1.85s1.16-.95,1.87-1.26c.71-.3,1.48-.45,2.3-.45s1.57,.15,2.25,.45c.68,.3,1.28,.72,1.79,1.26,.52,.54,.92,1.15,1.2,1.85,.29,.7,.43,1.44,.43,2.22V62.3Z"/><path fill="currentColor" d="M203.14,43.2c0-3.45,.66-6.67,1.98-9.69,1.32-3.01,3.11-5.65,5.38-7.91,2.26-2.26,4.9-4.05,7.91-5.35,3.01-1.31,6.22-1.96,9.63-1.96s6.68,.65,9.71,1.96c3.03,1.31,5.67,3.09,7.91,5.35,2.25,2.26,4.01,4.9,5.3,7.91,1.29,3.01,1.93,6.24,1.93,9.69v18.48c0,.8-.15,1.55-.44,2.25-.3,.7-.7,1.31-1.23,1.83s-1.14,.94-1.85,1.25c-.71,.31-1.47,.47-2.27,.47-1.36,0-2.51-.4-3.45-1.2-.94-.8-1.57-1.81-1.88-3.03-1.98,1.5-4.13,2.68-6.45,3.55-2.32,.87-4.74,1.31-7.28,1.31-3.41,0-6.62-.65-9.63-1.96-3.01-1.31-5.65-3.09-7.91-5.35-2.26-2.26-4.06-4.91-5.38-7.94-1.32-3.03-1.98-6.25-1.98-9.66Zm11.33,0c0,1.85,.36,3.59,1.07,5.25,.71,1.65,1.69,3.1,2.92,4.33,1.24,1.24,2.67,2.21,4.31,2.92,1.64,.71,3.39,1.07,5.27,1.07s3.65-.36,5.3-1.07c1.65-.71,3.09-1.69,4.31-2.92,1.22-1.24,2.18-2.68,2.87-4.33,.7-1.65,1.04-3.4,1.04-5.25s-.35-3.65-1.04-5.3c-.7-1.65-1.65-3.09-2.87-4.31-1.22-1.22-2.65-2.18-4.31-2.9-1.65-.71-3.42-1.07-5.3-1.07s-3.59,.36-5.25,1.07c-1.65,.71-3.1,1.68-4.33,2.9-1.24,1.22-2.21,2.65-2.92,4.31-.71,1.65-1.07,3.42-1.07,5.3Z"/><path fill="currentColor" d="M276.46,43.37c0-3.37,.64-6.55,1.92-9.53,1.28-2.98,3.02-5.57,5.24-7.77,2.21-2.2,4.8-3.93,7.77-5.21,2.96-1.28,6.11-1.92,9.45-1.92s6.52,.63,9.45,1.89c2.93,1.26,5.49,2.99,7.69,5.19,2.2,2.2,3.93,4.76,5.21,7.69,1.28,2.93,1.93,6.08,1.97,9.45v21.56c0,.68-.2,1.24-.61,1.69-.41,.44-.95,.66-1.64,.66s-1.17-.22-1.56-.66c-.39-.44-.59-1-.59-1.69l-.05-7.66c-1.09,1.57-2.36,3.01-3.81,4.32-1.45,1.31-3.01,2.44-4.7,3.37-1.69,.94-3.49,1.67-5.42,2.2-1.92,.53-3.91,.79-5.95,.79-3.34,0-6.49-.64-9.45-1.92-2.96-1.28-5.55-3.02-7.77-5.24-2.21-2.21-3.96-4.8-5.24-7.77-1.28-2.96-1.92-6.11-1.92-9.45Zm4.45,0c0,2.69,.52,5.25,1.56,7.66,1.04,2.42,2.45,4.54,4.24,6.36,1.79,1.82,3.89,3.26,6.31,4.32,2.42,1.06,5.02,1.58,7.82,1.58s5.45-.53,7.87-1.58c2.42-1.06,4.52-2.5,6.31-4.32,1.79-1.82,3.19-3.94,4.22-6.36,1.02-2.42,1.53-4.97,1.53-7.66s-.51-5.36-1.53-7.79c-1.02-2.44-2.43-4.56-4.22-6.36-1.79-1.81-3.89-3.23-6.31-4.27-2.42-1.04-5.04-1.56-7.87-1.56s-5.36,.52-7.79,1.56c-2.44,1.04-4.55,2.46-6.34,4.27-1.79,1.81-3.2,3.93-4.24,6.36-1.04,2.44-1.56,5.03-1.56,7.79Z"/><path fill="currentColor" d="M330.72,43.37c0-3.37,.64-6.55,1.92-9.53,1.28-2.98,3.02-5.57,5.24-7.77,2.21-2.2,4.8-3.93,7.77-5.21,2.96-1.28,6.11-1.92,9.45-1.92s6.54,.64,9.5,1.92c2.96,1.28,5.54,3.01,7.74,5.21,2.2,2.2,3.93,4.79,5.19,7.77,1.26,2.98,1.89,6.16,1.89,9.53,0,2.66-.4,5.18-1.2,7.56-.8,2.38-1.92,4.58-3.35,6.59,1.5,1.6,2.51,3.36,3.04,5.26,.53,1.91,.79,3.83,.79,5.77,0,2.69-.47,5.11-1.41,7.26-.94,2.15-2.19,3.98-3.76,5.49-1.57,1.52-3.35,2.67-5.34,3.47-1.99,.8-4.06,1.2-6.21,1.2-.85,0-1.75-.06-2.71-.18-.95-.12-1.93-.24-2.94-.36-1.01-.12-2.01-.24-3.01-.36-1.01-.12-1.97-.18-2.89-.18-1.26,0-2.56,.13-3.91,.38-1.35,.26-2.53,.77-3.55,1.56-.41,.31-.85,.46-1.33,.46-.44,0-.85-.12-1.23-.36-.38-.24-.66-.55-.87-.92-.2-.38-.27-.79-.2-1.25,.07-.46,.32-.93,.77-1.41,.58-.44,1.26-.83,2.04-1.15,.78-.32,1.61-.59,2.48-.79,.87-.2,1.75-.36,2.63-.46,.89-.1,1.7-.15,2.45-.15,1.84,0,3.69,.13,5.54,.38,1.86,.26,3.64,.38,5.34,.38,1.98,0,3.8-.31,5.47-.92,1.67-.61,3.11-1.48,4.32-2.61,1.21-1.12,2.15-2.5,2.84-4.11,.68-1.62,1.02-3.43,1.02-5.44,0-1.02-.07-1.91-.2-2.66-.14-.75-.31-1.41-.51-1.99-.2-.58-.45-1.1-.74-1.56-.29-.46-.59-.91-.89-1.35-2.18,2.11-4.7,3.76-7.56,4.96-2.86,1.19-5.94,1.79-9.25,1.79s-6.49-.64-9.45-1.92c-2.96-1.28-5.55-3.01-7.77-5.21-2.21-2.2-3.96-4.78-5.24-7.74-1.28-2.96-1.92-6.11-1.92-9.45Zm4.45,0c0,2.69,.52,5.25,1.56,7.66,1.04,2.42,2.45,4.53,4.24,6.34,1.79,1.81,3.89,3.24,6.31,4.29,2.42,1.06,5.02,1.58,7.82,1.58s5.45-.53,7.87-1.58c2.42-1.06,4.52-2.49,6.31-4.29,1.79-1.81,3.19-3.92,4.22-6.34,1.02-2.42,1.53-4.97,1.53-7.66s-.51-5.36-1.53-7.79c-1.02-2.44-2.43-4.56-4.22-6.36-1.79-1.81-3.89-3.23-6.31-4.27-2.42-1.04-5.04-1.56-7.87-1.56s-5.36,.52-7.79,1.56c-2.44,1.04-4.55,2.46-6.34,4.27-1.79,1.81-3.2,3.93-4.24,6.36-1.04,2.44-1.56,5.03-1.56,7.79Z"/><path fill="currentColor" d="M258.47,61.96c0-.87,.16-1.68,.49-2.44,.33-.76,.77-1.42,1.33-1.98,.55-.55,1.21-1,1.98-1.33,.76-.33,1.56-.49,2.39-.49s1.63,.16,2.39,.49c.76,.33,1.43,.77,2,1.33,.57,.55,1.02,1.21,1.35,1.98,.33,.76,.49,1.58,.49,2.44s-.16,1.62-.49,2.37c-.33,.75-.78,1.4-1.35,1.95-.57,.55-1.24,1-2,1.33-.76,.33-1.56,.49-2.39,.49s-1.63-.16-2.39-.49c-.76-.33-1.42-.77-1.98-1.33-.55-.55-1-1.2-1.33-1.95-.33-.75-.49-1.53-.49-2.37Z"/></symbol>
+    <symbol id="i-wa" viewBox="0 0 24 24"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.39-1.47-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.06 2.88 1.21 3.07c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35M12.05 21.79h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.89-9.88 2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.88 9.88m8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.68 1.45h.01c6.55 0 11.89-5.34 11.89-11.89 0-3.18-1.24-6.17-3.48-8.41"/></symbol>
+    <symbol id="i-seta" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-baixo" viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></symbol>
+    <symbol id="i-esq" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></symbol>
+    <symbol id="i-dir" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+    <symbol id="i-mais" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+    <symbol id="i-insta" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="0.6" fill="currentColor"/></symbol>
+    <symbol id="i-local" viewBox="0 0 24 24"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.4"/></symbol>
+  </defs>
+</svg>
+
+<div class="faixa">
+  <div class="wrap"><strong>Black Friday:</strong> 15% de desconto em todos os pacotes de cobertura, válido para eventos até fevereiro.</div>
+</div>
+
+<header class="topo" id="topo">
+  <div class="wrap">
+    <a class="marca" href="#conteudo" aria-label="Raphia, voltar ao início"><svg aria-hidden="true"><use href="#logo"/></svg></a>
+    <nav class="nav" aria-label="Seções da página">
+      <a href="#celebracoes">Celebrações</a>
+      <a href="#portfolio">Portfólio</a>
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#duvidas">Dúvidas</a>
+    </nav>
+    <a class="btn" data-wa="reservar" href="https://wa.me/5585997279505"><span class="curto">Reservar</span><span class="longo">Quero reservar minha data</span><span class="btn-ico"><svg class="ico ico-cheio" aria-hidden="true"><use href="#i-wa"/></svg></span></a>
+  </div>
+</header>
+
+<main id="conteudo">
+
+  <!-- 1. Topo -->
+  <section class="hero" aria-labelledby="titulo-hero">
+    <div class="wrap hero-grid">
+      <div class="hero-texto">
+        <h1 id="titulo-hero">Os melhores momentos do seu evento, registrados em fotos e vídeos que <span class="acento">emocionam.</span></h1>
+        <p class="hero-sub">Cobertura profissional de 3 horas para festas de fim de ano, confraternizações, casamentos, aniversários e eventos corporativos. Você aproveita a festa e a Raphia cuida das memórias.</p>
+        <div class="hero-acoes">
+          <a class="btn" id="cta-topo" data-wa="reservar" href="https://wa.me/5585997279505">Quero reservar minha data<span class="btn-ico"><svg class="ico ico-cheio" aria-hidden="true"><use href="#i-wa"/></svg></span></a>
+          <a class="link-seta" href="#portfolio">Ver portfólio<svg class="ico" aria-hidden="true"><use href="#i-baixo"/></svg></a>
+        </div>
+        <ul class="hero-fatos">
+          <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Fotos editadas e todas as originais</li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Vídeo nos pacotes com vídeo</li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Entrega 100% digital</li>
+        </ul>
+      </div>
+
+      <div class="album">
+        <div class="pilha" id="pilha" role="group" aria-roledescription="carrossel" aria-label="Fotos de eventos registrados pela Raphia">
+          <div class="selo" aria-hidden="true">
+            <svg viewBox="0 0 200 200">
+              <defs><path id="curva-a" d="M100,100 m-76,0 a76,76 0 1,1 152,0 a76,76 0 1,1 -152,0"/></defs>
+              <circle class="selo-disco" cx="100" cy="100" r="98" fill="#ff40aa"/>
+              <g class="selo-anel"><text fill="#2b1e33"><textPath href="#curva-a" textLength="470" lengthAdjust="spacing">Black Friday • eventos até fevereiro • Raphia •</textPath></text></g>
+              <text class="selo-num" x="100" y="110" text-anchor="middle" fill="#2b1e33">15%</text>
+              <text class="selo-sub" x="100" y="131" text-anchor="middle" fill="#2b1e33">de desconto</text>
+            </svg>
+          </div>
+        </div>
+        <div class="pilha-ctrl">
+          <button class="redondo" type="button" id="pilha-ant" aria-label="Foto anterior"><svg class="ico" aria-hidden="true"><use href="#i-esq"/></svg></button>
+          <span class="contador" id="pilha-contador" aria-hidden="true">1 / 6</span>
+          <button class="redondo" type="button" id="pilha-prox" aria-label="Próxima foto"><svg class="ico" aria-hidden="true"><use href="#i-dir"/></svg></button>
+        </div>
+        <p class="sr-only" aria-live="polite" id="pilha-aviso"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mural de fotos em movimento -->
+  <div class="mural" id="mural" aria-hidden="true">
+    <div class="mural-linha" id="mural-1"></div>
+    <div class="mural-linha mural-linha--volta" id="mural-2"></div>
+  </div>
+
+  <!-- 2. Celebrações -->
+  <section class="secao" id="celebracoes" aria-labelledby="titulo-cel" style="padding-top:0">
+    <div class="wrap">
+      <div class="secao-cabeca">
+        <h2 id="titulo-cel">Para cada celebração, um <span class="acento">olhar atento</span></h2>
+      </div>
+
+      <div class="cel-lista">
+        <article class="cel cel--casamentos">
+          <div class="cel-midia revela">
+            <img src="fotos/casamentos/casamento-09.webp" alt="Noivos saem sob chuva de pétalas, entre convidados e luzes acesas" width="1600" height="900" loading="lazy" decoding="async">
+          </div>
+          <div class="cel-texto">
+            <h3>Casamentos</h3>
+            <p>A cerimônia, os votos, a emoção dos pais, a entrada, o primeiro brinde. Com 3 horas de cobertura, a equipe acompanha os momentos mais importantes do grande dia e entrega tudo em fotos editadas e vídeo.</p>
+            <a class="link-seta" data-wa="casamentos" href="https://wa.me/5585997279505">Conte como será o seu casamento e monte o pacote ideal<svg class="ico" aria-hidden="true"><use href="#i-seta"/></svg></a>
+          </div>
+        </article>
+
+        <article class="cel cel--invertida">
+          <div class="cel-midia cel-par revela">
+            <img src="fotos/aniversarios/aniversario-1ano-04.webp" alt="Mãe segura a bebê diante dos balões cor-de-rosa" width="900" height="1600" loading="lazy" decoding="async">
+            <img src="fotos/aniversarios/aniversario-50anos-04.webp" alt="Aniversariante de macacão roxo ao lado do bolo de 50 anos" width="1067" height="1600" loading="lazy" decoding="async">
+          </div>
+          <div class="cel-texto">
+            <h3>Aniversários</h3>
+            <p>Infantil, 15 anos, bodas ou celebrações. O parabéns, o bolo, a família reunida e os detalhes da decoração ficam guardados para sempre.</p>
+            <a class="link-seta" data-wa="aniversarios" href="https://wa.me/5585997279505">Reserve a data da sua festa<svg class="ico" aria-hidden="true"><use href="#i-seta"/></svg></a>
+          </div>
+        </article>
+
+        <div class="cel-campos">
+          <article class="campo campo--rosa">
+            <h3>Confraternizações</h3>
+            <p class="campo-tipos">da empresa, da turma ou da família</p>
+            <p>Equipe reunida, risadas e fotos que vão para o grupo do WhatsApp no mesmo dia. Registramos com fotos individuais, fotos de grupo e vídeo, para que ninguém fique de fora.</p>
+            <a class="link-seta" data-wa="confraternizacoes" href="https://wa.me/5585997279505">Registre a sua confraternização<svg class="ico" aria-hidden="true"><use href="#i-seta"/></svg></a>
+          </article>
+          <article class="campo campo--roxo">
+            <h3>Eventos corporativos</h3>
+            <p class="campo-tipos">lançamentos, inaugurações, treinamentos, palestras e premiações</p>
+            <p>Fotos e vídeos com cara profissional para comunicação institucional, redes sociais e relatórios de evento.</p>
+            <a class="link-seta" data-wa="corporativos" href="https://wa.me/5585997279505">Peça a cobertura do seu evento corporativo<svg class="ico" aria-hidden="true"><use href="#i-seta"/></svg></a>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. O que está incluso -->
+  <section class="secao incluso" aria-labelledby="titulo-incluso">
+    <div class="wrap">
+      <div class="incluso-grid">
+        <div>
+          <div class="secao-cabeca">
+            <h2 id="titulo-incluso">O que está incluso na cobertura</h2>
+            <p>Nossa equipe chega no horário combinado, acompanha os momentos que mais importam e entrega o material pronto para você guardar, compartilhar e postar.</p>
+          </div>
+          <ul class="lista-check">
+            <li><span class="marca-check"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span>Cobertura profissional no seu evento</li>
+            <li><span class="marca-check"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span>Fotos editadas com acabamento profissional</li>
+            <li><span class="marca-check"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span>Todas as fotos disponibilizadas digitalmente, sem edição</li>
+            <li><span class="marca-check"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span><span>Vídeo com edição<small>nos pacotes que incluem vídeo</small></span></li>
+            <li><span class="marca-check"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span><span>Todos os vídeos captados no dia<small>nos pacotes que incluem vídeo</small></span></li>
+            <li><span class="marca-check"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span>Entrega 100% digital</li>
+          </ul>
+        </div>
+        <div class="incluso-fotos">
+          <img class="f-alta revela" src="fotos/aniversarios/aniversario-50anos-01.webp" alt="Detalhe da decoração com flores e globos espelhados" width="1058" height="1600" loading="lazy" decoding="async">
+          <img class="f-baixa" src="fotos/casamentos/casamento-08.webp" alt="Mãos dos noivos com as alianças, em preto e branco" width="1600" height="900" loading="lazy" decoding="async">
+        </div>
+      </div>
+      <div class="frase">
+        <p>Aproveite a festa e tenha boas lembranças. A Raphia registra, <span class="acento">você vive.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Portfólio -->
+  <section class="secao" id="portfolio" aria-labelledby="titulo-port">
+    <div class="wrap">
+      <div class="secao-cabeca" style="margin-bottom:1.75rem">
+        <h2 id="titulo-port">Veja como transformamos cada celebração em <span class="acento">lembranças</span></h2>
+      </div>
+      <div class="filtros-rolagem">
+        <div class="filtros" id="filtros" role="toolbar" aria-label="Filtrar fotos por tipo de evento"></div>
+      </div>
+      <p class="legenda" id="legenda" aria-live="polite"></p>
+      <div class="galeria" id="galeria"></div>
+      <div class="galeria-acoes">
+        <button class="btn btn--borda" type="button" id="ver-mais" hidden>Ver mais fotos</button>
+        <a class="btn" data-wa="portfolio" href="https://wa.me/5585997279505">Quero a minha cobertura<span class="btn-ico"><svg class="ico ico-cheio" aria-hidden="true"><use href="#i-wa"/></svg></span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Como funciona -->
+  <section class="secao como" id="como-funciona" aria-labelledby="titulo-como">
+    <div class="wrap">
+      <div class="secao-cabeca">
+        <h2 id="titulo-como">Da reserva à entrega, <span class="acento">tudo simples</span></h2>
+      </div>
+      <ol class="passos">
+        <li class="trilho" aria-hidden="true"><span></span></li>
+        <li class="passo"><span class="passo-num" aria-hidden="true">1</span><h3>Escolha o pacote</h3><p>Entre em contato e conheça as opções de pacotes.</p></li>
+        <li class="passo"><span class="passo-num" aria-hidden="true">2</span><h3>Conte sobre o evento</h3><p>Data, local, horário e os momentos que você faz questão de registrar.</p></li>
+        <li class="passo"><span class="passo-num" aria-hidden="true">3</span><h3>Reserve a sua data</h3><p>Confirmamos a agenda e combinamos um valor de entrada para reserva da data.</p></li>
+        <li class="passo"><span class="passo-num" aria-hidden="true">4</span><h3>Aproveite o evento</h3><p>Nossa equipe faz toda a cobertura e você só se preocupa em curtir.</p></li>
+        <li class="passo"><span class="passo-num" aria-hidden="true">5</span><h3>Receba o material</h3><p>Fotos e vídeos editados e entregues digitalmente.</p></li>
+      </ol>
+      <div class="como-acao">
+        <a class="btn" data-wa="comecar" href="https://wa.me/5585997279505">Quero começar agora<span class="btn-ico"><svg class="ico ico-cheio" aria-hidden="true"><use href="#i-wa"/></svg></span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. Perguntas frequentes -->
+  <section class="secao" id="duvidas" aria-labelledby="titulo-faq">
+    <div class="wrap faq-grid">
+      <div class="faq-lado">
+        <h2 id="titulo-faq">Perguntas frequentes</h2>
+        <p>Não encontrou o que procurava? Chame a gente no WhatsApp e responda com calma.</p>
+        <a class="btn btn--borda" data-wa="duvida" href="https://wa.me/5585997279505"><svg class="ico ico-cheio" aria-hidden="true" style="color:var(--roxo)"><use href="#i-wa"/></svg>Tirar uma dúvida</a>
+      </div>
+      <div class="faq-lista">
+        <details name="faq">
+          <summary>Quanto tempo dura a cobertura?<span class="faq-mais"><svg class="ico" aria-hidden="true"><use href="#i-mais"/></svg></span></summary>
+          <p>A cobertura padrão dura 3 horas. Coberturas maiores são combinadas com você, de acordo com a proposta do evento. Alinhamos os momentos mais importantes para que a equipe esteja presente quando eles acontecerem.</p>
+        </details>
+        <details name="faq">
+          <summary>Vou receber todas as fotos?<span class="faq-mais"><svg class="ico" aria-hidden="true"><use href="#i-mais"/></svg></span></summary>
+          <p>Sim. Você recebe a quantidade de fotos editadas do seu pacote, podendo contratar extras após o evento, e também todas as fotos disponibilizadas digitalmente, sem edição.</p>
+        </details>
+        <details name="faq">
+          <summary>Vocês cobrem eventos corporativos?<span class="faq-mais"><svg class="ico" aria-hidden="true"><use href="#i-mais"/></svg></span></summary>
+          <p>Sim. Cobrimos lançamentos, inaugurações, treinamentos, palestras e confraternizações de empresas.</p>
+        </details>
+        <details name="faq">
+          <summary>Como funciona o desconto de Black Friday?<span class="faq-mais"><svg class="ico" aria-hidden="true"><use href="#i-mais"/></svg></span></summary>
+          <p>Cada pacote tem 15% de desconto, válido para eventos realizados até fevereiro.</p>
+        </details>
+        <details name="faq">
+          <summary>Quais são as formas de pagamento?<span class="faq-mais"><svg class="ico" aria-hidden="true"><use href="#i-mais"/></svg></span></summary>
+          <p>PIX em 2x sem juros. O valor no crédito é informado sob consulta.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. Chamada final -->
+  <section class="secao final" id="reservar" aria-labelledby="titulo-final">
+    <div class="wrap final-grid">
+      <div class="final-texto">
+        <h2 id="titulo-final">Reserve a sua data e garanta <span class="acento">15% de desconto</span> na cobertura do seu evento.</h2>
+        <p>Festa de fim de ano, confraternização, casamento, aniversário ou evento corporativo. Conte para a Raphia o que você está planejando e receba a proposta ideal. Desconto válido para eventos até fevereiro.</p>
+        <a class="btn btn--claro" id="cta-final" data-wa="reservar" href="https://wa.me/5585997279505">Chamar no WhatsApp e reservar<span class="btn-ico"><svg class="ico ico-cheio" aria-hidden="true"><use href="#i-wa"/></svg></span></a>
+      </div>
+      <div class="leque" aria-hidden="true">
+        <figure><img src="fotos/batizados/batizado-02.webp" alt="" width="1067" height="1600" loading="lazy" decoding="async"></figure>
+        <figure><img src="fotos/casamentos/casamento-05.webp" alt="" width="900" height="1600" loading="lazy" decoding="async"></figure>
+        <figure><img src="fotos/aniversarios/aniversario-1ano-02.webp" alt="" width="900" height="1600" loading="lazy" decoding="async"></figure>
+        <div class="selo selo--roxo">
+          <svg viewBox="0 0 200 200">
+            <defs><path id="curva-b" d="M100,100 m-76,0 a76,76 0 1,1 152,0 a76,76 0 1,1 -152,0"/></defs>
+            <circle class="selo-disco" cx="100" cy="100" r="98" fill="#600298"/>
+            <g class="selo-anel"><text fill="#fcf8f3"><textPath href="#curva-b" textLength="470" lengthAdjust="spacing">Black Friday • eventos até fevereiro • Raphia •</textPath></text></g>
+            <text class="selo-num" x="100" y="110" text-anchor="middle" fill="#fcf8f3">15%</text>
+            <text class="selo-sub" x="100" y="131" text-anchor="middle" fill="#ffd6ea">de desconto</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="rodape">
+  <div class="wrap">
+    <div class="rodape-linha">
+      <a class="marca" href="#conteudo" aria-label="Raphia, voltar ao início"><svg aria-hidden="true"><use href="#logo"/></svg></a>
+      <ul class="rodape-contatos" id="contatos">
+        <li><a data-wa="reservar" href="https://wa.me/5585997279505"><svg class="ico ico-cheio" aria-hidden="true"><use href="#i-wa"/></svg>(85) 99727-9505</a></li>
+        <li id="contato-insta" hidden><a href="#" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-insta"/></svg><span></span></a></li>
+      </ul>
+    </div>
+    <div class="rodape-linha">
+      <p><svg class="ico" aria-hidden="true" style="vertical-align:-0.25em;margin-right:0.35rem"><use href="#i-local"/></svg>Agência Raphia · Fortaleza, CE</p>
+      <p>© <span id="ano">2026</span> Raphia. Todos os direitos reservados.</p>
+    </div>
+  </div>
+</footer>
+
+<a class="flutuante" id="flutuante" data-wa="reservar" href="https://wa.me/5585997279505" aria-label="Reservar minha data pelo WhatsApp"><span class="btn-ico"><svg class="ico ico-cheio" aria-hidden="true"><use href="#i-wa"/></svg></span>Reservar data</a>
+
+<dialog class="lightbox" id="lightbox" aria-label="Foto ampliada">
+  <div class="lb-topo">
+    <span class="lb-contador" id="lb-contador"></span>
+    <button class="redondo" type="button" id="lb-fechar" aria-label="Fechar"><svg class="ico" aria-hidden="true"><use href="#i-x"/></svg></button>
+  </div>
+  <div class="lb-palco" id="lb-palco"></div>
+  <div class="lb-base">
+    <button class="redondo" type="button" id="lb-ant" aria-label="Foto anterior"><svg class="ico" aria-hidden="true"><use href="#i-esq"/></svg></button>
+    <p class="lb-legenda" id="lb-legenda"></p>
+    <button class="redondo" type="button" id="lb-prox" aria-label="Próxima foto"><svg class="ico" aria-hidden="true"><use href="#i-dir"/></svg></button>
+  </div>
+</dialog>
+
+<script src="conteudo.js"></script>
+<script>
+(function () {
+  "use strict";
+  var R = window.RAPHIA || {};
+  var FOTOS = R.fotos || [];
+  var reduz = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var BASE = "fotos/";
+  var ROTULOS = { batizados: "Batizado", casamentos: "Casamento", aniversarios: "Aniversário", "fim-de-ano": "Fim de ano", confraternizacoes: "Confraternização", corporativos: "Corporativo" };
+
+  function rotulo(cat) {
+    if (ROTULOS[cat]) return ROTULOS[cat];
+    var c = (R.categorias || []).filter(function (x) { return x.id === cat; })[0];
+    return c ? c.nome : "";
+  }
+  function esc(s) { return String(s || "").replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+  function razao(f) { return f.formato === "horizontal" ? 1.5 : 0.667; }
+
+  /* WhatsApp com mensagem pronta */
+  var numero = (R.whatsapp || "5585997279505").replace(/\D/g, "");
+  document.querySelectorAll("[data-wa]").forEach(function (a) {
+    var msg = (R.mensagens || {})[a.dataset.wa] || "";
+    a.href = "https://wa.me/" + numero + (msg ? "?text=" + encodeURIComponent(msg) : "");
+    a.target = "_blank";
+    a.rel = "noopener";
+  });
+
+  /* Instagram no rodapé */
+  if (R.instagram) {
+    var li = document.getElementById("contato-insta");
+    var user = R.instagram.replace(/^@/, "");
+    li.querySelector("a").href = "https://instagram.com/" + encodeURIComponent(user);
+    li.querySelector("span").textContent = "@" + user;
+    li.hidden = false;
+  }
+  document.getElementById("ano").textContent = new Date().getFullYear();
+
+  /* ---------- Pilha de fotos do topo ---------- */
+  (function () {
+    var pilha = document.getElementById("pilha");
+    var contador = document.getElementById("pilha-contador");
+    var aviso = document.getElementById("pilha-aviso");
+    var lista = (R.topo || []).map(function (arq) {
+      return FOTOS.filter(function (f) { return f.arquivo === arq; })[0] || { arquivo: arq, descricao: "", categoria: "" };
+    });
+    if (!lista.length) return;
+    var ordem = lista.map(function (f, i) {
+      var fig = document.createElement("figure");
+      fig.className = "print";
+      fig.dataset.pos = i;
+      fig.dataset.i = i;
+      fig.setAttribute("aria-roledescription", "foto");
+      fig.innerHTML = '<img src="' + BASE + esc(f.arquivo) + '" alt="' + esc(f.descricao) + '"' + (i === 0 ? ' fetchpriority="high"' : ' loading="lazy"') + ' decoding="async" draggable="false">' +
+        (f.categoria ? '<figcaption class="print-tag">' + esc(rotulo(f.categoria)) + "</figcaption>" : "");
+      pilha.appendChild(fig);
+      return fig;
+    });
+    var total = ordem.length;
+    var ocupado = false;
+
+    function atualizar(falar) {
+      ordem.forEach(function (c, i) { c.setAttribute("aria-hidden", i === 0 ? "false" : "true"); });
+      var i = +ordem[0].dataset.i;
+      contador.textContent = (i + 1) + " / " + total;
+      if (falar) aviso.textContent = "Foto " + (i + 1) + " de " + total + ": " + (lista[i].descricao || rotulo(lista[i].categoria));
+    }
+    function proxima(dir, falar) {
+      if (ocupado || total < 2) return;
+      ocupado = true;
+      var topo = ordem.shift();
+      topo.style.transform = "";
+      topo.dataset.dir = dir > 0 ? "dir" : "esq";
+      topo.dataset.pos = "fora";
+      ordem.forEach(function (c, i) { c.dataset.pos = i; });
+      ordem.push(topo);
+      setTimeout(function () { topo.dataset.pos = ordem.length - 1; ocupado = false; }, 430);
+      atualizar(falar);
+    }
+    function anterior(falar) {
+      if (ocupado || total < 2) return;
+      var ult = ordem.pop();
+      ult.style.transition = "none";
+      ult.dataset.dir = "esq";
+      ult.dataset.pos = "fora";
+      void ult.offsetWidth;
+      ult.style.transition = "";
+      ordem.unshift(ult);
+      ordem.forEach(function (c, i) { c.dataset.pos = i; });
+      atualizar(falar);
+    }
+
+    var timer = null, pausado = false, visivel = true;
+    function tocar() {
+      clearInterval(timer);
+      if (reduz || pausado || !visivel || document.hidden) return;
+      timer = setInterval(function () { proxima(-1, false); }, 4200);
+    }
+    function pausar(v) { pausado = v; tocar(); }
+    document.getElementById("pilha-prox").addEventListener("click", function () { proxima(-1, true); tocar(); });
+    document.getElementById("pilha-ant").addEventListener("click", function () { anterior(true); tocar(); });
+    pilha.addEventListener("pointerenter", function (e) { if (e.pointerType === "mouse") pausar(true); });
+    pilha.addEventListener("pointerleave", function (e) { if (e.pointerType === "mouse") pausar(false); });
+    pilha.parentNode.addEventListener("focusin", function () { pausar(true); });
+    pilha.parentNode.addEventListener("focusout", function () { pausar(false); });
+    document.addEventListener("visibilitychange", tocar);
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (es) { visivel = es[0].isIntersecting; tocar(); }, { threshold: 0.25 }).observe(pilha);
+    }
+
+    /* Arrastar com o dedo ou o mouse */
+    var arr = null;
+    pilha.addEventListener("pointerdown", function (e) {
+      var topo = ordem[0];
+      if (!topo.contains(e.target) || ocupado) return;
+      arr = { el: topo, x: e.clientX, t: performance.now(), dx: 0, id: e.pointerId };
+      topo.setPointerCapture(e.pointerId);
+      topo.classList.add("arrastando");
+      clearInterval(timer);
+    });
+    pilha.addEventListener("pointermove", function (e) {
+      if (!arr || e.pointerId !== arr.id) return;
+      arr.dx = e.clientX - arr.x;
+      arr.el.style.transform = "translate(" + arr.dx + "px," + Math.abs(arr.dx) * 0.04 + "px) rotate(" + arr.dx * 0.045 + "deg)";
+    });
+    function soltar(e) {
+      if (!arr || e.pointerId !== arr.id) return;
+      var dx = arr.dx, v = Math.abs(dx) / Math.max(1, performance.now() - arr.t), el = arr.el;
+      el.classList.remove("arrastando");
+      arr = null;
+      if (Math.abs(dx) > 90 || (v > 0.11 && Math.abs(dx) > 24)) { proxima(dx > 0 ? 1 : -1, true); }
+      else { el.style.transform = ""; }
+      tocar();
+    }
+    pilha.addEventListener("pointerup", soltar);
+    pilha.addEventListener("pointercancel", soltar);
+
+    atualizar(false);
+    tocar();
+  })();
+
+  /* ---------- Mural ---------- */
+  (function () {
+    var l1 = document.getElementById("mural-1"), l2 = document.getElementById("mural-2");
+    if (!FOTOS.length) { document.getElementById("mural").hidden = true; return; }
+    var a = [], b = [];
+    FOTOS.filter(function (f) { return !f.video; }).forEach(function (f, i) { (i % 2 ? b : a).push(f); });
+    function preencher(el, arr) {
+      var html = arr.map(function (f) {
+        return '<img src="' + BASE + esc(f.arquivo) + '" alt="" loading="lazy" decoding="async" style="--ar:' + (f.formato === "horizontal" ? 1.5 : 0.75) + '">';
+      }).join("");
+      el.innerHTML = html + html;
+    }
+    preencher(l1, a);
+    preencher(l2, b.length ? b : a);
+  })();
+
+  /* ---------- Portfólio ---------- */
+  (function () {
+    var galeria = document.getElementById("galeria");
+    var filtrosEl = document.getElementById("filtros");
+    var legenda = document.getElementById("legenda");
+    var verMais = document.getElementById("ver-mais");
+    var LIMITE = 12;
+    var atual = "todos", expandido = false, listaAtual = [];
+
+    var cats = (R.categorias || []).filter(function (c) { return FOTOS.some(function (f) { return f.categoria === c.id; }); });
+    var botoes = [{ id: "todos", nome: "Todos", legenda: "Batizados, casamentos e aniversários que tivemos a alegria de registrar", n: FOTOS.length }]
+      .concat(cats.map(function (c) { return { id: c.id, nome: c.nome, legenda: c.legenda, n: FOTOS.filter(function (f) { return f.categoria === c.id; }).length }; }));
+    filtrosEl.innerHTML = botoes.map(function (b) {
+      return '<button class="filtro" type="button" data-cat="' + b.id + '" aria-pressed="' + (b.id === "todos") + '">' + esc(b.nome) + " <small>" + b.n + "</small></button>";
+    }).join("");
+
+    function ordemTodos() {
+      var grupos = [], mapa = {};
+      FOTOS.forEach(function (f) { var g = f.grupo || f.categoria; if (!mapa[g]) { mapa[g] = []; grupos.push(g); } mapa[g].push(f); });
+      var primeiro = [], resto = [];
+      grupos.forEach(function (g) { primeiro = primeiro.concat(mapa[g].slice(0, 3)); resto = resto.concat(mapa[g].slice(3)); });
+      return primeiro.concat(resto);
+    }
+    function colunas() { return parseInt(getComputedStyle(galeria).getPropertyValue("--cols"), 10) || 2; }
+    function largo(f, i) { return f.formato === "horizontal" || i === 0; }
+    function medir() {
+      var cols = colunas();
+      var gap = parseFloat(getComputedStyle(galeria).columnGap) || 12;
+      var col = (galeria.clientWidth - gap * (cols - 1)) / cols;
+      galeria.querySelectorAll(".tile").forEach(function (t) {
+        var i = +t.dataset.i, f = listaAtual[i];
+        var span = largo(f, i) ? 2 : 1;
+        t.classList.toggle("tile--largo", span === 2);
+        var w = col * span + gap * (span - 1);
+        var r = i === 0 && f.formato !== "horizontal" ? (cols > 2 ? 1 : 0.8) : razao(f);
+        t.style.gridRowEnd = "span " + Math.max(4, Math.round((w / r + gap) / (8 + gap)));
+      });
+    }
+    function desenhar(animar) {
+      var base = atual === "todos" ? ordemTodos() : FOTOS.filter(function (f) { return f.categoria === atual; })
+        .sort(function (a, b) { return (b.destaque ? 1 : 0) - (a.destaque ? 1 : 0); });
+      listaAtual = base;
+      var mostrar = atual === "todos" && !expandido ? base.slice(0, LIMITE) : base;
+      galeria.innerHTML = mostrar.map(function (f, i) {
+        var idx = FOTOS.indexOf(f);
+        var midia = f.video
+          ? '<video src="' + BASE + esc(f.video) + '" poster="' + BASE + esc(f.arquivo) + '" muted loop playsinline autoplay preload="metadata"></video>'
+          : '<img src="' + BASE + esc(f.arquivo) + '" alt="" loading="lazy" decoding="async">';
+        return '<button class="tile' + (animar ? " entra" : "") + '" type="button" data-i="' + i + '" style="--n:' + i + ";view-transition-name:f" + idx + '" aria-label="Ampliar foto: ' + esc(f.descricao) + '">' + midia + '<span class="tile-tag">' + esc(rotulo(f.categoria)) + "</span></button>";
+      }).join("");
+      var b = botoes.filter(function (x) { return x.id === atual; })[0];
+      legenda.textContent = b ? b.legenda : "";
+      var falta = base.length - mostrar.length;
+      verMais.hidden = falta <= 0;
+      verMais.textContent = "Ver mais " + falta + " fotos";
+      medir();
+    }
+    function trocar(fn) {
+      if (document.startViewTransition && !reduz) { document.startViewTransition(function () { fn(false); }); }
+      else { fn(!reduz); }
+    }
+    filtrosEl.addEventListener("click", function (e) {
+      var btn = e.target.closest(".filtro");
+      if (!btn || btn.dataset.cat === atual) return;
+      atual = btn.dataset.cat;
+      expandido = false;
+      filtrosEl.querySelectorAll(".filtro").forEach(function (x) { x.setAttribute("aria-pressed", x === btn); });
+      trocar(desenhar);
+    });
+    verMais.addEventListener("click", function () { expandido = true; trocar(desenhar); });
+    var rt;
+    window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(medir, 120); });
+    desenhar(false);
+
+    /* Visualizador */
+    var dlg = document.getElementById("lightbox"), img = new Image();
+    img.alt = "";
+    img.decoding = "async";
+    document.getElementById("lb-palco").appendChild(img);
+    var cont = document.getElementById("lb-contador"), leg = document.getElementById("lb-legenda");
+    var pos = 0;
+    function mostrar(dir) {
+      var f = listaAtual[pos];
+      img.src = BASE + f.arquivo;
+      img.alt = f.descricao || "";
+      cont.textContent = (pos + 1) + " / " + listaAtual.length;
+      leg.innerHTML = "<strong>" + esc(rotulo(f.categoria)) + "</strong> · " + esc(f.descricao);
+      if (dir && !reduz && img.animate) {
+        img.animate([{ opacity: 0, filter: "blur(4px)", transform: "translateX(" + dir * 14 + "px)" }, { opacity: 1, filter: "blur(0)", transform: "none" }], { duration: 280, easing: "cubic-bezier(0.23, 1, 0.32, 1)" });
+      }
+      [pos - 1, pos + 1].forEach(function (j) { var g = listaAtual[(j + listaAtual.length) % listaAtual.length]; if (g) { var p = new Image(); p.src = BASE + g.arquivo; } });
+    }
+    function mover(d) { pos = (pos + d + listaAtual.length) % listaAtual.length; mostrar(d); }
+    galeria.addEventListener("click", function (e) {
+      var t = e.target.closest(".tile");
+      if (!t) return;
+      pos = +t.dataset.i;
+      mostrar(0);
+      if (dlg.showModal) dlg.showModal(); else dlg.setAttribute("open", "");
+    });
+    document.getElementById("lb-fechar").addEventListener("click", function () { dlg.close(); });
+    document.getElementById("lb-ant").addEventListener("click", function () { mover(-1); });
+    document.getElementById("lb-prox").addEventListener("click", function () { mover(1); });
+    dlg.addEventListener("keydown", function (e) { if (e.key === "ArrowRight") mover(1); if (e.key === "ArrowLeft") mover(-1); });
+    dlg.addEventListener("click", function (e) { if (e.target === dlg || e.target.id === "lb-palco") dlg.close(); });
+    var palco = document.getElementById("lb-palco"), sx = null;
+    palco.addEventListener("pointerdown", function (e) { sx = e.clientX; });
+    palco.addEventListener("pointerup", function (e) { if (sx === null) return; var dx = e.clientX - sx; sx = null; if (Math.abs(dx) > 50) mover(dx < 0 ? 1 : -1); });
+  })();
+
+  /* ---------- Cabeçalho e botão flutuante ---------- */
+  (function () {
+    var topo = document.getElementById("topo");
+    var flut = document.getElementById("flutuante");
+    window.addEventListener("scroll", function () { topo.classList.toggle("rolou", window.scrollY > 40); }, { passive: true });
+    if (!("IntersectionObserver" in window)) return;
+    var estado = { topo: true, final: false };
+    function aplicar() { flut.classList.toggle("visivel", !estado.topo && !estado.final); }
+    new IntersectionObserver(function (es) { estado.topo = es[0].isIntersecting; aplicar(); }).observe(document.getElementById("cta-topo"));
+    new IntersectionObserver(function (es) { estado.final = es[0].isIntersecting; aplicar(); }, { threshold: 0.2 }).observe(document.getElementById("reservar"));
+  })();
+})();
+</script>
+</body>
+</html>
