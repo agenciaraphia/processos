@@ -461,7 +461,26 @@
 .msg-app .msg-wheel-stage.is-spinning .msg-bulb { animation: msg-bulb 360ms steps(1) infinite; }
 .msg-app .msg-wheel-stage.is-spinning .msg-bulb:nth-of-type(even) { animation-delay: 180ms; }
 
-.msg-app .msg-wheel-stage.is-winding .msg-wheel { transform: rotate(-14deg); transition: transform 340ms var(--msg-ease-out); }
+.msg-app .msg-wheel-stage.is-winding .msg-wheel { transition: transform 340ms var(--msg-ease-out); }
+.msg-app .msg-wheel-badge {
+  position: absolute;
+  z-index: 5;
+  left: 50%;
+  top: 50%;
+  padding: 10px 18px;
+  color: var(--msg-on-primary);
+  background: var(--msg-primary);
+  border: 3px solid var(--msg-surface);
+  border-radius: 999px;
+  box-shadow: 0 12px 26px -10px rgba(31, 26, 23, .55);
+  font-family: var(--msg-font-heading);
+  font-size: clamp(20px, 5vw, 26px);
+  font-weight: 700;
+  white-space: nowrap;
+  transform: translate(-50%, -50%);
+  animation: msg-badge 460ms var(--msg-ease-out) backwards;
+}
+@keyframes msg-badge { from { opacity: 0; transform: translate(-50%, -50%) scale(.8); } }
 .msg-app .msg-slice.is-landed { stroke: var(--msg-ink); stroke-width: 4; stroke-linejoin: round; animation: msg-landed 420ms ease-in-out 3 alternate; }
 
 /* Raspadinha */

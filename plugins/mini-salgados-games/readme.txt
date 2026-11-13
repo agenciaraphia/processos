@@ -4,7 +4,7 @@ Tags: games, campaign, coupons, promotions, elementor
 Requires at least: 6.0
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 1.0.0
+Stable tag: 1.1.0
 License: GPLv2 or later
 
 Campanhas promocionais com roleta, raspadinha e caixa misteriosa, cadastro de participantes e controle de cupons.
@@ -27,6 +27,12 @@ As fontes são carregadas do Google Fonts (quando há conexão externa).
 
 == Aviso de teste ==
 Antes de usar com clientes reais, teste em ambiente de staging. A validação sintática não substitui testes funcionais em uma instalação real do WordPress, compatibilidade com o tema, segurança e concorrência de estoque.
+
+== Versão 1.1.0 ==
+- Novo modo de probabilidade "Ganho diário garantido": cada pessoa ganha uma vez por dia, em um único jogo. O prêmio sai em posição variada (não só no primeiro jogo clicado), o último jogo do dia sempre premia quem ainda não ganhou, o jogo premiado de ontem fica de fora quando há outra opção, e os jogos liberam à meia-noite.
+- Roleta: cada espaço pode ser "Sem prêmio", "Ganha cupom" ou "Gire de novo". A rodada extra é só suspense, não conta como jogada, acontece no máximo uma vez por partida e tem chance configurável.
+- Link padrão das lojas: https://lojas.minisalgadosne.com.br/ (aplicado uma vez às campanhas sem link).
+- Corrigido: o horário de "Libera em…" aparecia deslocado pelo fuso do site.
 
 == Versão 1.0.0 ==
 Primeira versão definitiva.

@@ -163,18 +163,18 @@
     }
   }
 
-  // Avisa quando nenhum (ou todos os) espaço(s) da roleta dá cupom.
-  const slots = all(campaignForm, 'input[name="roleta_win_slots[]"]');
+  // Avisa quando nenhum espaço da roleta dá cupom, ou quando nenhum fica sem prêmio.
+  const slotWrap = campaignForm.querySelector('[data-msg-wheel-slots]');
   const noneAlert = campaignForm.querySelector('[data-msg-slots-alert]');
   const allAlert = campaignForm.querySelector('[data-msg-slots-all]');
   const roletaOn = campaignForm.querySelector('input[name="games[]"][value="roleta"]');
   const syncSlots = () => {
-    const checked = slots.filter((x) => x.checked).length;
+    const picked = all(slotWrap, 'input[type="radio"]:checked').map((x) => x.value);
     const active = !roletaOn || roletaOn.checked;
-    if (noneAlert) noneAlert.hidden = !active || checked > 0;
-    if (allAlert) allAlert.hidden = !active || checked < slots.length;
+    if (noneAlert) noneAlert.hidden = !active || picked.includes('win');
+    if (allAlert) allAlert.hidden = !active || picked.includes('none');
   };
-  if (slots.length) { campaignForm.addEventListener('change', syncSlots); syncSlots(); }
+  if (slotWrap) { campaignForm.addEventListener('change', syncSlots); syncSlots(); }
 
   campaignForm.addEventListener('input', renderPreview);
   campaignForm.addEventListener('change', renderPreview);

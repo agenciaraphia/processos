@@ -99,6 +99,7 @@
       scratch(speed) { const now = performance.now(); if (now - lastScratch < 40) return; lastScratch = now; hiss(0, 0.07, 'bandpass', 2400 + Math.random() * 2200, 0.8, Math.min(0.2, 0.05 + speed / 300)); },
       crack(level) { hiss(0, 0.1, 'bandpass', 800 + level * 260, 1.3, 0.34); tone(150 - level * 15, 0, 0.14, 'sine', 0.24, 65); },
       burst() { hiss(0, 0.5, 'lowpass', 6000, 0.5, 0.36, 280); tone(120, 0, 0.3, 'sine', 0.32, 40); [1318.5, 1760, 2093].forEach((f, i) => tone(f, 0.14 + i * 0.07, 0.3, 'sine', 0.06)); },
+      again() { tone(587.33, 0, 0.12, 'triangle', 0.15); tone(880, 0.11, 0.26, 'triangle', 0.15); },
       win() { [523.25, 659.25, 783.99, 1046.5].forEach((f, i) => tone(f, i * 0.09, 0.22, 'triangle', 0.17)); [1046.5, 1318.5, 1568].forEach((f) => tone(f, 0.4, 0.7, 'triangle', 0.075)); },
       lose() { tone(392, 0, 0.24, 'sine', 0.12); tone(293.66, 0.2, 0.45, 'sine', 0.11, 261.6); }
     };
@@ -288,7 +289,11 @@
     const storageKey = `msg_${slug}_profile`;
     const soundOn = cfg.sound !== false;
     const sfx = (name, ...args) => { if (soundOn) Sound[name](...args); };
-    const winSlots = (Array.isArray(cfg.roletaWinSlots) ? cfg.roletaWinSlots : []).map(Number).filter((n) => n >= 0 && n < 8);
+    const slotList = (list) => (Array.isArray(list) ? list : []).map(Number).filter((n) => n >= 0 && n < 8);
+    const winSlots = slotList(cfg.roletaWinSlots);
+    const retrySlots = slotList(cfg.roletaRetrySlots).filter((n) => !winSlots.includes(n));
+    const retryChance = Math.max(0, Math.min(100, Number(cfg.roletaRetryChance) || 0));
+    let daily = null;
     const GAME_COPY = {
       roleta: { overline: 'Gire e torça', ready: 'Gire e veja onde o ponteiro para.', intro: 'Toque no botão para girar. Se o ponteiro parar num espaço premiado, o cupom aparece na hora.' },
       raspadinha: { overline: 'Raspe e descubra', ready: 'Raspe o cartão para revelar.', intro: 'Passe o dedo ou o mouse sobre o cartão prateado. O resultado aparece por baixo.' },
@@ -392,7 +397,9 @@
       const welcome = one(menu, '.msg-returning');
       const first = profile && profile.name ? profile.name.trim().split(' ')[0] : '';
       if (welcome) {
-        if (!readyCount && Object.keys(games).length) welcome.textContent = `${first ? first + ', você' : 'Você'} já jogou tudo por agora. Os jogos liberam de novo após o intervalo.`;
+        if (daily && daily.won_today) welcome.textContent = `${first ? first + ', você' : 'Você'} já ganhou hoje! Volte amanhã para uma nova chance de prêmio.`;
+        else if (!readyCount && Object.keys(games).length) welcome.textContent = `${first ? first + ', você' : 'Você'} já jogou tudo por agora. Os jogos liberam de novo ${daily ? 'à meia-noite' : 'após o intervalo'}.`;
+        else if (daily) welcome.textContent = `${first ? 'Olá, ' + first + '! ' : ''}Hoje tem prêmio garantido em um dos jogos. Boa sorte!`;
         else welcome.textContent = first ? `Olá, ${first}! Escolha um jogo para começar.` : 'Escolha um dos jogos abaixo.';
       }
       register.hidden = true;
@@ -533,6 +540,7 @@
         token = fresh.token;
         profile.token = token;
         games = fresh.games || {};
+        daily = fresh.daily || null;
         persistProfile();
         showMenu();
         bringIntoView(menu);
@@ -577,41 +585,69 @@
         const wheel = bigWheel(labels);
         stage.appendChild(wheel);
         area.appendChild(stage);
+        const badge = make('span', 'msg-wheel-badge'); badge.hidden = true; badge.setAttribute('aria-live', 'polite');
+        stage.appendChild(badge);
         const action = button('Girar a roleta', 'msg-action msg-game-cta');
-        action.addEventListener('click', async () => {
-          if (busy) return;
-          busy = true; action.disabled = true; action.textContent = 'Girando…';
-          sfx('unlock'); sfx('whoosh');
-          stage.classList.add('is-winding');
-          let result;
-          try { [result] = await Promise.all([commit(), wait(340)]); }
-          catch (e) { stage.classList.remove('is-winding'); busy = false; action.disabled = false; action.textContent = 'Tentar novamente'; return; }
-          if (mySession !== session) return;
-          stage.classList.remove('is-winding');
-          // Para num espaço coerente com o resultado oficial: premiado se ganhou, sem prêmio se não ganhou.
-          const win = result.result === 'win';
-          const all = [0, 1, 2, 3, 4, 5, 6, 7];
-          const pool = all.filter((i) => (win ? winSlots.includes(i) : !winSlots.includes(i)));
-          const choices = pool.length ? pool : all;
-          const slot = choices[Math.floor(Math.random() * choices.length)];
+        let turned = 0;
+        let retryUsed = false;
+        const spinTo = (slot) => new Promise((resolve) => {
           const quick = reducedMotion();
           const duration = quick ? 900 : 4600;
-          const rotation = (quick ? 360 : 360 * 6) + (360 - slot * 45) % 360 + (Math.random() * 20 - 10);
+          const target = turned - (turned % 360) + (quick ? 360 : 360 * 6) + (360 - slot * 45) % 360 + (Math.random() * 20 - 10);
+          turned = target;
+          stage.classList.remove('is-winding');
           stage.classList.add('is-spinning');
-          wheel.style.transform = `rotate(${rotation}deg)`;
+          wheel.style.transform = `rotate(${target}deg)`;
           trackTicks(wheel, duration, () => sfx('tick'));
           window.setTimeout(() => { if (mySession === session) stage.classList.add('is-slowing'); }, duration * 0.55);
           window.setTimeout(() => {
             stage.classList.remove('is-spinning', 'is-slowing');
-            if (mySession !== session) return;
             const landed = wheel.querySelector(`.msg-slice[data-slot="${slot}"]`);
-            if (landed) landed.classList.add('is-landed');
-            stage.classList.add(win ? 'is-win' : 'is-lose');
-            action.textContent = win ? 'Você ganhou!' : 'Não foi dessa vez';
-            action.classList.add('is-final', win ? 'is-win' : 'is-lose');
-            celebrate(result);
-            showResultSoon(result, 1300);
+            if (landed && mySession === session) landed.classList.add('is-landed');
+            resolve();
           }, duration + 150);
+        });
+        const windUp = () => { stage.classList.add('is-winding'); wheel.style.transform = `rotate(${turned - 14}deg)`; };
+        const pick = (list) => list[Math.floor(Math.random() * list.length)];
+        action.addEventListener('click', async () => {
+          if (busy) return;
+          busy = true; action.disabled = true; action.textContent = 'Girando…';
+          badge.hidden = true;
+          stage.classList.remove('is-retry');
+          wheel.querySelectorAll('.is-landed').forEach((el) => el.classList.remove('is-landed'));
+          sfx('unlock'); sfx('whoosh');
+          windUp();
+          // Rodada extra: só suspense. Não chama o servidor nem conta como jogada; acontece no máximo uma vez.
+          if (!retryUsed && retrySlots.length && Math.random() * 100 < retryChance) {
+            retryUsed = true;
+            await wait(340);
+            await spinTo(pick(retrySlots));
+            if (mySession !== session) return;
+            stage.classList.add('is-retry');
+            badge.textContent = 'Gire de novo!';
+            badge.hidden = false;
+            sfx('again');
+            action.textContent = 'Girar de novo';
+            action.disabled = false;
+            busy = false;
+            return;
+          }
+          let result;
+          try { [result] = await Promise.all([commit(), wait(340)]); }
+          catch (e) { stage.classList.remove('is-winding'); wheel.style.transform = `rotate(${turned}deg)`; busy = false; action.disabled = false; action.textContent = 'Tentar novamente'; return; }
+          if (mySession !== session) return;
+          // Para num espaço coerente com o resultado oficial: premiado se ganhou, sem prêmio se não ganhou.
+          const win = result.result === 'win';
+          const all = [0, 1, 2, 3, 4, 5, 6, 7];
+          const losing = all.filter((i) => !winSlots.includes(i) && !retrySlots.includes(i));
+          const pool = win ? winSlots : (losing.length ? losing : all.filter((i) => !winSlots.includes(i)));
+          await spinTo(pick(pool.length ? pool : all));
+          if (mySession !== session) return;
+          stage.classList.add(win ? 'is-win' : 'is-lose');
+          action.textContent = win ? 'Você ganhou!' : 'Não foi dessa vez';
+          action.classList.add('is-final', win ? 'is-win' : 'is-lose');
+          celebrate(result);
+          showResultSoon(result, 1300);
         });
         area.appendChild(action);
       } else if (game === 'raspadinha') {
@@ -777,7 +813,7 @@
       try {
         const data = await api('register', { campaign: slug, name: fd.get('name'), phone: fd.get('phone'), privacy: fd.get('privacy') === 'on', marketing: fd.get('marketing') === 'on' });
         profile = { name: String(fd.get('name') || '').trim(), phone: String(fd.get('phone') || ''), marketing: fd.get('marketing') === 'on', token: data.token };
-        token = data.token; games = data.games || {}; persistProfile();
+        token = data.token; games = data.games || {}; daily = data.daily || null; persistProfile();
         form.reset(); showMenu(); bringIntoView(menu); focusQuietly(one(menu, 'h3'));
       } catch (error) { say(error.message, 'error'); }
       finally { submit.disabled = false; submit.classList.remove('is-loading'); submit.textContent = 'Continuar para os jogos'; }
@@ -787,7 +823,7 @@
     if (profile && profile.name && profile.phone) {
       register.hidden = true; menu.hidden = false; setView('menu');
       api('register', { campaign: slug, name: profile.name, phone: profile.phone, privacy: true, marketing: !!profile.marketing, token: profile.token || '' })
-        .then((data) => { token = data.token; profile.token = token; games = data.games || {}; persistProfile(); showMenu(); })
+        .then((data) => { token = data.token; profile.token = token; games = data.games || {}; daily = data.daily || null; persistProfile(); showMenu(); })
         .catch((error) => { try { localStorage.removeItem(storageKey); } catch (e) {} profile = null; token = ''; register.hidden = false; menu.hidden = true; setView('register'); say(error.message || 'Informe seus dados para continuar.', 'error'); });
     } else {
       register.hidden = false; menu.hidden = true; setView('register');
