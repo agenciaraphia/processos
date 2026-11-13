@@ -62,6 +62,14 @@
   text-transform: none;
   text-shadow: none;
   text-decoration: none;
+  /* Temas como o Hello Elementor aplicam white-space: nowrap e transition: all nos botões. */
+  white-space: normal;
+  word-break: normal;
+  overflow-wrap: break-word;
+  height: auto;
+  max-width: 100%;
+  transition: none;
+  user-select: auto;
   cursor: pointer;
   -webkit-appearance: none;
   appearance: none;
@@ -379,7 +387,9 @@
 .msg-app .msg-card-art svg { width: 76%; height: auto; max-height: 86%; }
 .msg-app .msg-art-wheel { transform-origin: 60px 45px; transform-box: view-box; transition: transform 600ms var(--msg-ease-out); }
 .msg-app .msg-art-coin, .msg-app .msg-art-lid { transform-box: fill-box; transform-origin: center; transition: transform 380ms var(--msg-ease-out); }
-.msg-app .msg-game-copy { display: grid; gap: 6px; padding: 0 8px; }
+.msg-app .msg-game-copy { display: grid; gap: 6px; min-width: 0; padding: 0 8px; }
+.msg-app .msg-game-copy > * { min-width: 0; max-width: 100%; }
+.msg-app .msg-game-status { overflow-wrap: anywhere; }
 .msg-app .msg-game-overline { color: var(--msg-p-deep); font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
 .msg-app .msg-game-title { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-family: var(--msg-font-heading); font-size: 22px; font-weight: 700; line-height: 1.1; }
 .msg-app .msg-card-go {
