@@ -29,6 +29,7 @@
     star: ['M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z'],
     copy: ['M9 9h11v11H9z', 'M5 15V4h11'],
     check: ['M5 12.5l4.5 4.5L19 7.5'],
+    ticket: ['M4 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2a2 2 0 0 0 0-4z', 'M14 5v12'],
     pin: ['M12 21s-6.5-6.2-6.5-11.2a6.5 6.5 0 0 1 13 0C18.5 14.8 12 21 12 21z', 'M12 7.3a2.5 2.5 0 1 0 0 5a2.5 2.5 0 1 0 0-5'],
     external: ['M14 5h5v5', 'M19 5l-8 8', 'M17 14v5H5V7h5'],
     soundOn: ['M4 9.5h3.5L12 5.5v13l-4.5-4H4z', 'M15.5 9a4 4 0 0 1 0 6', 'M18 6.5a7.5 7.5 0 0 1 0 11'],
@@ -316,7 +317,7 @@
       });
       let body;
       try { body = await response.json(); } catch (e) { throw new Error('O servidor respondeu de forma inesperada. Atualize a página e tente novamente.'); }
-      if (!response.ok || !body || !body.success) throw new Error((body && body.message) || 'Não foi possível concluir sua participação.');
+      if (!response.ok || !body || !body.success) { const error = new Error((body && body.message) || 'Não foi possível concluir sua participação.'); error.code = body && body.code; throw error; }
       return body;
     };
 
@@ -391,7 +392,17 @@
         }
         copy.appendChild(details);
         card.appendChild(copy);
-        if (state.available) card.addEventListener('click', () => openGame(game));
+        if (state.coupon) {
+          // Prêmio já ganho: o card fica dourado e reabre a tela do cupom, mesmo com o jogo em espera.
+          card.disabled = false;
+          card.classList.remove('is-locked');
+          card.classList.add('has-coupon');
+          go.replaceChildren(icon(ICONS.ticket, 18, 2.2));
+          const tag = copy.querySelector('.msg-game-tag');
+          if (tag) { tag.className = 'msg-game-tag msg-game-tag--coupon'; tag.textContent = '★ Ver meu cupom'; }
+          details.textContent = state.coupon.code ? 'Toque para ver seu código e onde resgatar.' : 'Seu código está no aparelho em que você jogou.';
+          card.addEventListener('click', () => showCoupon(game));
+        } else if (state.available) card.addEventListener('click', () => openGame(game));
         list.appendChild(card);
       });
       const welcome = one(menu, '.msg-returning');
@@ -462,6 +473,13 @@
       window.setTimeout(() => layer.remove(), 3000);
     }
 
+    function showCoupon(game) {
+      const state = games[game];
+      if (!state || !state.coupon) return;
+      sfx('unlock');
+      renderResult({ result: 'win', reopened: true, game, playAgain: state.available, message: state.coupon.message, prize: state.coupon.prize, coupon: state.coupon.code, redeem_limit: state.coupon.redeem_limit });
+    }
+
     function renderResult(result) {
       session += 1;
       area.replaceChildren();
@@ -470,8 +488,8 @@
       const mark = make('div', 'msg-result-mark');
       mark.appendChild(icon(win ? ICONS.star : ICONS.clock, 40, 2));
       resultCard.appendChild(mark);
-      resultCard.appendChild(make('span', 'msg-game-overline', win ? 'Você ganhou' : 'Resultado da jogada'));
-      const title = make('h3', 'msg-result-title', win ? 'Tem prêmio esperando por você.' : 'Dessa vez, não foi.');
+      resultCard.appendChild(make('span', 'msg-game-overline', result.reopened ? `Seu prêmio · ${(games[result.game] || {}).label || ''}` : (win ? 'Você ganhou' : 'Resultado da jogada')));
+      const title = make('h3', 'msg-result-title', result.reopened ? 'Seu cupom está aqui.' : (win ? 'Tem prêmio esperando por você.' : 'Dessa vez, não foi.'));
       resultCard.appendChild(title);
       resultCard.appendChild(make('p', 'msg-result-message', result.message || 'Sua participação foi registrada.'));
       if (result.prize) resultCard.appendChild(make('div', 'msg-prize', result.prize));
@@ -499,6 +517,7 @@
         couponWrap.appendChild(copy);
         resultCard.appendChild(couponWrap);
       }
+      if (result.reopened && !result.coupon) resultCard.appendChild(make('p', 'msg-result-next', 'Por segurança, o código aparece só no aparelho em que você jogou. Abra o jogo nele para ver o cupom.'));
       if (win && cfg.storeUrl) {
         const store = make('a', 'msg-store-link');
         store.href = cfg.storeUrl;
@@ -516,11 +535,16 @@
           resultCard.appendChild(next);
         }
       }
-      resultCard.appendChild(make('p', 'msg-result-footnote', win ? 'Guarde o código: ele também fica registrado na campanha. Cada jogo tem seu próprio intervalo de espera.' : 'Sua participação foi salva. Os outros jogos liberados continuam disponíveis no menu.'));
+      resultCard.appendChild(make('p', 'msg-result-footnote', result.reopened ? 'Você pode voltar a esta tela pelo card dourado no menu de jogos.' : win ? 'Guarde o código: ele também fica registrado na campanha. Cada jogo tem seu próprio intervalo de espera.' : 'Sua participação foi salva. Os outros jogos liberados continuam disponíveis no menu.'));
       const actions = makeActionRow();
       const again = button('Voltar aos jogos', 'msg-action');
       again.addEventListener('click', refreshAndShowMenu);
       actions.appendChild(again);
+      if (result.reopened && result.playAgain) {
+        const replay = button('Jogar de novo (sem novo prêmio)', 'msg-replay');
+        replay.addEventListener('click', () => openGame(result.game));
+        actions.appendChild(replay);
+      }
       resultCard.appendChild(actions);
       area.appendChild(resultCard);
       area.hidden = false;
@@ -530,13 +554,13 @@
       say('');
       bringIntoView(menu);
       focusQuietly(title);
-      if (win) window.requestAnimationFrame(() => confetti(mark));
+      if (win && !result.reopened) window.requestAnimationFrame(() => confetti(mark));
     }
 
     async function refreshAndShowMenu() {
       if (!profile) return;
       try {
-        const fresh = await api('register', { campaign: slug, name: profile.name, phone: profile.phone, privacy: true, marketing: !!profile.marketing, token: profile.token || '' });
+        const fresh = await api('register', { campaign: slug, name: profile.name, phone: profile.phone, privacy: true, marketing: !!profile.marketing, token: profile.token || '', refresh: true });
         token = fresh.token;
         profile.token = token;
         games = fresh.games || {};
@@ -545,8 +569,18 @@
         showMenu();
         bringIntoView(menu);
       } catch (error) {
+        if (error.code === 'consent') { askConsentAgain(error.message); return; }
         say(error.message, 'error');
       }
+    }
+    function askConsentAgain(message) {
+      try { localStorage.removeItem(storageKey); } catch (e) { /* ignore */ }
+      const keep = profile;
+      profile = null; token = '';
+      menu.hidden = true; register.hidden = false; setView('register');
+      if (keep) { const n = form.querySelector('input[name="name"]'); const ph = form.querySelector('input[name="phone"]'); if (n) n.value = keep.name || ''; if (ph) ph.value = keep.phone || ''; }
+      say(message, 'error');
+      bringIntoView(register);
     }
 
     function openGame(game) {
@@ -793,6 +827,19 @@
       focusQuietly(one(head, '.msg-play-title'));
     }
 
+    app.addEventListener('click', (event) => {
+      const link = event.target.closest('[data-msg-doc]');
+      if (link) {
+        const dialog = app.querySelector(`[data-msg-doc-dialog="${link.dataset.msgDoc}"]`);
+        if (!dialog) return;
+        event.preventDefault();
+        if (dialog.showModal) dialog.showModal(); else dialog.setAttribute('open', '');
+        return;
+      }
+      if (event.target.closest('.msg-doc-close')) { const dialog = event.target.closest('dialog'); if (dialog.close) dialog.close(); else dialog.removeAttribute('open'); }
+    });
+    app.querySelectorAll('dialog.msg-doc').forEach((dialog) => dialog.addEventListener('click', (event) => { if (event.target === dialog && dialog.close) dialog.close(); }));
+
     const phone = form.querySelector('input[name="phone"]');
     if (phone) phone.addEventListener('input', () => {
       const d = phone.value.replace(/\D+/g, '');
@@ -822,9 +869,9 @@
     profile = storedProfile();
     if (profile && profile.name && profile.phone) {
       register.hidden = true; menu.hidden = false; setView('menu');
-      api('register', { campaign: slug, name: profile.name, phone: profile.phone, privacy: true, marketing: !!profile.marketing, token: profile.token || '' })
+      api('register', { campaign: slug, name: profile.name, phone: profile.phone, privacy: true, marketing: !!profile.marketing, token: profile.token || '', refresh: true })
         .then((data) => { token = data.token; profile.token = token; games = data.games || {}; daily = data.daily || null; persistProfile(); showMenu(); })
-        .catch((error) => { try { localStorage.removeItem(storageKey); } catch (e) {} profile = null; token = ''; register.hidden = false; menu.hidden = true; setView('register'); say(error.message || 'Informe seus dados para continuar.', 'error'); });
+        .catch((error) => { if (error.code === 'consent') { askConsentAgain(error.message); return; } try { localStorage.removeItem(storageKey); } catch (e) {} profile = null; token = ''; register.hidden = false; menu.hidden = true; setView('register'); say(error.message || 'Informe seus dados para continuar.', 'error'); });
     } else {
       register.hidden = false; menu.hidden = true; setView('register');
     }

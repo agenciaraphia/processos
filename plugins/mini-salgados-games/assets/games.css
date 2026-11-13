@@ -292,6 +292,32 @@
 .msg-app .msg-secondary:active { transform: scale(.97); }
 .msg-app .msg-secondary.is-done { background: #1e7f4f; }
 
+/* ---------- Termos, privacidade e LGPD ---------- */
+.msg-app .msg-lgpd { margin: -4px 0 0; padding: 12px 14px; color: var(--msg-muted); background: #f8f7f5; border-radius: 14px; font-size: 12.5px; line-height: 1.5; }
+.msg-app .msg-legal { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 10px; margin: 22px 0 0; color: var(--msg-muted); font-size: 13px; text-align: center; }
+.msg-app .msg-legal a { color: var(--msg-ink-2); text-decoration: underline; text-underline-offset: 3px; }
+.msg-app .msg-doc {
+  width: min(92vw, 640px);
+  max-height: min(84vh, 760px);
+  padding: 0;
+  overflow: hidden;
+  color: var(--msg-ink);
+  background: var(--msg-surface);
+  border: 0;
+  border-radius: 22px;
+  box-shadow: 0 30px 80px -20px rgba(31, 26, 23, .5);
+  font-family: var(--msg-font-body);
+}
+.msg-app .msg-doc[open] { display: flex; flex-direction: column; animation: msg-pop 260ms var(--msg-ease-out); }
+.msg-app .msg-doc::backdrop { background: rgba(31, 26, 23, .5); }
+.msg-app .msg-doc-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 18px 20px; border-bottom: 1px solid var(--msg-line); }
+.msg-app .msg-doc-head strong { font-family: var(--msg-font-heading); font-size: 22px; font-weight: 700; }
+.msg-app .msg-doc-close,
+.msg-app .msg-doc-close:hover,
+.msg-app .msg-doc-close:focus { display: grid; place-items: center; width: 40px; height: 40px; padding: 0; color: var(--msg-ink); background: #f1efed; border: 0; border-radius: 50%; box-shadow: none; font-size: 24px; line-height: 1; }
+.msg-app .msg-doc-body { padding: 4px 20px 22px; overflow-y: auto; font-size: 15px; line-height: 1.6; }
+.msg-app .msg-doc-body p { margin: 14px 0 0; }
+
 /* ---------- Mensagens de retorno ---------- */
 .msg-app .msg-feedback { min-height: 0; margin: 0; color: var(--msg-muted); font-size: 14px; text-align: center; }
 .msg-app .msg-feedback:empty { display: none; }
@@ -388,6 +414,33 @@
 .msg-app .msg-game-card.is-locked { cursor: not-allowed; background: #faf9f8; }
 .msg-app .msg-game-card.is-locked .msg-card-art { filter: grayscale(.85); opacity: .55; }
 .msg-app .msg-game-card.is-locked .msg-card-go { color: var(--msg-ink-2); background: #ebe8e5; }
+.msg-app .msg-game-card.has-coupon,
+.msg-app .msg-game-card.has-coupon:hover,
+.msg-app .msg-game-card.has-coupon:focus {
+  color: #3d2a00;
+  background: linear-gradient(150deg, #fff4cc 0%, #ffd95a 45%, #f2b51e 100%);
+  border-color: #d99a00;
+  box-shadow: 0 10px 26px -12px rgba(160, 110, 0, .6), inset 0 1px 0 rgba(255, 255, 255, .7);
+}
+.msg-app .msg-game-card.has-coupon .msg-card-art { background: rgba(255, 255, 255, .45); }
+.msg-app .msg-game-card.has-coupon .msg-game-overline,
+.msg-app .msg-game-card.has-coupon .msg-game-status { color: #6b4a00; }
+.msg-app .msg-game-card.has-coupon .msg-card-go { color: #fff; background: #3d2a00; }
+.msg-app .msg-game-tag--coupon { color: #fff; background: #3d2a00; }
+.msg-app .msg-game-tag--coupon::before { display: none; }
+.msg-app .msg-game-card.has-coupon::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(115deg, transparent 30%, rgba(255, 255, 255, .55) 45%, transparent 60%) -150% 0 / 250% 100% no-repeat;
+  animation: msg-shine 3.2s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes msg-shine { 0%, 55% { background-position: -150% 0; } 100% { background-position: 150% 0; } }
+.msg-app .msg-replay,
+.msg-app .msg-replay:hover,
+.msg-app .msg-replay:focus { display: block; margin: 14px auto 0; padding: 8px 12px; color: var(--msg-ink-2); background: transparent; border: 0; box-shadow: none; font: 600 14px/1.3 var(--msg-font-body); text-decoration: underline; text-underline-offset: 3px; }
 .msg-app .msg-game-card.is-won .msg-card-art::after {
   content: '★';
   position: absolute;

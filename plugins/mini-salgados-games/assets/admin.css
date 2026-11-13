@@ -255,6 +255,9 @@ body.msg-admin-screen #wpcontent { padding-left: 24px; }
 .msg-admin-wrap .msg-slot-type input:focus-visible + span { outline: 2px solid var(--a-ink); outline-offset: 1px; }
 .msg-admin-wrap .msg-retry-row { margin-top: 18px; }
 .msg-admin-wrap .msg-option-grid--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.msg-admin-wrap .msg-lgpd-box { margin: 22px 0 0; padding: 16px 18px 18px; background: #faf8f6; border: 1px solid var(--a-line); border-radius: 14px; }
+.msg-admin-wrap .msg-lgpd-box legend { padding: 0 6px; margin-left: -6px; font-family: var(--a-heading); font-size: 16px; font-weight: 400; color: var(--a-ink); }
+.msg-admin-wrap .msg-lgpd-box + .msg-hint { margin-top: 12px; }
 .msg-admin-wrap .msg-daily-note { padding: 14px 16px; color: var(--a-ink-2); background: var(--a-yellow-soft); border: 1px solid #f1d77a; border-radius: 14px; font-size: 13px; }
 .msg-admin-wrap .msg-daily-note strong { display: block; margin-bottom: 4px; color: var(--a-ink); font-size: 14px; }
 .msg-admin-wrap .msg-daily-note ul { margin: 6px 0 0 18px; padding: 0; list-style: disc; }
