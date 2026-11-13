@@ -11,7 +11,9 @@
 <meta property="og:locale" content="pt_BR">
 <meta property="og:title" content="Oficina Costure Sua Bolsa · L'Atelier Socorro Honório">
 <meta property="og:description" content="05 de dezembro, 14h às 18h, em Fortaleza. Saia com a bolsa que você mesma costurou. Material e coffee break inclusos.">
+<!-- TROCAR quando a página estiver no ar: use o endereço completo, ex. https://seudominio.com.br/costure-sua-bolsa/assets/compartilhar.jpg, e preencha og:url -->
 <meta property="og:image" content="assets/compartilhar.jpg">
+<meta property="og:url" content="">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -120,6 +122,7 @@ a{color:inherit;text-decoration-thickness:.08em;text-underline-offset:.18em}
   line-height:.98;letter-spacing:-.005em;text-wrap:balance;
   color:var(--laranja-tinta);
 }
+mark{background:linear-gradient(transparent 52%, rgba(255,158,0,.38) 52%, rgba(255,158,0,.38) 92%, transparent 92%);color:inherit;padding-inline:.06em}
 .titulo .script{display:inline-block;font-size:1.32em;color:var(--tinta);margin-left:.04em;transform:translateY(.08em) rotate(-3deg)}
 
 .texto{max-width:60ch;color:var(--tinta-2)}
@@ -259,13 +262,13 @@ a{color:inherit;text-decoration-thickness:.08em;text-underline-offset:.18em}
 .hero__meta .i{width:1rem;height:1rem;color:var(--tinta)}
 .hero__meta span{display:inline-flex;align-items:center;gap:.4rem}
 
-.hero__visual{position:relative;justify-self:center;width:min(100%, 440px);padding-inline:6%}
+.hero__visual{position:relative;justify-self:center;width:min(100%, 440px);padding-inline:9%}
 .hero__moldura{width:100%;height:auto;filter:drop-shadow(0 22px 26px rgba(110,40,0,.35));animation:subir 700ms var(--ease-out) 80ms both}
 .hero__visual .adesivo{position:absolute;margin:0;font-size:clamp(1.45rem, 4.4vw, 2.35rem);animation:colar 560ms var(--ease-out) both;animation-delay:calc(260ms + var(--i) * 110ms)}
-.adesivo--data{--r:-6deg;--i:0;top:14%;left:-2%}
+.adesivo--data{--r:-6deg;--i:0;top:1%;left:-3%}
 .adesivo--data small{display:block;margin-top:.18em;font-family:var(--f-corpo);font-stretch:100%;font-weight:800;font-size:.38em;letter-spacing:.14em;color:var(--ferrugem)}
-.adesivo--franzida{--r:5deg;--i:1;top:50%;right:-3%}
-.adesivo--inclusos{--r:-3deg;--i:2;bottom:6%;left:0;font-size:clamp(1.15rem, 3.4vw, 1.75rem) !important}
+.adesivo--franzida{--r:5deg;--i:1;bottom:20%;right:-4%}
+.adesivo--inclusos{--r:-3deg;--i:2;bottom:-1%;left:-2%;font-size:clamp(1.15rem, 3.4vw, 1.75rem) !important}
 
 @keyframes colar{
   from{opacity:0;transform:rotate(calc(var(--r) - 10deg)) scale(1.22)}
@@ -281,12 +284,12 @@ a{color:inherit;text-decoration-thickness:.08em;text-underline-offset:.18em}
   .hero__painel{gap:1.4rem}
   .hero__texto{display:contents}
   .hero__marca{order:0}
-  .hero__visual{order:1;width:min(84%, 400px);margin-block:.25rem .75rem}
+  .hero__visual{order:1;width:min(92%, 400px);margin-block:.25rem .75rem}
   .hero h1,.hero__lead,.hero__meta,.hero__acoes{order:2}
 }
 @media (min-width:1024px){
   .hero__painel{grid-template-columns:1.08fr .92fr;align-items:center;gap:3rem;min-height:min(80vh, 760px)}
-  .hero__visual{width:100%;max-width:460px;padding-inline:4%}
+  .hero__visual{width:100%;max-width:560px;padding-inline:9%}
 }
 
 /* ------------------------------------------------------------------
@@ -333,7 +336,7 @@ a{color:inherit;text-decoration-thickness:.08em;text-underline-offset:.18em}
   text-align:center;
 }
 .pergunta__q{background:var(--laranja);padding:.95rem 1rem .85rem;font-weight:800;font-size:.85rem;line-height:1.3;color:var(--tinta)}
-.pergunta__r{padding:1.4rem .75rem 1.5rem;font:700 3rem/.7 var(--f-script);color:var(--laranja-tinta)}
+.pergunta__r{padding:1.4rem .75rem 1.5rem;font:700 3rem/.7 var(--f-script);color:var(--ferrugem)}
 @media (min-width:900px){
   .experiencia .conter{grid-template-columns:1.1fr .9fr;gap:4rem}
 }
@@ -465,6 +468,19 @@ a{color:inherit;text-decoration-thickness:.08em;text-underline-offset:.18em}
 .selo::after{content:"";position:absolute;inset:12px;border-radius:50%;border:2px dashed rgba(43,23,9,.4)}
 .selo span{font-family:var(--f-display);font-stretch:62.5%;font-weight:900;font-size:1.85rem;line-height:.86;text-transform:uppercase}
 .selo .i{width:22px;height:22px;margin:0 auto .45rem;color:var(--tinta)}
+@media (max-width:599px){
+  .mesa{grid-template-columns:1fr 1fr;gap:2.5rem 1rem}
+  .item__objeto{height:160px}
+  .item h3{font-size:1.5rem}
+  .item p{font-size:.92rem}
+  .item--bolsa .polaroid{width:140px}
+  .molde-folha{width:150px;height:136px}
+  .etiqueta{width:140px;height:140px}
+  .etiqueta svg{width:104px}
+  .selo{width:140px;height:140px}
+  .selo span{font-size:1.45rem}
+  .item:nth-child(even){margin-top:2rem}
+}
 @media (min-width:600px){.mesa{grid-template-columns:1fr 1fr}}
 @media (min-width:1100px){
   .mesa{grid-template-columns:repeat(4, 1fr)}
@@ -481,11 +497,11 @@ a{color:inherit;text-decoration-thickness:.08em;text-underline-offset:.18em}
 .atelier .conter{display:grid;gap:3.5rem;align-items:center}
 .atelier__selo{width:clamp(108px, 14vw, 148px);height:auto;margin-bottom:1.5rem}
 .atelier .titulo{margin-bottom:1.5rem;max-width:13ch}
-.atelier__fecho{margin-top:1.25rem;font:700 2.6rem/1 var(--f-script);color:var(--laranja-tinta);max-width:22ch}
+.atelier__fecho{margin-top:1.25rem;font:700 2.6rem/1 var(--f-script);color:var(--ferrugem);max-width:22ch}
 .fotos{position:relative;display:grid;grid-template-columns:repeat(6, 1fr);gap:0;padding:1rem 0 20%;width:min(100%, 520px);justify-self:center}
 .fotos .polaroid{width:100%}
 .fotos .polaroid:nth-child(1){--r:-5deg;grid-column:1 / 5;grid-row:1;z-index:1}
-.fotos .polaroid:nth-child(2){--r:4deg;grid-column:3 / 7;grid-row:2;margin-top:-6%;z-index:2}
+.fotos .polaroid:nth-child(2){--r:4deg;grid-column:3 / 7;grid-row:2;margin-top:6%;z-index:2}
 .fotos .polaroid:nth-child(3){--r:-3deg;grid-column:1 / 4;grid-row:2 / 4;align-self:end;margin-bottom:-22%;z-index:3;width:94%}
 .foto-vazia{
   aspect-ratio:1;display:grid;place-items:center;align-content:center;gap:.5rem;padding:1rem;text-align:center;
@@ -536,7 +552,7 @@ a{color:inherit;text-decoration-thickness:.08em;text-underline-offset:.18em}
 }
 .ingresso__canhoto::before{content:"";position:absolute;top:0;left:calc(var(--furo) + 6px);right:calc(var(--furo) + 6px);border-top:3px dotted rgba(43,23,9,.45)}
 .ingresso__dia{font-family:var(--f-display);font-stretch:62.5%;font-weight:900;line-height:.8;color:var(--tinta);font-size:6rem;letter-spacing:-.02em}
-.ingresso__dia small{display:block;font-size:.3em;letter-spacing:.12em;margin-top:.2em}
+.ingresso__dia small{display:block;font-size:.3em;letter-spacing:0;margin-top:.2em}
 .ingresso__hora{font-weight:800;letter-spacing:.08em;text-transform:uppercase;font-size:.9rem}
 .ingresso__aviso{font-size:.8rem;font-weight:700;color:var(--tinta)}
 .ingresso__canhoto .botao{padding-left:1.25rem;gap:.75rem;text-align:left}
@@ -573,11 +589,11 @@ a{color:inherit;text-decoration-thickness:.08em;text-underline-offset:.18em}
 .final h2{font-family:var(--f-display);font-stretch:62.5%;font-weight:400;font-size:clamp(2.2rem, 5vw, 3.75rem);line-height:1;color:var(--tinta);max-width:20ch;text-wrap:balance}
 .final .texto{color:var(--tinta);max-width:56ch}
 .final__grito{
-  font-family:var(--f-display);font-stretch:62.5%;font-weight:900;
+  font-family:var(--f-display);font-stretch:62.5%;font-weight:900;font-kerning:normal;word-spacing:.05em;
   font-size:clamp(3.4rem, 11vw, 6rem);line-height:.86;letter-spacing:-.015em;text-transform:uppercase;
   color:var(--tinta);margin-top:.75rem;
 }
-.final__script{font:700 clamp(2.2rem, 5vw, 3.3rem)/.95 var(--f-script);color:var(--tinta);max-width:24ch;transform:rotate(-2deg)}
+.final__script{font:700 clamp(2.2rem, 5vw, 3.3rem)/.95 var(--f-script);color:var(--bege);max-width:24ch;transform:rotate(-4deg);margin-top:-.9rem;position:relative;text-shadow:0 2px 0 rgba(43,23,9,.55)}
 .final .acoes{justify-content:center;margin-top:.75rem}
 .final__aviso{display:inline-flex;align-items:center;gap:.5rem;font-weight:800;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase}
 .final__aviso .i{width:1rem;height:1rem}
@@ -707,7 +723,7 @@ a{color:inherit;text-decoration-thickness:.08em;text-underline-offset:.18em}
   <section class="secao experiencia papel-molde" aria-labelledby="exp-titulo">
     <div class="conter">
       <div>
-        <h2 id="exp-titulo" class="titulo">Mais do que aprender a costurar, uma experiência para <em class="script">criar!</em></h2>
+        <h2 id="exp-titulo" class="titulo">Mais do que aprender a costurar, uma <mark>experiência</mark> para <em class="script">criar!</em></h2>
         <div class="texto">
           <p>Imagine escolher os detalhes, acompanhar cada etapa da confecção e, ao final, olhar para uma bolsa e dizer: <strong>fui eu que fiz!</strong></p>
           <p>A oficina foi pensada para quem deseja explorar a costura criativa, desenvolver novas habilidades e viver um momento dedicado à criatividade e ao fazer artesanal.</p>
@@ -776,7 +792,6 @@ a{color:inherit;text-decoration-thickness:.08em;text-underline-offset:.18em}
             <circle cx="200" cy="36" r="4.5" fill="currentColor"/><path d="M198 40l-13 15"/>
           </svg>
           <div>
-            <p class="story__rotulo">Passo 1</p>
             <h3>O molde</h3>
             <span class="story__nota">entender cada marcação</span>
           </div>
@@ -796,7 +811,6 @@ a{color:inherit;text-decoration-thickness:.08em;text-underline-offset:.18em}
             </g>
           </svg>
           <div>
-            <p class="story__rotulo">Passo 2</p>
             <h3>O corte</h3>
             <span class="story__nota">tecido no lugar certo</span>
           </div>
@@ -811,7 +825,6 @@ a{color:inherit;text-decoration-thickness:.08em;text-underline-offset:.18em}
             <rect x="214" y="58" width="12" height="18" rx="3"/><path d="M220 76v14c0 6-4 8-4 14M220 58V44"/>
           </svg>
           <div>
-            <p class="story__rotulo">Passo 3</p>
             <h3>As alças</h3>
             <span class="story__nota">e os detalhes</span>
           </div>
@@ -831,7 +844,6 @@ a{color:inherit;text-decoration-thickness:.08em;text-underline-offset:.18em}
             <path d="M42 28h18M42 34h18M42 40h18M42 46h18" stroke-width="1" opacity=".6"/>
           </svg>
           <div>
-            <p class="story__rotulo">Passo 4</p>
             <h3>A montagem</h3>
             <span class="story__nota">e os acabamentos</span>
           </div>
@@ -850,7 +862,6 @@ a{color:inherit;text-decoration-thickness:.08em;text-underline-offset:.18em}
             <path d="M120 70c.7 4.3 1.7 6 8.4 8.4-6.7 2.3-7.7 4.1-8.4 8.4-.7-4.3-1.7-6.1-8.4-8.4 6.7-2.4 7.7-4.1 8.4-8.4z" fill="currentColor" stroke="none"/>
           </svg>
           <div>
-            <p class="story__rotulo">Passo 5</p>
             <h3>Do seu jeito</h3>
             <span class="story__nota">retalhos e enfeites</span>
           </div>
@@ -865,7 +876,7 @@ a{color:inherit;text-decoration-thickness:.08em;text-underline-offset:.18em}
   <!-- O que você vai levar -->
   <section class="secao levar" aria-labelledby="levar-titulo">
     <div class="conter">
-      <h2 id="levar-titulo" class="titulo">Olha o que você vai levar para <em class="script">casa!</em></h2>
+      <h2 id="levar-titulo" class="titulo">Olha o que você vai <mark>levar</mark> para <em class="script">casa!</em></h2>
       <div class="mesa">
         <article class="item item--bolsa">
           <div class="item__objeto">
@@ -929,35 +940,24 @@ a{color:inherit;text-decoration-thickness:.08em;text-underline-offset:.18em}
     <div class="conter">
       <div>
         <img class="atelier__selo" src="assets/logo-vertical-laranja.svg" alt="" width="148" height="156" loading="lazy">
-        <h2 id="atelier-titulo" class="titulo">Conheça o L'Atelier Socorro Honório</h2>
+        <h2 id="atelier-titulo" class="titulo">Conheça o <mark>L'Atelier</mark> Socorro Honório</h2>
         <div class="texto">
           <p>Um espaço dedicado à criatividade, à arte e ao universo da costura. O L'Atelier Socorro Honório é um ambiente acolhedor, onde o aprendizado, a troca de experiências e o fazer artesanal se encontram, proporcionando momentos especiais de criação e inspiração.</p>
         </div>
         <p class="atelier__fecho">É nesse cenário que você vai viver essa experiência!</p>
       </div>
 
-      <!--
-        FOTOS DO ATELIÊ: troque cada <div class="foto-vazia">…</div> por uma foto real, por exemplo:
-        <img src="assets/atelie-1.jpg" alt="Descreva a foto aqui" width="800" height="800" loading="lazy" style="width:100%;aspect-ratio:1;object-fit:cover">
-        Use fotos quadradas (ou serão recortadas no centro). Depois, ajuste a legenda <figcaption>.
-      -->
       <div class="fotos">
         <figure class="polaroid com-fita">
-          <div class="foto-vazia" role="img" aria-label="Espaço reservado para foto do ateliê">
-            <svg class="i" aria-hidden="true"><use href="#i-camera"/></svg>Foto do ateliê<em>troque pela foto</em>
-          </div>
+          <img src="assets/atelie-maquina.webp" alt="Máquina de costura doméstica sobre a bancada do ateliê, com réguas de modelagem laranja ao lado" width="800" height="800" loading="lazy">
           <figcaption>o ateliê</figcaption>
         </figure>
         <figure class="polaroid com-fita" style="--fita-r:6deg">
-          <div class="foto-vazia" role="img" aria-label="Espaço reservado para foto de uma aula">
-            <svg class="i" aria-hidden="true"><use href="#i-camera"/></svg>Foto de uma aula<em>troque pela foto</em>
-          </div>
+          <img src="assets/atelie-costurando.webp" alt="Mulher sorrindo enquanto costura em uma máquina reta no ateliê, com cones de linha coloridos ao fundo" width="800" height="800" loading="lazy">
           <figcaption>mãos à obra</figcaption>
         </figure>
         <figure class="polaroid com-fita" style="--fita-r:-8deg">
-          <div class="foto-vazia" role="img" aria-label="Espaço reservado para foto da Socorro">
-            <svg class="i" aria-hidden="true"><use href="#i-camera"/></svg>Foto da Socorro<em>troque pela foto</em>
-          </div>
+          <img src="assets/atelie-socorro.webp" alt="Socorro Honório sorrindo no ateliê, em frente a um painel de cones de linha coloridos" width="800" height="800" loading="lazy">
           <figcaption>Socorro</figcaption>
         </figure>
       </div>
