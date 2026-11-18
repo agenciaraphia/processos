@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-16 -12 272 334" width="272" height="334">
+  <title>Coxito – mascote Mini Salgados</title>
+  <defs>
+    <radialGradient id="g-cxt" cx=".42" cy=".55" r=".72">
+      <stop offset="0" stop-color="#ffd54f" />
+      <stop offset=".62" stop-color="#f8b627" />
+      <stop offset="1" stop-color="#ef9f19" />
+    </radialGradient>
+    <radialGradient id="g-iris" cx=".38" cy=".34" r=".75">
+      <stop offset="0" stop-color="#a8652c" />
+      <stop offset="1" stop-color="#3a1805" />
+    </radialGradient>
+    <clipPath id="cp-cxt">
+      <path d="M134 14C122 36 98 54 78 80 52 112 34 140 34 174c0 40 38 64 86 64s86-24 86-64c0-40-20-70-42-96-16-20-26-38-30-64Z" />
+    </clipPath>
+    <clipPath id="cp-mouth">
+      <path d="M84 160c16 4 56 4 72 0 0 28-16 47-36 47s-36-19-36-47Z" />
+    </clipPath>
+  </defs>
+  <g fill="#fff" stroke="#fff" stroke-linecap="round" stroke-linejoin="round">
+    <g>
+      <path d="M104 228v42M136 228v42" fill="none" stroke-width="34" />
+      <g stroke-width="14">
+        <g>
+          <path d="M75 295c-1-16 9-28 23-28 13 0 21 10 21 26v2Z" />
+          <rect x="72" y="291" width="48" height="12" rx="6" />
+        </g>
+      </g>
+      <g stroke-width="14" transform="translate(240 0) scale(-1 1)">
+        <g>
+          <path d="M75 295c-1-16 9-28 23-28 13 0 21 10 21 26v2Z" />
+          <rect x="72" y="291" width="48" height="12" rx="6" />
+        </g>
+      </g>
+    </g>
+    <g transform="translate(240 0) scale(-1 1)">
+      <g>
+        <path d="M203 170c22 0 30 20 20 36-6 8-14 9-22 5" fill="none" stroke-width="33" />
+        <circle cx="200" cy="209" r="12" stroke-width="14" />
+      </g>
+    </g>
+    <g>
+      <path d="M196 166c18-16 28-36 32-58" fill="none" stroke-width="33" />
+      <circle cx="229" cy="96" r="14" stroke-width="14" />
+      <circle cx="216" cy="103" r="6" stroke-width="14" />
+    </g>
+    <g stroke-width="18">
+      <path d="M134 14C122 36 98 54 78 80 52 112 34 140 34 174c0 40 38 64 86 64s86-24 86-64c0-40-20-70-42-96-16-20-26-38-30-64Z" />
+    </g>
+  </g>
+  <g>
+    <path d="M104 228v42M136 228v42" stroke="#9e0012" stroke-width="20" stroke-linecap="round" />
+    <path d="M104 228v42M136 228v42" stroke="#f6b521" stroke-width="12.5" stroke-linecap="round" />
+    <g>
+      <path d="M75 295c-1-16 9-28 23-28 13 0 21 10 21 26v2Z" fill="#e3262b" stroke="#9e0012" stroke-width="3.5" stroke-linejoin="round" />
+      <path d="M78 294c0-9 6-13 14-12 6 1 10 6 10 12Z" fill="#fff" stroke="#9e0012" stroke-width="2.5" stroke-linejoin="round" />
+      <rect x="72" y="291" width="48" height="12" rx="6" fill="#fff" stroke="#9e0012" stroke-width="3.5" />
+      <path d="M103 274l9 3M101 281l9 3" stroke="#fff" stroke-width="2.6" stroke-linecap="round" />
+    </g>
+    <g transform="translate(240 0) scale(-1 1)">
+      <g>
+        <path d="M75 295c-1-16 9-28 23-28 13 0 21 10 21 26v2Z" fill="#e3262b" stroke="#9e0012" stroke-width="3.5" stroke-linejoin="round" />
+        <path d="M78 294c0-9 6-13 14-12 6 1 10 6 10 12Z" fill="#fff" stroke="#9e0012" stroke-width="2.5" stroke-linejoin="round" />
+        <rect x="72" y="291" width="48" height="12" rx="6" fill="#fff" stroke="#9e0012" stroke-width="3.5" />
+        <path d="M103 274l9 3M101 281l9 3" stroke="#fff" stroke-width="2.6" stroke-linecap="round" />
+      </g>
+    </g>
+  </g>
+  <g>
+    <path d="M196 166c18-16 28-36 32-58" fill="none" stroke="#9e0012" stroke-width="19" stroke-linecap="round" />
+    <path d="M196 166c18-16 28-36 32-58" fill="none" stroke="#f6b521" stroke-width="12" stroke-linecap="round" />
+    <circle cx="229" cy="96" r="14" fill="#f6b521" stroke="#9e0012" stroke-width="3.5" />
+    <circle cx="216" cy="103" r="6" fill="#f6b521" stroke="#9e0012" stroke-width="3" />
+  </g>
+  <g>
+    <g fill="url(#g-cxt)">
+      <path d="M134 14C122 36 98 54 78 80 52 112 34 140 34 174c0 40 38 64 86 64s86-24 86-64c0-40-20-70-42-96-16-20-26-38-30-64Z" />
+    </g>
+    <g clip-path="url(#cp-cxt)">
+      <g fill="none" stroke="#e8611f" stroke-width="22">
+        <path d="M134 14C122 36 98 54 78 80 52 112 34 140 34 174c0 40 38 64 86 64s86-24 86-64c0-40-20-70-42-96-16-20-26-38-30-64Z" />
+      </g>
+      <g fill="#c96a10" opacity=".3">
+        <circle cx="96" cy="72" r="3" />
+        <circle cx="120" cy="58" r="2.6" />
+        <circle cx="142" cy="82" r="3" />
+        <circle cx="162" cy="100" r="2.6" />
+        <circle cx="182" cy="150" r="3" />
+        <circle cx="54" cy="190" r="3" />
+        <circle cx="186" cy="196" r="2.6" />
+        <circle cx="72" cy="216" r="3" />
+        <circle cx="170" cy="220" r="2.6" />
+        <circle cx="122" cy="226" r="2.4" />
+        <circle cx="112" cy="88" r="2.2" />
+        <circle cx="184" cy="124" r="2.2" />
+        <circle cx="50" cy="168" r="2.2" />
+      </g>
+      <g fill="#fff3c2" opacity=".7">
+        <circle cx="106" cy="64" r="2" />
+        <circle cx="174" cy="112" r="2" />
+        <circle cx="62" cy="202" r="2" />
+        <circle cx="178" cy="208" r="2" />
+        <circle cx="136" cy="228" r="1.8" />
+      </g>
+      <ellipse cx="76" cy="112" rx="9" ry="24" fill="#fff" opacity=".3" transform="rotate(26 76 112)" />
+    </g>
+    <g fill="none" stroke="#9e0012" stroke-width="4.5" stroke-linejoin="round">
+      <path d="M134 14C122 36 98 54 78 80 52 112 34 140 34 174c0 40 38 64 86 64s86-24 86-64c0-40-20-70-42-96-16-20-26-38-30-64Z" />
+    </g>
+  </g>
+  <g fill="none" stroke="#7a3d10" stroke-width="5" stroke-linecap="round">
+    <path d="M74 101Q90 91 106 99" />
+    <path d="M134 99Q150 91 166 101" />
+  </g>
+  <g>
+    <g fill="#fff" stroke="#9e0012" stroke-width="3.5">
+      <ellipse cx="92" cy="128" rx="20" ry="22" />
+      <ellipse cx="148" cy="128" rx="20" ry="22" />
+    </g>
+    <g>
+      <circle cx="95" cy="131" r="13" fill="url(#g-iris)" />
+      <circle cx="151" cy="131" r="13" fill="url(#g-iris)" />
+      <circle cx="95" cy="131" r="6" fill="#1a0805" />
+      <circle cx="151" cy="131" r="6" fill="#1a0805" />
+      <circle cx="99.5" cy="126" r="4.2" fill="#fff" />
+      <circle cx="155.5" cy="126" r="4.2" fill="#fff" />
+      <circle cx="90.5" cy="136" r="1.8" fill="#fff" />
+      <circle cx="146.5" cy="136" r="1.8" fill="#fff" />
+    </g>
+  </g>
+  <g>
+    <g fill="#7a0010">
+      <path d="M84 160c16 4 56 4 72 0 0 28-16 47-36 47s-36-19-36-47Z" />
+    </g>
+    <g clip-path="url(#cp-mouth)">
+      <rect x="80" y="150" width="80" height="22" rx="4" fill="#fff" />
+      <ellipse cx="120" cy="203" rx="25" ry="14" fill="#ff7d91" />
+    </g>
+    <g fill="none" stroke="#9e0012" stroke-width="3.5" stroke-linejoin="round">
+      <path d="M84 160c16 4 56 4 72 0 0 28-16 47-36 47s-36-19-36-47Z" />
+    </g>
+    <ellipse cx="64" cy="154" rx="6.5" ry="4" fill="#fff" opacity=".8" transform="rotate(-28 64 154)" />
+  </g>
+  <g transform="translate(240 0) scale(-1 1)">
+    <g>
+      <path d="M203 170c22 0 30 20 20 36-6 8-14 9-22 5" fill="none" stroke="#9e0012" stroke-width="19" stroke-linecap="round" stroke-linejoin="round" />
+      <path d="M203 170c22 0 30 20 20 36-6 8-14 9-22 5" fill="none" stroke="#f6b521" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" />
+      <circle cx="200" cy="209" r="12" fill="#f6b521" stroke="#9e0012" stroke-width="3.5" />
+    </g>
+  </g>
+</svg>
