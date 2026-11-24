@@ -13,9 +13,12 @@ Página que transforma o que a professora **fala** sobre cada criança no
 Cada aluno fica salvo no próprio aparelho em "Meus alunos".
 
 ## Melhoria do texto (IA)
+- **Netlify (recomendado):** a função `site/netlify/functions/melhorar.mjs` fala com o Claude usando a
+  variável de ambiente `ANTHROPIC_API_KEY`, que fica só no servidor. `APP_SENHA` (opcional) pede uma senha
+  uma vez por aparelho. Veja `site/COMO-PUBLICAR.txt`.
 - Dentro do claude.ai (Artifact): usa a conta Claude de quem está usando.
-- Fora dele (ex.: GitHub Pages): ⚙️ Configurações → colar uma chave da API da Anthropic (fica só naquele navegador).
-- Sem nenhum dos dois: faz uma correção simples (pontuação e maiúsculas).
+- Sem servidor (ex.: GitHub Pages): ⚙️ Configurações → colar uma chave da API (fica só naquele navegador).
+- Sem nenhum desses: faz uma correção simples (pontuação e maiúsculas).
 
 ## Voz
 Chrome/Edge (computador e Android) e Safari reconhecem português pelo microfone da página.

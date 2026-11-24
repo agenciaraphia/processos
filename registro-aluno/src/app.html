@@ -727,17 +727,22 @@ textarea.big:focus { outline: none; border-color: var(--sky); background: var(--
 <div class="modal" id="modal" hidden role="dialog" aria-labelledby="h-config">
   <h2 id="h-config">Configurações</h2>
   <p id="cfg-status"></p>
-  <div class="f full">
+  <div class="f full" id="cfg-senha-wrap" hidden>
+    <label for="cfg-senha">Senha da escola</label>
+    <div class="inp"><input id="cfg-senha" type="password" autocomplete="off" placeholder="Digite uma vez neste aparelho"></div>
+    <span class="hint">Pedida só na primeira vez em cada aparelho.</span>
+  </div>
+  <div class="f full cfg-key-wrap">
     <label for="cfg-key">Chave da API do Claude (Anthropic)</label>
     <div class="inp"><input id="cfg-key" type="password" autocomplete="off" placeholder="sk-ant-…"></div>
     <span class="hint">Fica salva só neste navegador. Sem chave, a página faz uma correção simples (pontuação e maiúsculas).</span>
   </div>
-  <div class="f full">
+  <div class="f full cfg-key-wrap">
     <label for="cfg-model">Modelo</label>
     <div class="inp"><input id="cfg-model" autocomplete="off"></div>
   </div>
   <div class="row" style="justify-content:flex-end">
-    <button class="btn btn-ghost" id="cfg-remove" type="button">Remover chave</button>
+    <button class="btn btn-ghost cfg-key-wrap" id="cfg-remove" type="button">Remover chave</button>
     <button class="btn btn-ghost" id="cfg-cancel" type="button">Cancelar</button>
     <button class="btn btn-grape" id="cfg-save" type="button">Salvar</button>
   </div>
@@ -758,7 +763,7 @@ const store = {
   set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} },
   del(k) { try { localStorage.removeItem(k); } catch (e) {} }
 };
-const K_LIST = "rvc-alunos", K_CUR = "rvc-atual", K_KEY = "rvc-api-key", K_MODEL = "rvc-model";
+const K_LIST = "rvc-alunos", K_CUR = "rvc-atual", K_KEY = "rvc-api-key", K_MODEL = "rvc-model", K_SENHA = "rvc-senha";
 const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
 const hasClaude = () => !!(window.claude && typeof window.claude.use === "function");
 
@@ -1118,20 +1123,56 @@ async function setupDictation() {
 }
 
 /* ---------------- IA ---------------- */
-const AI = { sample: null, ctl: null };
+const AI = { sample: null, ctl: null, server: null };
 function apiKey() { return store.get(K_KEY, ""); }
-function engine() { return AI.sample ? "claude" : apiKey() ? "api" : "basic"; }
+function engine() { return AI.sample ? "claude" : (AI.server && AI.server.chave) ? "server" : apiKey() ? "api" : "basic"; }
 function renderEngine() {
   const e = engine(), el = $("#engine"), t = $("#engine-txt");
   el.classList.toggle("basic", e === "basic");
   t.textContent = "";
   if (e === "claude") t.textContent = "Usando o Claude da sua conta";
+  else if (e === "server") t.textContent = "Claude conectado ao site";
   else if (e === "api") t.textContent = "Usando o Claude (chave salva neste aparelho)";
   else {
     t.append("Correção simples. Para o texto ficar caprichado, ");
     const b = document.createElement("button"); b.type = "button"; b.textContent = "ative o Claude";
     b.onclick = openSettings; t.append(b);
   }
+}
+async function setupServer() {
+  if (hasClaude() || !/^https?:$/.test(location.protocol)) return;
+  try {
+    const r = await fetch("/api/melhorar", { headers: { accept: "application/json" }, cache: "no-store" });
+    const j = r.ok ? await r.json() : null;
+    if (j && j.ok) AI.server = { chave: !!j.chave, senha: !!j.senha };
+  } catch (e) {}
+  renderEngine();
+}
+async function callServer(signal) {
+  const res = await fetch("/api/melhorar", {
+    method: "POST", signal,
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({
+      ditado: S.ditado,
+      conhecidos: { nome: S.nome, sexo: S.sexo, idade: S.idade, nee: S.nee === "Sim" ? (S.neeTipo || "sim") : "" },
+      senha: store.get(K_SENHA, "")
+    })
+  });
+  if (!res.ok) {
+    let j = {}; try { j = await res.json(); } catch (e) {}
+    throw { code: "srv_" + (j.error || res.status), message: j.message || "" };
+  }
+  const reader = res.body.getReader(), dec = new TextDecoder();
+  let txt = "";
+  for (;;) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    txt += dec.decode(value, { stream: true });
+    const n = words(txt.replace(/[{}"\[\],:]/g, " "));
+    $("#thinking-txt").textContent = `Escrevendo o relatório… ${n} palavras`;
+  }
+  if (txt.includes("[[ERRO]]")) throw { code: "srv_claude" };
+  return parseJsonLoose(txt);
 }
 async function setupSample() {
   if (!hasClaude()) { renderEngine(); return; }
@@ -1221,6 +1262,11 @@ function errorCopy(e) {
   if (c === "http_429") return "Limite da API atingido. Espere um pouco e tente de novo.";
   if (c === "http_400" || c === "http_404") return "A API recusou o pedido" + (e.message ? `: ${e.message}` : ". Confira o modelo em Configurações.");
   if (c === "invalid_json") return "A resposta veio num formato inesperado. Tente de novo.";
+  if (c === "srv_senha") return "Senha da escola incorreta. Confira em Configurações.";
+  if (c === "srv_sem_chave") return "O site ainda não tem a chave do Claude configurada no Netlify.";
+  if (c === "srv_chave_invalida") return "A chave do Claude configurada no Netlify não foi aceita.";
+  if (c === "srv_limite") return "O Claude está com muitos pedidos agora. Espere um minuto e tente de novo.";
+  if (c === "srv_grande") return "O ditado ficou longo demais. Divida em duas partes.";
   if (e && e.name === "TypeError") return "Sem conexão com o Claude. Verifique a internet.";
   return "Não consegui melhorar o texto agora. Tente de novo.";
 }
@@ -1242,6 +1288,14 @@ async function improve() {
         if (apiKey() && !(err && err.code === "rate_limited")) out = await callApi(buildPrompt(), AI.ctl.signal);
         else { note = errorCopy(err); }
       }
+    } else if (e === "server") {
+      if (AI.server.senha && !store.get(K_SENHA, "")) { openSettings(); toast("Digite a senha da escola uma vez neste aparelho."); return; }
+      try { out = await callServer(AI.ctl.signal); }
+      catch (err) {
+        if (err && err.name === "AbortError") throw err;
+        if (err && err.code === "srv_senha") { store.del(K_SENHA); openSettings(); }
+        note = errorCopy(err);
+      }
     } else if (e === "api") {
       try { out = await callApi(buildPrompt(), AI.ctl.signal); }
       catch (err) { if (err && err.name === "AbortError") throw err; note = errorCopy(err); }
@@ -1261,6 +1315,7 @@ async function improve() {
     if (!(err && (err.code === "cancelled" || err.name === "AbortError"))) toast(errorCopy(err));
   } finally {
     btn.disabled = false; $("#thinking").classList.remove("on"); AI.ctl = null;
+    $("#thinking-txt").textContent = "Escrevendo o relatório com carinho…";
   }
 }
 
@@ -1399,10 +1454,18 @@ function closeDrawer() { $("#overlay").hidden = true; $("#drawer").hidden = true
 function openSettings() {
   $("#cfg-key").value = apiKey();
   $("#cfg-model").value = store.get(K_MODEL, "") || DEFAULT_MODEL;
+  const srv = AI.server && AI.server.chave;
+  $$(".cfg-key-wrap").forEach(el => (el.hidden = !!srv || !!AI.sample));
+  $("#cfg-senha-wrap").hidden = !(srv && AI.server.senha);
+  $("#cfg-senha").value = store.get(K_SENHA, "");
   $("#cfg-status").textContent = AI.sample
-    ? "Você está usando a página dentro do Claude: a melhoria do texto já funciona pela sua conta. A chave abaixo só é usada se isso falhar."
-    : "Para o Claude melhorar o texto fora do claude.ai, cole aqui uma chave da API da Anthropic (console.anthropic.com).";
-  $("#overlay").hidden = false; $("#modal").hidden = false; $("#cfg-key").focus();
+    ? "Você está usando a página dentro do Claude: a melhoria do texto já funciona pela sua conta."
+    : srv ? (AI.server.senha ? "O Claude já está conectado ao site. Só falta a senha da escola neste aparelho." : "O Claude já está conectado ao site. Não precisa configurar nada.")
+    : (AI.server && !AI.server.chave) ? "O site está pronto para o Claude, mas falta cadastrar a chave ANTHROPIC_API_KEY no Netlify (Environment variables) e publicar de novo."
+    : "Para o Claude melhorar o texto, cole aqui uma chave da API da Anthropic (console.anthropic.com).";
+  $("#overlay").hidden = false; $("#modal").hidden = false;
+  const first = !$("#cfg-senha-wrap").hidden ? $("#cfg-senha") : !$("#cfg-key").closest(".f").hidden ? $("#cfg-key") : $("#cfg-cancel");
+  first.focus();
 }
 function closeSettings() { $("#modal").hidden = true; $("#overlay").hidden = true; }
 
@@ -1467,6 +1530,13 @@ $("#btn-close-drawer").addEventListener("click", closeDrawer);
 $("#btn-settings").addEventListener("click", openSettings);
 $("#cfg-cancel").addEventListener("click", closeSettings);
 $("#cfg-save").addEventListener("click", () => {
+  if (!$("#cfg-senha-wrap").hidden) {
+    const sv = $("#cfg-senha").value.trim();
+    if (sv) store.set(K_SENHA, sv); else store.del(K_SENHA);
+    closeSettings(); renderEngine(); toast(sv ? "Senha salva neste aparelho." : "Configurações salvas.");
+    return;
+  }
+  if (AI.sample || (AI.server && AI.server.chave)) { closeSettings(); return; }
   const k = $("#cfg-key").value.trim(), m = $("#cfg-model").value.trim();
   if (k) store.set(K_KEY, k); else store.del(K_KEY);
   if (m && m !== DEFAULT_MODEL) store.set(K_MODEL, m); else store.del(K_MODEL);
@@ -1485,6 +1555,7 @@ renderEngine();
 loadHeaderImage();
 setupDictation();
 setupSample();
+setupServer();
 if (hasClaude()) window.claude.use("downloads").then(d => { downloadsNs = d; }).catch(() => {});
 document.fonts && document.fonts.ready.then(fitSheet);
 })();
