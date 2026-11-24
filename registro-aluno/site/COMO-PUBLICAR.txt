@@ -1,9 +1,9 @@
-REGISTRO VIVA CRIANÇA — COMO PUBLICAR NO NETLIFY COM O CLAUDE CONECTADO
-=======================================================================
+REGISTRO VIVA CRIANÇA — COMO PUBLICAR NO NETLIFY COM A IA CONECTADA (GEMINI OU CLAUDE)
+=====================================================================================
 
 O que tem nesta pasta
 - index.html ........................ o site (o modelo do Word já está dentro dele)
-- netlify/functions/melhorar.mjs .... a conexão segura com o Claude (roda no servidor do Netlify)
+- netlify/functions/melhorar.mjs .... a conexão segura com a IA (roda no servidor do Netlify)
 - netlify.toml ...................... avisa o Netlify onde está cada coisa
 
 A chave da IA NÃO fica em nenhum arquivo. Ela é cadastrada uma única vez
