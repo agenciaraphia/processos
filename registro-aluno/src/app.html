@@ -1,0 +1,1322 @@
+<title>Registro Viva Criança</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<style>
+/* Layout: faixa ensolarada no topo; à esquerda os 3 passos (dados, fala, texto); à direita a folha do Word ao vivo, fixa ao rolar. */
+:root {
+  --bg: #F2F7FF;
+  --card: #FFFFFF;
+  --ink: #27224D;
+  --muted: #67638C;
+  --line: #E1E4F4;
+  --sun: #FFC83A;
+  --sun-deep: #E8A800;
+  --coral: #FF6B6B;
+  --coral-deep: #E04848;
+  --sea: #3A86FF;
+  --sea-deep: #1F66D6;
+  --grass: #27BE7A;
+  --grass-deep: #149A5E;
+  --grape: #8B68EE;
+  --grape-deep: #6A47D1;
+  --soft-sun: #FFF3CC;
+  --soft-coral: #FFE6E6;
+  --soft-sea: #E2EDFF;
+  --soft-grass: #DCF6E9;
+  --soft-grape: #EEE8FF;
+  --on-color: #FFFFFF;
+  --band: #FFD45E;
+  --band-ink: #3B2A00;
+  --field: #FBFCFF;
+  --overlay: rgba(23, 20, 51, .45);
+  --paper: #FFFFFF;
+  --paper-ink: #111111;
+  --paper-line: #DADDE8;
+  --display: "Baloo 2", "Nunito", "Trebuchet MS", system-ui, sans-serif;
+  --body: "Nunito", "Segoe UI", system-ui, sans-serif;
+  --doc: Calibri, Carlito, "Segoe UI", Arial, sans-serif;
+  --r-lg: 26px;
+  --r-md: 16px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #16142B; --card: #221F40; --ink: #F5F3FF; --muted: #B4B0D8; --line: #37335F;
+    --soft-sun: #3B3214; --soft-coral: #45242D; --soft-sea: #1C2B4D; --soft-grass: #163A2B; --soft-grape: #2E2553;
+    --band: #3A2F12; --band-ink: #FFE7A3; --field: #1B1935; --overlay: rgba(0,0,0,.6);
+    --paper-line: #4A4672;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #16142B; --card: #221F40; --ink: #F5F3FF; --muted: #B4B0D8; --line: #37335F;
+  --soft-sun: #3B3214; --soft-coral: #45242D; --soft-sea: #1C2B4D; --soft-grass: #163A2B; --soft-grape: #2E2553;
+  --band: #3A2F12; --band-ink: #FFE7A3; --field: #1B1935; --overlay: rgba(0,0,0,.6);
+  --paper-line: #4A4672;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 16px;
+  line-height: 1.5;
+  background-image:
+    radial-gradient(circle at 12px 12px, color-mix(in srgb, var(--sea) 10%, transparent) 2px, transparent 2.5px),
+    radial-gradient(circle at 36px 30px, color-mix(in srgb, var(--coral) 9%, transparent) 2px, transparent 2.5px);
+  background-size: 48px 48px;
+}
+button, input, textarea, select { font: inherit; color: inherit; }
+button { cursor: pointer; }
+:focus-visible { outline: 3px solid var(--sea); outline-offset: 2px; }
+
+/* ---------- Faixa do topo ---------- */
+.band {
+  background: var(--band);
+  color: var(--band-ink);
+  position: relative;
+  margin-top: calc(-1 * env(safe-area-inset-top, 0px));
+  padding-top: env(safe-area-inset-top, 0px);
+  overflow: hidden;
+}
+.band::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 22px;
+  background: var(--bg);
+  -webkit-mask: radial-gradient(22px 22px at 22px 0, transparent 21px, #000 22px) 0 0 / 44px 22px repeat-x;
+          mask: radial-gradient(22px 22px at 22px 0, transparent 21px, #000 22px) 0 0 / 44px 22px repeat-x;
+}
+.band-inner {
+  max-width: 1180px; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 18px 40px;
+  display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+  position: relative; z-index: 1;
+}
+.brand { display: flex; align-items: center; gap: 14px; min-width: 0; flex: 1 1 320px; }
+.brand-mark { width: 62px; height: 62px; flex: none; }
+.brand h1 {
+  font-family: var(--display); font-weight: 800; font-size: clamp(1.6rem, 4.2vw, 2.3rem);
+  line-height: 1; margin: 0; letter-spacing: -.01em; text-wrap: balance;
+}
+.brand p { margin: 4px 0 0; font-weight: 700; opacity: .85; font-size: .98rem; }
+.top-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.confetti { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+.confetti i { position: absolute; display: block; border-radius: 50%; opacity: .55; }
+
+/* ---------- Botões ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  border: 0; border-radius: 999px; padding: 10px 18px; font-weight: 800; font-size: .98rem;
+  background: var(--card); color: var(--ink);
+  box-shadow: 0 4px 0 color-mix(in srgb, var(--ink) 18%, transparent);
+  transition: transform .12s ease, box-shadow .12s ease;
+  white-space: nowrap;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn:active { transform: translateY(3px); box-shadow: 0 1px 0 color-mix(in srgb, var(--ink) 18%, transparent); }
+.btn svg { width: 20px; height: 20px; flex: none; }
+.btn[disabled] { opacity: .55; cursor: not-allowed; transform: none; }
+.btn-count {
+  background: var(--coral); color: var(--on-color); border-radius: 999px; min-width: 22px; height: 22px;
+  font-size: .78rem; display: inline-grid; place-items: center; padding: 0 6px;
+}
+.btn-primary { background: var(--grape); color: var(--on-color); box-shadow: 0 5px 0 var(--grape-deep); }
+.btn-primary:active { box-shadow: 0 1px 0 var(--grape-deep); }
+.btn-go { background: var(--grass); color: var(--on-color); box-shadow: 0 5px 0 var(--grass-deep); }
+.btn-go:active { box-shadow: 0 1px 0 var(--grass-deep); }
+.btn-ghost { background: transparent; box-shadow: none; color: var(--muted); padding: 8px 12px; }
+.btn-ghost:hover { color: var(--ink); background: color-mix(in srgb, var(--ink) 6%, transparent); }
+.btn-ghost:active { transform: none; box-shadow: none; }
+.btn-big { font-size: 1.12rem; padding: 15px 24px; width: 100%; }
+.icon-btn { padding: 10px; width: 44px; height: 44px; }
+
+/* ---------- Estrutura ---------- */
+.wrap {
+  max-width: 1180px; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 8px 120px;
+}
+.layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 430px); gap: 28px; align-items: start; }
+.col { display: grid; gap: 24px; min-width: 0; }
+.side { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 16px); display: grid; gap: 16px; min-width: 0; }
+@media (max-width: 980px) {
+  .layout { grid-template-columns: minmax(0, 1fr); }
+  .side { position: static; }
+}
+
+.card {
+  background: var(--card); border: 2px solid var(--line); border-radius: var(--r-lg);
+  padding: 22px; min-width: 0;
+  box-shadow: 0 6px 0 color-mix(in srgb, var(--ink) 6%, transparent);
+}
+.card-head { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+.step {
+  width: 46px; height: 46px; border-radius: 15px; flex: none;
+  display: grid; place-items: center; font-family: var(--display); font-weight: 800; font-size: 1.5rem;
+  color: var(--on-color); transform: rotate(-6deg);
+}
+.step.s1 { background: var(--sun); color: var(--band-ink); box-shadow: 0 4px 0 var(--sun-deep); }
+.step.s2 { background: var(--coral); box-shadow: 0 4px 0 var(--coral-deep); transform: rotate(5deg); }
+.step.s3 { background: var(--grape); box-shadow: 0 4px 0 var(--grape-deep); }
+.step.s4 { background: var(--grass); box-shadow: 0 4px 0 var(--grass-deep); transform: rotate(4deg); }
+:root:not([data-theme="light"]) .step.s1 { color: #3B2A00; }
+.card-head h2 { font-family: var(--display); font-weight: 800; font-size: 1.45rem; line-height: 1.1; margin: 0; }
+.card-head p { margin: 2px 0 0; color: var(--muted); font-size: .95rem; }
+.card-head .spacer { flex: 1; }
+
+/* ---------- Campos ---------- */
+.grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 14px 16px; }
+.f { display: grid; gap: 6px; min-width: 0; grid-column: span 3; }
+.f.full { grid-column: 1 / -1; }
+.f.third { grid-column: span 2; }
+@media (max-width: 620px) { .f, .f.third { grid-column: 1 / -1; } .f.half-sm { grid-column: span 3; } }
+.f > label, .f > .lbl {
+  font-size: .8rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--muted);
+}
+.inp { position: relative; display: flex; align-items: stretch; min-width: 0; }
+.inp input, .inp textarea {
+  width: 100%; min-width: 0; border: 2px solid var(--line); background: var(--field);
+  border-radius: var(--r-md); padding: 12px 48px 12px 14px; font-size: 1rem; font-weight: 600;
+  transition: border-color .15s, box-shadow .15s;
+}
+.inp input.nomic { padding-right: 14px; }
+.inp input:focus, .inp textarea:focus { outline: none; border-color: var(--sea); box-shadow: 0 0 0 4px color-mix(in srgb, var(--sea) 18%, transparent); }
+.inp input::placeholder, .inp textarea::placeholder { color: color-mix(in srgb, var(--muted) 70%, transparent); font-weight: 400; }
+.prefix {
+  display: flex; align-items: center; gap: 1px; flex: none; padding: 0 10px; border: 2px solid var(--line); border-right: 0;
+  border-radius: var(--r-md) 0 0 var(--r-md); background: var(--soft-sun); font-weight: 800;
+}
+.prefix input { width: 2.6em; border: 0; background: transparent; padding: 0; text-align: center; font-weight: 800; }
+.prefix + input { border-top-left-radius: 0; border-bottom-left-radius: 0; }
+.mini-mic {
+  position: absolute; right: 6px; top: 50%; transform: translateY(-50%);
+  width: 36px; height: 36px; border-radius: 12px; border: 0; display: grid; place-items: center;
+  background: var(--soft-coral); color: var(--coral-deep);
+}
+:root:not([data-theme="light"]) .mini-mic { color: var(--coral); }
+.mini-mic svg { width: 18px; height: 18px; }
+.mini-mic.on { background: var(--coral); color: var(--on-color); animation: wiggle .9s ease-in-out infinite; }
+.no-speech .mini-mic { display: none; }
+.no-speech .inp input { padding-right: 14px; }
+.hint { font-size: .82rem; color: var(--muted); }
+
+.pills { display: flex; gap: 8px; flex-wrap: wrap; }
+.pill {
+  border: 2px solid var(--line); background: var(--field); border-radius: 999px; padding: 9px 16px;
+  font-weight: 800; display: inline-flex; align-items: center; gap: 8px;
+}
+.pill .dot { width: 14px; height: 14px; border-radius: 50%; border: 2px solid currentColor; opacity: .5; }
+.pill[aria-pressed="true"] { border-color: var(--sea); background: var(--soft-sea); color: var(--ink); }
+.pill[aria-pressed="true"] .dot { background: var(--sea); border-color: var(--sea); opacity: 1; }
+.pill.pink[aria-pressed="true"] { border-color: var(--coral); background: var(--soft-coral); }
+.pill.pink[aria-pressed="true"] .dot { background: var(--coral); border-color: var(--coral); }
+
+details.more { grid-column: 1 / -1; border-top: 2px dashed var(--line); padding-top: 12px; }
+details.more summary { cursor: pointer; font-weight: 800; color: var(--muted); list-style: none; display: inline-flex; gap: 6px; align-items: center; }
+details.more summary::-webkit-details-marker { display: none; }
+details.more summary::before { content: "+"; display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 8px; background: var(--soft-grape); color: var(--grape); font-weight: 800; }
+details.more[open] summary::before { content: "–"; }
+details.more .grid { margin-top: 12px; }
+
+/* ---------- Ditado ---------- */
+.talk { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 22px; align-items: center; margin-bottom: 18px; }
+@media (max-width: 520px) { .talk { grid-template-columns: minmax(0, 1fr); justify-items: center; text-align: center; } }
+.mic-wrap { position: relative; width: 118px; height: 118px; }
+.mic {
+  position: relative; z-index: 1; width: 118px; height: 118px; border-radius: 50%; border: 0;
+  background: var(--coral); color: var(--on-color); display: grid; place-items: center;
+  box-shadow: 0 8px 0 var(--coral-deep), inset 0 -6px 0 rgba(0,0,0,.08);
+  transition: transform .12s ease, background .2s;
+}
+.mic svg { width: 50px; height: 50px; }
+.mic:active { transform: translateY(5px); box-shadow: 0 3px 0 var(--coral-deep); }
+.mic.on { background: var(--grass); box-shadow: 0 8px 0 var(--grass-deep); }
+.mic .stop-sq { display: none; width: 34px; height: 34px; border-radius: 9px; background: var(--on-color); }
+.mic.on svg { display: none; }
+.mic.on .stop-sq { display: block; }
+.ring { position: absolute; inset: 0; border-radius: 50%; border: 4px solid var(--grass); opacity: 0; }
+.mic-wrap.on .ring { animation: ring 1.8s ease-out infinite; }
+.mic-wrap.on .ring:nth-child(2) { animation-delay: .6s; }
+.mic-wrap.on .ring:nth-child(3) { animation-delay: 1.2s; }
+@keyframes ring { from { transform: scale(1); opacity: .7; } to { transform: scale(1.65); opacity: 0; } }
+@keyframes wiggle { 0%,100% { transform: translateY(-50%) rotate(0); } 25% { transform: translateY(-50%) rotate(-8deg); } 75% { transform: translateY(-50%) rotate(8deg); } }
+.talk-copy h3 { font-family: var(--display); font-size: 1.35rem; font-weight: 800; margin: 0 0 4px; line-height: 1.15; }
+.talk-copy p { margin: 0; color: var(--muted); }
+.say { display: inline-block; background: var(--soft-sun); border-radius: 8px; padding: 0 6px; font-weight: 800; color: var(--ink); white-space: nowrap; }
+
+.aspects { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 12px; }
+.aspect {
+  display: inline-flex; align-items: center; gap: 7px; padding: 6px 12px 6px 8px; border-radius: 999px;
+  font-weight: 800; font-size: .88rem; background: var(--field); border: 2px dashed var(--line); color: var(--muted);
+  transition: all .25s ease;
+}
+.aspect .tick { width: 20px; height: 20px; border-radius: 50%; display: grid; place-items: center; background: var(--line); color: transparent; }
+.aspect .tick svg { width: 13px; height: 13px; }
+.aspect.ok { border-style: solid; color: var(--ink); }
+.aspect.ok .tick { color: var(--on-color); }
+.aspect.ok[data-a="social"] { border-color: var(--sun); background: var(--soft-sun); }
+.aspect.ok[data-a="social"] .tick { background: var(--sun-deep); }
+.aspect.ok[data-a="emocional"] { border-color: var(--coral); background: var(--soft-coral); }
+.aspect.ok[data-a="emocional"] .tick { background: var(--coral); }
+.aspect.ok[data-a="psicomotor"] { border-color: var(--sea); background: var(--soft-sea); }
+.aspect.ok[data-a="psicomotor"] .tick { background: var(--sea); }
+.aspect.ok[data-a="cognitivo"] { border-color: var(--grape); background: var(--soft-grape); }
+.aspect.ok[data-a="cognitivo"] .tick { background: var(--grape); }
+.aspects-label { font-size: .85rem; color: var(--muted); font-weight: 700; margin: 0 0 8px; }
+
+textarea.big {
+  width: 100%; min-height: 220px; resize: vertical; padding: 16px 18px; line-height: 1.6;
+  border: 2px solid var(--line); background: var(--field); border-radius: 20px; font-size: 1.02rem; font-weight: 500;
+}
+textarea.big:focus { outline: none; border-color: var(--sea); box-shadow: 0 0 0 4px color-mix(in srgb, var(--sea) 18%, transparent); }
+.row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-top: 12px; }
+.row .grow { flex: 1; }
+.counter { font-size: .85rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+
+/* ---------- Texto melhorado ---------- */
+.magic { display: grid; gap: 14px; }
+.engine {
+  display: inline-flex; align-items: center; gap: 8px; font-size: .85rem; font-weight: 800;
+  border-radius: 999px; padding: 5px 12px; background: var(--soft-grape); color: var(--ink);
+}
+.engine i { width: 9px; height: 9px; border-radius: 50%; background: var(--grape); display: block; }
+.engine.basic { background: var(--soft-sun); }
+.engine.basic i { background: var(--sun-deep); }
+.engine button { border: 0; background: none; padding: 0; text-decoration: underline; font-weight: 800; color: inherit; }
+.thinking { display: none; align-items: center; gap: 12px; padding: 14px 16px; border-radius: 18px; background: var(--soft-grape); font-weight: 800; }
+.thinking.on { display: flex; }
+.dots { display: inline-flex; gap: 5px; }
+.dots i { width: 10px; height: 10px; border-radius: 50%; background: var(--grape); animation: hop 1s ease-in-out infinite; }
+.dots i:nth-child(2) { animation-delay: .15s; background: var(--coral); }
+.dots i:nth-child(3) { animation-delay: .3s; background: var(--sun-deep); }
+@keyframes hop { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+.empty-note {
+  border: 2px dashed var(--line); border-radius: 20px; padding: 18px; color: var(--muted); text-align: center; font-weight: 600;
+}
+
+/* ---------- Folha (prévia) ---------- */
+.sheet-card { padding: 16px; }
+.sheet-title { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin: 2px 4px 12px; }
+.sheet-title h2 { font-family: var(--display); font-size: 1.2rem; font-weight: 800; margin: 0; }
+.sheet-title span { font-size: .82rem; color: var(--muted); font-weight: 700; }
+.sheet-viewport { position: relative; overflow: hidden; border-radius: 10px; border: 1px solid var(--paper-line); background: var(--paper); }
+.sheet {
+  position: absolute; top: 0; left: 0; width: 794px; min-height: 1123px; transform-origin: 0 0;
+  background: var(--paper); color: var(--paper-ink); font-family: var(--doc); font-size: 16px; line-height: 1.2;
+  display: flex; flex-direction: column;
+}
+.sheet-head { width: 100%; height: 98px; display: block; object-fit: cover; object-position: top; background: #f4f4f4; }
+.sheet-body { padding: 26px 19px 22px; display: flex; flex-direction: column; flex: 1; }
+.sheet .c { text-align: center; }
+.sheet b { font-weight: 700; }
+.sheet .ln { white-space: pre-wrap; }
+.sheet .two { display: grid; grid-template-columns: 7.35fr 3.98fr; }
+.sheet .sub { text-align: center; font-weight: 700; font-size: 14.6px; margin: 22px 0 18px; }
+.sheet .txt p { margin: 0 0 8px; text-indent: 47px; text-align: justify; line-height: 1.38; }
+.sheet .txt .ph { color: #9a9a9a; font-style: italic; text-indent: 0; text-align: center; }
+.sheet .sig { margin-top: auto; padding-top: 28px; line-height: 1.25; }
+.sheet .v { font-weight: 400; }
+.sheet .blank { color: #b0b0b0; }
+
+.dl-note { font-size: .85rem; color: var(--muted); text-align: center; margin: 0; }
+
+/* ---------- Barra "ouvindo" ---------- */
+.listen-bar {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 40;
+  padding: 12px max(16px, env(safe-area-inset-right, 0px)) calc(12px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));
+  display: flex; justify-content: center; pointer-events: none;
+}
+.listen-pill {
+  pointer-events: auto; width: min(720px, 100%); display: flex; align-items: center; gap: 14px;
+  background: var(--ink); color: var(--bg); border-radius: 22px; padding: 12px 12px 12px 18px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.25);
+}
+.eq { display: inline-flex; gap: 3px; align-items: flex-end; height: 22px; flex: none; }
+.eq i { width: 5px; border-radius: 3px; background: var(--grass); animation: eq .8s ease-in-out infinite; }
+.eq i:nth-child(1) { height: 40%; } .eq i:nth-child(2) { height: 90%; animation-delay: .2s; } .eq i:nth-child(3) { height: 60%; animation-delay: .4s; } .eq i:nth-child(4) { height: 80%; animation-delay: .1s; }
+@keyframes eq { 0%,100% { transform: scaleY(.4); } 50% { transform: scaleY(1); } }
+.listen-txt { flex: 1; min-width: 0; }
+.listen-txt b { display: block; font-size: .8rem; letter-spacing: .06em; text-transform: uppercase; opacity: .75; }
+.listen-txt span { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-style: italic; }
+.listen-pill .btn { background: var(--coral); color: var(--on-color); box-shadow: none; }
+
+/* ---------- Gaveta / modal / aviso ---------- */
+.overlay { position: fixed; inset: 0; background: var(--overlay); z-index: 50; }
+.drawer {
+  position: fixed; top: 0; right: 0; bottom: 0; z-index: 51; width: min(400px, 100%);
+  background: var(--card); border-left: 2px solid var(--line); display: flex; flex-direction: column;
+  padding: calc(env(safe-area-inset-top, 0px) + 18px) max(18px, env(safe-area-inset-right, 0px)) calc(env(safe-area-inset-bottom, 0px) + 18px) 18px;
+}
+.drawer-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 14px; }
+.drawer-head h2, .modal h2 { font-family: var(--display); font-weight: 800; font-size: 1.45rem; margin: 0; }
+.list { overflow-y: auto; display: grid; gap: 10px; align-content: start; flex: 1; }
+.kid {
+  display: grid; grid-template-columns: auto minmax(0,1fr); gap: 4px 12px; align-items: center;
+  border: 2px solid var(--line); border-radius: 18px; padding: 12px; background: var(--field);
+}
+.kid.current { border-color: var(--sea); }
+.avatar { grid-row: span 2; width: 44px; height: 44px; border-radius: 14px; display: grid; place-items: center; font-family: var(--display); font-weight: 800; font-size: 1.3rem; color: var(--on-color); }
+.kid-name { font-weight: 800; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.kid-meta { font-size: .82rem; color: var(--muted); }
+.kid-actions { grid-column: 1 / -1; display: flex; gap: 8px; margin-top: 6px; }
+.kid-actions .btn { padding: 7px 14px; font-size: .9rem; }
+.btn-danger { background: var(--soft-coral); color: var(--ink); box-shadow: none; }
+.btn-danger.confirm { background: var(--coral); color: var(--on-color); }
+.modal {
+  position: fixed; z-index: 51; left: 50%; top: 50%; transform: translate(-50%, -50%);
+  width: min(520px, calc(100% - 32px)); max-height: calc(100% - 32px); overflow-y: auto;
+  background: var(--card); border-radius: var(--r-lg); border: 2px solid var(--line); padding: 22px; display: grid; gap: 14px;
+}
+.modal p { margin: 0; color: var(--muted); }
+.modal .inp input { padding-right: 14px; }
+.toast {
+  position: fixed; z-index: 60; left: 50%; top: calc(env(safe-area-inset-top, 0px) + 16px); transform: translateX(-50%);
+  background: var(--ink); color: var(--bg); padding: 12px 18px; border-radius: 16px; font-weight: 700;
+  width: max-content; max-width: calc(100% - 32px); box-shadow: 0 10px 30px rgba(0,0,0,.25);
+}
+.kbd-tip { margin-top: 10px; padding: 12px 14px; border-radius: 16px; background: var(--soft-sea); font-size: .92rem; font-weight: 600; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+</style>
+
+<header class="band">
+  <div class="confetti" aria-hidden="true">
+    <i style="width:18px;height:18px;background:var(--coral);left:6%;top:18%"></i>
+    <i style="width:10px;height:10px;background:var(--sea);left:22%;top:70%"></i>
+    <i style="width:26px;height:26px;background:var(--grass);left:48%;top:12%;opacity:.35"></i>
+    <i style="width:12px;height:12px;background:var(--grape);left:63%;top:66%"></i>
+    <i style="width:20px;height:20px;background:var(--coral);left:82%;top:20%;opacity:.4"></i>
+    <i style="width:9px;height:9px;background:var(--sea);left:94%;top:58%"></i>
+  </div>
+  <div class="band-inner">
+    <div class="brand">
+      <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true">
+        <circle cx="32" cy="32" r="30" fill="#FFFFFF" opacity=".55"/>
+        <path d="M14 46 L40 20 L48 28 L22 54 L12 56 Z" fill="#FF6B6B"/>
+        <path d="M40 20 L44 16 a4 4 0 0 1 6 0 l2 2 a4 4 0 0 1 0 6 L48 28 Z" fill="#8B68EE"/>
+        <path d="M14 46 L22 54 L12 56 Z" fill="#FFE2B8"/>
+        <path d="M12 56 L13.5 51.5 L16.5 54.5 Z" fill="#27224D"/>
+        <path d="M50 38 l2 5 5 2 -5 2 -2 5 -2 -5 -5 -2 5 -2z" fill="#3A86FF"/>
+        <path d="M20 14 l1.5 3.5 3.5 1.5 -3.5 1.5 -1.5 3.5 -1.5 -3.5 -3.5 -1.5 3.5 -1.5z" fill="#27BE7A"/>
+      </svg>
+      <div>
+        <h1>Registro Viva Criança</h1>
+        <p>Fale sobre a criança. O texto sai bonito, pronto no Word.</p>
+      </div>
+    </div>
+    <div class="top-actions">
+      <button class="btn" id="btn-new" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+        Novo aluno
+      </button>
+      <button class="btn" id="btn-list" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19c.8-3.3 3-5 5.5-5s4.7 1.7 5.5 5"/><circle cx="17" cy="9" r="2.4"/><path d="M16 14.2c2.3-.3 4 1.2 4.6 4"/></svg>
+        Meus alunos <span class="btn-count" id="count">0</span>
+      </button>
+      <button class="btn icon-btn" id="btn-settings" type="button" aria-label="Configurações">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap" id="app">
+  <div class="layout">
+    <div class="col">
+
+      <!-- PASSO 1 -->
+      <section class="card" aria-labelledby="h-dados">
+        <div class="card-head">
+          <div class="step s1">1</div>
+          <div><h2 id="h-dados">Dados da criança</h2><p>Preencha o que souber. O que ficar vazio sai em branco no documento.</p></div>
+        </div>
+        <div class="grid">
+          <div class="f full">
+            <label for="f-nome">Nome do(a) aluno(a)</label>
+            <div class="inp"><input id="f-nome" data-f="nome" autocomplete="off" placeholder="Ex.: Helena Sousa Lima"><button class="mini-mic" type="button" data-mic="f-nome" aria-label="Ditar o nome"></button></div>
+          </div>
+          <div class="f">
+            <label for="f-nasc">Data de nascimento</label>
+            <div class="inp"><input id="f-nasc" data-f="nasc" type="date" class="nomic"></div>
+          </div>
+          <div class="f">
+            <label for="f-idade">Idade</label>
+            <div class="inp"><input id="f-idade" data-f="idade" autocomplete="off" placeholder="Calculada pela data" class="nomic"></div>
+          </div>
+          <div class="f">
+            <span class="lbl" id="l-sexo">Sexo</span>
+            <div class="pills" role="group" aria-labelledby="l-sexo">
+              <button type="button" class="pill pink" data-pill="sexo" data-v="Feminino" aria-pressed="false"><span class="dot"></span>Feminino</button>
+              <button type="button" class="pill" data-pill="sexo" data-v="Masculino" aria-pressed="false"><span class="dot"></span>Masculino</button>
+            </div>
+          </div>
+          <div class="f">
+            <span class="lbl" id="l-nee">NEE (necessidades especiais)</span>
+            <div class="pills" role="group" aria-labelledby="l-nee">
+              <button type="button" class="pill pink" data-pill="nee" data-v="Sim" aria-pressed="false"><span class="dot"></span>Sim</button>
+              <button type="button" class="pill" data-pill="nee" data-v="Não" aria-pressed="false"><span class="dot"></span>Não</button>
+            </div>
+          </div>
+          <div class="f full" id="wrap-tipo" hidden>
+            <label for="f-neeTipo">Tipo de NEE</label>
+            <div class="inp"><input id="f-neeTipo" data-f="neeTipo" autocomplete="off" placeholder="Ex.: TEA, TDAH, deficiência auditiva…"><button class="mini-mic" type="button" data-mic="f-neeTipo" aria-label="Ditar o tipo"></button></div>
+          </div>
+          <div class="f full">
+            <label for="f-ingresso">Ingresso nesta escola</label>
+            <div class="inp"><input id="f-ingresso" data-f="ingresso" autocomplete="off" placeholder="Ex.: 02/2025"><button class="mini-mic" type="button" data-mic="f-ingresso" aria-label="Ditar o ingresso"></button></div>
+          </div>
+          <div class="f">
+            <label for="f-pai">Nome do pai</label>
+            <div class="inp"><input id="f-pai" data-f="pai" autocomplete="off"><button class="mini-mic" type="button" data-mic="f-pai" aria-label="Ditar o nome do pai"></button></div>
+          </div>
+          <div class="f">
+            <label for="f-mae">Nome da mãe</label>
+            <div class="inp"><input id="f-mae" data-f="mae" autocomplete="off"><button class="mini-mic" type="button" data-mic="f-mae" aria-label="Ditar o nome da mãe"></button></div>
+          </div>
+          <div class="f full">
+            <label for="f-tel">Contato</label>
+            <div class="inp">
+              <span class="prefix">(<input id="f-ddd" data-f="ddd" inputmode="numeric" maxlength="2" aria-label="DDD">)</span>
+              <input id="f-tel" data-f="tel" inputmode="tel" autocomplete="off" placeholder="99999-9999" class="nomic">
+            </div>
+          </div>
+          <details class="more">
+            <summary>Escola e ano do registro</summary>
+            <div class="grid">
+              <div class="f">
+                <label for="f-escola">Nome da escola/CEDI</label>
+                <div class="inp"><input id="f-escola" data-f="escola" class="nomic"></div>
+              </div>
+              <div class="f">
+                <label for="f-ano">Ano do registro</label>
+                <div class="inp"><input id="f-ano" data-f="ano" inputmode="numeric" maxlength="4" class="nomic"></div>
+              </div>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- PASSO 2 -->
+      <section class="card" aria-labelledby="h-fala">
+        <div class="card-head">
+          <div class="step s2">2</div>
+          <div><h2 id="h-fala">Conte como a criança está</h2><p>Fale à vontade, do seu jeito. Pode pausar e continuar depois.</p></div>
+        </div>
+        <div class="talk">
+          <div class="mic-wrap" id="mic-wrap">
+            <span class="ring"></span><span class="ring"></span><span class="ring"></span>
+            <button class="mic" id="mic" type="button" aria-label="Começar a falar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="8.5" y="2.5" width="7" height="12" rx="3.5" fill="currentColor" stroke="none"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3.5M8.5 21.5h7"/></svg>
+              <span class="stop-sq"></span>
+            </button>
+          </div>
+          <div class="talk-copy">
+            <h3 id="mic-title">Toque no microfone e fale</h3>
+            <p id="mic-sub">Para pontuar, diga <span class="say">vírgula</span>, <span class="say">ponto</span> ou <span class="say">novo parágrafo</span>. Não precisa ser perfeito: o texto é melhorado no passo 3.</p>
+          </div>
+        </div>
+        <p class="aspects-label">Lembrete do que falar (acende quando você comenta):</p>
+        <div class="aspects" id="aspects">
+          <span class="aspect" data-a="social"><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Social</span>
+          <span class="aspect" data-a="emocional"><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Emocional</span>
+          <span class="aspect" data-a="psicomotor"><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Psicomotor</span>
+          <span class="aspect" data-a="cognitivo"><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Cognitivo</span>
+        </div>
+        <label for="f-ditado" class="aspects-label" style="display:block">O que você falou (pode corrigir digitando):</label>
+        <textarea id="f-ditado" data-f="ditado" class="big" placeholder="Ex.: A Helena chegou em fevereiro, no começo chorava na entrada, mas hoje já chega tranquila, brinca com os colegas…"></textarea>
+        <div class="kbd-tip" id="kbd-tip" hidden>Neste aparelho o microfone da página não está disponível. Toque na caixa de texto e use o <b>microfone do teclado</b> do celular para ditar. Funciona do mesmo jeito.</div>
+        <div class="row">
+          <span class="counter grow" id="ditado-count">0 palavras</span>
+          <button class="btn btn-ghost" id="btn-example" type="button">Ver um exemplo</button>
+          <button class="btn btn-ghost" id="btn-clear" type="button">Apagar ditado</button>
+        </div>
+      </section>
+
+      <!-- PASSO 3 -->
+      <section class="card" aria-labelledby="h-texto">
+        <div class="card-head">
+          <div class="step s3">3</div>
+          <div><h2 id="h-texto">Texto do relatório</h2><p>Corrige, organiza e escreve em linguagem pedagógica, sem inventar nada.</p></div>
+        </div>
+        <div class="magic">
+          <button class="btn btn-primary btn-big" id="btn-improve" type="button">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 2l1.8 4.7L16.5 8.5l-4.7 1.8L10 15l-1.8-4.7L3.5 8.5l4.7-1.8z"/><path d="M18 13l1 2.6 2.6 1-2.6 1L18 20.2l-1-2.6-2.6-1 2.6-1z"/></svg>
+            Melhorar o texto
+          </button>
+          <div class="row" style="margin-top:0"><span class="engine" id="engine"><i></i><span id="engine-txt">Verificando…</span></span></div>
+          <div class="thinking" id="thinking"><span class="dots"><i></i><i></i><i></i></span><span id="thinking-txt">Escrevendo o relatório com carinho…</span><span class="grow" style="flex:1"></span><button class="btn btn-ghost" id="btn-cancel" type="button">Parar</button></div>
+          <div class="empty-note" id="texto-empty">Quando você tocar em <b>Melhorar o texto</b>, o relatório aparece aqui para você revisar e ajustar.</div>
+          <div id="texto-wrap" hidden>
+            <label for="f-texto" class="aspects-label" style="display:block">Revise à vontade. É este texto que vai para o Word:</label>
+            <textarea id="f-texto" data-f="texto" class="big" style="min-height:300px"></textarea>
+            <div class="row"><span class="counter grow" id="texto-count"></span><button class="btn btn-ghost" id="btn-undo" type="button" hidden>Voltar ao texto anterior</button></div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- PRÉVIA + DOWNLOAD -->
+    <aside class="side" aria-labelledby="h-doc">
+      <section class="card sheet-card">
+        <div class="sheet-title"><h2 id="h-doc">Como vai ficar</h2><span>Calibri 12 · modelo da escola</span></div>
+        <div class="sheet-viewport" id="viewport">
+          <div class="sheet" id="sheet">
+            <img class="sheet-head" id="sheet-head" alt="Cabeçalho do modelo">
+            <div class="sheet-body">
+              <div class="c"><b id="p-titulo">REGISTRO INDIVIDUAL DO ALUNO</b></div>
+              <div class="ln">&nbsp;</div>
+              <div class="ln"><b>NOME DA ESCOLA/CEDI:</b> <span class="v" id="p-escola"></span></div>
+              <div class="two"><div class="ln"><b>NOME DO(A) ALUNO(A):</b> <span class="v" id="p-nome"></span></div><div class="ln"><b>DATA DE NASC.:</b> <span class="v" id="p-nasc"></span></div></div>
+              <div class="two"><div class="ln"><b>IDADE:</b> <span class="v" id="p-idade"></span>&nbsp; <b>SEXO:</b> <span class="v" id="p-sexo"></span>&nbsp; <b>NEE: SIM (<span id="p-sim">&nbsp;&nbsp;&nbsp;</span>) NÃO (<span id="p-nao">&nbsp;&nbsp;&nbsp;</span>) TIPO:</b> <span class="v" id="p-tipo"></span></div><div class="ln"><b>INGRESSO NESTA ESCOLA:</b> <span class="v" id="p-ingresso"></span></div></div>
+              <div class="ln"><b>NOME DO PAI:</b> <span class="v" id="p-pai"></span></div>
+              <div class="ln"><b>NOME DA MÃE:</b> <span class="v" id="p-mae"></span></div>
+              <div class="ln"><b>CONTATO:</b> <span class="v" id="p-tel"></span></div>
+              <div class="sub">(Histórico do desenvolvimento da criança considerando os aspectos social, emocional, psicomotor e cognitivo)</div>
+              <div class="txt" id="p-texto"></div>
+              <div class="sig">
+                <div><b>Professor(a):</b> ______________________________________________________________ <b>Data:</b>____/____/_____</div>
+                <div><b>Coordenador(a):</b>___________________________________________________________ <b>Data:</b>____/____/_____</div>
+                <div><b>Responsável:</b>______________________________________________________________ <b>Data:</b> ____/____/_____</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="card" aria-labelledby="h-baixar" style="display:grid;gap:12px">
+        <div class="card-head" style="margin-bottom:0">
+          <div class="step s4">4</div>
+          <div><h2 id="h-baixar">Baixar no Word</h2><p>Arquivo .docx com o cabeçalho da escola.</p></div>
+        </div>
+        <button class="btn btn-go btn-big" id="btn-download" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 20h14"/></svg>
+          Baixar documento Word
+        </button>
+        <p class="dl-note" id="dl-note">Tudo fica salvo neste aparelho em “Meus alunos”.</p>
+      </section>
+    </aside>
+  </div>
+</main>
+
+<div class="listen-bar" id="listen-bar" hidden>
+  <div class="listen-pill" role="status" aria-live="polite">
+    <span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+    <div class="listen-txt"><b id="listen-where">Ouvindo…</b><span id="listen-live">Pode falar</span></div>
+    <button class="btn" id="btn-stop" type="button">Parar</button>
+  </div>
+</div>
+
+<div class="overlay" id="overlay" hidden></div>
+<aside class="drawer" id="drawer" hidden aria-labelledby="h-alunos">
+  <div class="drawer-head"><h2 id="h-alunos">Meus alunos</h2><button class="btn btn-ghost" id="btn-close-drawer" type="button">Fechar</button></div>
+  <div class="list" id="list"></div>
+</aside>
+<div class="modal" id="modal" hidden role="dialog" aria-labelledby="h-config">
+  <h2 id="h-config">Configurações</h2>
+  <p id="cfg-status"></p>
+  <div class="f full">
+    <label for="cfg-key">Chave da API do Claude (Anthropic)</label>
+    <div class="inp"><input id="cfg-key" type="password" autocomplete="off" placeholder="sk-ant-…"></div>
+    <span class="hint">Fica salva só neste navegador. Sem chave, a página faz uma correção simples (pontuação e maiúsculas).</span>
+  </div>
+  <div class="f full">
+    <label for="cfg-model">Modelo</label>
+    <div class="inp"><input id="cfg-model" autocomplete="off"></div>
+  </div>
+  <div class="row" style="justify-content:flex-end">
+    <button class="btn btn-ghost" id="cfg-remove" type="button">Remover chave</button>
+    <button class="btn btn-ghost" id="cfg-cancel" type="button">Cancelar</button>
+    <button class="btn btn-primary" id="cfg-save" type="button">Salvar</button>
+  </div>
+</div>
+<div class="toast" id="toast" hidden role="status" aria-live="polite"></div>
+
+<script>
+(() => {
+"use strict";
+const TEMPLATE_B64 = "__TEMPLATE_B64__";
+const DEFAULT_MODEL = "claude-sonnet-5-5";
+const DOCX_MIME = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const store = {
+  get(k, d) { try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } },
+  set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} },
+  del(k) { try { localStorage.removeItem(k); } catch (e) {} }
+};
+const K_LIST = "rvc-alunos", K_CUR = "rvc-atual", K_KEY = "rvc-api-key", K_MODEL = "rvc-model";
+const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
+const hasClaude = () => !!(window.claude && typeof window.claude.use === "function");
+
+function blank(keep) {
+  return {
+    id: uid(), nome: "", nasc: "", idade: "", idadeManual: false, sexo: "", nee: "", neeTipo: "",
+    ingresso: "", pai: "", mae: "", ddd: keep?.ddd || "85", tel: "",
+    escola: keep?.escola || "VIVA CRIANÇA", ano: keep?.ano || String(new Date().getFullYear()),
+    ditado: "", texto: "", textoAnterior: "", updated: Date.now()
+  };
+}
+
+let S = (() => {
+  const list = store.get(K_LIST, []);
+  const cur = store.get(K_CUR, null);
+  const found = Array.isArray(list) ? list.find(a => a.id === cur) : null;
+  return found ? Object.assign(blank(), found) : blank();
+})();
+
+/* ---------------- utilidades ---------------- */
+let toastTimer;
+function toast(msg, ms = 3600) {
+  const t = $("#toast"); t.textContent = msg; t.hidden = false;
+  clearTimeout(toastTimer); toastTimer = setTimeout(() => (t.hidden = true), ms);
+}
+function fmtDate(iso) {
+  if (!iso) return "";
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso);
+  return m ? `${m[3]}/${m[2]}/${m[1]}` : iso;
+}
+function calcAge(iso) {
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || "");
+  if (!m) return "";
+  const b = new Date(+m[1], +m[2] - 1, +m[3]), n = new Date();
+  let y = n.getFullYear() - b.getFullYear(), mo = n.getMonth() - b.getMonth();
+  if (n.getDate() < b.getDate()) mo--;
+  if (mo < 0) { y--; mo += 12; }
+  if (y < 0 || y > 30) return "";
+  if (y === 0) return mo === 1 ? "1 mês" : `${mo} meses`;
+  return y === 1 ? "1 ano" : `${y} anos`;
+}
+function maskTel(v) {
+  const d = String(v || "").replace(/\D/g, "").slice(0, 9);
+  if (d.length <= 4) return d;
+  if (d.length <= 8) return d.slice(0, 4) + "-" + d.slice(4);
+  return d.slice(0, 5) + "-" + d.slice(5);
+}
+function telFull() {
+  const ddd = (S.ddd || "").replace(/\D/g, "");
+  return (ddd ? `(${ddd}) ` : "") + (S.tel || "");
+}
+const words = s => (String(s || "").trim().match(/\S+/g) || []).length;
+function capitalize(s) {
+  return s.replace(/(^\s*|[.!?]\s+|\n\s*)([a-zà-ú])/g, (m, a, b) => a + b.toUpperCase());
+}
+
+/* ---------------- estado / salvar ---------------- */
+let saveTimer;
+function hasContent(a) { return !!(a.nome || a.ditado || a.texto || a.pai || a.mae); }
+function persist() {
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(() => {
+    S.updated = Date.now();
+    const list = store.get(K_LIST, []).filter(a => a && a.id !== S.id);
+    if (hasContent(S)) list.unshift(S);
+    store.set(K_LIST, list);
+    store.set(K_CUR, S.id);
+    $("#count").textContent = list.length;
+  }, 350);
+}
+function flushPersist() { clearTimeout(saveTimer); S.updated = Date.now(); const list = store.get(K_LIST, []).filter(a => a && a.id !== S.id); if (hasContent(S)) list.unshift(S); store.set(K_LIST, list); store.set(K_CUR, S.id); $("#count").textContent = list.length; }
+
+function setField(f, v, fromUser) {
+  S[f] = v;
+  if (f === "nasc" && !S.idadeManual) S.idade = calcAge(v);
+  if (f === "idade" && fromUser) S.idadeManual = v.trim() !== "";
+  persist();
+}
+
+function renderForm() {
+  $$("[data-f]").forEach(el => {
+    const f = el.dataset.f;
+    if (document.activeElement === el) return;
+    el.value = S[f] ?? "";
+  });
+  $$("[data-pill]").forEach(b => b.setAttribute("aria-pressed", String(S[b.dataset.pill] === b.dataset.v)));
+  $("#wrap-tipo").hidden = S.nee !== "Sim";
+  renderTexto();
+  renderAspects();
+  $("#ditado-count").textContent = words(S.ditado) + " palavras";
+  renderPreview();
+}
+
+function renderTexto() {
+  const has = !!S.texto.trim();
+  $("#texto-wrap").hidden = !has;
+  $("#texto-empty").hidden = has;
+  $("#btn-undo").hidden = !S.textoAnterior;
+  $("#texto-count").textContent = has ? `${words(S.texto)} palavras · ${paragraphs(S.texto).length} parágrafos` : "";
+}
+
+/* ---------------- aspectos ---------------- */
+const ASPECTS = {
+  social: /\b(amig|coleg|brinca|brincad|interag|compartilh|divid|socia|turma|grupo|adapta|regra|combinad|professor|rotina|empresta|conviv)/i,
+  emocional: /\b(chor|emoç|emoc|sentiment|calm|tranquil|birra|alegr|feliz|trist|ansi|frustra|medo|irrit|brav|afet|carinh|segur|insegur|tímid|timid|confian|raiva|sensív|sensiv)/i,
+  psicomotor: /\b(motor|corre|pula|pular|salta|equil|coorden|lápis|lapis|pinça|pinca|recort|tesoura|rabisc|desenh|pintur|pinta|dança|danca|bola|escada|chuta|encaix|massinha|amarr|movimento|corpo)/i,
+  cognitivo: /\b(cor|cores|número|numero|conta|contag|letra|nome|memór|memor|atenç|atenc|concentr|histór|histor|reconta|fala|falar|vocabul|linguag|oralidade|forma|quebra|cabeça|raciocín|raciocin|compreen|curios|pergunt|aprend|reconhec|quantidade)/i
+};
+function renderAspects() {
+  const txt = (S.ditado || "") + " " + (S.texto || "");
+  $$(".aspect").forEach(el => el.classList.toggle("ok", ASPECTS[el.dataset.a].test(txt)));
+}
+
+/* ---------------- prévia ---------------- */
+function paragraphs(t) {
+  return String(t || "").split(/\n\s*\n|\n/).map(s => s.replace(/\s+/g, " ").trim()).filter(Boolean);
+}
+function setV(id, v) { const el = $(id); el.textContent = v || ""; }
+function renderPreview() {
+  $("#p-titulo").textContent = "REGISTRO INDIVIDUAL DO ALUNO " + (S.ano || "");
+  setV("#p-escola", S.escola);
+  setV("#p-nome", S.nome);
+  setV("#p-nasc", fmtDate(S.nasc));
+  setV("#p-idade", S.idade);
+  setV("#p-sexo", sexoDoc());
+  $("#p-sim").textContent = S.nee === "Sim" ? " X " : "   ";
+  $("#p-nao").textContent = S.nee === "Não" ? " X " : "   ";
+  setV("#p-tipo", S.nee === "Sim" ? S.neeTipo : "");
+  setV("#p-ingresso", S.ingresso);
+  setV("#p-pai", S.pai);
+  setV("#p-mae", S.mae);
+  setV("#p-tel", telFull());
+  const box = $("#p-texto"); box.textContent = "";
+  const ps = paragraphs(reportText());
+  if (!ps.length) {
+    const p = document.createElement("p"); p.className = "ph";
+    p.textContent = "O texto do relatório vai aparecer aqui."; box.appendChild(p);
+  } else ps.forEach(t => { const p = document.createElement("p"); p.textContent = t; box.appendChild(p); });
+  fitSheet();
+}
+function sexoDoc() { return S.sexo === "Feminino" ? "F" : S.sexo === "Masculino" ? "M" : ""; }
+function reportText() { return S.texto.trim() ? S.texto : basicClean(S.ditado); }
+
+function fitSheet() {
+  const vp = $("#viewport"), sh = $("#sheet");
+  const w = vp.clientWidth || 380;
+  const k = w / 794;
+  sh.style.transform = `scale(${k})`;
+  vp.style.height = Math.ceil(sh.offsetHeight * k) + "px";
+}
+if ("ResizeObserver" in window) new ResizeObserver(fitSheet).observe($("#viewport"));
+window.addEventListener("resize", fitSheet);
+
+/* ---------------- correção simples (sem IA) ---------------- */
+function spokenPunct(s) {
+  return String(s || "")
+    .replace(/\s*(?:^|\s)(?:novo|próximo|proximo) par[áa]grafo(?=\s|$)[\s.,]*/gi, "\n\n")
+    .replace(/\s*(?:^|\s)nova linha(?=\s|$)[\s.,]*/gi, "\n\n")
+    .replace(/\s+ponto de interroga[çc][ãa]o(?=\s|$)/gi, "?")
+    .replace(/\s+ponto de exclama[çc][ãa]o(?=\s|$)/gi, "!")
+    .replace(/\s+ponto final(?=\s|$)/gi, ".")
+    .replace(/\s+dois pontos(?=\s|$)/gi, ":")
+    .replace(/\s+v[íi]rgula(?=\s|$)/gi, ",")
+    .replace(/\s+ponto(?=[ \t]*(?:\n|$))/gi, ".")
+    .replace(/^\s*(v[íi]rgula)\s*/i, ", ")
+    .replace(/^\s*ponto\s*$/i, ".");
+}
+function basicClean(t) {
+  let s = spokenPunct(String(t || ""));
+  s = s.replace(/(^|[\s,])(né|tipo assim|ééé*|hã+|ahn+|hum+)(?=[\s,.!?]|$)/gi, "$1");
+  s = s.replace(/[ \t]+/g, " ").replace(/ ([,.!?:;])/g, "$1").replace(/,{2,}/g, ",").replace(/([,.!?])(?=[^\s\d])/g, "$1 ");
+  return paragraphs(s).map(p => {
+    p = capitalize(p.replace(/^[,.\s]+/, ""));
+    if (p && !/[.!?…]$/.test(p)) p += ".";
+    return p;
+  }).join("\n\n");
+}
+
+/* ---------------- voz ---------------- */
+const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+const isAndroid = /Android/i.test(navigator.userAgent);
+const V = { mode: SR ? "web" : "none", dict: null, rec: null, want: false, on: false, target: null, lang: "pt-BR", interim: "" };
+
+function micAvailability() {
+  const none = V.mode === "none";
+  $("#app").classList.toggle("no-speech", none);
+  $("#kbd-tip").hidden = !none;
+  $("#mic-wrap").hidden = none;
+  $("#mic-title").textContent = none ? "Dite pelo teclado do celular" : "Toque no microfone e fale";
+}
+function targetLabel(el) {
+  if (!el) return "";
+  if (el.id === "f-ditado") return "Ouvindo o relatório…";
+  const l = document.querySelector(`label[for="${el.id}"]`);
+  return "Ouvindo: " + (l ? l.textContent : "campo");
+}
+function setListening(on) {
+  V.on = on;
+  const main = V.target && V.target.id === "f-ditado";
+  $("#mic").classList.toggle("on", on && main);
+  $("#mic-wrap").classList.toggle("on", on && main);
+  $("#mic").setAttribute("aria-label", on && main ? "Parar de ouvir" : "Começar a falar");
+  $$(".mini-mic").forEach(b => b.classList.toggle("on", on && V.target && b.dataset.mic === V.target.id));
+  $("#listen-bar").hidden = !on;
+  $("#listen-where").textContent = targetLabel(V.target);
+  $("#listen-live").textContent = "Pode falar";
+  if (on && main) $("#mic-title").textContent = "Estou ouvindo…";
+  else if (V.mode !== "none") $("#mic-title").textContent = "Toque no microfone e fale";
+}
+function showInterim(t) { V.interim = t || ""; $("#listen-live").textContent = V.interim || "Pode falar"; }
+
+function appendFinal(raw) {
+  const el = V.target; if (!el) return;
+  let t = spokenPunct(String(raw || ""));
+  if (!t.trim()) return;
+  if (el.tagName === "TEXTAREA") {
+    let cur = el.value;
+    let piece = t.replace(/^\s+/, "");
+    const endsSentence = !cur.trim() || /[.!?]\s*$/.test(cur) || /\n\s*$/.test(cur);
+    if (endsSentence) piece = piece.charAt(0).toUpperCase() + piece.slice(1);
+    const sep = !cur ? "" : (/[\s\n]$/.test(cur) || /^[,.!?:\n]/.test(piece)) ? "" : " ";
+    el.value = cur + sep + piece;
+  } else {
+    let piece = t.trim().replace(/[.!?]+$/, "");
+    if (el.id === "f-nome" || el.id === "f-pai" || el.id === "f-mae") piece = piece.replace(/(^|\s)([a-zà-ú])/g, (m, a, b) => a + b.toUpperCase()).replace(/\b(Da|De|Do|Das|Dos|E)\b/g, w => w.toLowerCase());
+    el.value = el.value.trim() ? el.value.trim() + " " + piece : piece;
+  }
+  el.dispatchEvent(new Event("input", { bubbles: true }));
+  if (el.tagName === "TEXTAREA") el.scrollTop = el.scrollHeight;
+}
+
+function startWeb() {
+  const rec = new SR();
+  rec.lang = "pt-BR"; rec.interimResults = true; rec.continuous = !isAndroid; rec.maxAlternatives = 1;
+  rec.onresult = ev => {
+    let interim = "";
+    for (let i = ev.resultIndex; i < ev.results.length; i++) {
+      const r = ev.results[i];
+      if (r.isFinal) appendFinal(r[0].transcript); else interim += r[0].transcript;
+    }
+    showInterim(interim);
+  };
+  rec.onerror = ev => {
+    if (ev.error === "not-allowed" || ev.error === "service-not-allowed" || ev.error === "audio-capture") {
+      V.want = false; V.mode = "none"; micAvailability();
+      toast("O microfone foi bloqueado. Use o microfone do teclado ou libere o acesso nas permissões do navegador.", 6000);
+    } else if (ev.error === "network") {
+      V.want = false; toast("Sem internet para reconhecer a voz. Verifique a conexão.");
+    }
+  };
+  rec.onend = () => {
+    if (V.want && V.rec === rec) { try { rec.start(); return; } catch (e) {} }
+    if (V.rec === rec) { V.rec = null; setListening(false); }
+  };
+  V.rec = rec; V.want = true;
+  try { rec.start(); setListening(true); } catch (e) { V.want = false; setListening(false); toast("Não consegui abrir o microfone."); }
+}
+function stopListening() {
+  V.want = false;
+  if (V.mode === "claude" && V.dict) { V.dict.stop().catch(() => {}); }
+  if (V.rec) { try { V.rec.stop(); } catch (e) {} }
+  if (V.mode !== "claude") setListening(false);
+}
+function listenTo(el) {
+  if (V.on && V.target === el) { stopListening(); return; }
+  if (V.on) { // troca de campo sem desligar o microfone
+    V.target = el; setListening(true); el.focus({ preventScroll: true }); return;
+  }
+  V.target = el;
+  if (V.mode === "claude" && V.dict) {
+    const opts = V.lang ? { language: V.lang } : undefined;
+    setListening(true);
+    V.dict.start(opts).catch(e => onDictError(e && e.code));
+  } else if (V.mode === "web") {
+    startWeb();
+  } else {
+    el.focus(); $("#kbd-tip").hidden = false;
+  }
+}
+function onDictError(code) {
+  setListening(false);
+  if (code === "not_granted") { V.mode = SR && !hasClaude() ? "web" : "none"; micAvailability(); toast("Sem permissão para o microfone. Use o microfone do teclado.", 5000); }
+  else if (code === "unavailable") {
+    if (V.lang) { V.lang = null; toast("Toque no microfone de novo para tentar mais uma vez."); }
+    else { V.mode = "none"; micAvailability(); }
+  }
+  else if (code === "rate_limited") toast("O microfone está ocupado. Tente de novo em instantes.");
+  else if (code === "dismissed" || code === "stopped") {}
+  else if (code) toast("O microfone falhou. Tente de novo.");
+}
+async function setupDictation() {
+  if (!hasClaude()) return;
+  try {
+    const d = await window.claude.use("dictation");
+    if (!d) { if (SR) { /* dentro do Claude o microfone do navegador costuma ser bloqueado */ } return; }
+    V.dict = d; V.mode = "claude"; micAvailability();
+    d.onPartial(({ text }) => showInterim(text));
+    d.onFinal(({ text }) => appendFinal(text));
+    d.onState(({ state, reason }) => {
+      if (state === "listening" || state === "starting") setListening(true);
+      if (state === "idle") { setListening(false); if (reason && !["stopped", "viewer_stopped", "hidden"].includes(reason)) onDictError(reason); }
+    });
+  } catch (e) {}
+}
+
+/* ---------------- IA ---------------- */
+const AI = { sample: null, ctl: null };
+function apiKey() { return store.get(K_KEY, ""); }
+function engine() { return AI.sample ? "claude" : apiKey() ? "api" : "basic"; }
+function renderEngine() {
+  const e = engine(), el = $("#engine"), t = $("#engine-txt");
+  el.classList.toggle("basic", e === "basic");
+  t.textContent = "";
+  if (e === "claude") t.textContent = "Usando o Claude da sua conta";
+  else if (e === "api") t.textContent = "Usando o Claude (chave salva neste aparelho)";
+  else {
+    t.append("Correção simples. Para o texto ficar caprichado, ");
+    const b = document.createElement("button"); b.type = "button"; b.textContent = "ative o Claude";
+    b.onclick = openSettings; t.append(b);
+  }
+}
+async function setupSample() {
+  if (!hasClaude()) { renderEngine(); return; }
+  try { AI.sample = await window.claude.use("sample"); } catch (e) { AI.sample = null; }
+  renderEngine();
+}
+
+function buildPrompt() {
+  const known = [
+    S.nome && `Nome: ${S.nome}`,
+    S.sexo && `Sexo: ${S.sexo}`,
+    S.idade && `Idade: ${S.idade}`,
+    S.nee === "Sim" && `Possui NEE: ${S.neeTipo || "sim"}`
+  ].filter(Boolean).join("\n") || "(nenhum)";
+  return `Você é uma coordenadora pedagógica experiente da Educação Infantil no Brasil. Uma professora ditou por voz as observações sobre uma criança para o documento "Registro Individual do Aluno" (histórico do desenvolvimento da criança considerando os aspectos social, emocional, psicomotor e cognitivo). O ditado veio de reconhecimento de voz e pode ter erros, palavras trocadas e falta de pontuação.
+
+Sua tarefa:
+1. Reescrever o ditado como o texto do relatório, em português do Brasil, com linguagem formal, clara e acolhedora, na terceira pessoa.
+2. Corrigir erros de reconhecimento de voz, ortografia, concordância e pontuação. Remover repetições, hesitações e marcas de oralidade (né, tipo, aí, daí, então, é...). Palavras como "vírgula", "ponto" e "novo parágrafo" ditas pela professora são comandos de pontuação, não conteúdo.
+3. Manter TODOS os fatos e observações da professora, com o mesmo sentido. Não inventar comportamentos, diagnósticos, datas, conquistas ou dificuldades que ela não disse.
+4. Organizar em parágrafos coesos (normalmente de 3 a 6), seguindo quando possível esta ordem: adaptação e aspecto social; aspecto emocional; aspecto psicomotor; aspecto cognitivo e linguagem; considerações finais ou encaminhamentos (somente se ela mencionou). Não escreva títulos, tópicos, listas, negrito nem markdown.
+5. Usar vocabulário pedagógico adequado à Educação Infantil (interação, autonomia, coordenação motora fina e ampla, oralidade, linguagem, campos de experiência), sem exageros e sem frases genéricas que não estejam apoiadas no ditado.
+6. Referir-se à criança pelo primeiro nome ou como "a criança", respeitando o gênero.
+
+Também identifique no ditado dados de cadastro, SOMENTE se a professora os disse claramente.
+
+Dados já preenchidos no formulário:
+${known}
+
+Ditado da professora:
+"""
+${S.ditado.trim()}
+"""
+
+Responda somente com um objeto JSON válido, sem nenhum texto antes ou depois, neste formato:
+{"paragrafos": ["primeiro parágrafo", "segundo parágrafo"], "campos": {"nome": null, "dataNascimento": null, "idade": null, "sexo": null, "nee": null, "tipoNee": null, "ingresso": null, "nomePai": null, "nomeMae": null, "telefone": null}}
+Regras dos campos: use null quando a informação não foi dita; dataNascimento no formato DD/MM/AAAA; sexo "Feminino" ou "Masculino"; nee "Sim" ou "Não"; telefone só com números.`;
+}
+function parseJsonLoose(text) {
+  const a = text.indexOf("{"), b = text.lastIndexOf("}");
+  if (a < 0 || b < a) throw { code: "invalid_json" };
+  return JSON.parse(text.slice(a, b + 1));
+}
+async function callApi(prompt, signal) {
+  const res = await fetch("https://api.anthropic.com/v1/messages", {
+    method: "POST", signal,
+    headers: {
+      "content-type": "application/json",
+      "x-api-key": apiKey(),
+      "anthropic-version": "2023-06-01",
+      "anthropic-dangerous-direct-browser-access": "true"
+    },
+    body: JSON.stringify({ model: store.get(K_MODEL, "") || DEFAULT_MODEL, max_tokens: 4096, messages: [{ role: "user", content: prompt }] })
+  });
+  if (!res.ok) {
+    let msg = ""; try { msg = (await res.json()).error?.message || ""; } catch (e) {}
+    throw { code: "http_" + res.status, message: msg };
+  }
+  const data = await res.json();
+  const text = (data.content || []).filter(c => c.type === "text").map(c => c.text).join("");
+  return parseJsonLoose(text);
+}
+function applyCampos(c) {
+  if (!c || typeof c !== "object") return [];
+  const filled = [];
+  const put = (f, v, label) => { if (v && typeof v === "string" && !String(S[f] || "").trim()) { S[f] = v.trim(); filled.push(label); } };
+  put("nome", c.nome, "nome");
+  if (c.dataNascimento && !S.nasc) {
+    const m = /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/.exec(String(c.dataNascimento).trim());
+    if (m) { S.nasc = `${m[3]}-${m[2].padStart(2, "0")}-${m[1].padStart(2, "0")}`; if (!S.idadeManual) S.idade = calcAge(S.nasc); filled.push("data de nascimento"); }
+  }
+  put("idade", c.idade, "idade");
+  if ((c.sexo === "Feminino" || c.sexo === "Masculino") && !S.sexo) { S.sexo = c.sexo; filled.push("sexo"); }
+  if ((c.nee === "Sim" || c.nee === "Não") && !S.nee) { S.nee = c.nee; filled.push("NEE"); }
+  put("neeTipo", c.tipoNee, "tipo de NEE");
+  put("ingresso", c.ingresso, "ingresso");
+  put("pai", c.nomePai, "nome do pai");
+  put("mae", c.nomeMae, "nome da mãe");
+  if (c.telefone && !S.tel) { let d = String(c.telefone).replace(/\D/g, ""); if (d.length >= 10) { S.ddd = d.slice(0, 2); d = d.slice(2); } S.tel = maskTel(d); filled.push("contato"); }
+  return filled;
+}
+function errorCopy(e) {
+  const c = e && e.code;
+  if (c === "not_granted") return "Você não permitiu o uso do Claude. Fiz a correção simples.";
+  if (c === "rate_limited") return "Muitos pedidos agora. Espere um minuto e tente de novo.";
+  if (c === "http_401") return "A chave da API não foi aceita. Confira em Configurações.";
+  if (c === "http_429") return "Limite da API atingido. Espere um pouco e tente de novo.";
+  if (c === "http_400" || c === "http_404") return "A API recusou o pedido" + (e.message ? `: ${e.message}` : ". Confira o modelo em Configurações.");
+  if (c === "invalid_json") return "A resposta veio num formato inesperado. Tente de novo.";
+  if (e && e.name === "TypeError") return "Sem conexão com o Claude. Verifique a internet.";
+  return "Não consegui melhorar o texto agora. Tente de novo.";
+}
+async function improve() {
+  if (V.on) stopListening();
+  if (!S.ditado.trim()) { toast("Primeiro fale ou escreva sobre a criança no passo 2."); $("#f-ditado").focus(); return; }
+  const before = S.texto;
+  const btn = $("#btn-improve"); btn.disabled = true;
+  $("#thinking").classList.add("on");
+  AI.ctl = new AbortController();
+  let out = null, note = "";
+  try {
+    const e = engine();
+    if (e === "claude") {
+      try { out = await AI.sample.json(buildPrompt(), { modelTier: "default", signal: AI.ctl.signal }); }
+      catch (err) {
+        if (err && err.code === "cancelled") throw err;
+        if (err && (err.code === "not_granted" || err.code === "unavailable")) { AI.sample = null; renderEngine(); }
+        if (apiKey() && !(err && err.code === "rate_limited")) out = await callApi(buildPrompt(), AI.ctl.signal);
+        else { note = errorCopy(err); }
+      }
+    } else if (e === "api") {
+      try { out = await callApi(buildPrompt(), AI.ctl.signal); }
+      catch (err) { if (err && err.name === "AbortError") throw err; note = errorCopy(err); }
+    }
+    let paras = out && Array.isArray(out.paragrafos) ? out.paragrafos.filter(p => typeof p === "string" && p.trim()) : null;
+    if (!paras || !paras.length) {
+      paras = paragraphs(basicClean(S.ditado));
+      if (!note) note = e === "basic" ? "Fiz a correção simples. Ative o Claude nas configurações para um texto caprichado." : "";
+    }
+    S.textoAnterior = before;
+    S.texto = paras.map(p => p.trim()).join("\n\n");
+    const filled = out ? applyCampos(out.campos) : [];
+    persist(); renderForm();
+    $("#texto-wrap").scrollIntoView({ behavior: "smooth", block: "start" });
+    toast(note || (filled.length ? `Texto pronto! Também preenchi: ${filled.join(", ")}.` : "Texto pronto! Revise e baixe o Word."), note ? 6000 : 4200);
+  } catch (err) {
+    if (!(err && (err.code === "cancelled" || err.name === "AbortError"))) toast(errorCopy(err));
+  } finally {
+    btn.disabled = false; $("#thinking").classList.remove("on"); AI.ctl = null;
+  }
+}
+
+/* ---------------- Word ---------------- */
+function b64ToBytes(b64) { const bin = atob(b64); const u = new Uint8Array(bin.length); for (let i = 0; i < bin.length; i++) u[i] = bin.charCodeAt(i); return u; }
+const TPL = b64ToBytes(TEMPLATE_B64);
+const xesc = s => String(s ?? "").replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g, "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+const SZ = '<w:sz w:val="24"/><w:szCs w:val="24"/>';
+const R = (t, b) => `<w:r><w:rPr>${b ? "<w:b/><w:bCs/>" : ""}${SZ}</w:rPr><w:t xml:space="preserve">${xesc(t)}</w:t></w:r>`;
+const TAB = `<w:r><w:rPr>${SZ}</w:rPr><w:tab/></w:r>`;
+function P(runs, o = {}) {
+  const tabs = o.tab ? `<w:tabs><w:tab w:val="left" w:pos="${o.tab}"/></w:tabs>` : "";
+  const sp = `<w:spacing w:after="${o.after || 0}" w:line="${o.line || 240}" w:lineRule="auto"/>`;
+  const ind = o.firstLine ? `<w:ind w:firstLine="${o.firstLine}"/>` : "";
+  return `<w:p><w:pPr>${tabs}${sp}${ind}<w:jc w:val="${o.jc || "both"}"/><w:rPr>${o.bold ? "<w:b/><w:bCs/>" : ""}${SZ}</w:rPr></w:pPr>${runs || ""}</w:p>`;
+}
+const CPL = 104;       // caracteres por linha (Calibri 12, largura útil do modelo)
+const BUDGET = 30;     // linhas livres entre o subtítulo e as assinaturas (1 página)
+async function buildDocx() {
+  const zip = await JSZip.loadAsync(TPL);
+  const xml = await zip.file("word/document.xml").async("string");
+  const head = xml.slice(0, xml.indexOf("<w:body>") + 8);
+  const subA = xml.indexOf('<w:p w14:paraId="42D74C0F"');
+  const subtitle = xml.slice(subA, xml.indexOf("</w:p>", subA) + 6);
+  const tail = xml.slice(xml.indexOf('<w:p w14:paraId="24C48AA3"'));
+  const T = 7000;
+  const box = on => (on ? " X " : "   ");
+  let body = "";
+  body += P(R("REGISTRO INDIVIDUAL DO ALUNO " + (S.ano || ""), true), { jc: "center", bold: true });
+  body += P("", { jc: "center", bold: true });
+  body += P(R("NOME DA ESCOLA/CEDI:", true) + R(" " + (S.escola || "")));
+  body += P(R("NOME DO(A) ALUNO(A):", true) + R(" " + (S.nome || "")) + TAB + R("DATA DE NASC.:", true) + R(" " + fmtDate(S.nasc)), { tab: T });
+  body += P(
+    R("IDADE:", true) + R(" " + (S.idade || "") + "  ") +
+    R("SEXO:", true) + R(" " + sexoDoc() + "  ") +
+    R("NEE: SIM (" + box(S.nee === "Sim") + ") NÃO (" + box(S.nee === "Não") + ") TIPO:", true) + R(" " + (S.nee === "Sim" ? S.neeTipo || "" : "")) +
+    TAB + R("INGRESSO NESTA ESCOLA:", true) + R(" " + (S.ingresso || "")), { tab: T });
+  body += P(R("NOME DO PAI:", true) + R(" " + (S.pai || "")));
+  body += P(R("NOME DA MÃE:", true) + R(" " + (S.mae || "")));
+  body += P(R("CONTATO:", true) + R(" " + telFull()));
+  body += P("", { jc: "left" });
+  body += subtitle;
+  body += P("", { line: 276 });
+  const ps = paragraphs(reportText());
+  let used = 0;
+  ps.forEach(t => { body += P(R(t), { line: 276, after: 120, firstLine: 709 }); used += Math.ceil((t.length + 8) / CPL) + 0.4; });
+  const fill = Math.floor(BUDGET - used);
+  for (let i = 0; i < fill; i++) body += P("", { line: 276 });
+  zip.file("word/document.xml", head + body + tail);
+  return zip.generateAsync({ type: "blob", mimeType: DOCX_MIME, compression: "DEFLATE" });
+}
+function fileName() {
+  const n = (S.nome || "aluno").replace(/[\\/:*?"<>|]+/g, "").replace(/\s+/g, " ").trim().slice(0, 80) || "aluno";
+  return `Registro Individual - ${n}.docx`;
+}
+let downloadsNs;
+async function download() {
+  if (V.on) stopListening();
+  if (!S.nome.trim() && !reportText().trim()) { toast("Preencha pelo menos o nome ou o relatório antes de baixar."); return; }
+  const btn = $("#btn-download"); btn.disabled = true;
+  try {
+    const blob = await buildDocx();
+    const name = fileName();
+    if (downloadsNs) {
+      try { await downloadsNs.save({ filename: name, data: blob }); toast("Documento salvo!"); }
+      catch (e) {
+        if (e && e.code === "declined") toast("Download cancelado.");
+        else if (e && e.code === "host_unavailable") toast("Este app não salva arquivos. Abra a página no navegador ou no computador.", 6000);
+        else if (e && e.code === "rate_limited") toast("Aguarde um instante e toque de novo.");
+        else anchorDownload(blob, name);
+      }
+    } else anchorDownload(blob, name);
+    flushPersist();
+  } catch (e) {
+    toast("Não consegui montar o documento. Tente de novo.");
+  } finally { btn.disabled = false; }
+}
+function anchorDownload(blob, name) {
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a"); a.href = url; a.download = name;
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 4000);
+  toast("Documento baixado! Procure em Downloads.");
+}
+async function loadHeaderImage() {
+  try {
+    const zip = await JSZip.loadAsync(TPL);
+    const f = zip.file("word/media/image1.jpg");
+    if (f) { const b = await f.async("blob"); $("#sheet-head").src = URL.createObjectURL(new Blob([b], { type: "image/jpeg" })); }
+  } catch (e) {}
+}
+
+/* ---------------- alunos salvos ---------------- */
+const AV = ["var(--coral)", "var(--sea)", "var(--grass)", "var(--grape)", "var(--sun-deep)"];
+function renderList() {
+  const list = store.get(K_LIST, []);
+  const box = $("#list"); box.textContent = "";
+  if (!list.length) {
+    const d = document.createElement("div"); d.className = "empty-note";
+    d.textContent = "Nenhum aluno salvo ainda. Cada criança que você preencher aparece aqui automaticamente.";
+    box.appendChild(d); return;
+  }
+  list.forEach((a, i) => {
+    const card = document.createElement("div"); card.className = "kid" + (a.id === S.id ? " current" : "");
+    const av = document.createElement("div"); av.className = "avatar"; av.style.background = AV[i % AV.length];
+    av.textContent = (a.nome || "?").trim().charAt(0).toUpperCase() || "?";
+    const nm = document.createElement("div"); nm.className = "kid-name"; nm.textContent = a.nome || "Sem nome";
+    const meta = document.createElement("div"); meta.className = "kid-meta";
+    const d = new Date(a.updated || Date.now());
+    meta.textContent = (a.texto ? "Texto pronto · " : a.ditado ? "Ditado iniciado · " : "") + d.toLocaleDateString("pt-BR") + " às " + d.toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" });
+    const act = document.createElement("div"); act.className = "kid-actions";
+    const open = document.createElement("button"); open.type = "button"; open.className = "btn"; open.textContent = a.id === S.id ? "Aberto agora" : "Abrir";
+    open.disabled = a.id === S.id;
+    open.onclick = () => { flushPersist(); S = Object.assign(blank(), a); store.set(K_CUR, S.id); renderForm(); closeDrawer(); toast(`Abrindo ${a.nome || "aluno"}.`); };
+    const del = document.createElement("button"); del.type = "button"; del.className = "btn btn-danger"; del.textContent = "Excluir";
+    let armed = false, t;
+    del.onclick = () => {
+      if (!armed) { armed = true; del.classList.add("confirm"); del.textContent = "Toque para confirmar"; t = setTimeout(() => { armed = false; del.classList.remove("confirm"); del.textContent = "Excluir"; }, 4000); return; }
+      clearTimeout(t);
+      store.set(K_LIST, store.get(K_LIST, []).filter(x => x.id !== a.id));
+      if (a.id === S.id) { S = blank(S); store.set(K_CUR, S.id); renderForm(); }
+      $("#count").textContent = store.get(K_LIST, []).length;
+      renderList();
+    };
+    act.append(open, del);
+    card.append(av, nm, meta, act);
+    box.appendChild(card);
+  });
+}
+function openDrawer() { flushPersist(); renderList(); $("#overlay").hidden = false; $("#drawer").hidden = false; $("#btn-close-drawer").focus(); }
+function closeDrawer() { $("#overlay").hidden = true; $("#drawer").hidden = true; }
+
+/* ---------------- configurações ---------------- */
+function openSettings() {
+  $("#cfg-key").value = apiKey();
+  $("#cfg-model").value = store.get(K_MODEL, "") || DEFAULT_MODEL;
+  $("#cfg-status").textContent = AI.sample
+    ? "Você está usando a página dentro do Claude: a melhoria do texto já funciona pela sua conta. A chave abaixo só é usada se isso falhar."
+    : "Para o Claude melhorar o texto fora do claude.ai, cole aqui uma chave da API da Anthropic (console.anthropic.com).";
+  $("#overlay").hidden = false; $("#modal").hidden = false; $("#cfg-key").focus();
+}
+function closeSettings() { $("#modal").hidden = true; $("#overlay").hidden = true; }
+
+/* ---------------- exemplo ---------------- */
+const EXEMPLO = "A Helena chegou na escola em fevereiro, no começo ela chorava bastante na hora da entrada né, mas depois de umas duas semanas já entrava tranquila e dava tchau pra mãe vírgula hoje ela está bem adaptada à rotina ponto novo parágrafo ela brinca com os colegas, gosta muito do cantinho da casinha e já divide os brinquedos, às vezes fica brava quando perde no jogo mas a gente conversa e ela se acalma ponto novo parágrafo na parte motora ela corre, pula com os dois pés, sobe e desce escada sozinha, ainda segura o lápis com a mão toda mas tá melhorando no recorte com tesoura ponto novo parágrafo ela reconhece as cores, conta até dez, reconhece a primeira letra do nome dela e adora ouvir história, depois reconta do jeito dela com bastante detalhe ponto";
+
+/* ---------------- eventos ---------------- */
+document.addEventListener("input", e => {
+  const el = e.target; const f = el.dataset && el.dataset.f; if (!f) return;
+  let v = el.value;
+  if (f === "tel") { v = maskTel(v); if (el.value !== v) el.value = v; }
+  if (f === "ddd" || f === "ano") { v = v.replace(/\D/g, ""); if (el.value !== v) el.value = v; }
+  setField(f, v, e.isTrusted);
+  if (f === "nasc" && !S.idadeManual) $("#f-idade").value = S.idade;
+  if (f === "ditado") { $("#ditado-count").textContent = words(v) + " palavras"; renderAspects(); }
+  if (f === "texto") { renderAspects(); $("#texto-count").textContent = `${words(S.texto)} palavras · ${paragraphs(S.texto).length} parágrafos`; }
+  renderPreview();
+});
+$$("[data-pill]").forEach(b => b.addEventListener("click", () => {
+  const f = b.dataset.pill; S[f] = S[f] === b.dataset.v ? "" : b.dataset.v;
+  persist(); renderForm();
+  if (f === "nee" && S.nee === "Sim") setTimeout(() => $("#f-neeTipo").focus(), 0);
+}));
+const MIC_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><rect x="8.5" y="2.5" width="7" height="12" rx="3.5" fill="currentColor" stroke="none"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3.5"/></svg>';
+$$(".mini-mic").forEach(b => { b.innerHTML = MIC_SVG; b.addEventListener("click", () => listenTo($("#" + b.dataset.mic))); });
+$("#mic").addEventListener("click", () => listenTo($("#f-ditado")));
+$("#btn-stop").addEventListener("click", stopListening);
+$("#btn-improve").addEventListener("click", improve);
+$("#btn-cancel").addEventListener("click", () => AI.ctl && AI.ctl.abort());
+$("#btn-download").addEventListener("click", download);
+$("#btn-undo").addEventListener("click", () => { const t = S.texto; S.texto = S.textoAnterior; S.textoAnterior = ""; if (!S.texto) S.textoAnterior = ""; persist(); renderForm(); toast(t ? "Voltei para o texto anterior." : ""); });
+let clearArmed = false, clearT;
+$("#btn-clear").addEventListener("click", e => {
+  const b = e.currentTarget;
+  if (!S.ditado) return;
+  if (!clearArmed) { clearArmed = true; b.textContent = "Toque de novo para apagar"; clearT = setTimeout(() => { clearArmed = false; b.textContent = "Apagar ditado"; }, 3500); return; }
+  clearTimeout(clearT); clearArmed = false; b.textContent = "Apagar ditado";
+  S.ditado = ""; persist(); renderForm();
+});
+$("#btn-example").addEventListener("click", () => {
+  if (S.ditado.trim() || S.nome.trim()) { flushPersist(); S = blank(S); }
+  S.nome = "Helena (exemplo)"; S.sexo = "Feminino"; S.nee = "Não"; S.ingresso = "02/2026"; S.ditado = EXEMPLO;
+  persist(); renderForm(); toast("Exemplo carregado. Toque em “Melhorar o texto” para ver a mágica.");
+});
+$("#btn-new").addEventListener("click", () => {
+  if (V.on) stopListening();
+  flushPersist(); S = blank(S); store.set(K_CUR, S.id); renderForm();
+  window.scrollTo({ top: 0, behavior: "smooth" }); setTimeout(() => $("#f-nome").focus({ preventScroll: true }), 300);
+  toast("Novo aluno. O anterior ficou salvo em “Meus alunos”.");
+});
+$("#btn-list").addEventListener("click", openDrawer);
+$("#btn-close-drawer").addEventListener("click", closeDrawer);
+$("#btn-settings").addEventListener("click", openSettings);
+$("#cfg-cancel").addEventListener("click", closeSettings);
+$("#cfg-save").addEventListener("click", () => {
+  const k = $("#cfg-key").value.trim(), m = $("#cfg-model").value.trim();
+  if (k) store.set(K_KEY, k); else store.del(K_KEY);
+  if (m && m !== DEFAULT_MODEL) store.set(K_MODEL, m); else store.del(K_MODEL);
+  closeSettings(); renderEngine(); toast(k ? "Pronto! O Claude vai melhorar os textos." : "Configurações salvas.");
+});
+$("#cfg-remove").addEventListener("click", () => { store.del(K_KEY); $("#cfg-key").value = ""; renderEngine(); toast("Chave removida deste aparelho."); });
+$("#overlay").addEventListener("click", () => { closeDrawer(); closeSettings(); });
+document.addEventListener("keydown", e => { if (e.key === "Escape") { closeDrawer(); closeSettings(); } });
+window.addEventListener("pagehide", flushPersist);
+
+/* ---------------- início ---------------- */
+$("#count").textContent = store.get(K_LIST, []).length;
+micAvailability();
+renderForm();
+renderEngine();
+loadHeaderImage();
+setupDictation();
+setupSample();
+if (hasClaude()) window.claude.use("downloads").then(d => { downloadsNs = d; }).catch(() => {});
+document.fonts && document.fonts.ready.then(fitSheet);
+})();
+</script>
