@@ -1,0 +1,31 @@
+REGISTRO VIVA CRIANÇA — COMO PUBLICAR
+=====================================
+
+Esta pasta já é o site completo. Só existe 1 arquivo que importa: index.html
+(o modelo do Word, com o cabeçalho da escola, já está dentro dele).
+
+OPÇÃO 1 — NETLIFY (mais fácil, 2 minutos)
+1. Acesse https://app.netlify.com/drop
+2. Arraste ESTA PASTA inteira para a área indicada.
+3. Pronto: o Netlify mostra o endereço (ex.: https://nome-aleatorio.netlify.app).
+   Dá para trocar o nome em Site configuration > Change site name.
+
+OPÇÃO 2 — GITHUB PAGES
+1. No GitHub, crie um repositório (ex.: registro-viva-crianca).
+2. Clique em "Add file" > "Upload files" e envie o index.html. Clique em "Commit changes".
+3. Vá em Settings > Pages > Source: "Deploy from a branch", Branch: main, pasta / (root). Salve.
+4. Em 1 ou 2 minutos o site fica em https://SEU-USUARIO.github.io/registro-viva-crianca/
+
+PRIMEIRO USO NO APARELHO DA PROFESSORA
+- Abra o endereço no Chrome (computador ou Android) ou no Safari (iPhone).
+- Toque no microfone e, quando o navegador perguntar, escolha PERMITIR.
+- Para o texto ser melhorado pela IA: toque na engrenagem (canto de cima),
+  cole a chave da API da Anthropic (crie em https://console.anthropic.com) e salve.
+  A chave fica guardada só naquele navegador. Sem chave, a página faz só
+  uma correção simples de pontuação.
+- Os alunos ficam salvos no próprio aparelho, em "Meus alunos".
+
+SE O MICROFONE NÃO FUNCIONAR
+- A própria página mostra o passo a passo para liberar.
+- Precisa abrir pelo endereço https:// (não funciona abrindo o arquivo direto do computador).
+- Alternativa que sempre funciona: tocar na caixa de texto e usar o microfone do teclado do celular.
