@@ -13,7 +13,7 @@ Página que transforma o que a professora **fala** sobre cada criança no
 Cada aluno fica salvo no próprio aparelho em "Meus alunos".
 
 ## Melhoria do texto (IA)
-- **Netlify (recomendado):** a função `site/netlify/functions/melhorar.mjs` fala com o Claude usando a
+- **Netlify (recomendado):** a função `site/netlify/functions/melhorar.mjs` fala com o Gemini (`GEMINI_API_KEY`) ou com o Claude usando a
   variável de ambiente `ANTHROPIC_API_KEY`, que fica só no servidor. `APP_SENHA` (opcional) pede uma senha
   uma vez por aparelho. Veja `site/COMO-PUBLICAR.txt`.
 - Dentro do claude.ai (Artifact): usa a conta Claude de quem está usando.

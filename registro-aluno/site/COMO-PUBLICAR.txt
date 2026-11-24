@@ -6,7 +6,7 @@ O que tem nesta pasta
 - netlify/functions/melhorar.mjs .... a conexão segura com o Claude (roda no servidor do Netlify)
 - netlify.toml ...................... avisa o Netlify onde está cada coisa
 
-A chave do Claude NÃO fica em nenhum arquivo. Ela é cadastrada uma única vez
+A chave da IA NÃO fica em nenhum arquivo. Ela é cadastrada uma única vez
 no painel do Netlify. O navegador da professora nunca vê a chave.
 
 IMPORTANTE: arrastar a pasta no Netlify (Netlify Drop) publica só o index.html,
@@ -15,13 +15,23 @@ não publica a função. Use a opção A ou a opção B abaixo.
 
 1) CADASTRAR A CHAVE (uma vez só)
 ---------------------------------
-No Netlify, abra o seu site > Site configuration > Environment variables > Add a variable:
+Funciona com Gemini (Google) ou com Claude (Anthropic). Cadastre UMA das chaves.
 
-  ANTHROPIC_API_KEY = sua chave da Anthropic (crie em https://console.anthropic.com)
-                      marque "Contains secret values"
+No Netlify, abra o seu site > Site configuration > Environment variables > Add a variable.
+Em cada variável: deixe "Contains secret values" DESMARCADO (no plano gratuito ele trava o
+"All scopes"), escolha "All scopes" e "Same value for all deploy contexts".
+
+  GEMINI_API_KEY    = sua chave do Gemini (crie em https://aistudio.google.com/apikey)
+      ou
+  ANTHROPIC_API_KEY = sua chave do Claude (crie em https://console.anthropic.com/settings/keys)
+
   APP_SENHA         = uma senha simples da escola, ex.: jardim2026   (recomendado)
                       Sem ela, qualquer pessoa que tiver o link pode usar a sua chave.
-  CLAUDE_MODEL      = (opcional) só se quiser trocar o modelo. Padrão: claude-sonnet-5-5
+
+  Opcionais: IA (gemini ou claude, se cadastrar as duas chaves),
+             GEMINI_MODEL (padrão gemini-3.8-flash), CLAUDE_MODEL (padrão claude-sonnet-5-5)
+
+A chave continua só no Netlify: ela nunca vai para o HTML nem para o navegador.
 
 
 2A) PUBLICAR PELO GITHUB (sem usar terminal) — recomendado
@@ -50,7 +60,7 @@ No computador (precisa do Node.js instalado), dentro desta pasta:
 3) CONFERIR
 -----------
 - Depois de cadastrar a chave, publique de novo (Deploys > Trigger deploy) para ela valer.
-- Abra o site: no passo 3 deve aparecer "Claude conectado ao site".
+- Abra o site: no passo 3 deve aparecer "Gemini conectado ao site" (ou "Claude conectado ao site").
 - Na primeira vez em cada aparelho, a página pede a senha da escola (APP_SENHA). Só uma vez.
 - Se aparecer "falta cadastrar a chave", confira o passo 1 e publique de novo.
 

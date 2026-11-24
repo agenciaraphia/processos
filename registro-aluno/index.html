@@ -1151,7 +1151,7 @@ function renderEngine() {
   el.classList.toggle("basic", e === "basic");
   t.textContent = "";
   if (e === "claude") t.textContent = "Usando o Claude da sua conta";
-  else if (e === "server") t.textContent = "Claude conectado ao site";
+  else if (e === "server") t.textContent = (AI.server.ia || "IA") + " conectado ao site";
   else if (e === "api") t.textContent = "Usando o Claude (chave salva neste aparelho)";
   else {
     t.append("Correção simples. Para o texto ficar caprichado, ");
@@ -1164,7 +1164,7 @@ async function setupServer() {
   try {
     const r = await fetch("/api/melhorar", { headers: { accept: "application/json" }, cache: "no-store" });
     const j = r.ok ? await r.json() : null;
-    if (j && j.ok) AI.server = { chave: !!j.chave, senha: !!j.senha };
+    if (j && j.ok) AI.server = { chave: !!j.chave, senha: !!j.senha, ia: j.ia || "" };
   } catch (e) {}
   renderEngine();
 }
@@ -1283,9 +1283,9 @@ function errorCopy(e) {
   if (c === "http_400" || c === "http_404") return "A API recusou o pedido" + (e.message ? `: ${e.message}` : ". Confira o modelo em Configurações.");
   if (c === "invalid_json") return "A resposta veio num formato inesperado. Tente de novo.";
   if (c === "srv_senha") return "Senha da escola incorreta. Confira em Configurações.";
-  if (c === "srv_sem_chave") return "O site ainda não tem a chave do Claude configurada no Netlify.";
-  if (c === "srv_chave_invalida") return "A chave do Claude configurada no Netlify não foi aceita.";
-  if (c === "srv_limite") return "O Claude está com muitos pedidos agora. Espere um minuto e tente de novo.";
+  if (c === "srv_sem_chave") return "O site ainda não tem a chave da IA configurada no Netlify.";
+  if (c === "srv_chave_invalida") return "A chave da IA configurada no Netlify não foi aceita. Confira a chave e os créditos.";
+  if (c === "srv_limite") return "A IA está com muitos pedidos agora. Espere um minuto e tente de novo.";
   if (c === "srv_grande") return "O ditado ficou longo demais. Divida em duas partes.";
   if (e && e.name === "TypeError") return "Sem conexão com o Claude. Verifique a internet.";
   return "Não consegui melhorar o texto agora. Tente de novo.";
@@ -1480,8 +1480,8 @@ function openSettings() {
   $("#cfg-senha").value = store.get(K_SENHA, "");
   $("#cfg-status").textContent = AI.sample
     ? "Você está usando a página dentro do Claude: a melhoria do texto já funciona pela sua conta."
-    : srv ? (AI.server.senha ? "O Claude já está conectado ao site. Só falta a senha da escola neste aparelho." : "O Claude já está conectado ao site. Não precisa configurar nada.")
-    : (AI.server && !AI.server.chave) ? "O site está pronto para o Claude, mas falta cadastrar a chave ANTHROPIC_API_KEY no Netlify (Environment variables) e publicar de novo."
+    : srv ? (AI.server.senha ? `O ${AI.server.ia || "IA"} já está conectado ao site. Só falta a senha da escola neste aparelho.` : `O ${AI.server.ia || "IA"} já está conectado ao site. Não precisa configurar nada.`)
+    : (AI.server && !AI.server.chave) ? "O site está pronto para a IA, mas falta cadastrar a chave (GEMINI_API_KEY ou ANTHROPIC_API_KEY) no Netlify, em Environment variables, e publicar de novo."
     : "Para o Claude melhorar o texto, cole aqui uma chave da API da Anthropic (console.anthropic.com).";
   $("#overlay").hidden = false; $("#modal").hidden = false;
   const first = !$("#cfg-senha-wrap").hidden ? $("#cfg-senha") : !$("#cfg-key").closest(".f").hidden ? $("#cfg-key") : $("#cfg-cancel");
