@@ -1350,10 +1350,12 @@ function errorCopy(e) {
   if (c === "http_429") return "Limite da API atingido. Espere um pouco e tente de novo.";
   if (c === "http_400" || c === "http_404") return "A API recusou o pedido" + (e.message ? `: ${e.message}` : ". Confira o modelo em Configurações.");
   if (c === "invalid_json") return "A resposta veio num formato inesperado. Tente de novo.";
+  const det = e && e.message ? ` (Resposta da IA: ${String(e.message).slice(0, 180)})` : "";
+  if (c === "srv_ia") return "A IA não respondeu como esperado." + det;
   if (c === "srv_senha") return "Senha da escola incorreta. Confira em Configurações.";
   if (c === "srv_sem_chave") return "O site ainda não tem a chave da IA configurada no Netlify.";
-  if (c === "srv_chave_invalida") return "A chave da IA configurada no Netlify não foi aceita. Confira a chave e os créditos.";
-  if (c === "srv_limite") return "A IA está com muitos pedidos agora. Espere um minuto e tente de novo.";
+  if (c === "srv_chave_invalida") return "A chave da IA configurada no Netlify não foi aceita. Confira a chave e os créditos." + det;
+  if (c === "srv_limite") return "A IA está com muitos pedidos agora. Espere um minuto e tente de novo." + det;
   if (c === "srv_grande") return "O ditado ficou longo demais. Divida em duas partes.";
   if (e && e.name === "TypeError") return "Sem conexão com o Claude. Verifique a internet.";
   return "Não consegui melhorar o texto agora. Tente de novo.";
