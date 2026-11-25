@@ -1350,7 +1350,7 @@ function errorCopy(e) {
   if (c === "srv_limite") return "A IA está com muitos pedidos agora. Espere um minuto e tente de novo." + det;
   if (c === "srv_grande") return "O ditado ficou longo demais. Divida em duas partes.";
   if (e && e.name === "TypeError") return "Sem conexão com o Claude. Verifique a internet.";
-  return "Não consegui melhorar o texto agora. Tente de novo.";
+  return "Não consegui melhorar o texto agora. Tente de novo." + (c ? ` [código: ${c}]` : "") + (typeof det === "string" ? det : "");
 }
 async function improve() {
   if (V.on) stopListening();

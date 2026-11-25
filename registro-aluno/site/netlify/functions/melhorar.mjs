@@ -102,6 +102,60 @@ const PROVEDORES = {
   }
 };
 
+// Gemini: espera a resposta inteira, confere se o texto veio certo e,
+// se algo falhar (lotado, vazio, cortado), tenta o próximo modelo.
+async function chamarGemini(prompt) {
+  const inicio = Date.now();
+  let ultimo = null;
+  for (const modelo of PROVEDORES.gemini.modelos()) {
+    const resta = 50000 - (Date.now() - inicio); // a função do Netlify tem até 60 s
+    if (resta < 8000) break;
+    const ctl = new AbortController();
+    const relogio = setTimeout(() => ctl.abort(), resta);
+    try {
+      let up;
+      try {
+        up = await fetch(
+          `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(modelo)}:generateContent?key=${encodeURIComponent(env("GEMINI_API_KEY"))}`, {
+          method: "POST",
+          signal: ctl.signal,
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({
+            contents: [{ role: "user", parts: [{ text: prompt }] }],
+            generationConfig: { responseMimeType: "application/json", maxOutputTokens: 8192 }
+          })
+        });
+      } catch (e) {
+        ultimo = { error: "ia", modelo, message: e?.name === "AbortError" ? "A IA demorou demais para responder." : "Sem conexão com a IA." };
+        continue;
+      }
+      if (!up.ok) {
+        ultimo = { ...(await lerErro(up)), modelo };
+        if (ultimo.error === "chave_invalida") break;
+        continue;
+      }
+      let data = null;
+      try { data = await up.json(); } catch {}
+      const cand = data?.candidates?.[0];
+      const texto = (cand?.content?.parts || []).filter((p) => !p.thought && typeof p.text === "string").map((p) => p.text).join("");
+      try {
+        const j = JSON.parse(texto.slice(texto.indexOf("{"), texto.lastIndexOf("}") + 1));
+        if (Array.isArray(j.paragrafos) && j.paragrafos.some((p) => typeof p === "string" && p.trim())) {
+          return new Response(JSON.stringify(j), {
+            headers: { "content-type": "text/plain; charset=utf-8", "cache-control": "no-store", "x-modelo": modelo }
+          });
+        }
+      } catch {}
+      const motivo = cand?.finishReason || data?.promptFeedback?.blockReason || "sem texto";
+      ultimo = { error: "ia", modelo, message: `O modelo ${modelo} não devolveu o texto (${motivo}).` };
+    } finally {
+      clearTimeout(relogio);
+    }
+  }
+  console.error("Gemini falhou:", JSON.stringify(ultimo));
+  return json(ultimo || { error: "ia", message: "Nenhum modelo respondeu." }, 502);
+}
+
 async function lerErro(up) {
   let message = "";
   try { const j = await up.json(); message = j.error?.message || ""; } catch {}
@@ -129,6 +183,7 @@ export default async (req) => {
 
   // Só o texto do relato vai para a IA; os dados de cadastro ficam no site.
   const prompt = montarPrompt(ditado);
+  if (ia === "gemini") return chamarGemini(prompt);
   const prov = PROVEDORES[ia];
 
   let up = null, ultimoErro = null;
