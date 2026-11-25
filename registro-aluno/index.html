@@ -1222,8 +1222,11 @@ function escRe(t) { return t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); }
 function nomesDe(nome) {
   const n = String(nome || "").replace(/\(.*?\)/g, " ").replace(/\s+/g, " ").trim();
   if (!n) return [];
-  const first = n.split(" ")[0];
-  return [...new Set([n, first].filter(x => x.length >= 3))].sort((a, b) => b.length - a.length);
+  const parts = n.split(" ");
+  const cands = [n, parts[0]];
+  // nome composto (Ana Paula, João Pedro): os dois primeiros nomes juntos
+  if (parts.length > 2 && !/^(d[aeo]s?|e)$/i.test(parts[1])) cands.push(parts.slice(0, 2).join(" "));
+  return [...new Set(cands.filter(x => x.length >= 3))].sort((a, b) => b.length - a.length);
 }
 function primeiroNome(v) { return String(v || "").replace(/\(.*?\)/g, " ").trim().split(/\s+/)[0] || ""; }
 function anonimizar() {
@@ -1236,12 +1239,15 @@ function anonimizar() {
   const primeiro = v => String(v || "").replace(/\(.*?\)/g, " ").trim().split(/\s+/)[0] || "";
   const volta = {
     NOME: String(S.chamado || "").trim() || primeiro(S.nome) || "a criança",
-    PAI: String(S.pai || "").trim() || "o pai",
-    MAE: String(S.mae || "").trim() || "a mãe"
+    PAI: "o pai",
+    MAE: "a mãe"
   };
+  // Os pais nunca aparecem pelo nome no relatório: sobra de marcador vira "o pai" / "a mãe".
   return {
     texto: t,
-    restaurar: x => String(x).replace(/\[(NOME|PAI|MAE|MÃE)\]/gi, (m, k) => volta[k.toUpperCase().replace("Ã", "A")])
+    restaurar: x => String(x)
+      .replace(/\[(NOME|PAI|MAE|MÃE)\]/gi, (m, k) => volta[k.toUpperCase().replace("Ã", "A")])
+      .replace(/\b(a mãe|o pai)(?:,\s*|\s+)\1,?(?=\s)/gi, "$1")
   };
 }
 let ANON = { texto: "", restaurar: x => x };
@@ -1256,7 +1262,8 @@ Sua tarefa:
 4. Organizar em parágrafos coesos (normalmente de 3 a 6), seguindo quando possível esta ordem: adaptação e aspecto social; aspecto emocional; aspecto psicomotor; aspecto cognitivo e linguagem; considerações finais ou encaminhamentos (somente se ela mencionou). Não escreva títulos, tópicos, listas, negrito nem markdown.
 5. Usar vocabulário pedagógico adequado à Educação Infantil (interação, autonomia, coordenação motora fina e ampla, oralidade, linguagem, campos de experiência), sem exageros e sem frases genéricas que não estejam apoiadas no ditado.
 6. Referir-se à criança pelo marcador [NOME] ou como "a criança", respeitando o gênero.
-7. Por privacidade, os nomes foram trocados por marcadores: [NOME] é a criança, [PAI] é o pai e [MAE] é a mãe. Mantenha esses marcadores exatamente assim, com os colchetes, e não tente adivinhar os nomes verdadeiros.
+7. Por privacidade, o nome da criança foi trocado pelo marcador [NOME]. Mantenha [NOME] exatamente assim, com os colchetes, e não tente adivinhar o nome verdadeiro.
+8. Nunca escreva o nome dos pais ou responsáveis. Refira-se a eles sempre de forma geral: "os pais", "a família", "a mãe", "o pai". Se aparecerem os marcadores [PAI] ou [MAE] no ditado, não os copie para o texto.
 
 Também identifique no ditado dados de cadastro, SOMENTE se a professora os disse claramente.
 
