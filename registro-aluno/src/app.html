@@ -1045,45 +1045,57 @@ function setListening(on) {
 }
 function showInterim(t) { V.interim = t || ""; $("#listen-live").textContent = V.interim || "Pode falar"; }
 
-function appendFinal(raw, alvo) {
-  const el = alvo || V.target; if (!el) return;
-  let t = spokenPunct(String(raw || ""));
-  if (!t.trim()) return;
+// Junta o que foi falado ao que já estava no campo (pontuação, maiúsculas, nomes).
+function compor(base, raw, el) {
+  const t = spokenPunct(String(raw || ""));
+  if (!t.trim()) return base;
   if (el.tagName === "TEXTAREA") {
-    let cur = el.value;
     let piece = t.replace(/^\s+/, "");
-    const endsSentence = !cur.trim() || /[.!?]\s*$/.test(cur) || /\n\s*$/.test(cur);
+    const endsSentence = !base.trim() || /[.!?]\s*$/.test(base) || /\n\s*$/.test(base);
     if (endsSentence) piece = piece.charAt(0).toUpperCase() + piece.slice(1);
-    const sep = !cur ? "" : (/[\s\n]$/.test(cur) || /^[,.!?:\n]/.test(piece)) ? "" : " ";
-    el.value = cur + sep + piece;
-  } else {
-    let piece = t.trim().replace(/[.!?]+$/, "");
-    if (el.id === "f-nome" || el.id === "f-pai" || el.id === "f-mae") piece = piece.replace(/(^|\s)([a-zà-ú])/g, (m, a, b) => a + b.toUpperCase()).replace(/\b(Da|De|Do|Das|Dos|E)\b/g, w => w.toLowerCase());
-    el.value = el.value.trim() ? el.value.trim() + " " + piece : piece;
+    const sep = !base ? "" : (/[\s\n]$/.test(base) || /^[,.!?:\n]/.test(piece)) ? "" : " ";
+    return base + sep + piece;
   }
+  let piece = t.trim().replace(/[.!?]+$/, "");
+  if (el.id === "f-nome" || el.id === "f-chamado" || el.id === "f-pai" || el.id === "f-mae") piece = piece.replace(/(^|\s)([a-zà-ú])/g, (m, a, b) => a + b.toUpperCase()).replace(/\b(Da|De|Do|Das|Dos|E)\b/g, w => w.toLowerCase());
+  return base.trim() ? base.trim() + " " + piece : piece;
+}
+function escrever(el, valor) {
+  if (el.value === valor) return;
+  el.value = valor;
   el.dispatchEvent(new Event("input", { bubbles: true }));
   if (el.tagName === "TEXTAREA") el.scrollTop = el.scrollHeight;
 }
+function appendFinal(raw, alvo) {
+  const el = alvo || V.target; if (!el) return;
+  escrever(el, compor(el.value, raw, el));
+}
 
-/* Microfone do navegador (Chrome/Safari). Um único reconhecedor, reaproveitado.
-   Estados: idle → starting → listening → stopping → idle. Só abre de novo depois de fechar. */
-const W = { rec: null, state: "idle", pending: false, startedAt: 0, quick: 0, stopTarget: null };
-function getRec() {
-  if (W.rec) return W.rec;
+/* Microfone do navegador (Chrome, Safari, iPhone).
+   Cada sessão escreve no campo "base + tudo o que foi falado nela", recalculado a cada
+   evento: assim o texto nunca duplica, mesmo no iPhone, que repete resultados.
+   Android/computador: um reconhecedor reaproveitado, que só reabre depois de fechar.
+   iPhone: um reconhecedor novo a cada toque, e o anterior é descartado na hora. */
+const W = { rec: null, state: "idle", pending: false, startedAt: 0, quick: 0, alvo: null, base: "", skip: 0, seen: 0 };
+function sessaoNoCampo(el) { W.alvo = el; W.base = el ? el.value : ""; W.skip = 0; W.seen = 0; }
+function aoFalar(ev) {
+  W.seen = ev.results.length;
+  let full = "", interim = "";
+  for (let i = W.skip; i < ev.results.length; i++) {
+    const r = ev.results[i];
+    full += r[0].transcript;
+    if (!r.isFinal) interim += r[0].transcript;
+  }
+  if (W.alvo) escrever(W.alvo, compor(W.base, full, W.alvo));
+  if (V.on) showInterim(interim || full.slice(-90));
+}
+function novoRec() {
   const rec = new SR();
   rec.lang = "pt-BR"; rec.interimResults = true; rec.continuous = !isAndroid; rec.maxAlternatives = 1;
-  rec.onstart = () => { W.state = "listening"; W.startedAt = Date.now(); };
-  rec.onresult = ev => {
-    // depois de "Parar", as últimas palavras vão para o campo onde ela estava falando
-    const alvo = W.state === "stopping" && W.stopTarget ? W.stopTarget : V.target;
-    let interim = "";
-    for (let i = ev.resultIndex; i < ev.results.length; i++) {
-      const r = ev.results[i];
-      if (r.isFinal) appendFinal(r[0].transcript, alvo); else interim += r[0].transcript;
-    }
-    if (V.on) showInterim(interim);
-  };
+  rec.onstart = () => { if (W.rec !== rec) return; W.state = "listening"; W.startedAt = Date.now(); };
+  rec.onresult = ev => { if (W.rec === rec) aoFalar(ev); };
   rec.onerror = ev => {
+    if (W.rec !== rec) return;
     if (ev.error === "not-allowed" || ev.error === "service-not-allowed" || ev.error === "audio-capture") {
       V.want = false; W.pending = false;
       showMicHelp(ev.error === "audio-capture" ? "no-mic" : "browser-denied");
@@ -1091,15 +1103,15 @@ function getRec() {
       V.want = false; W.pending = false;
       toast("Sem internet para reconhecer a voz. Verifique a conexão.");
     }
-    // "no-speech" e "aborted" não são problema: quem decide o que fazer é o onend
   };
   rec.onend = () => {
-    W.state = "idle"; W.stopTarget = null;
-    if (W.pending) { W.pending = false; tryStart(); return; }   // ela pediu para falar de novo enquanto fechava
+    if (W.rec !== rec) return;                     // reconhecedor antigo (iPhone): ignora
+    W.state = "idle";
+    if (W.pending) { W.pending = false; tryStart(); return; }
     if (V.want) {
       const curta = Date.now() - W.startedAt < 1200;
       W.quick = curta ? W.quick + 1 : 0;
-      if (!isIOS && W.quick < 3) {                                // o celular encerrou sozinho: continua ouvindo
+      if (!isIOS && W.quick < 3) {                // Android: o celular encerrou sozinho, continua ouvindo
         setTimeout(() => { if (V.want && W.state === "idle") tryStart(); }, 250);
         return;
       }
@@ -1108,20 +1120,31 @@ function getRec() {
     }
     setListening(false);
   };
-  W.rec = rec;
   return rec;
 }
+function descartar(rec) {
+  if (!rec) return;
+  try { rec.abort(); } catch (e) {}
+}
 function tryStart() {
-  const rec = getRec();
-  try { W.state = "starting"; rec.start(); }
-  catch (e) {                                   // ainda estava fechando: fecha de vez e abre no onend
-    W.state = "stopping"; W.pending = true;
-    try { rec.abort(); } catch (_) {}
+  if (isIOS || !W.rec) W.rec = novoRec();
+  sessaoNoCampo(V.target);
+  try { W.state = "starting"; W.rec.start(); }
+  catch (e) {
+    if (isIOS) { W.state = "idle"; V.want = false; setListening(false); toast("Não consegui abrir o microfone. Toque nele de novo."); return; }
+    W.state = "stopping"; W.pending = true;   // ainda fechando: fecha de vez e abre no onend
+    try { W.rec.abort(); } catch (_) {}
   }
 }
 function startWeb() {
   V.want = true; W.quick = 0;
   setListening(true);
+  if (isIOS) {                                   // iPhone: abre na hora do toque, com um reconhecedor novo
+    const velho = W.rec; W.rec = null; W.state = "idle"; W.pending = false;
+    descartar(velho);
+    tryStart();
+    return;
+  }
   if (W.state === "idle") tryStart();
   else {
     W.pending = true;
@@ -1132,15 +1155,22 @@ function stopListening() {
   V.want = false; W.pending = false;
   if (V.mode === "claude" && V.dict) { V.dict.stop().catch(() => {}); return; }
   if (W.rec && W.state !== "idle") {
-    W.stopTarget = V.target; W.state = "stopping";
-    try { W.rec.stop(); } catch (e) {}
+    const rec = W.rec;
+    W.state = "stopping";
+    try { rec.stop(); } catch (e) {}
+    if (isIOS) {
+      // o iPhone às vezes não avisa que terminou: depois de 1,2 s, descarta e libera
+      setTimeout(() => { if (W.rec === rec && W.state === "stopping") { W.rec = null; W.state = "idle"; descartar(rec); } }, 1200);
+    }
   }
   setListening(false);
 }
 function listenTo(el) {
   if (V.on && V.target === el) { stopListening(); return; }
   if (V.on) { // troca de campo sem desligar o microfone
-    V.target = el; setListening(true); el.focus({ preventScroll: true }); return;
+    V.target = el;
+    if (V.mode === "web") { W.alvo = el; W.base = el.value; W.skip = W.seen; }
+    setListening(true); el.focus({ preventScroll: true }); return;
   }
   V.target = el;
   if (V.mode === "claude" && V.dict) {
