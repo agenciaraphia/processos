@@ -1,0 +1,41 @@
+REGISTROS DA TIA ISA — COMO PUBLICAR NO GITHUB PAGES (GRÁTIS)
+=============================================================
+
+Só existe 1 arquivo: index.html. O modelo do Word já está dentro dele.
+A chave da IA NÃO vai para o GitHub. Ela é colada na engrenagem do site,
+uma vez em cada aparelho, e fica guardada só naquele navegador.
+
+1) CRIAR O REPOSITÓRIO
+   - Entre em https://github.com/new
+   - Repository name: registros-tia-isa
+   - Marque "Public" (no plano gratuito o GitHub Pages precisa de repositório público;
+     não tem problema: o index.html não tem chave nem dados de crianças)
+   - Clique em "Create repository"
+
+2) ENVIAR O ARQUIVO
+   - Na página do repositório novo, clique em "uploading an existing file"
+   - Arraste o index.html
+   - Clique em "Commit changes"
+
+3) LIGAR O SITE
+   - No repositório: Settings > Pages
+   - Source: "Deploy from a branch"   Branch: main   Pasta: / (root)   > Save
+   - Espere 1 a 2 minutos e atualize a página. Aparece o endereço:
+     https://SEU-USUARIO.github.io/registros-tia-isa/
+
+4) NO APARELHO DA TIA ISA (uma vez em cada aparelho)
+   - Abra o endereço do site
+   - Toque na engrenagem (canto de cima) e cole a chave do Gemini
+     (crie grátis em https://aistudio.google.com/apikey, sem cartão) > Salvar
+   - No passo 3 da página deve aparecer "Gemini conectado neste aparelho"
+   - Toque no microfone e escolha PERMITIR quando o navegador perguntar
+
+5) (OPCIONAL, MAIS SEGURANÇA) TRAVAR A CHAVE NO ENDEREÇO DO SITE
+   - https://console.cloud.google.com/apis/credentials (mesma conta Google da chave)
+   - Clique na chave > "Restrições de aplicativos": Sites
+     > adicione https://SEU-USUARIO.github.io/*  > Salvar
+   - Assim, mesmo que alguém copie a chave, ela só funciona no seu site.
+
+ATUALIZAR DEPOIS
+   - No repositório, clique no index.html > ícone de lápis não serve (arquivo grande):
+     use "Add file > Upload files", arraste o index.html novo e "Commit changes".

@@ -28,6 +28,8 @@ page = ("<!doctype html>\n<html lang=\"pt-BR\">\n<head>\n<meta charset=\"utf-8\"
 (here / "index.html").write_text(page, encoding="utf-8")
 (here / "site").mkdir(exist_ok=True)
 (here / "site" / "index.html").write_text(page, encoding="utf-8")  # pasta pronta para Netlify / GitHub Pages
+(here / "github").mkdir(exist_ok=True)
+(here / "github" / "index.html").write_text(page, encoding="utf-8")  # pasta pronta para GitHub Pages
 print("index.html:", len(page), "bytes")
 if len(sys.argv) > 1:
     pathlib.Path(sys.argv[1]).write_text(frag, encoding="utf-8")

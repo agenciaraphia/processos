@@ -749,13 +749,13 @@ textarea.big:focus { outline: none; border-color: var(--sky); background: var(--
     <span class="hint">Pedida só na primeira vez em cada aparelho.</span>
   </div>
   <div class="f full cfg-key-wrap">
-    <label for="cfg-key">Chave da API do Claude (Anthropic)</label>
-    <div class="inp"><input id="cfg-key" type="password" autocomplete="off" placeholder="sk-ant-…"></div>
-    <span class="hint">Fica salva só neste navegador. Sem chave, a página faz uma correção simples (pontuação e maiúsculas).</span>
+    <label for="cfg-key">Chave da IA (Gemini ou Claude)</label>
+    <div class="inp"><input id="cfg-key" type="password" autocomplete="off" placeholder="Cole aqui: AIza… (Gemini) ou sk-ant-… (Claude)"></div>
+    <span class="hint">Fica guardada só neste aparelho, neste navegador. Não aparece no site. Sem chave, a página faz só uma correção simples.</span>
   </div>
   <div class="f full cfg-key-wrap">
     <label for="cfg-model">Modelo</label>
-    <div class="inp"><input id="cfg-model" autocomplete="off"></div>
+    <div class="inp"><input id="cfg-model" autocomplete="off" placeholder="Automático"></div>
   </div>
   <div class="row" style="justify-content:flex-end">
     <button class="btn btn-ghost cfg-key-wrap" id="cfg-remove" type="button">Remover chave</button>
@@ -770,6 +770,8 @@ textarea.big:focus { outline: none; border-color: var(--sky); background: var(--
 "use strict";
 const TEMPLATE_B64 = "__TEMPLATE_B64__";
 const DEFAULT_MODEL = "claude-sonnet-5-5";
+const GEMINI_MODEL = "gemini-3.8-flash";
+const keyIsGemini = k => /^AIza/.test(String(k || "").trim());
 const DOCX_MIME = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
 
 const $ = (s, r = document) => r.querySelector(s);
@@ -1149,10 +1151,10 @@ function renderEngine() {
   t.textContent = "";
   if (e === "claude") t.textContent = "Usando o Claude da sua conta";
   else if (e === "server") t.textContent = (AI.server.ia || "IA") + " conectado ao site";
-  else if (e === "api") t.textContent = "Usando o Claude (chave salva neste aparelho)";
+  else if (e === "api") t.textContent = (keyIsGemini(apiKey()) ? "Gemini" : "Claude") + " conectado neste aparelho";
   else {
     t.append("Correção simples. Para o texto ficar caprichado, ");
-    const b = document.createElement("button"); b.type = "button"; b.textContent = "ative o Claude";
+    const b = document.createElement("button"); b.type = "button"; b.textContent = "ative a IA";
     b.onclick = openSettings; t.append(b);
   }
 }
@@ -1262,7 +1264,27 @@ function parseJsonLoose(text) {
   if (a < 0 || b < a) throw { code: "invalid_json" };
   return JSON.parse(text.slice(a, b + 1));
 }
+async function callGemini(prompt, signal) {
+  const model = store.get(K_MODEL, "") || GEMINI_MODEL;
+  const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent`, {
+    method: "POST", signal,
+    headers: { "content-type": "application/json", "x-goog-api-key": apiKey() },
+    body: JSON.stringify({
+      contents: [{ role: "user", parts: [{ text: prompt }] }],
+      generationConfig: { responseMimeType: "application/json", maxOutputTokens: 8192 }
+    })
+  });
+  if (!res.ok) {
+    let msg = ""; try { msg = (await res.json()).error?.message || ""; } catch (e) {}
+    throw { code: /api key/i.test(msg) ? "http_401" : "http_" + res.status, message: msg };
+  }
+  const data = await res.json();
+  const parts = data.candidates?.[0]?.content?.parts || [];
+  const text = parts.filter(p => !p.thought && typeof p.text === "string").map(p => p.text).join("");
+  return parseJsonLoose(text);
+}
 async function callApi(prompt, signal) {
+  if (keyIsGemini(apiKey())) return callGemini(prompt, signal);
   const res = await fetch("https://api.anthropic.com/v1/messages", {
     method: "POST", signal,
     headers: {
@@ -1304,7 +1326,7 @@ function errorCopy(e) {
   const c = e && e.code;
   if (c === "not_granted") return "Você não permitiu o uso do Claude. Fiz a correção simples.";
   if (c === "rate_limited") return "Muitos pedidos agora. Espere um minuto e tente de novo.";
-  if (c === "http_401") return "A chave da API não foi aceita. Confira em Configurações.";
+  if (c === "http_401" || c === "http_403") return "A chave da IA não foi aceita. Confira a chave na engrenagem.";
   if (c === "http_429") return "Limite da API atingido. Espere um pouco e tente de novo.";
   if (c === "http_400" || c === "http_404") return "A API recusou o pedido" + (e.message ? `: ${e.message}` : ". Confira o modelo em Configurações.");
   if (c === "invalid_json") return "A resposta veio num formato inesperado. Tente de novo.";
@@ -1350,7 +1372,7 @@ async function improve() {
     let paras = out && Array.isArray(out.paragrafos) ? out.paragrafos.filter(p => typeof p === "string" && p.trim()).map(ANON.restaurar) : null;
     if (!paras || !paras.length) {
       paras = paragraphs(basicClean(S.ditado));
-      if (!note) note = e === "basic" ? "Fiz a correção simples. Ative o Claude nas configurações para um texto caprichado." : "";
+      if (!note) note = e === "basic" ? "Fiz a correção simples. Coloque a chave da IA na engrenagem para um texto caprichado." : "";
     }
     S.textoAnterior = before;
     S.texto = paras.map(p => p.trim()).join("\n\n");
@@ -1541,7 +1563,7 @@ function closeDrawer() { $("#overlay").hidden = true; $("#drawer").hidden = true
 /* ---------------- configurações ---------------- */
 function openSettings() {
   $("#cfg-key").value = apiKey();
-  $("#cfg-model").value = store.get(K_MODEL, "") || DEFAULT_MODEL;
+  $("#cfg-model").value = store.get(K_MODEL, "");
   const srv = AI.server && AI.server.chave;
   $$(".cfg-key-wrap").forEach(el => (el.hidden = !!srv || !!AI.sample));
   $("#cfg-senha-wrap").hidden = !(srv && AI.server.senha);
@@ -1550,7 +1572,8 @@ function openSettings() {
     ? "Você está usando a página dentro do Claude: a melhoria do texto já funciona pela sua conta."
     : srv ? (AI.server.senha ? `O ${AI.server.ia || "IA"} já está conectado ao site. Só falta a senha da escola neste aparelho.` : `O ${AI.server.ia || "IA"} já está conectado ao site. Não precisa configurar nada.`)
     : (AI.server && !AI.server.chave) ? "O site está pronto para a IA, mas falta cadastrar a chave (GEMINI_API_KEY ou ANTHROPIC_API_KEY) no Netlify, em Environment variables, e publicar de novo."
-    : "Para o Claude melhorar o texto, cole aqui uma chave da API da Anthropic (console.anthropic.com).";
+    : apiKey() ? "A IA já está conectada neste aparelho. Só troque a chave se precisar."
+    : "Para a IA melhorar o texto, cole a chave do Gemini (crie grátis em aistudio.google.com/apikey). É preciso fazer isso uma vez em cada aparelho.";
   $("#overlay").hidden = false; $("#modal").hidden = false;
   const first = !$("#cfg-senha-wrap").hidden ? $("#cfg-senha") : !$("#cfg-key").closest(".f").hidden ? $("#cfg-key") : $("#cfg-cancel");
   first.focus();
@@ -1631,8 +1654,8 @@ $("#cfg-save").addEventListener("click", () => {
   if (AI.sample || (AI.server && AI.server.chave)) { closeSettings(); return; }
   const k = $("#cfg-key").value.trim(), m = $("#cfg-model").value.trim();
   if (k) store.set(K_KEY, k); else store.del(K_KEY);
-  if (m && m !== DEFAULT_MODEL) store.set(K_MODEL, m); else store.del(K_MODEL);
-  closeSettings(); renderEngine(); toast(k ? "Pronto! O Claude vai melhorar os textos." : "Configurações salvas.");
+  if (m) store.set(K_MODEL, m); else store.del(K_MODEL);
+  closeSettings(); renderEngine(); toast(k ? `Pronto! O ${keyIsGemini(k) ? "Gemini" : "Claude"} vai melhorar os textos.` : "Configurações salvas.");
 });
 $("#cfg-remove").addEventListener("click", () => { store.del(K_KEY); $("#cfg-key").value = ""; renderEngine(); toast("Chave removida deste aparelho."); });
 $("#overlay").addEventListener("click", () => { closeDrawer(); closeSettings(); });
