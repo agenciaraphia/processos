@@ -11,6 +11,9 @@
 //   CLAUDE_MODEL       (opcional) padrão claude-sonnet-5-5
 
 const MODELOS = { claude: "claude-sonnet-5-5", gemini: "gemini-3.8-flash" };
+// Se um modelo do Gemini estiver lotado, tenta o próximo da lista.
+const RESERVAS_GEMINI = ["gemini-3.8-flash", "gemini-3.5-flash", "gemini-2.5-flash", "gemini-flash-latest", "gemini-2.5-flash-lite"];
+const LOTADO = new Set([429, 500, 503, 504, 529]);
 const NOMES = { claude: "Claude", gemini: "Gemini" };
 const LIMITE_DITADO = 15000; // caracteres
 
@@ -68,6 +71,7 @@ Regras dos campos: use null quando a informação não foi dita; dataNascimento 
 // Cada IA: como pedir e como tirar o texto de cada evento do streaming.
 const PROVEDORES = {
   claude: {
+    modelos: () => [env("CLAUDE_MODEL") || MODELOS.claude],
     pedir: (prompt) => fetch("https://api.anthropic.com/v1/messages", {
       method: "POST",
       headers: { "content-type": "application/json", "x-api-key": env("ANTHROPIC_API_KEY"), "anthropic-version": "2023-06-01" },
@@ -82,8 +86,9 @@ const PROVEDORES = {
     erro: (ev) => ev.type === "error"
   },
   gemini: {
-    pedir: (prompt) => fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(env("GEMINI_MODEL") || MODELOS.gemini)}:streamGenerateContent?alt=sse&key=${encodeURIComponent(env("GEMINI_API_KEY"))}`, {
+    modelos: () => [...new Set([env("GEMINI_MODEL"), ...RESERVAS_GEMINI].filter(Boolean))],
+    pedir: (prompt, modelo) => fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(modelo)}:streamGenerateContent?alt=sse&key=${encodeURIComponent(env("GEMINI_API_KEY"))}`, {
       method: "POST",
       // a chave vai no endereço (?key=), que funciona com os formatos novos (AQ.) e antigos (AIza)
       headers: { "content-type": "application/json" },
@@ -126,9 +131,16 @@ export default async (req) => {
   const prompt = montarPrompt(ditado);
   const prov = PROVEDORES[ia];
 
-  let up;
-  try { up = await prov.pedir(prompt); } catch { return json({ error: "ia", message: "Sem conexão com a IA." }, 502); }
-  if (!up.ok || !up.body) return json(await lerErro(up), 502);
+  let up = null, ultimoErro = null;
+  for (const modelo of prov.modelos()) {
+    try { up = await prov.pedir(prompt, modelo); } catch { up = null; ultimoErro = { error: "ia", message: "Sem conexão com a IA." }; continue; }
+    if (up.ok && up.body) break;
+    ultimoErro = await lerErro(up);
+    // modelo lotado ou inexistente: tenta o próximo; chave recusada: para na hora
+    if (ultimoErro.error === "chave_invalida" || !(LOTADO.has(up.status) || up.status === 404)) break;
+    up = null;
+  }
+  if (!up || !up.ok || !up.body) return json(ultimoErro || { error: "ia" }, 502);
 
   // Repassa só o texto gerado, aos poucos, para a página.
   const enc = new TextEncoder(), dec = new TextDecoder();
