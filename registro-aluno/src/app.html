@@ -750,7 +750,7 @@ textarea.big:focus { outline: none; border-color: var(--sky); background: var(--
   </div>
   <div class="f full cfg-key-wrap">
     <label for="cfg-key">Chave da IA (Gemini ou Claude)</label>
-    <div class="inp"><input id="cfg-key" type="password" autocomplete="off" placeholder="Cole aqui: AIza… (Gemini) ou sk-ant-… (Claude)"></div>
+    <div class="inp"><input id="cfg-key" type="password" autocomplete="off" placeholder="Cole aqui a chave do Gemini (AIza… ou AQ.…) ou do Claude (sk-ant-…)"></div>
     <span class="hint">Fica guardada só neste aparelho, neste navegador. Não aparece no site. Sem chave, a página faz só uma correção simples.</span>
   </div>
   <div class="f full cfg-key-wrap">
@@ -771,7 +771,7 @@ textarea.big:focus { outline: none; border-color: var(--sky); background: var(--
 const TEMPLATE_B64 = "__TEMPLATE_B64__";
 const DEFAULT_MODEL = "claude-sonnet-5-5";
 const GEMINI_MODEL = "gemini-3.8-flash";
-const keyIsGemini = k => /^AIza/.test(String(k || "").trim());
+const keyIsGemini = k => !/^sk-ant/.test(String(k || "").trim());  // Gemini: AIza… ou AQ.…; Claude: sk-ant-…
 const DOCX_MIME = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
 
 const $ = (s, r = document) => r.querySelector(s);
@@ -1266,9 +1266,9 @@ function parseJsonLoose(text) {
 }
 async function callGemini(prompt, signal) {
   const model = store.get(K_MODEL, "") || GEMINI_MODEL;
-  const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent`, {
+  const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent?key=${encodeURIComponent(apiKey())}`, {
     method: "POST", signal,
-    headers: { "content-type": "application/json", "x-goog-api-key": apiKey() },
+    headers: { "content-type": "application/json" },
     body: JSON.stringify({
       contents: [{ role: "user", parts: [{ text: prompt }] }],
       generationConfig: { responseMimeType: "application/json", maxOutputTokens: 8192 }

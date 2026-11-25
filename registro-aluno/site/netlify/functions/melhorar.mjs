@@ -83,9 +83,10 @@ const PROVEDORES = {
   },
   gemini: {
     pedir: (prompt) => fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(env("GEMINI_MODEL") || MODELOS.gemini)}:streamGenerateContent?alt=sse`, {
+      `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(env("GEMINI_MODEL") || MODELOS.gemini)}:streamGenerateContent?alt=sse&key=${encodeURIComponent(env("GEMINI_API_KEY"))}`, {
       method: "POST",
-      headers: { "content-type": "application/json", "x-goog-api-key": env("GEMINI_API_KEY") },
+      // a chave vai no endereço (?key=), que funciona com os formatos novos (AQ.) e antigos (AIza)
+      headers: { "content-type": "application/json" },
       body: JSON.stringify({
         contents: [{ role: "user", parts: [{ text: prompt }] }],
         generationConfig: { responseMimeType: "application/json", maxOutputTokens: 8192 }
