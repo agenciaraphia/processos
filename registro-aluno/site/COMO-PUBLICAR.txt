@@ -68,3 +68,11 @@ MICROFONE
 - Abra pelo endereço https:// do site, no Chrome (computador/Android) ou Safari (iPhone).
 - Quando o navegador perguntar, escolha PERMITIR. Se bloquear, a página mostra como liberar.
 - Alternativa que sempre funciona: microfone do teclado do celular na caixa de texto.
+
+QUER GASTAR ZERO? (Gemini gratuito)
+- Use a chave do Gemini no plano gratuito (GEMINI_API_KEY) e o plano gratuito do Netlify.
+- O site já troca o nome da criança e dos pais por [NOME], [PAI] e [MAE] antes de enviar
+  o relato para a IA, e coloca os nomes de volta quando o texto chega.
+- Cuidado: no plano gratuito o Google pode usar o relato para melhorar os produtos dele.
+  Por isso, preencha o NOME DA CRIANÇA no passo 1 antes de tocar em "Melhorar o texto" e
+  evite falar nome e sobrenome de OUTRAS crianças no relato (esses o site não reconhece).

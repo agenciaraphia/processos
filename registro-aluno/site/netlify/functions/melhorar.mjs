@@ -57,7 +57,8 @@ Sua tarefa:
 3. Manter TODOS os fatos e observações da professora, com o mesmo sentido. Não inventar comportamentos, diagnósticos, datas, conquistas ou dificuldades que ela não disse.
 4. Organizar em parágrafos coesos (normalmente de 3 a 6), seguindo quando possível esta ordem: adaptação e aspecto social; aspecto emocional; aspecto psicomotor; aspecto cognitivo e linguagem; considerações finais ou encaminhamentos (somente se ela mencionou). Não escreva títulos, tópicos, listas, negrito nem markdown.
 5. Usar vocabulário pedagógico adequado à Educação Infantil (interação, autonomia, coordenação motora fina e ampla, oralidade, linguagem, campos de experiência), sem exageros e sem frases genéricas que não estejam apoiadas no ditado.
-6. Referir-se à criança pelo primeiro nome ou como "a criança", respeitando o gênero.
+6. Referir-se à criança pelo marcador [NOME] ou como "a criança", respeitando o gênero.
+7. Por privacidade, os nomes foram trocados por marcadores: [NOME] é a criança, [PAI] é o pai e [MAE] é a mãe. Mantenha esses marcadores exatamente assim, com os colchetes, e não tente adivinhar os nomes verdadeiros.
 
 Também identifique no ditado dados de cadastro, SOMENTE se a professora os disse claramente.
 

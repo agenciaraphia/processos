@@ -1173,8 +1173,8 @@ async function callServer(signal) {
     method: "POST", signal,
     headers: { "content-type": "application/json" },
     body: JSON.stringify({
-      ditado: S.ditado,
-      conhecidos: { nome: S.nome, sexo: S.sexo, idade: S.idade, nee: S.nee === "Sim" ? (S.neeTipo || "sim") : "" },
+      ditado: ANON.texto,
+      conhecidos: { nome: S.nome ? "[NOME]" : "", sexo: S.sexo, idade: S.idade, nee: S.nee === "Sim" ? (S.neeTipo || "sim") : "" },
       senha: store.get(K_SENHA, "")
     })
   });
@@ -1200,9 +1200,38 @@ async function setupSample() {
   renderEngine();
 }
 
+/* Privacidade: os nomes da criança e dos pais viram marcadores antes de ir para a IA
+   e voltam ao normal quando o texto chega. */
+const MARCAS = /\[(NOME|PAI|MAE|MÃE)\]/i;
+function escRe(t) { return t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); }
+function nomesDe(nome) {
+  const n = String(nome || "").replace(/\(.*?\)/g, " ").replace(/\s+/g, " ").trim();
+  if (!n) return [];
+  const first = n.split(" ")[0];
+  return [...new Set([n, first].filter(x => x.length >= 3))].sort((a, b) => b.length - a.length);
+}
+function anonimizar() {
+  let t = S.ditado.trim();
+  const trocas = [["[NOME]", nomesDe(S.nome)], ["[PAI]", nomesDe(S.pai)], ["[MAE]", nomesDe(S.mae)]];
+  trocas.forEach(([marca, nomes]) => nomes.forEach(nm => {
+    t = t.replace(new RegExp(`(^|[^\\p{L}])${escRe(nm)}(?![\\p{L}])`, "giu"), (m, a) => a + marca);
+  }));
+  const primeiro = v => String(v || "").replace(/\(.*?\)/g, " ").trim().split(/\s+/)[0] || "";
+  const volta = {
+    NOME: primeiro(S.nome) || "a criança",
+    PAI: String(S.pai || "").trim() || "o pai",
+    MAE: String(S.mae || "").trim() || "a mãe"
+  };
+  return {
+    texto: t,
+    restaurar: x => String(x).replace(/\[(NOME|PAI|MAE|MÃE)\]/gi, (m, k) => volta[k.toUpperCase().replace("Ã", "A")])
+  };
+}
+let ANON = { texto: "", restaurar: x => x };
+
 function buildPrompt() {
   const known = [
-    S.nome && `Nome: ${S.nome}`,
+    S.nome && "Nome: [NOME]",
     S.sexo && `Sexo: ${S.sexo}`,
     S.idade && `Idade: ${S.idade}`,
     S.nee === "Sim" && `Possui NEE: ${S.neeTipo || "sim"}`
@@ -1215,7 +1244,8 @@ Sua tarefa:
 3. Manter TODOS os fatos e observações da professora, com o mesmo sentido. Não inventar comportamentos, diagnósticos, datas, conquistas ou dificuldades que ela não disse.
 4. Organizar em parágrafos coesos (normalmente de 3 a 6), seguindo quando possível esta ordem: adaptação e aspecto social; aspecto emocional; aspecto psicomotor; aspecto cognitivo e linguagem; considerações finais ou encaminhamentos (somente se ela mencionou). Não escreva títulos, tópicos, listas, negrito nem markdown.
 5. Usar vocabulário pedagógico adequado à Educação Infantil (interação, autonomia, coordenação motora fina e ampla, oralidade, linguagem, campos de experiência), sem exageros e sem frases genéricas que não estejam apoiadas no ditado.
-6. Referir-se à criança pelo primeiro nome ou como "a criança", respeitando o gênero.
+6. Referir-se à criança pelo marcador [NOME] ou como "a criança", respeitando o gênero.
+7. Por privacidade, os nomes foram trocados por marcadores: [NOME] é a criança, [PAI] é o pai e [MAE] é a mãe. Mantenha esses marcadores exatamente assim, com os colchetes, e não tente adivinhar os nomes verdadeiros.
 
 Também identifique no ditado dados de cadastro, SOMENTE se a professora os disse claramente.
 
@@ -1224,7 +1254,7 @@ ${known}
 
 Ditado da professora:
 """
-${S.ditado.trim()}
+${ANON.texto}
 """
 
 Responda somente com um objeto JSON válido, sem nenhum texto antes ou depois, neste formato:
@@ -1258,7 +1288,7 @@ async function callApi(prompt, signal) {
 function applyCampos(c) {
   if (!c || typeof c !== "object") return [];
   const filled = [];
-  const put = (f, v, label) => { if (v && typeof v === "string" && !String(S[f] || "").trim()) { S[f] = v.trim(); filled.push(label); } };
+  const put = (f, v, label) => { if (v && typeof v === "string" && !MARCAS.test(v) && !String(S[f] || "").trim()) { S[f] = v.trim(); filled.push(label); } };
   put("nome", c.nome, "nome");
   if (c.dataNascimento && !S.nasc) {
     const m = /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/.exec(String(c.dataNascimento).trim());
@@ -1297,6 +1327,7 @@ async function improve() {
   const btn = $("#btn-improve"); btn.disabled = true;
   $("#thinking").classList.add("on");
   AI.ctl = new AbortController();
+  ANON = anonimizar();
   let out = null, note = "";
   try {
     const e = engine();
@@ -1320,7 +1351,7 @@ async function improve() {
       try { out = await callApi(buildPrompt(), AI.ctl.signal); }
       catch (err) { if (err && err.name === "AbortError") throw err; note = errorCopy(err); }
     }
-    let paras = out && Array.isArray(out.paragrafos) ? out.paragrafos.filter(p => typeof p === "string" && p.trim()) : null;
+    let paras = out && Array.isArray(out.paragrafos) ? out.paragrafos.filter(p => typeof p === "string" && p.trim()).map(ANON.restaurar) : null;
     if (!paras || !paras.length) {
       paras = paragraphs(basicClean(S.ditado));
       if (!note) note = e === "basic" ? "Fiz a correção simples. Ative o Claude nas configurações para um texto caprichado." : "";
