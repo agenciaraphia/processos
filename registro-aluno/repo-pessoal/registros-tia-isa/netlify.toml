@@ -1,0 +1,6 @@
+# Registro Viva Criança — configuração do Netlify
+# O site é estático (index.html); a pasta netlify/functions tem a conexão segura com o Claude.
+[build]
+  publish = "."
+  functions = "netlify/functions"
+  command = "echo 'Site estático: nada para compilar'"

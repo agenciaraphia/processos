@@ -30,6 +30,9 @@ page = ("<!doctype html>\n<html lang=\"pt-BR\">\n<head>\n<meta charset=\"utf-8\"
 (here / "site" / "index.html").write_text(page, encoding="utf-8")  # pasta pronta para Netlify / GitHub Pages
 (here / "github").mkdir(exist_ok=True)
 (here / "github" / "index.html").write_text(page, encoding="utf-8")  # pasta pronta para GitHub Pages
+rp = here / "repo-pessoal" / "registros-tia-isa"
+if rp.exists():
+    (rp / "index.html").write_text(page, encoding="utf-8")  # repositório pronto (Netlify + GitHub)
 print("index.html:", len(page), "bytes")
 if len(sys.argv) > 1:
     pathlib.Path(sys.argv[1]).write_text(frag, encoding="utf-8")
