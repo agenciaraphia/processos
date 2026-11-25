@@ -976,6 +976,7 @@ function basicClean(t) {
 /* ---------------- voz ---------------- */
 const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
 const isAndroid = /Android/i.test(navigator.userAgent);
+const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
 const V = { mode: "none", why: "", dict: null, rec: null, want: false, on: false, target: null, lang: "pt-BR", interim: "" };
 if (hasClaude()) V.mode = "pending";
 else if (location.protocol === "file:" || !window.isSecureContext) V.why = "file";
@@ -1044,8 +1045,8 @@ function setListening(on) {
 }
 function showInterim(t) { V.interim = t || ""; $("#listen-live").textContent = V.interim || "Pode falar"; }
 
-function appendFinal(raw) {
-  const el = V.target; if (!el) return;
+function appendFinal(raw, alvo) {
+  const el = alvo || V.target; if (!el) return;
   let t = spokenPunct(String(raw || ""));
   if (!t.trim()) return;
   if (el.tagName === "TEXTAREA") {
@@ -1064,37 +1065,77 @@ function appendFinal(raw) {
   if (el.tagName === "TEXTAREA") el.scrollTop = el.scrollHeight;
 }
 
-function startWeb() {
+/* Microfone do navegador (Chrome/Safari). Um único reconhecedor, reaproveitado.
+   Estados: idle → starting → listening → stopping → idle. Só abre de novo depois de fechar. */
+const W = { rec: null, state: "idle", pending: false, startedAt: 0, quick: 0, stopTarget: null };
+function getRec() {
+  if (W.rec) return W.rec;
   const rec = new SR();
   rec.lang = "pt-BR"; rec.interimResults = true; rec.continuous = !isAndroid; rec.maxAlternatives = 1;
+  rec.onstart = () => { W.state = "listening"; W.startedAt = Date.now(); };
   rec.onresult = ev => {
+    // depois de "Parar", as últimas palavras vão para o campo onde ela estava falando
+    const alvo = W.state === "stopping" && W.stopTarget ? W.stopTarget : V.target;
     let interim = "";
     for (let i = ev.resultIndex; i < ev.results.length; i++) {
       const r = ev.results[i];
-      if (r.isFinal) appendFinal(r[0].transcript); else interim += r[0].transcript;
+      if (r.isFinal) appendFinal(r[0].transcript, alvo); else interim += r[0].transcript;
     }
-    showInterim(interim);
+    if (V.on) showInterim(interim);
   };
   rec.onerror = ev => {
     if (ev.error === "not-allowed" || ev.error === "service-not-allowed" || ev.error === "audio-capture") {
-      V.want = false;
+      V.want = false; W.pending = false;
       showMicHelp(ev.error === "audio-capture" ? "no-mic" : "browser-denied");
     } else if (ev.error === "network") {
-      V.want = false; toast("Sem internet para reconhecer a voz. Verifique a conexão.");
+      V.want = false; W.pending = false;
+      toast("Sem internet para reconhecer a voz. Verifique a conexão.");
     }
+    // "no-speech" e "aborted" não são problema: quem decide o que fazer é o onend
   };
   rec.onend = () => {
-    if (V.want && V.rec === rec) { try { rec.start(); return; } catch (e) {} }
-    if (V.rec === rec) { V.rec = null; setListening(false); }
+    W.state = "idle"; W.stopTarget = null;
+    if (W.pending) { W.pending = false; tryStart(); return; }   // ela pediu para falar de novo enquanto fechava
+    if (V.want) {
+      const curta = Date.now() - W.startedAt < 1200;
+      W.quick = curta ? W.quick + 1 : 0;
+      if (!isIOS && W.quick < 3) {                                // o celular encerrou sozinho: continua ouvindo
+        setTimeout(() => { if (V.want && W.state === "idle") tryStart(); }, 250);
+        return;
+      }
+      V.want = false;
+      if (W.quick >= 3) toast("O microfone parou. Toque nele de novo para continuar.");
+    }
+    setListening(false);
   };
-  V.rec = rec; V.want = true;
-  try { rec.start(); setListening(true); } catch (e) { V.want = false; setListening(false); toast("Não consegui abrir o microfone."); }
+  W.rec = rec;
+  return rec;
+}
+function tryStart() {
+  const rec = getRec();
+  try { W.state = "starting"; rec.start(); }
+  catch (e) {                                   // ainda estava fechando: fecha de vez e abre no onend
+    W.state = "stopping"; W.pending = true;
+    try { rec.abort(); } catch (_) {}
+  }
+}
+function startWeb() {
+  V.want = true; W.quick = 0;
+  setListening(true);
+  if (W.state === "idle") tryStart();
+  else {
+    W.pending = true;
+    if (W.state !== "stopping") { W.state = "stopping"; try { W.rec.abort(); } catch (e) {} }
+  }
 }
 function stopListening() {
-  V.want = false;
-  if (V.mode === "claude" && V.dict) { V.dict.stop().catch(() => {}); }
-  if (V.rec) { try { V.rec.stop(); } catch (e) {} }
-  if (V.mode !== "claude") setListening(false);
+  V.want = false; W.pending = false;
+  if (V.mode === "claude" && V.dict) { V.dict.stop().catch(() => {}); return; }
+  if (W.rec && W.state !== "idle") {
+    W.stopTarget = V.target; W.state = "stopping";
+    try { W.rec.stop(); } catch (e) {}
+  }
+  setListening(false);
 }
 function listenTo(el) {
   if (V.on && V.target === el) { stopListening(); return; }
