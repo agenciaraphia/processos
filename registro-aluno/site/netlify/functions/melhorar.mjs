@@ -40,15 +40,7 @@ function iguais(a, b) {
   return d === 0;
 }
 
-const limpar = (v) => String(v || "").replace(/\s+/g, " ").trim().slice(0, 120);
-
-function montarPrompt(ditado, c) {
-  const conhecidos = [
-    c.nome && `Nome: ${c.nome}`,
-    c.sexo && `Sexo: ${c.sexo}`,
-    c.idade && `Idade: ${c.idade}`,
-    c.nee && `Possui NEE: ${c.nee}`
-  ].filter(Boolean).join("\n") || "(nenhum)";
+function montarPrompt(ditado) {
   return `Você é uma coordenadora pedagógica experiente da Educação Infantil no Brasil. Uma professora ditou por voz as observações sobre uma criança para o documento "Registro Individual do Aluno" (histórico do desenvolvimento da criança considerando os aspectos social, emocional, psicomotor e cognitivo). O ditado veio de reconhecimento de voz e pode ter erros, palavras trocadas e falta de pontuação.
 
 Sua tarefa:
@@ -61,9 +53,6 @@ Sua tarefa:
 7. Por privacidade, os nomes foram trocados por marcadores: [NOME] é a criança, [PAI] é o pai e [MAE] é a mãe. Mantenha esses marcadores exatamente assim, com os colchetes, e não tente adivinhar os nomes verdadeiros.
 
 Também identifique no ditado dados de cadastro, SOMENTE se a professora os disse claramente.
-
-Dados já preenchidos no formulário:
-${conhecidos}
 
 Ditado da professora:
 """
@@ -131,8 +120,8 @@ export default async (req) => {
   if (!ditado) return json({ error: "vazio" }, 400);
   if (ditado.length > LIMITE_DITADO) return json({ error: "grande" }, 413);
 
-  const c = body?.conhecidos || {};
-  const prompt = montarPrompt(ditado, { nome: limpar(c.nome), sexo: limpar(c.sexo), idade: limpar(c.idade), nee: limpar(c.nee) });
+  // Só o texto do relato vai para a IA; os dados de cadastro ficam no site.
+  const prompt = montarPrompt(ditado);
   const prov = PROVEDORES[ia];
 
   let up;

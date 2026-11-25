@@ -412,6 +412,8 @@ textarea.big:focus { outline: none; border-color: var(--sky); background: var(--
 .kid-meta { font-size: .84rem; color: var(--muted); font-weight: 700; }
 .kid-actions { grid-column: 1 / -1; display: flex; gap: 8px; margin-top: 10px; }
 .kid-actions .btn { padding: 8px 16px; font-size: .9rem; }
+.drawer-foot { border-top: 2px dashed var(--line); padding-top: 14px; margin-top: 14px; }
+.drawer-foot p { margin: 0; font-size: .88rem; font-weight: 700; color: var(--muted); }
 .btn-danger { background: var(--tint-bubble); color: var(--ink); box-shadow: none; }
 .btn-danger.confirm { background: var(--flame); color: #FFFFFF; }
 .modal { position: fixed; z-index: 51; left: 50%; top: 50%; transform: translate(-50%, -50%); width: min(520px, calc(100% - 32px)); max-height: calc(100% - 32px); overflow-y: auto; background: var(--card); border-radius: var(--r-xl); padding: 26px; display: grid; gap: 16px; box-shadow: var(--shadow); }
@@ -556,7 +558,12 @@ textarea.big:focus { outline: none; border-color: var(--sky); background: var(--
           <div class="grid">
             <div class="f full">
               <label for="f-nome">Nome do(a) aluno(a)</label>
-              <div class="inp"><input id="f-nome" data-f="nome" autocomplete="off" placeholder="Ex.: Helena Sousa Lima"><button class="mini-mic" type="button" data-mic="f-nome" aria-label="Ditar o nome"></button></div>
+              <div class="inp"><input id="f-nome" data-f="nome" autocomplete="off" placeholder="Ex.: Maria Clara Sousa Lima"><button class="mini-mic" type="button" data-mic="f-nome" aria-label="Ditar o nome"></button></div>
+            </div>
+            <div class="f full">
+              <label for="f-chamado">Nome usado no texto do relatório</label>
+              <div class="inp"><input id="f-chamado" data-f="chamado" autocomplete="off" placeholder="Primeiro nome ou nome composto. Ex.: Maria Clara" class="nomic"></div>
+              <span class="hint">O nome completo aparece só no cabeçalho do Word. No texto vai apenas este.</span>
             </div>
             <div class="f">
               <label for="f-nasc">Data de nascimento</label>
@@ -743,6 +750,14 @@ textarea.big:focus { outline: none; border-color: var(--sky); background: var(--
 <aside class="drawer" id="drawer" hidden aria-labelledby="h-alunos">
   <div class="drawer-head"><h2 id="h-alunos">Meus alunos</h2><button class="btn btn-ghost" id="btn-close-drawer" type="button">Fechar</button></div>
   <div class="list" id="list"></div>
+  <div class="drawer-foot">
+    <p>Os alunos ficam guardados só neste aparelho, neste navegador. Faça uma cópia de vez em quando.</p>
+    <div class="row">
+      <button class="btn" id="btn-backup" type="button">Baixar cópia de segurança</button>
+      <button class="btn btn-ghost" id="btn-restore" type="button">Restaurar cópia</button>
+      <input type="file" id="f-restore" accept=".json,application/json" hidden>
+    </div>
+  </div>
 </aside>
 <div class="modal" id="modal" hidden role="dialog" aria-labelledby="h-config">
   <h2 id="h-config">Configurações</h2>
@@ -792,7 +807,7 @@ function blank(keep) {
     id: uid(), nome: "", nasc: "", idade: "", idadeManual: false, sexo: "", nee: "", neeTipo: "",
     ingresso: "", pai: "", mae: "", ddd: keep?.ddd || "85", tel: "",
     escola: keep?.escola || "VIVA CRIANÇA", ano: keep?.ano || String(new Date().getFullYear()),
-    ditado: "", texto: "", textoAnterior: "", baixado: false, updated: Date.now()
+    chamado: "", ditado: "", texto: "", textoAnterior: "", baixado: false, updated: Date.now()
   };
 }
 
@@ -871,6 +886,7 @@ function renderForm() {
   });
   $$("[data-pill]").forEach(b => b.setAttribute("aria-pressed", String(S[b.dataset.pill] === b.dataset.v)));
   $("#wrap-tipo").hidden = S.nee !== "Sim";
+  $("#f-chamado").placeholder = primeiroNome(S.nome) ? `Se ficar vazio: ${primeiroNome(S.nome)}` : "Primeiro nome ou nome composto. Ex.: Maria Clara";
   renderTexto();
   renderAspects();
   $("#ditado-count").textContent = words(S.ditado) + " palavras";
@@ -1174,7 +1190,6 @@ async function callServer(signal) {
     headers: { "content-type": "application/json" },
     body: JSON.stringify({
       ditado: ANON.texto,
-      conhecidos: { nome: S.nome ? "[NOME]" : "", sexo: S.sexo, idade: S.idade, nee: S.nee === "Sim" ? (S.neeTipo || "sim") : "" },
       senha: store.get(K_SENHA, "")
     })
   });
@@ -1210,15 +1225,17 @@ function nomesDe(nome) {
   const first = n.split(" ")[0];
   return [...new Set([n, first].filter(x => x.length >= 3))].sort((a, b) => b.length - a.length);
 }
+function primeiroNome(v) { return String(v || "").replace(/\(.*?\)/g, " ").trim().split(/\s+/)[0] || ""; }
 function anonimizar() {
   let t = S.ditado.trim();
-  const trocas = [["[NOME]", nomesDe(S.nome)], ["[PAI]", nomesDe(S.pai)], ["[MAE]", nomesDe(S.mae)]];
+  const nomesCrianca = [...new Set([...nomesDe(S.nome), ...nomesDe(S.chamado)])].sort((a, b) => b.length - a.length);
+  const trocas = [["[NOME]", nomesCrianca], ["[PAI]", nomesDe(S.pai)], ["[MAE]", nomesDe(S.mae)]];
   trocas.forEach(([marca, nomes]) => nomes.forEach(nm => {
     t = t.replace(new RegExp(`(^|[^\\p{L}])${escRe(nm)}(?![\\p{L}])`, "giu"), (m, a) => a + marca);
   }));
   const primeiro = v => String(v || "").replace(/\(.*?\)/g, " ").trim().split(/\s+/)[0] || "";
   const volta = {
-    NOME: primeiro(S.nome) || "a criança",
+    NOME: String(S.chamado || "").trim() || primeiro(S.nome) || "a criança",
     PAI: String(S.pai || "").trim() || "o pai",
     MAE: String(S.mae || "").trim() || "a mãe"
   };
@@ -1230,12 +1247,6 @@ function anonimizar() {
 let ANON = { texto: "", restaurar: x => x };
 
 function buildPrompt() {
-  const known = [
-    S.nome && "Nome: [NOME]",
-    S.sexo && `Sexo: ${S.sexo}`,
-    S.idade && `Idade: ${S.idade}`,
-    S.nee === "Sim" && `Possui NEE: ${S.neeTipo || "sim"}`
-  ].filter(Boolean).join("\n") || "(nenhum)";
   return `Você é uma coordenadora pedagógica experiente da Educação Infantil no Brasil. Uma professora ditou por voz as observações sobre uma criança para o documento "Registro Individual do Aluno" (histórico do desenvolvimento da criança considerando os aspectos social, emocional, psicomotor e cognitivo). O ditado veio de reconhecimento de voz e pode ter erros, palavras trocadas e falta de pontuação.
 
 Sua tarefa:
@@ -1248,9 +1259,6 @@ Sua tarefa:
 7. Por privacidade, os nomes foram trocados por marcadores: [NOME] é a criança, [PAI] é o pai e [MAE] é a mãe. Mantenha esses marcadores exatamente assim, com os colchetes, e não tente adivinhar os nomes verdadeiros.
 
 Também identifique no ditado dados de cadastro, SOMENTE se a professora os disse claramente.
-
-Dados já preenchidos no formulário:
-${known}
 
 Ditado da professora:
 """
@@ -1445,6 +1453,47 @@ async function download() {
   } finally { btn.disabled = false; }
 }
 function markDownloaded() { S.baixado = true; persist(); renderProgress(); }
+async function saveFile(blob, name) {
+  if (downloadsNs) {
+    try { await downloadsNs.save({ filename: name, data: blob }); return true; }
+    catch (e) { if (e && (e.code === "declined" || e.code === "rate_limited" || e.code === "host_unavailable")) { toast(e.code === "declined" ? "Download cancelado." : "Não deu para salvar aqui. Tente de novo."); return false; } }
+  }
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a"); a.href = url; a.download = name;
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 4000);
+  return true;
+}
+async function backup() {
+  flushPersist();
+  const list = store.get(K_LIST, []);
+  if (!list.length) { toast("Ainda não há alunos salvos para copiar."); return; }
+  const data = JSON.stringify({ app: "registro-viva-crianca", versao: 1, salvoEm: new Date().toISOString(), alunos: list }, null, 1);
+  const d = new Date(), dia = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+  if (await saveFile(new Blob([data], { type: "application/json" }), `alunos-registro-${dia}.json`)) toast(`Cópia com ${list.length} aluno(s) salva. Guarde o arquivo em lugar seguro.`, 5000);
+}
+async function restore(file) {
+  try {
+    const j = JSON.parse(await file.text());
+    const novos = Array.isArray(j) ? j : j && Array.isArray(j.alunos) ? j.alunos : null;
+    if (!novos) throw new Error("formato");
+    const atual = store.get(K_LIST, []);
+    const porId = new Map(atual.map(a => [a.id, a]));
+    let n = 0;
+    novos.forEach(a => {
+      if (!a || typeof a !== "object" || !a.id) return;
+      const ex = porId.get(a.id);
+      if (!ex || (a.updated || 0) > (ex.updated || 0)) { porId.set(a.id, Object.assign(blank(), a)); n++; }
+    });
+    const lista = [...porId.values()].sort((a, b) => (b.updated || 0) - (a.updated || 0));
+    store.set(K_LIST, lista);
+    $("#count").textContent = lista.length;
+    renderList();
+    toast(n ? `${n} aluno(s) restaurado(s).` : "Nada novo nessa cópia: os alunos já estavam aqui.");
+  } catch (e) {
+    toast("Esse arquivo não é uma cópia do Registro. Escolha o arquivo alunos-registro-….json.", 5000);
+  }
+}
 function anchorDownload(blob, name) {
   markDownloaded();
   const url = URL.createObjectURL(blob);
@@ -1462,7 +1511,7 @@ async function loadHeaderImage() {
 }
 
 /* ---------------- alunos salvos ---------------- */
-const AV = ["var(--coral)", "var(--sea)", "var(--grass)", "var(--grape)", "var(--sun-deep)"];
+const AV = ["var(--bubble)", "var(--sky)", "var(--leaf)", "var(--grape)", "var(--tangerine)"];
 function renderList() {
   const list = store.get(K_LIST, []);
   const box = $("#list"); box.textContent = "";
@@ -1532,6 +1581,7 @@ document.addEventListener("input", e => {
   if (S.baixado && f !== "ddd") S.baixado = false;
   setField(f, v, e.isTrusted);
   if (f === "nasc" && !S.idadeManual) $("#f-idade").value = S.idade;
+  if (f === "nome") $("#f-chamado").placeholder = primeiroNome(S.nome) ? `Se ficar vazio: ${primeiroNome(S.nome)}` : "Primeiro nome ou nome composto. Ex.: Maria Clara";
   if (f === "ditado") { $("#ditado-count").textContent = words(v) + " palavras"; renderAspects(); }
   if (f === "texto") { renderAspects(); $("#texto-count").textContent = `${words(S.texto)} palavras · ${paragraphs(S.texto).length} parágrafos`; }
   renderPreview();
@@ -1569,6 +1619,9 @@ $("#btn-new").addEventListener("click", () => {
   toast("Novo aluno. O anterior ficou salvo em “Meus alunos”.");
 });
 $("#btn-list").addEventListener("click", openDrawer);
+$("#btn-backup").addEventListener("click", backup);
+$("#btn-restore").addEventListener("click", () => $("#f-restore").click());
+$("#f-restore").addEventListener("change", e => { const f = e.target.files && e.target.files[0]; if (f) restore(f); e.target.value = ""; });
 $$(".pstep").forEach(b => b.addEventListener("click", () => document.getElementById(b.dataset.go).scrollIntoView({ behavior: "smooth", block: "start" })));
 $("#btn-mh-close").addEventListener("click", () => { $("#mic-help").hidden = true; });
 $("#btn-perm").addEventListener("click", () => {
