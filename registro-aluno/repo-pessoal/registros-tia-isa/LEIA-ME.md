@@ -5,8 +5,10 @@ Registro Individual do Aluno em Word, no modelo da escola.
 
 ## O que tem aqui
 - `index.html`: o site inteiro (o modelo do Word já está dentro).
-- `netlify/functions/melhorar.mjs`: a conexão com a IA. Roda no servidor do Netlify
-  e usa a chave guardada no painel do Netlify. A chave **nunca** fica neste repositório.
+- `netlify/edge-functions/ia.js`: a conexão com a IA (principal). Roda no servidor do
+  Netlify, responde na hora e espera a IA escrever sem limite curto de tempo. Usa a chave
+  guardada no painel do Netlify. A chave **nunca** fica neste repositório.
+- `netlify/functions/melhorar.mjs`: a conexão antiga, usada só se a de cima não estiver publicada.
 - `netlify.toml`: diz ao Netlify onde está o site e a função.
 
 ## Publicar no Netlify (uma vez)

@@ -1238,7 +1238,7 @@ async function setupDictation() {
 }
 
 /* ---------------- IA ---------------- */
-const AI = { sample: null, ctl: null, server: null };
+const AI = { sample: null, ctl: null, server: null, endpoint: "" };
 function apiKey() { return store.get(K_KEY, ""); }
 function engine() { return AI.sample ? "claude" : (AI.server && AI.server.chave) ? "server" : apiKey() ? "api" : "basic"; }
 function renderEngine() {
@@ -1256,12 +1256,28 @@ function renderEngine() {
 }
 async function setupServer() {
   if (hasClaude() || !/^https?:$/.test(location.protocol)) return;
-  try {
-    const r = await fetch("/api/melhorar", { headers: { accept: "application/json" }, cache: "no-store" });
-    const j = r.ok ? await r.json() : null;
-    if (j && j.ok) AI.server = { chave: !!j.chave, senha: !!j.senha, ia: j.ia || "" };
-  } catch (e) {}
+  // primeiro a conexão nova (Edge Function), depois a antiga
+  for (const url of ["/api/ia", "/api/melhorar"]) {
+    try {
+      const r = await fetch(url, { headers: { accept: "application/json" }, cache: "no-store" });
+      const j = r.ok ? await r.json() : null;
+      if (j && j.ok) { AI.server = { chave: !!j.chave, senha: !!j.senha, ia: j.ia || "" }; AI.endpoint = url; break; }
+    } catch (e) {}
+  }
   renderEngine();
+}
+async function pedirServidor(corpo, signal) {
+  const res = await fetch(AI.endpoint || "/api/ia", {
+    method: "POST", signal,
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ ...corpo, senha: store.get(K_SENHA, "") })
+  });
+  const txt = await res.text();
+  let j = null;
+  try { j = JSON.parse(txt.trim()); } catch (e) { try { j = parseJsonLoose(txt); } catch (e2) {} }
+  if (txt.includes("[[ERRO]]")) throw { code: "srv_ia" };
+  if (!res.ok || !j || j.error) throw { code: "srv_" + ((j && j.error) || res.status), message: (j && j.message) || "" };
+  return j;
 }
 /* ---------------- foto das anotações ---------------- */
 function lerImagem(file) {
@@ -1307,14 +1323,8 @@ async function transcreverNoNavegador(imagens) {
 }
 async function lerUmaFoto(imagem) {
   if (AI.server && AI.server.chave) {
-    const res = await fetch("/api/melhorar", {
-      method: "POST", headers: { "content-type": "application/json" },
-      body: JSON.stringify({ acao: "transcrever", imagens: [imagem], senha: store.get(K_SENHA, "") })
-    });
-    const txt = await res.text();
-    let corpo = null; try { corpo = JSON.parse(txt); } catch (e) {}
-    if (!res.ok) throw { code: "srv_" + ((corpo && corpo.error) || res.status), message: (corpo && corpo.message) || "" };
-    return String((corpo && corpo.texto) || "").trim();
+    const j = await pedirServidor({ acao: "transcrever", imagens: [imagem] });
+    return String((j && j.texto) || "").trim();
   }
   const j = await transcreverNoNavegador([imagem]);
   return String((j && j.texto) || "").trim();
@@ -1366,30 +1376,7 @@ async function lerFotos(files) {
 }
 
 async function callServer(signal) {
-  const res = await fetch("/api/melhorar", {
-    method: "POST", signal,
-    headers: { "content-type": "application/json" },
-    body: JSON.stringify({
-      ditado: ANON.texto,
-      estilo: estiloAtual(),
-      senha: store.get(K_SENHA, "")
-    })
-  });
-  if (!res.ok) {
-    let j = {}; try { j = await res.json(); } catch (e) {}
-    throw { code: "srv_" + (j.error || res.status), message: j.message || "" };
-  }
-  const reader = res.body.getReader(), dec = new TextDecoder();
-  let txt = "";
-  for (;;) {
-    const { done, value } = await reader.read();
-    if (done) break;
-    txt += dec.decode(value, { stream: true });
-    const n = words(txt.replace(/[{}"\[\],:]/g, " "));
-    $("#thinking-txt").textContent = `Escrevendo o relatório… ${n} palavras`;
-  }
-  if (txt.includes("[[ERRO]]")) throw { code: "srv_claude" };
-  return parseJsonLoose(txt);
+  return pedirServidor({ ditado: ANON.texto, estilo: estiloAtual() }, signal);
 }
 async function setupSample() {
   if (!hasClaude()) { renderEngine(); return; }
