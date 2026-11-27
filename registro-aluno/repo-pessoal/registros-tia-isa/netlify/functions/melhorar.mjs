@@ -43,22 +43,43 @@ function iguais(a, b) {
   return d === 0;
 }
 
-function montarPrompt(ditado) {
-  return `Você é uma coordenadora pedagógica experiente da Educação Infantil no Brasil. Uma professora ditou por voz as observações sobre uma criança para o documento "Registro Individual do Aluno" (histórico do desenvolvimento da criança considerando os aspectos social, emocional, psicomotor e cognitivo). O ditado veio de reconhecimento de voz e pode ter erros, palavras trocadas e falta de pontuação.
+function montarPrompt(ditado, estilo) {
+  const comum = `Você é uma coordenadora pedagógica experiente da Educação Infantil no Brasil e vai escrever o texto do "Registro Individual do Aluno" (histórico do desenvolvimento da criança considerando os aspectos social, emocional, psicomotor e cognitivo) a partir das observações da professora. As observações podem ter vindo de voz ou de foto de anotações: podem estar em tópicos, frases soltas, linguagem informal, com erros de reconhecimento e sem pontuação.
 
-Sua tarefa:
-1. Reescrever o ditado como o texto do relatório, em português do Brasil, com linguagem formal, clara e acolhedora, na terceira pessoa.
-2. Corrigir erros de reconhecimento de voz, ortografia, concordância e pontuação. Remover repetições, hesitações e marcas de oralidade (né, tipo, aí, daí, então, é...). Palavras como "vírgula", "ponto" e "novo parágrafo" ditas pela professora são comandos de pontuação, não conteúdo.
-3. Manter TODOS os fatos e observações da professora, com o mesmo sentido. Não inventar comportamentos, diagnósticos, datas, conquistas ou dificuldades que ela não disse.
-4. Organizar em parágrafos coesos (normalmente de 3 a 6), seguindo quando possível esta ordem: adaptação e aspecto social; aspecto emocional; aspecto psicomotor; aspecto cognitivo e linguagem; considerações finais ou encaminhamentos (somente se ela mencionou). Não escreva títulos, tópicos, listas, negrito nem markdown.
-5. Usar vocabulário pedagógico adequado à Educação Infantil (interação, autonomia, coordenação motora fina e ampla, oralidade, linguagem, campos de experiência), sem exageros e sem frases genéricas que não estejam apoiadas no ditado.
-6. Referir-se à criança pelo marcador [NOME] ou como "a criança", respeitando o gênero.
-7. Por privacidade, o nome da criança foi trocado pelo marcador [NOME]. Mantenha [NOME] exatamente assim, com os colchetes, e não tente adivinhar o nome verdadeiro.
-8. Nunca escreva o nome dos pais ou responsáveis. Refira-se a eles sempre de forma geral: "os pais", "a família", "a mãe", "o pai". Se aparecerem os marcadores [PAI] ou [MAE] no ditado, não os copie para o texto.
+REGRA PRINCIPAL — NÃO INVENTAR NADA:
+- Toda informação sobre a criança precisa estar nas observações da professora. Não acrescente fatos, comportamentos, situações, momentos da rotina, atividades, conquistas, dificuldades, falas, datas, números, diagnósticos ou opiniões que ela não registrou.
+- Não compare a criança com o que é "esperado para a idade" e não use linguagem de diagnóstico.
+- Não escreva sobre aspectos que a professora não mencionou. Se ela só falou de dois aspectos, o relatório fala só desses dois.
+- Não prometa ações futuras (atividades, encaminhamentos, intervenções) que ela não citou.
+- Antes de responder, confira frase por frase: cada afirmação sobre a criança precisa ter origem nas observações. Se não tiver, apague a frase.
 
-Também identifique no ditado dados de cadastro, SOMENTE se a professora os disse claramente.
+FORMA:
+- Português do Brasil, terceira pessoa, linguagem formal, clara, acolhedora e respeitosa.
+- Corrija erros de reconhecimento de voz, ortografia, concordância e pontuação. Remova repetições, hesitações e marcas de oralidade (né, tipo, aí, daí, então, é...). As palavras "vírgula", "ponto" e "novo parágrafo" ditas pela professora são comandos de pontuação, não conteúdo.
+- Organize em parágrafos coesos, quando possível nesta ordem: adaptação e aspecto social; aspecto emocional; aspecto psicomotor; aspecto cognitivo e linguagem; considerações finais. Sem títulos, tópicos, listas, negrito ou markdown.
+- Refira-se à criança pelo marcador [NOME] ou como "a criança", respeitando o gênero indicado nas observações (a/o, ela/ele). Mantenha [NOME] exatamente assim, com os colchetes.
+- Nunca escreva o nome dos pais ou responsáveis: use sempre "os pais", "a família", "a mãe" ou "o pai". Não copie os marcadores [PAI] ou [MAE] para o texto.`;
 
-Ditado da professora:
+  const elaborado = `
+COMO DESENVOLVER O TEXTO (estilo: mais elaborado):
+- Transforme cada observação curta em frases completas e bem desenvolvidas, com a escrita de um relatório pedagógico, e não apenas uma correção do que foi escrito.
+- Contextualize o que foi observado: explique, com vocabulário pedagógico da Educação Infantil, o que aquela observação mostra sobre o desenvolvimento da criança naquele aspecto (por exemplo: interação e convivência, autonomia, expressão de sentimentos, coordenação motora ampla e fina, oralidade, atenção, noções de cores, números e letras). Isso é interpretar o que ela registrou, nunca acrescentar fatos novos.
+- Quando fizer sentido, relacione a observação aos campos de experiência da BNCC (O eu, o outro e o nós; Corpo, gestos e movimentos; Traços, sons, cores e formas; Escuta, fala, pensamento e imaginação; Espaços, tempos, quantidades, relações e transformações), de forma natural e sem exagero.
+- Ligue as ideias entre si para o texto fluir. Descreva o que ainda está em desenvolvimento de forma positiva ("vem se desenvolvendo", "está em processo"), sem julgamento.
+- Comece com um parágrafo de abertura apenas com o que a professora registrou sobre a chegada e a adaptação; se ela não falou disso, comece pelo primeiro aspecto que ela observou.
+- Termine com um parágrafo de considerações finais que retome, em síntese, os pontos que ela observou. Só inclua agradecimento ou parceria com a família se ela mencionou.
+- Cada aspecto observado deve virar um parágrafo de cerca de 3 a 5 frases, desde que todo o conteúdo venha das observações.`;
+
+  const fiel = `
+COMO DESENVOLVER O TEXTO (estilo: próximo do que foi escrito):
+- Mantenha o texto próximo das palavras da professora: corrija, pontue, organize em parágrafos e deixe a linguagem formal, sem desenvolver muito além do que ela escreveu.`;
+
+  return `${comum}
+${estilo === "fiel" ? fiel : elaborado}
+
+Também identifique nas observações dados de cadastro, SOMENTE se a professora os escreveu claramente.
+
+Observações da professora:
 """
 ${ditado}
 """
@@ -108,8 +129,9 @@ const PROVEDORES = {
 const MODELOS_FOTO = ["gemini-3.5-flash-lite", "gemini-flash-lite-latest", "gemini-2.5-flash-lite", "gemini-3.5-flash", "gemini-2.5-flash"];
 function configGeracao(modelo, rapido) {
   const cfg = { responseMimeType: "application/json", maxOutputTokens: 8192 };
-  // Gemini 2.5: orçamento de "pensamento" zero deixa a resposta bem mais rápida
-  if (rapido && /^gemini-2\.5-flash/.test(modelo)) cfg.thinkingConfig = { thinkingBudget: 0 };
+  // Menos "pensamento" = resposta bem mais rápida.
+  if (/^gemini-2\.5-flash/.test(modelo)) cfg.thinkingConfig = { thinkingBudget: 0 };
+  else if (!rapido && /^gemini-[3-9]/.test(modelo) && !/lite/.test(modelo)) cfg.thinkingConfig = { thinkingLevel: "low" };
   return cfg;
 }
 
@@ -122,18 +144,22 @@ async function chamarGemini(partes, valido, modelos = PROVEDORES.gemini.modelos(
     const ctl = new AbortController();
     const relogio = setTimeout(() => ctl.abort(), resta);
     try {
+      const pedir = (cfg) => fetch(
+        `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(modelo)}:generateContent?key=${encodeURIComponent(env("GEMINI_API_KEY"))}`, {
+        method: "POST",
+        signal: ctl.signal,
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ contents: [{ role: "user", parts: partes }], generationConfig: cfg })
+      });
       let up;
       try {
-        up = await fetch(
-          `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(modelo)}:generateContent?key=${encodeURIComponent(env("GEMINI_API_KEY"))}`, {
-          method: "POST",
-          signal: ctl.signal,
-          headers: { "content-type": "application/json" },
-          body: JSON.stringify({
-            contents: [{ role: "user", parts: partes }],
-            generationConfig: configGeracao(modelo, rapido)
-          })
-        });
+        const cfg = configGeracao(modelo, rapido);
+        up = await pedir(cfg);
+        // se o modelo não aceitar o ajuste de "pensamento", tenta o mesmo modelo sem ele
+        if (up.status === 400 && cfg.thinkingConfig) {
+          const { thinkingConfig, ...semAjuste } = cfg;
+          up = await pedir(semAjuste);
+        }
       } catch (e) {
         ultimo = { error: "ia", modelo, message: e?.name === "AbortError" ? "A IA demorou demais para responder." : "Sem conexão com a IA." };
         continue;
@@ -252,7 +278,8 @@ export default async (req) => {
   if (ditado.length > LIMITE_DITADO) return json({ error: "grande" }, 413);
 
   // Só o texto do relato vai para a IA; os dados de cadastro ficam no site.
-  const prompt = montarPrompt(ditado);
+  const estilo = body?.estilo === "fiel" ? "fiel" : "elaborado";
+  const prompt = montarPrompt(ditado, estilo);
   if (ia === "gemini") return chamarGemini([{ text: prompt }], relatorioValido);
   const prov = PROVEDORES[ia];
 

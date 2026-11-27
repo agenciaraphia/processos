@@ -314,6 +314,10 @@ details.more .grid { margin-top: 14px; }
 :root:not([data-theme="light"]) .say { color: var(--bubble); }
 :root[data-theme="light"] .say { color: var(--bubble-deep); }
 
+.estilo { display: grid; gap: 8px; }
+.estilo .lbl { font-family: var(--display); font-weight: 600; font-size: .98rem; }
+.estilo .pill[aria-pressed="true"] { border-color: var(--grape); background: var(--grape); }
+.estilo .pill[aria-pressed="true"] .dot { box-shadow: inset 0 0 0 3px var(--grape); }
 .foto-row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 14px; }
 @media (max-width: 560px) { .foto-row { justify-content: center; } }
 .btn-foto { background: var(--card); color: var(--ink); }
@@ -694,6 +698,13 @@ textarea.big:focus { outline: none; border-color: var(--sky); background: var(--
           <div><h2 id="h-texto">Texto do relatório</h2><p>Corrige e organiza em linguagem pedagógica, sem inventar nada.</p></div>
         </div>
         <div class="card-body magic">
+          <div class="estilo">
+            <span class="lbl" id="l-estilo">Como deixar o texto</span>
+            <div class="pills" role="group" aria-labelledby="l-estilo">
+              <button type="button" class="pill" data-estilo="elaborado" aria-pressed="true"><span class="dot"></span>Mais elaborado</button>
+              <button type="button" class="pill" data-estilo="fiel" aria-pressed="false"><span class="dot"></span>Próximo do que escrevi</button>
+            </div>
+          </div>
           <button class="btn btn-grape btn-big" id="btn-improve" type="button">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 2l1.8 4.7L16.5 8.5l-4.7 1.8L10 15l-1.8-4.7L3.5 8.5l4.7-1.8z"/><path d="M18 13l1 2.6 2.6 1-2.6 1L18 20.2l-1-2.6-2.6-1 2.6-1z"/></svg>
             Melhorar o texto
@@ -814,7 +825,8 @@ const store = {
   set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} },
   del(k) { try { localStorage.removeItem(k); } catch (e) {} }
 };
-const K_LIST = "rvc-alunos", K_CUR = "rvc-atual", K_KEY = "rvc-api-key", K_MODEL = "rvc-model", K_SENHA = "rvc-senha";
+const K_LIST = "rvc-alunos", K_CUR = "rvc-atual", K_KEY = "rvc-api-key", K_MODEL = "rvc-model", K_SENHA = "rvc-senha", K_ESTILO = "rvc-estilo";
+const estiloAtual = () => (store.get(K_ESTILO, "elaborado") === "fiel" ? "fiel" : "elaborado");
 const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
 const hasClaude = () => !!(window.claude && typeof window.claude.use === "function");
 
@@ -1379,6 +1391,7 @@ async function callServer(signal) {
     headers: { "content-type": "application/json" },
     body: JSON.stringify({
       ditado: ANON.texto,
+      estilo: estiloAtual(),
       senha: store.get(K_SENHA, "")
     })
   });
@@ -1441,29 +1454,53 @@ function anonimizar() {
 }
 let ANON = { texto: "", restaurar: x => x };
 
-function buildPrompt() {
-  return `Você é uma coordenadora pedagógica experiente da Educação Infantil no Brasil. Uma professora ditou por voz as observações sobre uma criança para o documento "Registro Individual do Aluno" (histórico do desenvolvimento da criança considerando os aspectos social, emocional, psicomotor e cognitivo). O ditado veio de reconhecimento de voz e pode ter erros, palavras trocadas e falta de pontuação.
+function montarPrompt(ditado, estilo) {
+  const comum = `Você é uma coordenadora pedagógica experiente da Educação Infantil no Brasil e vai escrever o texto do "Registro Individual do Aluno" (histórico do desenvolvimento da criança considerando os aspectos social, emocional, psicomotor e cognitivo) a partir das observações da professora. As observações podem ter vindo de voz ou de foto de anotações: podem estar em tópicos, frases soltas, linguagem informal, com erros de reconhecimento e sem pontuação.
 
-Sua tarefa:
-1. Reescrever o ditado como o texto do relatório, em português do Brasil, com linguagem formal, clara e acolhedora, na terceira pessoa.
-2. Corrigir erros de reconhecimento de voz, ortografia, concordância e pontuação. Remover repetições, hesitações e marcas de oralidade (né, tipo, aí, daí, então, é...). Palavras como "vírgula", "ponto" e "novo parágrafo" ditas pela professora são comandos de pontuação, não conteúdo.
-3. Manter TODOS os fatos e observações da professora, com o mesmo sentido. Não inventar comportamentos, diagnósticos, datas, conquistas ou dificuldades que ela não disse.
-4. Organizar em parágrafos coesos (normalmente de 3 a 6), seguindo quando possível esta ordem: adaptação e aspecto social; aspecto emocional; aspecto psicomotor; aspecto cognitivo e linguagem; considerações finais ou encaminhamentos (somente se ela mencionou). Não escreva títulos, tópicos, listas, negrito nem markdown.
-5. Usar vocabulário pedagógico adequado à Educação Infantil (interação, autonomia, coordenação motora fina e ampla, oralidade, linguagem, campos de experiência), sem exageros e sem frases genéricas que não estejam apoiadas no ditado.
-6. Referir-se à criança pelo marcador [NOME] ou como "a criança", respeitando o gênero.
-7. Por privacidade, o nome da criança foi trocado pelo marcador [NOME]. Mantenha [NOME] exatamente assim, com os colchetes, e não tente adivinhar o nome verdadeiro.
-8. Nunca escreva o nome dos pais ou responsáveis. Refira-se a eles sempre de forma geral: "os pais", "a família", "a mãe", "o pai". Se aparecerem os marcadores [PAI] ou [MAE] no ditado, não os copie para o texto.
+REGRA PRINCIPAL — NÃO INVENTAR NADA:
+- Toda informação sobre a criança precisa estar nas observações da professora. Não acrescente fatos, comportamentos, situações, momentos da rotina, atividades, conquistas, dificuldades, falas, datas, números, diagnósticos ou opiniões que ela não registrou.
+- Não compare a criança com o que é "esperado para a idade" e não use linguagem de diagnóstico.
+- Não escreva sobre aspectos que a professora não mencionou. Se ela só falou de dois aspectos, o relatório fala só desses dois.
+- Não prometa ações futuras (atividades, encaminhamentos, intervenções) que ela não citou.
+- Antes de responder, confira frase por frase: cada afirmação sobre a criança precisa ter origem nas observações. Se não tiver, apague a frase.
 
-Também identifique no ditado dados de cadastro, SOMENTE se a professora os disse claramente.
+FORMA:
+- Português do Brasil, terceira pessoa, linguagem formal, clara, acolhedora e respeitosa.
+- Corrija erros de reconhecimento de voz, ortografia, concordância e pontuação. Remova repetições, hesitações e marcas de oralidade (né, tipo, aí, daí, então, é...). As palavras "vírgula", "ponto" e "novo parágrafo" ditas pela professora são comandos de pontuação, não conteúdo.
+- Organize em parágrafos coesos, quando possível nesta ordem: adaptação e aspecto social; aspecto emocional; aspecto psicomotor; aspecto cognitivo e linguagem; considerações finais. Sem títulos, tópicos, listas, negrito ou markdown.
+- Refira-se à criança pelo marcador [NOME] ou como "a criança", respeitando o gênero indicado nas observações (a/o, ela/ele). Mantenha [NOME] exatamente assim, com os colchetes.
+- Nunca escreva o nome dos pais ou responsáveis: use sempre "os pais", "a família", "a mãe" ou "o pai". Não copie os marcadores [PAI] ou [MAE] para o texto.`;
 
-Ditado da professora:
+  const elaborado = `
+COMO DESENVOLVER O TEXTO (estilo: mais elaborado):
+- Transforme cada observação curta em frases completas e bem desenvolvidas, com a escrita de um relatório pedagógico, e não apenas uma correção do que foi escrito.
+- Contextualize o que foi observado: explique, com vocabulário pedagógico da Educação Infantil, o que aquela observação mostra sobre o desenvolvimento da criança naquele aspecto (por exemplo: interação e convivência, autonomia, expressão de sentimentos, coordenação motora ampla e fina, oralidade, atenção, noções de cores, números e letras). Isso é interpretar o que ela registrou, nunca acrescentar fatos novos.
+- Quando fizer sentido, relacione a observação aos campos de experiência da BNCC (O eu, o outro e o nós; Corpo, gestos e movimentos; Traços, sons, cores e formas; Escuta, fala, pensamento e imaginação; Espaços, tempos, quantidades, relações e transformações), de forma natural e sem exagero.
+- Ligue as ideias entre si para o texto fluir. Descreva o que ainda está em desenvolvimento de forma positiva ("vem se desenvolvendo", "está em processo"), sem julgamento.
+- Comece com um parágrafo de abertura apenas com o que a professora registrou sobre a chegada e a adaptação; se ela não falou disso, comece pelo primeiro aspecto que ela observou.
+- Termine com um parágrafo de considerações finais que retome, em síntese, os pontos que ela observou. Só inclua agradecimento ou parceria com a família se ela mencionou.
+- Cada aspecto observado deve virar um parágrafo de cerca de 3 a 5 frases, desde que todo o conteúdo venha das observações.`;
+
+  const fiel = `
+COMO DESENVOLVER O TEXTO (estilo: próximo do que foi escrito):
+- Mantenha o texto próximo das palavras da professora: corrija, pontue, organize em parágrafos e deixe a linguagem formal, sem desenvolver muito além do que ela escreveu.`;
+
+  return `${comum}
+${estilo === "fiel" ? fiel : elaborado}
+
+Também identifique nas observações dados de cadastro, SOMENTE se a professora os escreveu claramente.
+
+Observações da professora:
 """
-${ANON.texto}
+${ditado}
 """
 
 Responda somente com um objeto JSON válido, sem nenhum texto antes ou depois, neste formato:
 {"paragrafos": ["primeiro parágrafo", "segundo parágrafo"], "campos": {"nome": null, "dataNascimento": null, "idade": null, "sexo": null, "nee": null, "tipoNee": null, "ingresso": null, "nomePai": null, "nomeMae": null, "telefone": null}}
 Regras dos campos: use null quando a informação não foi dita; dataNascimento no formato DD/MM/AAAA; sexo "Feminino" ou "Masculino"; nee "Sim" ou "Não"; telefone só com números.`;
+}
+function buildPrompt() {
+  return montarPrompt(ANON.texto, estiloAtual());
 }
 function parseJsonLoose(text) {
   const a = text.indexOf("{"), b = text.lastIndexOf("}");
@@ -1564,6 +1601,11 @@ async function improve() {
   const before = S.texto;
   const btn = $("#btn-improve"); btn.disabled = true;
   $("#thinking").classList.add("on");
+  const t0 = Date.now();
+  const relogioTexto = setInterval(() => {
+    const seg = Math.round((Date.now() - t0) / 1000);
+    $("#thinking-txt").textContent = `Escrevendo o relatório com carinho… ${seg}s` + (seg >= 25 ? " (textos longos podem levar até 1 minuto)" : "");
+  }, 1000);
   AI.ctl = new AbortController();
   ANON = anonimizar();
   let out = null, note = "";
@@ -1603,6 +1645,7 @@ async function improve() {
   } catch (err) {
     if (!(err && (err.code === "cancelled" || err.name === "AbortError"))) toast(errorCopy(err));
   } finally {
+    clearInterval(relogioTexto);
     btn.disabled = false; $("#thinking").classList.remove("on"); AI.ctl = null;
     $("#thinking-txt").textContent = "Escrevendo o relatório com carinho…";
   }
@@ -1850,6 +1893,9 @@ $("#btn-new").addEventListener("click", () => {
   toast("Novo aluno. O anterior ficou salvo em “Meus alunos”.");
 });
 $("#btn-list").addEventListener("click", openDrawer);
+function renderEstilo() { $$("[data-estilo]").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.estilo === estiloAtual()))); }
+$$("[data-estilo]").forEach(b => b.addEventListener("click", () => { store.set(K_ESTILO, b.dataset.estilo); renderEstilo(); }));
+renderEstilo();
 $("#btn-foto").addEventListener("click", () => {
   if (!podeLerFoto()) { toast("Para ler fotos, a IA (Gemini) precisa estar conectada.", 5000); return; }
   if (AI.server && AI.server.senha && !store.get(K_SENHA, "")) { openSettings(); toast("Digite a senha da escola uma vez neste aparelho."); return; }
