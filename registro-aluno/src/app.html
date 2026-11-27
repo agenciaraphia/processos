@@ -1264,19 +1264,19 @@ async function prepararFoto(file) {
   let src;
   try { src = await createImageBitmap(file); } catch (e) { src = await lerImagem(file); }
   const w = src.width || src.naturalWidth, h = src.height || src.naturalHeight;
-  const k = Math.min(1, 2000 / Math.max(w, h));
+  const k = Math.min(1, 1600 / Math.max(w, h));   // 1600 px: leve e ainda nítido para letra à mão
   const c = document.createElement("canvas");
   c.width = Math.round(w * k); c.height = Math.round(h * k);
   const g = c.getContext("2d");
   g.fillStyle = "#FFFFFF"; g.fillRect(0, 0, c.width, c.height);
   g.drawImage(src, 0, 0, c.width, c.height);
-  const blob = await new Promise(r => c.toBlob(r, "image/jpeg", 0.85));
+  const blob = await new Promise(r => c.toBlob(r, "image/jpeg", 0.78));
   const data = await new Promise((ok, falha) => { const fr = new FileReader(); fr.onload = () => ok(String(fr.result).split(",")[1]); fr.onerror = falha; fr.readAsDataURL(blob); });
   return { mime: "image/jpeg", data };
 }
 function podeLerFoto() { return !!((AI.server && AI.server.chave) || (apiKey() && keyIsGemini(apiKey()))); }
 async function transcreverNoNavegador(imagens) {
-  const lista = [...new Set([store.get(K_MODEL, ""), GEMINI_MODEL, "gemini-3.5-flash", "gemini-2.5-flash", "gemini-flash-latest"].filter(Boolean))];
+  const lista = ["gemini-3.5-flash-lite", "gemini-flash-lite-latest", "gemini-2.5-flash-lite", "gemini-3.5-flash", "gemini-2.5-flash"];
   let erro;
   for (const model of lista) {
     const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent?key=${encodeURIComponent(apiKey())}`, {
@@ -1293,41 +1293,62 @@ async function transcreverNoNavegador(imagens) {
   }
   throw erro || { code: "invalid_json" };
 }
+async function lerUmaFoto(imagem) {
+  if (AI.server && AI.server.chave) {
+    const res = await fetch("/api/melhorar", {
+      method: "POST", headers: { "content-type": "application/json" },
+      body: JSON.stringify({ acao: "transcrever", imagens: [imagem], senha: store.get(K_SENHA, "") })
+    });
+    const txt = await res.text();
+    let corpo = null; try { corpo = JSON.parse(txt); } catch (e) {}
+    if (!res.ok) throw { code: "srv_" + ((corpo && corpo.error) || res.status), message: (corpo && corpo.message) || "" };
+    return String((corpo && corpo.texto) || "").trim();
+  }
+  const j = await transcreverNoNavegador([imagem]);
+  return String((j && j.texto) || "").trim();
+}
 async function lerFotos(files) {
   const lista = [...files].filter(f => /^image\//.test(f.type) || /\.(jpe?g|png|heic|heif|webp)$/i.test(f.name)).slice(0, 4);
   if (!lista.length) return;
   if (files.length > 4) toast("Usei as 4 primeiras fotos. Envie as outras depois.");
   if (V.on) stopListening();
-  const st = $("#foto-status"), btn = $("#btn-foto");
+  const st = $("#foto-status"), btn = $("#btn-foto"), txt = $("#foto-txt");
   btn.disabled = true; st.hidden = false;
-  $("#foto-txt").textContent = lista.length > 1 ? `Lendo ${lista.length} fotos…` : "Lendo a foto…";
+  const inicio = Date.now();
+  let prontas = 0;
+  const atualizar = () => {
+    const seg = Math.round((Date.now() - inicio) / 1000);
+    txt.textContent = (lista.length > 1 ? `Lendo as fotos… ${prontas} de ${lista.length}` : "Lendo a foto…") + (seg >= 3 ? ` (${seg}s)` : "");
+  };
+  atualizar();
+  const relogio = setInterval(atualizar, 1000);
   try {
-    const imagens = [];
-    for (const f of lista) imagens.push(await prepararFoto(f));
-    let j;
-    if (AI.server && AI.server.chave) {
-      const res = await fetch("/api/melhorar", {
-        method: "POST", headers: { "content-type": "application/json" },
-        body: JSON.stringify({ acao: "transcrever", imagens, senha: store.get(K_SENHA, "") })
-      });
-      const txt = await res.text();
-      let corpo = null; try { corpo = JSON.parse(txt); } catch (e) {}
-      if (!res.ok) throw { code: "srv_" + ((corpo && corpo.error) || res.status), message: (corpo && corpo.message) || "" };
-      j = corpo;
-    } else {
-      j = await transcreverNoNavegador(imagens);
+    // prepara e lê todas as fotos ao mesmo tempo; o texto entra na ordem em que foram escolhidas
+    const resultados = await Promise.allSettled(lista.map(async f => {
+      const t = await lerUmaFoto(await prepararFoto(f));
+      prontas++; atualizar();
+      return t;
+    }));
+    const textos = resultados.filter(r => r.status === "fulfilled" && r.value).map(r => r.value);
+    const falhas = resultados.filter(r => r.status === "rejected");
+    if (!textos.length) {
+      if (falhas.length) throw falhas[0].reason;
+      toast("Não achei texto legível na foto. Tente com mais luz e a folha inteira aparecendo.", 6000);
+      return;
     }
-    const texto = String((j && j.texto) || "").trim();
-    if (!texto) { toast("Não achei texto legível na foto. Tente com mais luz e a folha inteira aparecendo.", 6000); return; }
     const el = $("#f-ditado");
-    escrever(el, el.value.trim() ? el.value.replace(/\s+$/, "") + "\n\n" + texto : texto);
+    const novo = textos.join("\n\n");
+    escrever(el, el.value.trim() ? el.value.replace(/\s+$/, "") + "\n\n" + novo : novo);
     el.scrollIntoView({ behavior: "smooth", block: "center" });
-    toast("Texto da foto adicionado. Confira e depois toque em “Melhorar o texto”.", 5000);
+    toast(falhas.length
+      ? `Li ${textos.length} de ${lista.length} fotos. Tente de novo a que faltou.`
+      : "Texto da foto adicionado. Confira e depois toque em “Melhorar o texto”.", 6000);
   } catch (e) {
     if (e && e.code === "srv_senha") { store.del(K_SENHA); openSettings(); }
     const proprio = e && (e.code === "srv_grande" || e.code === "srv_vazio") && e.message;
     toast(e && e.message === "imagem" ? "Não consegui abrir essa foto. Tente tirar outra." : proprio ? e.message : errorCopy(e), 7000);
   } finally {
+    clearInterval(relogio);
     btn.disabled = false; st.hidden = true;
   }
 }

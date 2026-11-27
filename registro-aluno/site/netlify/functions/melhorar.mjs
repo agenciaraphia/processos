@@ -104,10 +104,19 @@ const PROVEDORES = {
 
 // Gemini: espera a resposta inteira, confere se o texto veio certo e,
 // se algo falhar (lotado, vazio, cortado), tenta o próximo modelo.
-async function chamarGemini(partes, valido) {
+// Para ler foto: modelos "Lite" primeiro (os mais rápidos), sem a etapa de "pensar".
+const MODELOS_FOTO = ["gemini-3.5-flash-lite", "gemini-flash-lite-latest", "gemini-2.5-flash-lite", "gemini-3.5-flash", "gemini-2.5-flash"];
+function configGeracao(modelo, rapido) {
+  const cfg = { responseMimeType: "application/json", maxOutputTokens: 8192 };
+  // Gemini 2.5: orçamento de "pensamento" zero deixa a resposta bem mais rápida
+  if (rapido && /^gemini-2\.5-flash/.test(modelo)) cfg.thinkingConfig = { thinkingBudget: 0 };
+  return cfg;
+}
+
+async function chamarGemini(partes, valido, modelos = PROVEDORES.gemini.modelos(), rapido = false) {
   const inicio = Date.now();
   let ultimo = null;
-  for (const modelo of PROVEDORES.gemini.modelos()) {
+  for (const modelo of modelos) {
     const resta = 50000 - (Date.now() - inicio); // a função do Netlify tem até 60 s
     if (resta < 8000) break;
     const ctl = new AbortController();
@@ -122,7 +131,7 @@ async function chamarGemini(partes, valido) {
           headers: { "content-type": "application/json" },
           body: JSON.stringify({
             contents: [{ role: "user", parts: partes }],
-            generationConfig: { responseMimeType: "application/json", maxOutputTokens: 8192 }
+            generationConfig: configGeracao(modelo, rapido)
           })
         });
       } catch (e) {
@@ -205,7 +214,8 @@ async function transcreverFotos(ia, body) {
     }
   }
   if (ia === "gemini") {
-    return chamarGemini([{ text: PROMPT_FOTO }, ...fotos.map((f) => ({ inline_data: { mime_type: f.mime, data: f.data } }))], transcricaoValida);
+    const fotoModelos = [...new Set([env("GEMINI_MODEL_FOTO"), ...MODELOS_FOTO].filter(Boolean))];
+    return chamarGemini([{ text: PROMPT_FOTO }, ...fotos.map((f) => ({ inline_data: { mime_type: f.mime, data: f.data } }))], transcricaoValida, fotoModelos, true);
   }
   return chamarClaudeSimples([
     ...fotos.map((f) => ({ type: "image", source: { type: "base64", media_type: f.mime, data: f.data } })),
