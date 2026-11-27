@@ -104,7 +104,7 @@ const PROVEDORES = {
 
 // Gemini: espera a resposta inteira, confere se o texto veio certo e,
 // se algo falhar (lotado, vazio, cortado), tenta o próximo modelo.
-async function chamarGemini(prompt) {
+async function chamarGemini(partes, valido) {
   const inicio = Date.now();
   let ultimo = null;
   for (const modelo of PROVEDORES.gemini.modelos()) {
@@ -121,7 +121,7 @@ async function chamarGemini(prompt) {
           signal: ctl.signal,
           headers: { "content-type": "application/json" },
           body: JSON.stringify({
-            contents: [{ role: "user", parts: [{ text: prompt }] }],
+            contents: [{ role: "user", parts: partes }],
             generationConfig: { responseMimeType: "application/json", maxOutputTokens: 8192 }
           })
         });
@@ -140,7 +140,7 @@ async function chamarGemini(prompt) {
       const texto = (cand?.content?.parts || []).filter((p) => !p.thought && typeof p.text === "string").map((p) => p.text).join("");
       try {
         const j = JSON.parse(texto.slice(texto.indexOf("{"), texto.lastIndexOf("}") + 1));
-        if (Array.isArray(j.paragrafos) && j.paragrafos.some((p) => typeof p === "string" && p.trim())) {
+        if (valido(j)) {
           return new Response(JSON.stringify(j), {
             headers: { "content-type": "text/plain; charset=utf-8", "cache-control": "no-store", "x-modelo": modelo }
           });
@@ -154,6 +154,63 @@ async function chamarGemini(prompt) {
   }
   console.error("Gemini falhou:", JSON.stringify(ultimo));
   return json(ultimo || { error: "ia", message: "Nenhum modelo respondeu." }, 502);
+}
+
+const relatorioValido = (j) => Array.isArray(j?.paragrafos) && j.paragrafos.some((p) => typeof p === "string" && p.trim());
+const transcricaoValida = (j) => typeof j?.texto === "string"; // texto vazio = foto sem nada legível (resposta válida)
+
+const PROMPT_FOTO = `Você vai receber foto(s) de anotações de uma professora de Educação Infantil sobre uma criança (pode ser letra à mão, caderno, folha ou texto impresso).
+
+Transcreva o texto exatamente como está escrito, em português do Brasil, na ordem em que aparece (se houver mais de uma foto, na ordem das fotos).
+- Não resuma, não melhore e não invente nada: só transcreva.
+- Corrija apenas letras que ficaram claramente borradas, escolhendo a palavra mais provável pelo contexto.
+- Se um trecho estiver ilegível, escreva [ilegível].
+- Ignore rabiscos, desenhos, margens e textos que não fazem parte das anotações.
+- Separe parágrafos com uma linha em branco.
+
+Responda somente com um objeto JSON válido neste formato: {"texto": "o texto transcrito"}
+Se não houver texto legível, responda {"texto": ""}.`;
+
+// Claude (opcional): pedido simples, sem streaming, usado para ler fotos
+async function chamarClaudeSimples(content, valido) {
+  let up;
+  try {
+    up = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: { "content-type": "application/json", "x-api-key": env("ANTHROPIC_API_KEY"), "anthropic-version": "2023-06-01" },
+      body: JSON.stringify({ model: env("CLAUDE_MODEL") || MODELOS.claude, max_tokens: 4096, messages: [{ role: "user", content }] })
+    });
+  } catch { return json({ error: "ia", message: "Sem conexão com a IA." }, 502); }
+  if (!up.ok) return json(await lerErro(up), 502);
+  const data = await up.json().catch(() => null);
+  const texto = (data?.content || []).filter((c) => c.type === "text").map((c) => c.text).join("");
+  try {
+    const j = JSON.parse(texto.slice(texto.indexOf("{"), texto.lastIndexOf("}") + 1));
+    if (valido(j)) return new Response(JSON.stringify(j), { headers: { "content-type": "text/plain; charset=utf-8", "cache-control": "no-store" } });
+  } catch {}
+  return json({ error: "ia", message: "A IA não devolveu o texto da foto." }, 502);
+}
+
+const FOTO_TIPOS = new Set(["image/jpeg", "image/png", "image/webp"]);
+const FOTO_MAX = 4;                 // fotos por pedido
+const FOTO_TAMANHO = 3_000_000;     // caracteres de base64 por foto (~2,2 MB)
+
+async function transcreverFotos(ia, body) {
+  const fotos = Array.isArray(body?.imagens) ? body.imagens : [];
+  if (!fotos.length) return json({ error: "vazio", message: "Nenhuma foto enviada." }, 400);
+  if (fotos.length > FOTO_MAX) return json({ error: "grande", message: `Envie no máximo ${FOTO_MAX} fotos por vez.` }, 413);
+  for (const f of fotos) {
+    if (!f || !FOTO_TIPOS.has(f.mime) || typeof f.data !== "string" || !f.data || f.data.length > FOTO_TAMANHO) {
+      return json({ error: "grande", message: "Foto em formato não aceito ou grande demais." }, 413);
+    }
+  }
+  if (ia === "gemini") {
+    return chamarGemini([{ text: PROMPT_FOTO }, ...fotos.map((f) => ({ inline_data: { mime_type: f.mime, data: f.data } }))], transcricaoValida);
+  }
+  return chamarClaudeSimples([
+    ...fotos.map((f) => ({ type: "image", source: { type: "base64", media_type: f.mime, data: f.data } })),
+    { type: "text", text: PROMPT_FOTO }
+  ], transcricaoValida);
 }
 
 async function lerErro(up) {
@@ -177,13 +234,16 @@ export default async (req) => {
   try { body = await req.json(); } catch { return json({ error: "pedido" }, 400); }
   if (senha && !iguais(body?.senha || "", senha)) return json({ error: "senha" }, 401);
 
+  // Foto das anotações: a IA só transcreve o texto
+  if (body?.acao === "transcrever") return transcreverFotos(ia, body);
+
   const ditado = String(body?.ditado || "").trim();
   if (!ditado) return json({ error: "vazio" }, 400);
   if (ditado.length > LIMITE_DITADO) return json({ error: "grande" }, 413);
 
   // Só o texto do relato vai para a IA; os dados de cadastro ficam no site.
   const prompt = montarPrompt(ditado);
-  if (ia === "gemini") return chamarGemini(prompt);
+  if (ia === "gemini") return chamarGemini([{ text: prompt }], relatorioValido);
   const prov = PROVEDORES[ia];
 
   let up = null, ultimoErro = null;

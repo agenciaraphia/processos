@@ -314,6 +314,11 @@ details.more .grid { margin-top: 14px; }
 :root:not([data-theme="light"]) .say { color: var(--bubble); }
 :root[data-theme="light"] .say { color: var(--bubble-deep); }
 
+.foto-row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 14px; }
+@media (max-width: 560px) { .foto-row { justify-content: center; } }
+.btn-foto { background: var(--card); color: var(--ink); }
+.btn-foto svg { color: var(--bubble-deep); }
+.foto-status { display: inline-flex; align-items: center; gap: 10px; font-weight: 800; }
 .mic-help { border-radius: var(--r-lg); background: var(--tint-sun); padding: 18px 20px; margin-bottom: 18px; display: grid; gap: 10px; }
 .mic-help b { font-family: var(--display); font-size: 1.15rem; font-weight: 600; }
 .mic-help ol { margin: 0; padding-left: 22px; display: grid; gap: 6px; font-weight: 600; }
@@ -646,6 +651,14 @@ textarea.big:focus { outline: none; border-color: var(--sky); background: var(--
             <div class="talk-copy">
               <h3 id="mic-title">Toque no microfone e fale</h3>
               <p id="mic-sub">Para pontuar, diga <span class="say">vírgula</span>, <span class="say">ponto</span> ou <span class="say">novo parágrafo</span>. Não precisa sair perfeito: o texto é arrumado no passo 3.</p>
+              <div class="foto-row">
+                <button class="btn btn-foto" id="btn-foto" type="button">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13" r="3.6"/></svg>
+                  Ler foto das anotações
+                </button>
+                <input type="file" id="f-foto" accept="image/*" multiple hidden>
+                <span class="foto-status" id="foto-status" hidden><span class="dots"><i></i><i></i><i></i></span><span id="foto-txt">Lendo a foto…</span></span>
+              </div>
             </div>
           </div>
           <div class="mic-help" id="mic-help" hidden role="alert">
@@ -1258,6 +1271,87 @@ async function setupServer() {
   } catch (e) {}
   renderEngine();
 }
+/* ---------------- foto das anotações ---------------- */
+function lerImagem(file) {
+  return new Promise((ok, falha) => {
+    const url = URL.createObjectURL(file), img = new Image();
+    img.onload = () => { ok(img); setTimeout(() => URL.revokeObjectURL(url), 1000); };
+    img.onerror = () => { URL.revokeObjectURL(url); falha(new Error("imagem")); };
+    img.src = url;
+  });
+}
+async function prepararFoto(file) {
+  let src;
+  try { src = await createImageBitmap(file); } catch (e) { src = await lerImagem(file); }
+  const w = src.width || src.naturalWidth, h = src.height || src.naturalHeight;
+  const k = Math.min(1, 2000 / Math.max(w, h));
+  const c = document.createElement("canvas");
+  c.width = Math.round(w * k); c.height = Math.round(h * k);
+  const g = c.getContext("2d");
+  g.fillStyle = "#FFFFFF"; g.fillRect(0, 0, c.width, c.height);
+  g.drawImage(src, 0, 0, c.width, c.height);
+  const blob = await new Promise(r => c.toBlob(r, "image/jpeg", 0.85));
+  const data = await new Promise((ok, falha) => { const fr = new FileReader(); fr.onload = () => ok(String(fr.result).split(",")[1]); fr.onerror = falha; fr.readAsDataURL(blob); });
+  return { mime: "image/jpeg", data };
+}
+function podeLerFoto() { return !!((AI.server && AI.server.chave) || (apiKey() && keyIsGemini(apiKey()))); }
+async function transcreverNoNavegador(imagens) {
+  const lista = [...new Set([store.get(K_MODEL, ""), GEMINI_MODEL, "gemini-3.5-flash", "gemini-2.5-flash", "gemini-flash-latest"].filter(Boolean))];
+  let erro;
+  for (const model of lista) {
+    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent?key=${encodeURIComponent(apiKey())}`, {
+      method: "POST", headers: { "content-type": "application/json" },
+      body: JSON.stringify({
+        contents: [{ role: "user", parts: [{ text: "Transcreva exatamente o texto das anotações nas fotos, em português do Brasil, sem resumir nem melhorar. Use [ilegível] onde não der para ler. Separe parágrafos com linha em branco. Responda só JSON: {\"texto\": \"...\"}" }, ...imagens.map(f => ({ inline_data: { mime_type: f.mime, data: f.data } }))] }],
+        generationConfig: { responseMimeType: "application/json", maxOutputTokens: 8192 }
+      })
+    });
+    if (!res.ok) { let m = ""; try { m = (await res.json()).error?.message || ""; } catch (e) {} erro = { code: "http_" + res.status, message: m }; if ([429, 500, 503, 504, 404].includes(res.status)) continue; throw erro; }
+    const d = await res.json();
+    const t = (d.candidates?.[0]?.content?.parts || []).filter(p => !p.thought && typeof p.text === "string").map(p => p.text).join("");
+    try { const j = parseJsonLoose(t); if (typeof j.texto === "string") return j; } catch (e) { erro = e; }
+  }
+  throw erro || { code: "invalid_json" };
+}
+async function lerFotos(files) {
+  const lista = [...files].filter(f => /^image\//.test(f.type) || /\.(jpe?g|png|heic|heif|webp)$/i.test(f.name)).slice(0, 4);
+  if (!lista.length) return;
+  if (files.length > 4) toast("Usei as 4 primeiras fotos. Envie as outras depois.");
+  if (V.on) stopListening();
+  const st = $("#foto-status"), btn = $("#btn-foto");
+  btn.disabled = true; st.hidden = false;
+  $("#foto-txt").textContent = lista.length > 1 ? `Lendo ${lista.length} fotos…` : "Lendo a foto…";
+  try {
+    const imagens = [];
+    for (const f of lista) imagens.push(await prepararFoto(f));
+    let j;
+    if (AI.server && AI.server.chave) {
+      const res = await fetch("/api/melhorar", {
+        method: "POST", headers: { "content-type": "application/json" },
+        body: JSON.stringify({ acao: "transcrever", imagens, senha: store.get(K_SENHA, "") })
+      });
+      const txt = await res.text();
+      let corpo = null; try { corpo = JSON.parse(txt); } catch (e) {}
+      if (!res.ok) throw { code: "srv_" + ((corpo && corpo.error) || res.status), message: (corpo && corpo.message) || "" };
+      j = corpo;
+    } else {
+      j = await transcreverNoNavegador(imagens);
+    }
+    const texto = String((j && j.texto) || "").trim();
+    if (!texto) { toast("Não achei texto legível na foto. Tente com mais luz e a folha inteira aparecendo.", 6000); return; }
+    const el = $("#f-ditado");
+    escrever(el, el.value.trim() ? el.value.replace(/\s+$/, "") + "\n\n" + texto : texto);
+    el.scrollIntoView({ behavior: "smooth", block: "center" });
+    toast("Texto da foto adicionado. Confira e depois toque em “Melhorar o texto”.", 5000);
+  } catch (e) {
+    if (e && e.code === "srv_senha") { store.del(K_SENHA); openSettings(); }
+    const proprio = e && (e.code === "srv_grande" || e.code === "srv_vazio") && e.message;
+    toast(e && e.message === "imagem" ? "Não consegui abrir essa foto. Tente tirar outra." : proprio ? e.message : errorCopy(e), 7000);
+  } finally {
+    btn.disabled = false; st.hidden = true;
+  }
+}
+
 async function callServer(signal) {
   const res = await fetch("/api/melhorar", {
     method: "POST", signal,
@@ -1735,6 +1829,12 @@ $("#btn-new").addEventListener("click", () => {
   toast("Novo aluno. O anterior ficou salvo em “Meus alunos”.");
 });
 $("#btn-list").addEventListener("click", openDrawer);
+$("#btn-foto").addEventListener("click", () => {
+  if (!podeLerFoto()) { toast("Para ler fotos, a IA (Gemini) precisa estar conectada.", 5000); return; }
+  if (AI.server && AI.server.senha && !store.get(K_SENHA, "")) { openSettings(); toast("Digite a senha da escola uma vez neste aparelho."); return; }
+  $("#f-foto").click();
+});
+$("#f-foto").addEventListener("change", e => { const fs = e.target.files; if (fs && fs.length) lerFotos(fs); e.target.value = ""; });
 $("#btn-backup").addEventListener("click", backup);
 $("#btn-restore").addEventListener("click", () => $("#f-restore").click());
 $("#f-restore").addEventListener("change", e => { const f = e.target.files && e.target.files[0]; if (f) restore(f); e.target.value = ""; });
