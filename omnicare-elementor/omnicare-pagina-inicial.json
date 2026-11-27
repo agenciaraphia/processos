@@ -187,7 +187,7 @@
               "id": "85f1db4",
               "elType": "widget",
               "settings": {
-                "title": "Saúde, movimento e <em>qualidade de vida</em>",
+                "title": "Saúde, movimento e qualidade de vida",
                 "header_size": "h1",
                 "title_color": "#ffffff",
                 "_css_classes": "omni-title",
@@ -1549,7 +1549,7 @@
               "id": "7b7e48b",
               "elType": "widget",
               "settings": {
-                "title": "A saúde não se resume a <em>tratar sintomas</em>",
+                "title": "A saúde não se resume a tratar sintomas",
                 "header_size": "h2",
                 "align": "left",
                 "title_color": "#1f3329",
@@ -2085,7 +2085,7 @@
                   "id": "90e80d0",
                   "elType": "widget",
                   "settings": {
-                    "title": "Na Omnicare, <em>você encontra</em>",
+                    "title": "Na Omnicare, você encontra",
                     "header_size": "h2",
                     "align": "left",
                     "title_color": "#1f3329",
@@ -3143,7 +3143,7 @@
               "id": "a013e61",
               "elType": "widget",
               "settings": {
-                "title": "Um cuidado que considera <em>você por inteiro</em>",
+                "title": "Um cuidado que considera você por inteiro",
                 "header_size": "h2",
                 "align": "left",
                 "title_color": "#1f3329",
@@ -3547,7 +3547,7 @@
               "id": "273956b",
               "elType": "widget",
               "settings": {
-                "title": "Veja o que falam <em>os nossos pacientes</em>",
+                "title": "Veja o que falam os nossos pacientes",
                 "header_size": "h2",
                 "align": "center",
                 "title_color": "#1f3329",
@@ -3764,7 +3764,7 @@
               "id": "cd9bddd",
               "elType": "widget",
               "settings": {
-                "title": "Conheça nossos <em>profissionais</em>",
+                "title": "Conheça nossos profissionais",
                 "header_size": "h2",
                 "align": "center",
                 "title_color": "#1f3329",
@@ -4488,7 +4488,7 @@
               "id": "a1dafde",
               "elType": "widget",
               "settings": {
-                "title": "Principais <em>dúvidas</em>",
+                "title": "Principais dúvidas",
                 "header_size": "h2",
                 "align": "left",
                 "title_color": "#1f3329",
@@ -5011,7 +5011,7 @@
                   "id": "fc29a68",
                   "elType": "widget",
                   "settings": {
-                    "title": "Sua saúde merece <em>um olhar completo.</em>",
+                    "title": "Sua saúde merece um olhar completo.",
                     "header_size": "h2",
                     "align": "left",
                     "title_color": "#ffffff",
@@ -5198,6 +5198,6 @@
     "hide_title": "yes",
     "background_background": "classic",
     "background_color": "#f9f7f0",
-    "custom_css": "/* Omnicare — estilos globais da página */\nhtml{scroll-behavior:smooth;scroll-padding-top:100px}\n.omni-title .elementor-heading-title em{font-style:italic;color:#428265}\n.omni-on-dark .omni-title .elementor-heading-title em,\n.omni-hero .omni-title .elementor-heading-title em{color:#fae6cb}\n.elementor-widget-text-editor strong{font-weight:700}\n.omni-on-dark .elementor-widget-text-editor p:last-child{margin-bottom:0}\n.omni-btn .elementor-button{transition:background-color .2s ease,color .2s ease,border-color .2s ease,transform .16s ease-out}\n.omni-btn .elementor-button:active{transform:scale(.97)}\n.omni-card{transition:box-shadow .3s ease,transform .3s cubic-bezier(.23,1,.32,1)}\n@media (hover:hover) and (pointer:fine){\n  .omni-card:hover{transform:translateY(-4px);box-shadow:0 26px 50px -30px rgba(31,51,41,.35)}\n}\n@media (min-width:1025px){.omni-sticky{position:sticky;top:120px}}\na:focus-visible,.elementor-button:focus-visible,.elementor-tab-title:focus-visible{outline:2px solid #428265;outline-offset:4px}\n/* Animações de entrada: suaves e curtas */\n.elementor-element.animated.fadeInUp{animation-name:omniRise;animation-duration:.8s;animation-timing-function:cubic-bezier(.23,1,.32,1)}\n.elementor-element.animated.fadeIn{animation-duration:1s;animation-timing-function:cubic-bezier(.23,1,.32,1)}\n@keyframes omniRise{from{opacity:0;transform:translate3d(0,18px,0)}to{opacity:1;transform:none}}\n@media (prefers-reduced-motion:reduce){\n  html{scroll-behavior:auto}\n  .elementor-element.animated{animation:none!important}\n  .omni-card,.omni-card:hover,.omni-btn .elementor-button:active{transform:none!important}\n}\n"
+    "custom_css": "/* Omnicare — estilos globais da página */\nhtml{scroll-behavior:smooth;scroll-padding-top:100px}\n.elementor-widget-text-editor strong{font-weight:700}\n.omni-on-dark .elementor-widget-text-editor p:last-child{margin-bottom:0}\n.omni-btn .elementor-button{transition:background-color .2s ease,color .2s ease,border-color .2s ease,transform .16s ease-out}\n.omni-btn .elementor-button:active{transform:scale(.97)}\n.omni-card{transition:box-shadow .3s ease,transform .3s cubic-bezier(.23,1,.32,1)}\n@media (hover:hover) and (pointer:fine){\n  .omni-card:hover{transform:translateY(-4px);box-shadow:0 26px 50px -30px rgba(31,51,41,.35)}\n}\n@media (min-width:1025px){.omni-sticky{position:sticky;top:120px}}\na:focus-visible,.elementor-button:focus-visible,.elementor-tab-title:focus-visible{outline:2px solid #428265;outline-offset:4px}\n/* Animações de entrada: suaves e curtas */\n.elementor-element.animated.fadeInUp{animation-name:omniRise;animation-duration:.8s;animation-timing-function:cubic-bezier(.23,1,.32,1)}\n.elementor-element.animated.fadeIn{animation-duration:1s;animation-timing-function:cubic-bezier(.23,1,.32,1)}\n@keyframes omniRise{from{opacity:0;transform:translate3d(0,18px,0)}to{opacity:1;transform:none}}\n@media (prefers-reduced-motion:reduce){\n  html{scroll-behavior:auto}\n  .elementor-element.animated{animation:none!important}\n  .omni-card,.omni-card:hover,.omni-btn .elementor-button:active{transform:none!important}\n}\n"
   }
 }
