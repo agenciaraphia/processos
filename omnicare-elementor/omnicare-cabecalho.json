@@ -1,0 +1,264 @@
+{
+  "version": "0.4",
+  "title": "Omnicare — Cabeçalho",
+  "type": "header",
+  "content": [
+    {
+      "id": "ef03e86",
+      "elType": "container",
+      "settings": {
+        "content_width": "boxed",
+        "boxed_width": {
+          "unit": "px",
+          "size": 1240,
+          "sizes": []
+        },
+        "html_tag": "header",
+        "flex_direction": "row",
+        "flex_align_items": "center",
+        "flex_justify_content": "space-between",
+        "flex_gap": {
+          "column": "24",
+          "row": "24",
+          "isLinked": true,
+          "unit": "px",
+          "size": 24
+        },
+        "background_background": "classic",
+        "background_color": "rgba(249,247,240,0.88)",
+        "border_border": "solid",
+        "border_width": {
+          "unit": "px",
+          "top": "0",
+          "right": "0",
+          "bottom": "1",
+          "left": "0",
+          "isLinked": false
+        },
+        "border_color": "#e6dfcd",
+        "padding": {
+          "unit": "px",
+          "top": "16",
+          "right": "24",
+          "bottom": "16",
+          "left": "24",
+          "isLinked": false
+        },
+        "padding_mobile": {
+          "unit": "px",
+          "top": "12",
+          "right": "20",
+          "bottom": "12",
+          "left": "20",
+          "isLinked": false
+        },
+        "sticky": "top",
+        "sticky_on": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "sticky_offset": 0,
+        "sticky_effects_offset": 40,
+        "z_index": 99,
+        "custom_css": "selector{backdrop-filter:saturate(140%) blur(10px);-webkit-backdrop-filter:saturate(140%) blur(10px);transition:box-shadow .3s ease,background-color .3s ease}\nselector.elementor-sticky--effects{background-color:rgba(249,247,240,.96)!important;box-shadow:0 10px 30px -18px rgba(31,42,35,.18)}\n"
+      },
+      "elements": [
+        {
+          "id": "554162f",
+          "elType": "widget",
+          "settings": {
+            "image_size": "full",
+            "align": "left",
+            "width": {
+              "unit": "px",
+              "size": 150,
+              "sizes": []
+            },
+            "width_tablet": {
+              "unit": "px",
+              "size": 140,
+              "sizes": []
+            },
+            "width_mobile": {
+              "unit": "px",
+              "size": 120,
+              "sizes": []
+            },
+            "_element_width": "initial",
+            "_element_custom_width": {
+              "unit": "px",
+              "size": 150,
+              "sizes": []
+            },
+            "_element_custom_width_tablet": {
+              "unit": "px",
+              "size": 140,
+              "sizes": []
+            },
+            "_element_custom_width_mobile": {
+              "unit": "px",
+              "size": 120,
+              "sizes": []
+            }
+          },
+          "elements": [],
+          "widgetType": "theme-site-logo"
+        },
+        {
+          "id": "ba20f3a",
+          "elType": "widget",
+          "settings": {
+            "menu": "",
+            "layout": "horizontal",
+            "align_items": "right",
+            "pointer": "underline",
+            "animation_line": "fade",
+            "dropdown": "tablet",
+            "toggle": "burger",
+            "full_width": "stretch",
+            "text_align": "center",
+            "toggle_align": "right",
+            "color_menu_item": "#1f2a23",
+            "color_menu_item_hover": "#395946",
+            "pointer_color_menu_item_hover": "#428265",
+            "color_menu_item_active": "#395946",
+            "pointer_color_menu_item_active": "#428265",
+            "padding_horizontal_menu_item": {
+              "unit": "px",
+              "size": 16,
+              "sizes": []
+            },
+            "padding_vertical_menu_item": {
+              "unit": "px",
+              "size": 10,
+              "sizes": []
+            },
+            "pointer_width": {
+              "unit": "px",
+              "size": 1,
+              "sizes": []
+            },
+            "color_dropdown_item": "#1f2a23",
+            "background_color_dropdown_item": "#f9f7f0",
+            "color_dropdown_item_hover": "#395946",
+            "background_color_dropdown_item_hover": "#fae6cb",
+            "padding_vertical_dropdown_item": {
+              "unit": "px",
+              "size": 16,
+              "sizes": []
+            },
+            "dropdown_top_distance": {
+              "unit": "px",
+              "size": 18,
+              "sizes": []
+            },
+            "toggle_color": "#395946",
+            "toggle_background_color": "rgba(0,0,0,0)",
+            "toggle_size": {
+              "unit": "px",
+              "size": 26,
+              "sizes": []
+            },
+            "_css_classes": "omni-nav",
+            "_flex_size": "grow",
+            "menu_typography_typography": "custom",
+            "menu_typography_font_family": "Jost",
+            "menu_typography_font_size": {
+              "unit": "px",
+              "size": 15,
+              "sizes": []
+            },
+            "menu_typography_font_weight": "500",
+            "menu_typography_letter_spacing": {
+              "unit": "px",
+              "size": 0.3,
+              "sizes": []
+            },
+            "dropdown_typography_typography": "custom",
+            "dropdown_typography_font_family": "Jost",
+            "dropdown_typography_font_size": {
+              "unit": "px",
+              "size": 17,
+              "sizes": []
+            },
+            "dropdown_typography_font_weight": "500"
+          },
+          "elements": [],
+          "widgetType": "nav-menu"
+        },
+        {
+          "id": "4d89ea1",
+          "elType": "widget",
+          "settings": {
+            "text": "Agendar consulta",
+            "link": {
+              "url": "https://wa.me/5585992449528?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20consulta%20na%20Omnicare.",
+              "is_external": "on",
+              "nofollow": "",
+              "custom_attributes": ""
+            },
+            "size": "md",
+            "background_background": "classic",
+            "background_color": "#395946",
+            "button_text_color": "#f9f7f0",
+            "button_background_hover_background": "classic",
+            "button_background_hover_color": "#428265",
+            "hover_color": "#ffffff",
+            "border_radius": {
+              "unit": "px",
+              "top": "999",
+              "right": "999",
+              "bottom": "999",
+              "left": "999",
+              "isLinked": false
+            },
+            "text_padding": {
+              "unit": "px",
+              "top": "14",
+              "right": "24",
+              "bottom": "14",
+              "left": "24",
+              "isLinked": false
+            },
+            "_css_classes": "omni-btn",
+            "typography_typography": "custom",
+            "typography_font_family": "Jost",
+            "typography_font_size": {
+              "unit": "px",
+              "size": 15,
+              "sizes": []
+            },
+            "typography_font_weight": "500",
+            "typography_line_height": {
+              "unit": "em",
+              "size": 1.2,
+              "sizes": []
+            },
+            "typography_letter_spacing": {
+              "unit": "px",
+              "size": 0.3,
+              "sizes": []
+            },
+            "selected_icon": {
+              "value": "fab fa-whatsapp",
+              "library": "fa-brands"
+            },
+            "icon_indent": {
+              "unit": "px",
+              "size": 10,
+              "sizes": []
+            },
+            "hide_mobile": "hidden-mobile"
+          },
+          "elements": [],
+          "widgetType": "button"
+        }
+      ],
+      "isInner": false
+    }
+  ],
+  "page_settings": {
+    "custom_css": ".omni-btn .elementor-button{transition:background-color .2s ease,color .2s ease,transform .16s ease-out}\n.omni-btn .elementor-button:active{transform:scale(.97)}\n.omni-nav .elementor-nav-menu a:focus-visible,.elementor-button:focus-visible,.elementor-menu-toggle:focus-visible{outline:2px solid #428265;outline-offset:4px}\n@media (prefers-reduced-motion:reduce){.omni-btn .elementor-button:active{transform:none}}\n"
+  }
+}
