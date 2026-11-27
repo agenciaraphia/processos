@@ -71,7 +71,8 @@ Se não houver texto legível, responda {"texto": ""}.`;
 // ---------------------------------------------------------------------------
 // Modelos e ajustes
 // ---------------------------------------------------------------------------
-const MODELOS_TEXTO = ["gemini-3.8-flash", "gemini-3.5-flash", "gemini-2.5-flash", "gemini-flash-latest", "gemini-2.5-flash-lite"];
+// O 2º da lista é o "reforço" rápido, chamado em paralelo se o 1º demorar.
+const MODELOS_TEXTO = ["gemini-3.8-flash", "gemini-2.5-flash", "gemini-3.5-flash", "gemini-flash-latest", "gemini-2.5-flash-lite"];
 const MODELOS_FOTO = ["gemini-3.5-flash-lite", "gemini-flash-lite-latest", "gemini-2.5-flash-lite", "gemini-3.5-flash", "gemini-2.5-flash"];
 const CLAUDE_PADRAO = "claude-sonnet-5-5";
 const NOMES = { claude: "Claude", gemini: "Gemini" };
@@ -79,8 +80,10 @@ const LIMITE_DITADO = 15000;
 const FOTO_TIPOS = new Set(["image/jpeg", "image/png", "image/webp"]);
 const FOTO_MAX = 4;
 const FOTO_TAMANHO = 3_000_000;
-const TEMPO_TOTAL = 110_000;    // ms: quanto o site espera no máximo, somando as tentativas
-const TEMPO_MODELO = 60_000;    // ms: quanto espera cada modelo
+const TEMPO_TOTAL = 100_000;    // ms: quanto o site espera no máximo, no total
+const TEMPO_MODELO = 45_000;    // ms: quanto espera cada modelo
+const REFORCO_TEXTO = 8_000;    // ms: se o 1º modelo não responder até aqui, chama outro em paralelo
+const REFORCO_FOTO = 6_000;
 
 function env(k) {
   try { return String(globalThis.Netlify?.env?.get?.(k) ?? globalThis.Deno?.env?.get?.(k) ?? globalThis.process?.env?.[k] ?? "").trim(); }
@@ -125,45 +128,69 @@ function configGeracao(modelo, foto) {
   return cfg;
 }
 
-// Gemini: tenta os modelos em ordem até um devolver um texto válido.
-async function gemini(partes, valido, foto) {
+// Pede a UM modelo e diz se a resposta veio válida.
+async function tentarModelo(modelo, partes, valido, foto, signal) {
+  const pedir = (cfg) => fetch(
+    `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(modelo)}:generateContent?key=${encodeURIComponent(env("GEMINI_API_KEY"))}`,
+    { method: "POST", signal, headers: { "content-type": "application/json" },
+      body: JSON.stringify({ contents: [{ role: "user", parts: partes }], generationConfig: cfg }) });
+  try {
+    const cfg = configGeracao(modelo, foto);
+    let up = await pedir(cfg);
+    if (up.status === 400 && cfg.thinkingConfig) {          // modelo não aceitou o ajuste: tenta sem ele
+      const { thinkingConfig, ...semAjuste } = cfg;
+      up = await pedir(semAjuste);
+    }
+    if (!up.ok) return { ok: false, erro: { ...(await lerErro(up)), modelo } };
+    const data = await up.json().catch(() => null);
+    const cand = data?.candidates?.[0];
+    const texto = (cand?.content?.parts || []).filter((p) => !p.thought && typeof p.text === "string").map((p) => p.text).join("");
+    const j = lerJson(texto);
+    if (j && valido(j)) return { ok: true, j };
+    return { ok: false, erro: { error: "ia", modelo, message: `O modelo ${modelo} não devolveu o texto (${cand?.finishReason || data?.promptFeedback?.blockReason || "sem texto"}).` } };
+  } catch (e) {
+    return { ok: false, erro: { error: "ia", modelo, message: e?.name === "AbortError" ? "A IA demorou demais para responder." : "Sem conexão com a IA." } };
+  }
+}
+
+// Gemini em "corrida": começa pelo 1º modelo; se ele falhar, passa ao próximo;
+// se ele demorar, chama mais um em paralelo e fica com a primeira resposta boa.
+function gemini(partes, valido, foto) {
   const lista = [...new Set([env(foto ? "GEMINI_MODEL_FOTO" : "GEMINI_MODEL"), ...(foto ? MODELOS_FOTO : MODELOS_TEXTO)].filter(Boolean))];
   const inicio = Date.now();
-  let ultimo = null;
-  for (const modelo of lista) {
-    const resta = TEMPO_TOTAL - (Date.now() - inicio);
-    if (resta < 5000) break;
-    const ctl = new AbortController();
-    const relogio = setTimeout(() => ctl.abort(), Math.min(TEMPO_MODELO, resta));
-    const pedir = (cfg) => fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(modelo)}:generateContent?key=${encodeURIComponent(env("GEMINI_API_KEY"))}`,
-      { method: "POST", signal: ctl.signal, headers: { "content-type": "application/json" },
-        body: JSON.stringify({ contents: [{ role: "user", parts: partes }], generationConfig: cfg }) });
-    try {
-      const cfg = configGeracao(modelo, foto);
-      let up = await pedir(cfg);
-      if (up.status === 400 && cfg.thinkingConfig) {      // modelo não aceitou o ajuste: tenta sem ele
-        const { thinkingConfig, ...semAjuste } = cfg;
-        up = await pedir(semAjuste);
-      }
-      if (!up.ok) {
-        ultimo = { ...(await lerErro(up)), modelo };
-        if (ultimo.error === "chave_invalida") break;
-        continue;
-      }
-      const data = await up.json().catch(() => null);
-      const cand = data?.candidates?.[0];
-      const texto = (cand?.content?.parts || []).filter((p) => !p.thought && typeof p.text === "string").map((p) => p.text).join("");
-      const j = lerJson(texto);
-      if (j && valido(j)) return { ...j, _modelo: modelo };
-      ultimo = { error: "ia", modelo, message: `O modelo ${modelo} não devolveu o texto (${cand?.finishReason || data?.promptFeedback?.blockReason || "sem texto"}).` };
-    } catch (e) {
-      ultimo = { error: "ia", modelo, message: e?.name === "AbortError" ? "A IA demorou demais para responder." : "Sem conexão com a IA." };
-    } finally {
-      clearTimeout(relogio);
-    }
-  }
-  return ultimo || { error: "ia", message: "Nenhum modelo respondeu." };
+  return new Promise((resolve) => {
+    let idx = 0, ativos = 0, fim = false, ultimo = null;
+    const controles = [], relogios = [];
+    const terminar = (saida) => {
+      if (fim) return;
+      fim = true;
+      controles.forEach((c) => c.abort());
+      relogios.forEach((t) => clearTimeout(t));
+      resolve(saida);
+    };
+    const proximo = () => {
+      if (fim) return;
+      if (idx >= lista.length) { if (ativos === 0) terminar(ultimo || { error: "ia", message: "Nenhum modelo respondeu." }); return; }
+      const modelo = lista[idx++];
+      ativos++;
+      const ctl = new AbortController();
+      controles.push(ctl);
+      const t = setTimeout(() => ctl.abort(), TEMPO_MODELO);
+      relogios.push(t);
+      tentarModelo(modelo, partes, valido, foto, ctl.signal).then((r) => {
+        clearTimeout(t);
+        ativos--;
+        if (fim) return;
+        if (r.ok) return terminar({ ...r.j, _modelo: modelo, _ms: Date.now() - inicio });
+        ultimo = r.erro;
+        if (r.erro.error === "chave_invalida") return terminar(r.erro);
+        proximo();
+      });
+    };
+    proximo();
+    relogios.push(setTimeout(() => { if (!fim && ativos < 2) proximo(); }, foto ? REFORCO_FOTO : REFORCO_TEXTO));
+    relogios.push(setTimeout(() => terminar(ultimo || { error: "ia", message: "A IA demorou demais para responder. Tente de novo em um minuto." }), TEMPO_TOTAL));
+  });
 }
 
 // Claude (opcional)
@@ -205,7 +232,7 @@ function respostaAoVivo(trabalho) {
 export default async (req) => {
   const ia = escolherIA();
   const senha = env("APP_SENHA");
-  if (req.method === "GET") return json({ ok: true, chave: !!ia, senha: !!senha, ia: NOMES[ia] || "", versao: 2 });
+  if (req.method === "GET") return json({ ok: true, chave: !!ia, senha: !!senha, ia: NOMES[ia] || "", versao: 3 });
   if (req.method !== "POST") return json({ error: "metodo" }, 405);
   if (!ia) return json({ error: "sem_chave" }, 503);
 
